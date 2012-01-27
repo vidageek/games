@@ -1,0 +1,19 @@
+apply plugin: 'eclipse'
+apply plugin: 'java'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
+version = '0.1-SNAPSHOT'
+group = 'net.vidageek'
+
+repositories {
+	mavenCentral()
+}
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+dependencies {
+	testCompile group: 'junit', name: 'junit', version: '4.8.2'
+}
