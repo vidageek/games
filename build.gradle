@@ -15,7 +15,8 @@ repositories {
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 dependencies {
-	compile group: 'br.com.caelum', name: 'vraptor', version: '3.4.0'
-	testCompile group: 'org.mockito', name: 'mockito-core', version: '1.9.0'
-	testCompile group: 'junit', name: 'junit', version: '4.10'
+	compile 'br.com.caelum:vraptor:3.4.0'
+	compile 'org.prevayler:prevayler-core:2.5'
+	testCompile 'org.mockito:mockito-core:1.9.0'
+	testCompile 'junit:junit:4.10'
 }
