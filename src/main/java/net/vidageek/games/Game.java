@@ -4,4 +4,5 @@ public interface Game {
 
 	Class<? extends GameController> beginClass();
 
+	int size();
 }

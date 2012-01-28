@@ -32,7 +32,11 @@ public class RegexGameController implements GameController {
 		final JudgedTask judgedTask = game.task(index).judge(challenge);
 		result.include("judgedTask", judgedTask);
 		if (judgedTask.ok()) {
-			result.redirectTo(this).task(index + 1);
+			if (index + 1 < game.size()) {
+				result.redirectTo(this).task(index + 1);
+			} else {
+				result.redirectTo(this).index();
+			}
 		} else {
 			result.redirectTo(this).task(index);
 		}

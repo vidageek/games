@@ -2,12 +2,12 @@ package net.vidageek.games.regex;
 
 import java.util.regex.Pattern;
 
-final public class RegexTask implements Task {
+final public class MatchingRegexTask implements Task {
 
 	private final int index;
 	private final String matchingTarget;
 
-	public RegexTask(final String matchingTarget, final int index) {
+	public MatchingRegexTask(final String matchingTarget, final int index) {
 		this.matchingTarget = matchingTarget;
 		this.index = index;
 	}
@@ -28,7 +28,7 @@ final public class RegexTask implements Task {
 	}
 
 	public String getChallenge() {
-		return "Qual regex dá match em [a]?";
+		return "Qual regex dá match em [" + matchingTarget + "]?";
 	}
 
 	public int getIndex() {
