@@ -5,6 +5,8 @@ import java.util.List;
 
 import net.vidageek.games.Game;
 import net.vidageek.games.GameController;
+import net.vidageek.games.regex.task.MatchingRegexTask;
+import net.vidageek.games.task.Task;
 import br.com.caelum.vraptor.ioc.Component;
 
 @Component

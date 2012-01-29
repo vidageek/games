@@ -1,7 +1,9 @@
-package net.vidageek.games.regex;
+package net.vidageek.games.regex.task;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import net.vidageek.games.task.JudgedTask;
 
 final public class TaskError implements JudgedTask {
 

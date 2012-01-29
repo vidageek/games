@@ -1,4 +1,4 @@
-package net.vidageek.games.regex;
+package net.vidageek.games;
 
 import java.util.Scanner;
 
@@ -8,11 +8,11 @@ import br.com.caelum.vraptor.View;
 import br.com.caelum.vraptor.ioc.Component;
 
 @Component
-public class RegexView implements View {
+public class GameView implements View {
 
 	private final HttpServletResponse response;
 
-	public RegexView(final HttpServletResponse response) {
+	public GameView(final HttpServletResponse response) {
 		this.response = response;
 	}
 
@@ -28,7 +28,7 @@ public class RegexView implements View {
 	}
 
 	private String read(final String file) {
-		return new Scanner(RegexView.class.getResourceAsStream(file)).useDelimiter("$$").next();
+		return new Scanner(GameView.class.getResourceAsStream(file)).useDelimiter("$$").next();
 	}
 
 }

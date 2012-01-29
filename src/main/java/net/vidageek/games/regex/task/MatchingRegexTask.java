@@ -1,6 +1,9 @@
-package net.vidageek.games.regex;
+package net.vidageek.games.regex.task;
 
 import java.util.regex.Pattern;
+
+import net.vidageek.games.task.JudgedTask;
+import net.vidageek.games.task.Task;
 
 final public class MatchingRegexTask implements Task {
 

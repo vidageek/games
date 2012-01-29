@@ -1,4 +1,6 @@
-package net.vidageek.games.regex;
+package net.vidageek.games.regex.task;
+
+import net.vidageek.games.task.JudgedTask;
 
 final public class TaskFail implements JudgedTask {
 
