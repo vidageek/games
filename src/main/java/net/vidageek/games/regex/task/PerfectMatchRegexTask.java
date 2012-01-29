@@ -5,12 +5,12 @@ import java.util.regex.Pattern;
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
 
-final public class MatchingRegexTask implements Task {
+final public class PerfectMatchRegexTask implements Task {
 
 	private final int index;
 	private final String matchingTarget;
 
-	public MatchingRegexTask(final String matchingTarget, final int index) {
+	public PerfectMatchRegexTask(final String matchingTarget, final int index) {
 		this.matchingTarget = matchingTarget;
 		this.index = index;
 	}
@@ -18,11 +18,11 @@ final public class MatchingRegexTask implements Task {
 	public JudgedTask judge(final String challenge) {
 		try {
 			if (Pattern.compile(challenge).matcher(matchingTarget).matches()) {
-				return new TaskOk();
+				return new OkTask();
 			}
-			return new TaskFail("[" + challenge + "] não dá match em [" + matchingTarget + "]");
+			return new FailedTask("[" + challenge + "] não dá match em [" + matchingTarget + "]");
 		} catch (Exception e) {
-			return new TaskError(e);
+			return new ErrorTask(e);
 		}
 	}
 
