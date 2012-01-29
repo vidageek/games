@@ -5,12 +5,12 @@ import java.util.regex.Pattern;
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
 
-final public class PerfectMatchRegexTask implements Task {
+final public class PerfectMatchRegex implements Task {
 
 	private final int index;
 	private final String matchingTarget;
 
-	public PerfectMatchRegexTask(final String matchingTarget, final int index) {
+	public PerfectMatchRegex(final String matchingTarget, final int index) {
 		this.matchingTarget = matchingTarget;
 		this.index = index;
 	}
