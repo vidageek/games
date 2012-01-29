@@ -1,8 +1,5 @@
 package net.vidageek.games.regex.task;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 import net.vidageek.games.task.JudgedTask;
 
 final public class Error implements JudgedTask {
@@ -18,9 +15,13 @@ final public class Error implements JudgedTask {
 	}
 
 	public String getReason() {
-		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		e.printStackTrace(new PrintStream(baos));
-		return "failed because exception was raised: " + new String(baos.toByteArray());
+		String reason = "Falhou porqu&ecirc; exce&ccedil;&atilde;o foi lan&ccedil;ada:" + "<ul class=\"exception\">\n";
+		reason += "<li class=\"first\">" + e.getClass().getName() + "</li>\n";
+		for (StackTraceElement frame : e.getStackTrace()) {
+			reason += "<li>at&nbsp;" + frame + "</li>\n";
+		}
+		reason += "</ul>\n";
+		System.out.println(reason);
+		return reason;
 	}
-
 }
