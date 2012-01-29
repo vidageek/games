@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.vidageek.games.Game;
-import net.vidageek.games.GameController;
 import net.vidageek.games.regex.task.MatchingRegexTask;
 import net.vidageek.games.task.Task;
 import br.com.caelum.vraptor.ioc.Component;
@@ -22,8 +21,8 @@ final public class RegexGame implements Game {
 		list.add(new MatchingRegexTask("abc", 3));
 	}
 
-	public Class<? extends GameController> beginClass() {
-		return RegexGameController.class;
+	public Class<?> beginClass() {
+		return GameController.class;
 	}
 
 	public Task task(final int index) {

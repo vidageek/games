@@ -8,7 +8,7 @@ ${task.description}
 
 ${task.challenge}
 
-<form method="POST" action="/play/regex/task/submit/${task.index}">
+<form method="POST" action="/play/${gameName}/task/submit/${task.index}">
 	<input name="challenge" />
 	<input type="submit" value="Enviar" />
 </form>
