@@ -3,11 +3,11 @@ package net.vidageek.games.regex.test.infra;
 import static org.junit.Assert.assertTrue;
 import net.vidageek.games.Game;
 
-final public class Player {
+final public class Person {
 
 	private final String[] answers;
 
-	public Player(final String... answers) {
+	public Person(final String... answers) {
 		this.answers = answers;
 	}
 
