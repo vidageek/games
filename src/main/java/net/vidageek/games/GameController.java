@@ -1,4 +1,4 @@
-package net.vidageek.games.regex;
+package net.vidageek.games;
 
 import net.vidageek.games.task.JudgedTask;
 import br.com.caelum.vraptor.Get;
@@ -10,9 +10,9 @@ import br.com.caelum.vraptor.Result;
 public class GameController {
 
 	private final Result result;
-	private final RegexGame game;
+	private final Game game;
 
-	public GameController(final Result result, final RegexGame game) {
+	public GameController(final Result result, final Game game) {
 		this.result = result;
 		this.game = game;
 	}
