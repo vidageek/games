@@ -5,11 +5,11 @@ import java.io.PrintStream;
 
 import net.vidageek.games.task.JudgedTask;
 
-final public class ErrorTask implements JudgedTask {
+final public class Error implements JudgedTask {
 
 	private final Throwable e;
 
-	public ErrorTask(final Throwable e) {
+	public Error(final Throwable e) {
 		this.e = e;
 	}
 

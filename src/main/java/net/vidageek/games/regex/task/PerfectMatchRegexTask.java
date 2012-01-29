@@ -18,11 +18,11 @@ final public class PerfectMatchRegexTask implements Task {
 	public JudgedTask judge(final String challenge) {
 		try {
 			if (Pattern.compile(challenge).matcher(matchingTarget).matches()) {
-				return new OkTask();
+				return new Ok();
 			}
-			return new FailedTask("[" + challenge + "] não dá match em [" + matchingTarget + "]");
+			return new Failed("[" + challenge + "] não dá match em [" + matchingTarget + "]");
 		} catch (Exception e) {
-			return new ErrorTask(e);
+			return new Error(e);
 		}
 	}
 

@@ -2,11 +2,11 @@ package net.vidageek.games.regex.task;
 
 import net.vidageek.games.task.JudgedTask;
 
-final public class FailedTask implements JudgedTask {
+final public class Failed implements JudgedTask {
 
 	private final String reason;
 
-	public FailedTask(final String reason) {
+	public Failed(final String reason) {
 		this.reason = reason;
 	}
 
