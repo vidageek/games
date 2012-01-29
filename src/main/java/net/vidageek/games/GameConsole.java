@@ -7,12 +7,12 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 
 @Resource
-public class GameController {
+public class GameConsole {
 
 	private final Result result;
 	private final Game game;
 
-	public GameController(final Result result, final Game game) {
+	public GameConsole(final Result result, final Game game) {
 		this.result = result;
 		this.game = game;
 	}
