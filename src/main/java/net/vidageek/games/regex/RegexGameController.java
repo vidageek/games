@@ -1,7 +1,6 @@
 package net.vidageek.games.regex;
 
 import net.vidageek.games.GameController;
-import net.vidageek.games.GameView;
 import net.vidageek.games.task.JudgedTask;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
@@ -21,7 +20,6 @@ public class RegexGameController implements GameController {
 
 	@Get("/play/regex")
 	public void index() {
-		result.use(GameView.class).render("/regex/index.html");
 	}
 
 	@Get("/play/regex/task/{index}")
