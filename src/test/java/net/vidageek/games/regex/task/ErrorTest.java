@@ -10,7 +10,7 @@ final public class ErrorTest {
 	public void stacktraceShouldBePrintedInAnHtmlListWithClassException() {
 		final String reason = new Error(new Throwable()).getReason();
 		assertTrue(reason.contains("<ul class=\"exception\">"));
-		assertTrue(reason.contains("Falhou porqu&ecirc; exce&ccedil;&atilde;o foi lan&ccedil;ada:"));
+		assertTrue(reason.contains("Falhou porque exce&ccedil;&atilde;o foi lan&ccedil;ada:"));
 		assertTrue(reason.contains("<li class=\"first\">java.lang.Throwable</li>"));
 		assertTrue(reason.contains("<li>at&nbsp;net.vidageek.games.regex.task.ErrorTest."
 				+ "stacktraceShouldBePrintedInAnHtmlListWithClassException(ErrorTest.java"));
