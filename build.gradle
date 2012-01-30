@@ -32,6 +32,7 @@ dependencies {
 	compile 'log4j:log4j:1.2.16'
 	compile 'org.apache.velocity:velocity:1.7'
 	compile 'javax.servlet:jstl:1.2'
+	compile 'opensymphony:sitemesh:2.4.2'
 	
 	provided 'javax.servlet:servlet-api:2.5'
 	
