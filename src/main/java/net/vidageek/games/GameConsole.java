@@ -29,7 +29,7 @@ public class GameConsole {
 		result.include("task", game.task(index));
 	}
 
-	@Post("/play/{gameName}/task/submit/{index}")
+	@Post("/play/{gameName}/task/{index}")
 	public void submit(final String gameName, final int index, final String challenge) {
 		final JudgedTask judgedTask = game.task(index).judge(challenge);
 		result.include("judgedTask", judgedTask);
