@@ -38,4 +38,9 @@ final public class PerfectMatchRegex implements Task {
 		return index;
 	}
 
+	@Override
+	public String toString() {
+		return "Match em " + matchingTarget;
+	}
+
 }

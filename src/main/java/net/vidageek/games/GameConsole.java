@@ -20,6 +20,7 @@ public class GameConsole {
 	@Get("/play/{gameName}")
 	public void index(final String gameName) {
 		result.include("gameName", gameName);
+		result.include("game", game);
 	}
 
 	@Get("/play/{gameName}/task/{index}")

@@ -27,4 +27,16 @@ final public class RegexGame implements Game {
 		return list.size();
 	}
 
+	public String getDescription() {
+		return "Um jogo muito legal para aprender RegEx";
+	}
+
+	public List<Task> getTasks() {
+		return list;
+	}
+
+	public String getName() {
+		return "RegEx";
+	}
+
 }
