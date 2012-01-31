@@ -14,14 +14,14 @@ final public class RegexGame implements Game {
 	public RegexGame() {
 		int indexes = 0;
 		list = new ArrayList<Task>();
-		list.add(new PerfectMatchRegex("a", indexes++));
-		list.add(new PerfectMatchRegex("b", indexes++));
-		list.add(new PerfectMatchRegex("ab", indexes++));
-		list.add(new PerfectMatchRegex("abc", indexes++));
-		list.add(new PerfectMatchRegex("\\", indexes++));
-		list.add(new PerfectMatchRegex("$", indexes++));
-		list.add(new PerfectMatchRegex("abcdefg", indexes++));
-		list.add(new PerfectMatchRegex("ab$cd^ef\\g", indexes++));
+		list.add(new PerfectMatchRegex(indexes++, "a"));
+		list.add(new PerfectMatchRegex(indexes++, "b"));
+		list.add(new PerfectMatchRegex(indexes++, "ab"));
+		list.add(new PerfectMatchRegex(indexes++, "abc"));
+		list.add(new PerfectMatchRegex(indexes++, "\\"));
+		list.add(new PerfectMatchRegex(indexes++, "$"));
+		list.add(new PerfectMatchRegex(indexes++, "abcdefg"));
+		list.add(new PerfectMatchRegex(indexes++, "ab$cd^ef\\g"));
 	}
 
 	public Task task(final int index) {

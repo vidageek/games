@@ -10,7 +10,7 @@ final public class PerfectMatchRegex implements Task {
 	private final int index;
 	private final String matchingTarget;
 
-	public PerfectMatchRegex(final String matchingTarget, final int index) {
+	public PerfectMatchRegex(final int index, final String matchingTarget) {
 		this.matchingTarget = matchingTarget;
 		this.index = index;
 	}
