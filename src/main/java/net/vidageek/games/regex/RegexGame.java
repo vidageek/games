@@ -18,6 +18,10 @@ final public class RegexGame implements Game {
 		list.add(new PerfectMatchRegex("b", indexes++));
 		list.add(new PerfectMatchRegex("ab", indexes++));
 		list.add(new PerfectMatchRegex("abc", indexes++));
+		list.add(new PerfectMatchRegex("\\", indexes++));
+		list.add(new PerfectMatchRegex("$", indexes++));
+		list.add(new PerfectMatchRegex("abcdefg", indexes++));
+		list.add(new PerfectMatchRegex("ab$cd^ef\\g", indexes++));
 	}
 
 	public Task task(final int index) {

@@ -8,7 +8,7 @@ final public class RegexGameTest {
 
 	@Test
 	public void allTasksMustHaveAnswers() {
-		new Person("a", "b", "ab", "abc").play(new RegexGame());
+		new Person("a", "b", "ab", "abc", "\\\\", "\\$", "abcdefg", "ab\\$cd\\^ef\\\\g").play(new RegexGame());
 	}
 
 }
