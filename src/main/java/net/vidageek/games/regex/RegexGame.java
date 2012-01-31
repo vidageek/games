@@ -12,11 +12,12 @@ final public class RegexGame implements Game {
 	private final List<Task> list;
 
 	public RegexGame() {
+		int indexes = 0;
 		list = new ArrayList<Task>();
-		list.add(new PerfectMatchRegex("a", 0));
-		list.add(new PerfectMatchRegex("b", 1));
-		list.add(new PerfectMatchRegex("ab", 2));
-		list.add(new PerfectMatchRegex("abc", 3));
+		list.add(new PerfectMatchRegex("a", indexes++));
+		list.add(new PerfectMatchRegex("b", indexes++));
+		list.add(new PerfectMatchRegex("ab", indexes++));
+		list.add(new PerfectMatchRegex("abc", indexes++));
 	}
 
 	public Task task(final int index) {
