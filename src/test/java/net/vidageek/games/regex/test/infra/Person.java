@@ -12,6 +12,7 @@ final public class Person {
 	}
 
 	public void play(final Game game) {
+		assertTrue("Number of tasks and answers should be equals!", game.size() == this.answers.length);
 		for (int i = 0; i < game.size(); i++) {
 			assertTrue(	game.getClass().getSimpleName() + " task " + i + " is not correctly answered by " + answers[i],
 						game.task(i).judge(answers[i]).ok());
