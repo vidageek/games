@@ -28,6 +28,7 @@ final public class RegexGame implements Game {
 		list.add(new CaptureGroup(indexes++, "abcdef", "abcdef"));
 		list.add(new CaptureGroup(indexes++, "abcdef1a", "abcdef"));
 		list.add(new CaptureGroup(indexes++, "abcdef1a", "abcdef", "1a"));
+		list.add(new CaptureGroup(indexes++, "abcdef1a", "abcdef1a", "abcdef", "1"));
 	}
 
 	public Task task(final int index) {
