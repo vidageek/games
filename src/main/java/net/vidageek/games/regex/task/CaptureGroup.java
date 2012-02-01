@@ -6,13 +6,13 @@ import java.util.regex.Pattern;
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
 
-final public class SingleCaptureGroup implements Task {
+final public class CaptureGroup implements Task {
 
 	private final int index;
 	private final String matchingTarget;
 	private final String groupOneMatchingTarget;
 
-	public SingleCaptureGroup(final int index, final String matchingTarget, final String groupOneMatchingTarget) {
+	public CaptureGroup(final int index, final String matchingTarget, final String groupOneMatchingTarget) {
 		this.matchingTarget = matchingTarget;
 		this.index = index;
 		this.groupOneMatchingTarget = groupOneMatchingTarget;
