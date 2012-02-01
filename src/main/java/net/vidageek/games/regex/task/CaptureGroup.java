@@ -10,12 +10,12 @@ final public class CaptureGroup implements Task {
 
 	private final int index;
 	private final String matchingTarget;
-	private final String groupOneMatchingTarget;
+	private final String[] groupMatchingTargets;
 
-	public CaptureGroup(final int index, final String matchingTarget, final String groupOneMatchingTarget) {
+	public CaptureGroup(final int index, final String matchingTarget, final String... groupMatchingTargets) {
 		this.matchingTarget = matchingTarget;
 		this.index = index;
-		this.groupOneMatchingTarget = groupOneMatchingTarget;
+		this.groupMatchingTargets = groupMatchingTargets;
 	}
 
 	public JudgedTask judge(final String challenge) {
@@ -24,14 +24,17 @@ final public class CaptureGroup implements Task {
 			if (!matcher.find()) {
 				return new Failed("A regex " + challenge + " não dá match em " + matchingTarget);
 			}
-			if (matcher.groupCount() != 1) {
+			if (matcher.groupCount() != groupMatchingTargets.length) {
 				return new Failed("A regex " + challenge + " não contém um grupo de captura.");
 			}
 			if (!matchingTarget.equals(matcher.group(0))) {
 				return new Failed("A regex " + challenge + " não reconhece a string " + matchingTarget);
 			}
-			if (!groupOneMatchingTarget.equals(matcher.group(1))) {
-				return new Failed("A regex " + challenge + " não captura a string " + matchingTarget);
+			int i = 1;
+			for (String target : groupMatchingTargets) {
+				if (!target.equals(matcher.group(i++))) {
+					return new Failed("A regex " + challenge + " não captura a string " + target);
+				}
 			}
 			return new Ok();
 		} catch (Exception e) {
@@ -44,7 +47,15 @@ final public class CaptureGroup implements Task {
 	}
 
 	public String getChallenge() {
-		return "Qual regex dá match em " + matchingTarget + " e captura " + groupOneMatchingTarget + "?";
+		return "Qual regex dá match em " + matchingTarget + " e captura " + captureTarget() + "?";
+	}
+
+	private String captureTarget() {
+		String result = "";
+		for (String target : groupMatchingTargets) {
+			result += target + ", ";
+		}
+		return result.substring(0, result.length() - 2);
 	}
 
 	public int getIndex() {
@@ -53,7 +64,7 @@ final public class CaptureGroup implements Task {
 
 	@Override
 	public String toString() {
-		return "Capturar " + groupOneMatchingTarget + " no string " + matchingTarget;
+		return "Capturar " + captureTarget() + " no string " + matchingTarget;
 	}
 
 }

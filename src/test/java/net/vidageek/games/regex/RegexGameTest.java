@@ -8,8 +8,8 @@ final public class RegexGameTest {
 
 	@Test
 	public void allTasksMustHaveAnswers() {
-		new Person("a", "b", "ab", "abc", "\\\\", "\\$", "abcdefg", "ab\\$cd\\^ef\\\\g", "([a-z]+)", "([a-z]+).*")
-				.play(new RegexGame());
+		new Person("a", "b", "ab", "abc", "\\\\", "\\$", "abcdefg", "ab\\$cd\\^ef\\\\g", "([a-z]+)", "([a-z]+).*",
+				"([a-z]+)(.*)").play(new RegexGame());
 	}
 
 }

@@ -7,7 +7,7 @@ import net.vidageek.games.task.JudgedTask;
 
 import org.junit.Test;
 
-final public class SingleCaptureGroupTest {
+final public class CaptureGroupTest {
 
 	@Test
 	public void shouldCaptureASingleGroup() {
@@ -18,6 +18,12 @@ final public class SingleCaptureGroupTest {
 	@Test
 	public void shouldMatchGroupOneTarget() {
 		JudgedTask judge = new CaptureGroup(0, "abcdef1a", "abcdef").judge("([a-z]+).*");
+		assertTrue(judge.ok());
+	}
+
+	@Test
+	public void shouldMatchAllGroupsTarget() {
+		JudgedTask judge = new CaptureGroup(0, "abcdef1a", "abcdef", "1a").judge("([a-z]+)(.*)");
 		assertTrue(judge.ok());
 	}
 
