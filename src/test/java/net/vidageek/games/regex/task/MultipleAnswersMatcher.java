@@ -1,10 +1,5 @@
 package net.vidageek.games.regex.task;
 
-import java.util.List;
-import java.util.regex.Pattern;
-
-import org.junit.internal.runners.statements.Fail;
-
 import net.vidageek.games.regex.Regex;
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
@@ -22,9 +17,7 @@ public class MultipleAnswersMatcher implements Task {
 
 	public JudgedTask judge(String challenge) {
 		try {
-			Regex regex = new Regex(challenge);
-			Faileds fails = regex.matchAll(this.matchingTargets);
-			return fails.ok()? new Ok() : fails;
+			return new Regex(challenge).matchAll(this.matchingTargets);
 			
 		} catch (Exception e) {
 			return new Error(e);

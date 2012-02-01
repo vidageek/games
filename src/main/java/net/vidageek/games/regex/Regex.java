@@ -4,6 +4,8 @@ import java.util.regex.Pattern;
 
 import net.vidageek.games.regex.task.Failed;
 import net.vidageek.games.regex.task.Faileds;
+import net.vidageek.games.regex.task.Ok;
+import net.vidageek.games.task.JudgedTask;
 
 /**
  * @author jonasabreu
@@ -17,22 +19,23 @@ final public class Regex {
 		pattern = Pattern.compile(regex);
 	}
 
-	public boolean match(final String text) {
-		return pattern.matcher(text).matches();
+	public JudgedTask match(final String matchingTarget) {
+		return pattern.matcher(matchingTarget).matches()? new Ok() : new Failed("[" + this.pattern.pattern() + "] não dá match em [" + matchingTarget + "]");
 	}
 
 	public GroupFinder group(final int position) {
 		return new GroupFinder(position, pattern);
 	}
 
-	public Faileds matchAll(String[] matchingTargets) {
+	public JudgedTask matchAll(String[] matchingTargets) {
 		Faileds fails = new Faileds();
 		for (String matchingTarget : matchingTargets) {
-			if (!match(matchingTarget)) {
-				fails.add(new Failed("[" + this.pattern.pattern() + "] não dá match em [" + matchingTarget + "]"));
+			JudgedTask match = match(matchingTarget);
+			if (!match.ok()) {
+				fails.add((Failed)match);
 			}
 		}
-		return fails;
+		return fails.ok() ? new Ok() : fails;
 	}
 
 }
