@@ -44,11 +44,16 @@ final public class SingleCaptureGroup implements Task {
 	}
 
 	public String getChallenge() {
-		return "Qual regex dá match em " + matchingTarget + " e captura todo seu conteúdo?";
+		return "Qual regex dá match em " + matchingTarget + " e captura " + groupOneMatchingTarget + "?";
 	}
 
 	public int getIndex() {
 		return index;
+	}
+
+	@Override
+	public String toString() {
+		return "Capturar " + groupOneMatchingTarget + " no string " + matchingTarget;
 	}
 
 }
