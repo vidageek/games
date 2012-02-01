@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.vidageek.games.Game;
+import net.vidageek.games.regex.task.CaptureGroup;
 import net.vidageek.games.regex.task.PerfectMatchRegex;
 import net.vidageek.games.task.Task;
 
@@ -22,6 +23,11 @@ final public class RegexGame implements Game {
 		list.add(new PerfectMatchRegex(indexes++, "$"));
 		list.add(new PerfectMatchRegex(indexes++, "abcdefg"));
 		list.add(new PerfectMatchRegex(indexes++, "ab$cd^ef\\g"));
+
+		// Exercise 5
+		list.add(new CaptureGroup(indexes++, "abcdef", "abcdef"));
+		list.add(new CaptureGroup(indexes++, "abcdef1a", "abcdef"));
+		list.add(new CaptureGroup(indexes++, "abcdef1a", "abcdef", "1a"));
 	}
 
 	public Task task(final int index) {
