@@ -11,41 +11,47 @@ final public class SingleCaptureGroupTest {
 
 	@Test
 	public void shouldCaptureASingleGroup() {
-		JudgedTask judge = new SingleCaptureGroup("abcdef", 0).judge("([a-z]+)");
+		JudgedTask judge = new SingleCaptureGroup(0, "abcdef", "abcdef").judge("([a-z]+)");
+		assertTrue(judge.ok());
+	}
+
+	@Test
+	public void shouldMatchGroupOneTarget() {
+		JudgedTask judge = new SingleCaptureGroup(0, "abcdef1a", "abcdef").judge("([a-z]+).*");
 		assertTrue(judge.ok());
 	}
 
 	@Test
 	public void shouldContainACaptureGroup() {
-		JudgedTask judge = new SingleCaptureGroup("abcdef", 0).judge("[a-z]+");
+		JudgedTask judge = new SingleCaptureGroup(0, "abcdef", "abcdef").judge("[a-z]+");
 		assertFalse(judge.ok());
 		assertEquals(Failed.class, judge.getClass());
 	}
 
 	@Test
 	public void shouldFailIfDoesNotMatch() {
-		JudgedTask judge = new SingleCaptureGroup("abcdef", 0).judge("(\\d+)");
+		JudgedTask judge = new SingleCaptureGroup(0, "abcdef", "abcdef").judge("(\\d+)");
 		assertFalse(judge.ok());
 		assertEquals(Failed.class, judge.getClass());
 	}
 
 	@Test
 	public void shouldFailIfGroup0IsNotTheMatchingTarget() {
-		JudgedTask judge = new SingleCaptureGroup("abcdef", 0).judge("([a-d]+)");
+		JudgedTask judge = new SingleCaptureGroup(0, "abcdef", "abcdef").judge("([a-d]+)");
 		assertFalse(judge.ok());
 		assertEquals(Failed.class, judge.getClass());
 	}
 
 	@Test
 	public void shouldFailIfGroup1IsNotTheMatchingTarget() {
-		JudgedTask judge = new SingleCaptureGroup("abcdef", 0).judge("([a-d]+)ef");
+		JudgedTask judge = new SingleCaptureGroup(0, "abcdef", "abcdef").judge("([a-d]+)ef");
 		assertFalse(judge.ok());
 		assertEquals(Failed.class, judge.getClass());
 	}
 
 	@Test
 	public void shouldReturnErrorIfRegexIsNotParseable() {
-		JudgedTask judge = new SingleCaptureGroup("abcdef", 0).judge("([a-d]+ef");
+		JudgedTask judge = new SingleCaptureGroup(0, "abcdef", "abcdef").judge("([a-d]+ef");
 		assertFalse(judge.ok());
 		assertEquals(Error.class, judge.getClass());
 	}

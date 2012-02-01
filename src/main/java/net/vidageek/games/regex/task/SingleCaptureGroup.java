@@ -10,10 +10,12 @@ final public class SingleCaptureGroup implements Task {
 
 	private final int index;
 	private final String matchingTarget;
+	private final String groupOneMatchingTarget;
 
-	public SingleCaptureGroup(final String matchingTarget, final int index) {
+	public SingleCaptureGroup(final int index, final String matchingTarget, final String groupOneMatchingTarget) {
 		this.matchingTarget = matchingTarget;
 		this.index = index;
+		this.groupOneMatchingTarget = groupOneMatchingTarget;
 	}
 
 	public JudgedTask judge(final String challenge) {
@@ -28,7 +30,7 @@ final public class SingleCaptureGroup implements Task {
 			if (!matchingTarget.equals(matcher.group(0))) {
 				return new Failed("A regex " + challenge + " não reconhece a string " + matchingTarget);
 			}
-			if (!matchingTarget.equals(matcher.group(1))) {
+			if (!groupOneMatchingTarget.equals(matcher.group(1))) {
 				return new Failed("A regex " + challenge + " não captura a string " + matchingTarget);
 			}
 			return new Ok();
