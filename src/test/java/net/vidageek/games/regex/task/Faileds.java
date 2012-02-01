@@ -18,8 +18,9 @@ public class Faileds implements JudgedTask {
 		return null;
 	}
 
-	public void add(Failed failed) {
-		this.faileds.add(failed);
+	public void addOnlyJudgedFailed(JudgedTask judgedTask) {
+		if (judgedTask instanceof Failed)
+			this.faileds.add((Failed)judgedTask);
 	}
 
 }

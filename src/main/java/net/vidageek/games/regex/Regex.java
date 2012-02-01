@@ -30,10 +30,7 @@ final public class Regex {
 	public JudgedTask matchAll(String[] matchingTargets) {
 		Faileds fails = new Faileds();
 		for (String matchingTarget : matchingTargets) {
-			JudgedTask match = match(matchingTarget);
-			if (!match.ok()) {
-				fails.add((Failed)match);
-			}
+			fails.addOnlyJudgedFailed(match(matchingTarget));
 		}
 		return fails.ok() ? new Ok() : fails;
 	}
