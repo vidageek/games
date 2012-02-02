@@ -15,6 +15,23 @@ final public class RegexGame implements Game {
 
 	public RegexGame() {
 		list = new ArrayList<Task>();
+		addExercises1();
+		addExercises4();
+		addExercises5();
+	}
+
+	private boolean addExercises4() {
+		return list.add(new OperatorMatcher(list.size(), "a"));
+	}
+
+	private void addExercises5() {
+		list.add(new CaptureGroup(list.size(), "abcdef", "abcdef"));
+		list.add(new CaptureGroup(list.size(), "abcdef1a", "abcdef"));
+		list.add(new CaptureGroup(list.size(), "abcdef1a", "abcdef", "1a"));
+		list.add(new CaptureGroup(list.size(), "abcdef1a", "abcdef1a", "abcdef", "1"));
+	}
+
+	private void addExercises1() {
 		list.add(new PerfectMatchRegex(list.size(), "a"));
 		list.add(new PerfectMatchRegex(list.size(), "b"));
 		list.add(new PerfectMatchRegex(list.size(), "ab"));
@@ -23,15 +40,6 @@ final public class RegexGame implements Game {
 		list.add(new PerfectMatchRegex(list.size(), "$"));
 		list.add(new PerfectMatchRegex(list.size(), "abcdefg"));
 		list.add(new PerfectMatchRegex(list.size(), "ab$cd^ef\\g"));
-
-		// Exercise 4
-		list.add(new OperatorMatcher(list.size(), "a"));
-
-		// Exercise 5
-		list.add(new CaptureGroup(list.size(), "abcdef", "abcdef"));
-		list.add(new CaptureGroup(list.size(), "abcdef1a", "abcdef"));
-		list.add(new CaptureGroup(list.size(), "abcdef1a", "abcdef", "1a"));
-		list.add(new CaptureGroup(list.size(), "abcdef1a", "abcdef1a", "abcdef", "1"));
 	}
 
 	public Task task(final int index) {
