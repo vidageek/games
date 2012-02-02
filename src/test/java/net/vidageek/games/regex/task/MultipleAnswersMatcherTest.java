@@ -20,22 +20,27 @@ final public class MultipleAnswersMatcherTest {
 	}
 	
 	@Test
-	public void shouldMatcherWithAllAnswers() throws Exception {
+	public void shouldMatcherWithAllAnswers() {
 		assertTrue(taskWithMatchinTargestAAndB.judge("[AB]").ok());
 	}
 
 	@Test
-	public void cannotMatchWith1InvalidChalengeAnswer() throws Exception {
+	public void cannotMatchWith1InvalidChalengeAnswer() {
 		assertFalse(taskWithMatchinTargestAAndB.judge("[C]").ok());
 	}
 
 	@Test
-	public void cannotMatchWith1InvalidAnd1ValidChalengeAnswer() throws Exception {
+	public void cannotMatchWith1InvalidAnd1ValidChalengeAnswer() {
 		assertFalse(taskWithMatchinTargestAAndB.judge("[AC]").ok());
 	}
 	
 	@Test
-	public void shouldDefineCorrectIndex() throws Exception {
+	public void shouldDefineCorrectIndex() {
 		assertThat(taskWithMatchinTargestAAndB.getIndex(), equalTo(taksIndex)); 
+	}
+	
+	@Test
+	public void shouldShowCorrectChallenge() {
+		assertThat(taskWithMatchinTargestAAndB.getChallenge(), equalTo("Qual regex dá match em [A e B]"));
 	}
 }

@@ -4,6 +4,8 @@ import net.vidageek.games.regex.Regex;
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
 
+import com.google.common.base.Joiner;
+
 public class MultipleAnswersMatcher implements Task {
 
 	private final int index;
@@ -29,8 +31,7 @@ public class MultipleAnswersMatcher implements Task {
 	}
 
 	public String getChallenge() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Qual regex dá match em [" + Joiner.on(" e ").join(this.matchingTargets) + "]";
 	}
 
 	public int getIndex() {
