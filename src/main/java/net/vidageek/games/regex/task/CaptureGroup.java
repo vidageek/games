@@ -12,9 +12,15 @@ final public class CaptureGroup implements Task {
 	private final String matchingTarget;
 	private final String[] groupMatchingTargets;
 
-	public CaptureGroup(final int index, final String matchingTarget, final String... groupMatchingTargets) {
+	public CaptureGroup(final String matchingTarget, final String... groupMatchingTargets) {
 		this.matchingTarget = matchingTarget;
+		this.index = 0;
+		this.groupMatchingTargets = groupMatchingTargets;
+	}
+
+	private CaptureGroup(int index, String matchingTarget, String... groupMatchingTargets) {
 		this.index = index;
+		this.matchingTarget = matchingTarget;
 		this.groupMatchingTargets = groupMatchingTargets;
 	}
 
@@ -65,6 +71,10 @@ final public class CaptureGroup implements Task {
 	@Override
 	public String toString() {
 		return "Capturar " + captureTarget() + " no string " + matchingTarget;
+	}
+
+	public Task withIndex(final int index) {
+		return new CaptureGroup(index, matchingTarget, this.groupMatchingTargets);
 	}
 
 }

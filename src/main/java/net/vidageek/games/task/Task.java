@@ -9,4 +9,6 @@ public interface Task {
 	String getChallenge();
 
 	int getIndex();
+	
+	Task withIndex(final int index);
 }

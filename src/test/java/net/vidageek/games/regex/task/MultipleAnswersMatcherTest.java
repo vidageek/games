@@ -11,12 +11,10 @@ import org.junit.Test;
 final public class MultipleAnswersMatcherTest {
 
 	private MultipleAnswersMatcher taskWithMatchinTargestAAndB;
-	private int taksIndex;
 
 	@Before
 	public void setup() throws Exception {
-		taksIndex = 10;
-		taskWithMatchinTargestAAndB = new MultipleAnswersMatcher(taksIndex, "A", "B");
+		taskWithMatchinTargestAAndB = new MultipleAnswersMatcher("A", "B");
 	}
 	
 	@Test
@@ -32,11 +30,6 @@ final public class MultipleAnswersMatcherTest {
 	@Test
 	public void cannotMatchWith1InvalidAnd1ValidChalengeAnswer() {
 		assertFalse(taskWithMatchinTargestAAndB.judge("[AC]").ok());
-	}
-	
-	@Test
-	public void shouldDefineCorrectIndex() {
-		assertThat(taskWithMatchinTargestAAndB.getIndex(), equalTo(taksIndex)); 
 	}
 	
 	@Test

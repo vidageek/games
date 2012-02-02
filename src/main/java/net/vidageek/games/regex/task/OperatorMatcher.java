@@ -14,7 +14,12 @@ final public class OperatorMatcher implements Task {
 	private final int index;
 	private final String matchingTarget;
 
-	public OperatorMatcher(final int index, final String matchingTarget) {
+	public OperatorMatcher(final String matchingTarget) {
+		this.index = 0;
+		this.matchingTarget = matchingTarget;
+	}
+
+	private OperatorMatcher(int index, String matchingTarget) {
 		this.index = index;
 		this.matchingTarget = matchingTarget;
 	}
@@ -37,6 +42,10 @@ final public class OperatorMatcher implements Task {
 
 	public int getIndex() {
 		return index;
+	}
+
+	public Task withIndex(final int index) {
+		return new OperatorMatcher(index, matchingTarget);
 	}
 
 }

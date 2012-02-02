@@ -10,11 +10,16 @@ final public class PerfectMatchRegex implements Task {
 	private final int index;
 	private final String matchingTarget;
 
-	public PerfectMatchRegex(final int index, final String matchingTarget) {
+	public PerfectMatchRegex(final String matchingTarget) {
+		this.index = 0;
 		this.matchingTarget = matchingTarget;
-		this.index = index;
 	}
-
+	
+	private PerfectMatchRegex(final int index, final String matchingTarget) {
+		this.index = index;
+		this.matchingTarget = matchingTarget;
+	}
+	
 	public JudgedTask judge(final String challenge) {
 		try {
 			if (Pattern.compile(challenge).matcher(matchingTarget).matches()) {
@@ -41,6 +46,10 @@ final public class PerfectMatchRegex implements Task {
 	@Override
 	public String toString() {
 		return "Match em " + matchingTarget;
+	}
+
+	public Task withIndex(final int index) {
+		return new PerfectMatchRegex(index, this.matchingTarget);
 	}
 
 }

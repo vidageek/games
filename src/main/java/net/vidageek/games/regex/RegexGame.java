@@ -1,6 +1,5 @@
 package net.vidageek.games.regex;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.vidageek.games.Game;
@@ -12,10 +11,10 @@ import net.vidageek.games.task.Task;
 
 final public class RegexGame implements Game {
 
-	private final List<Task> list;
+	private Tasks tasks;
 
 	public RegexGame() {
-		list = new ArrayList<Task>();
+		tasks = new Tasks();
 		addExercises1();
 		addExercises2();
 		addExercises4();
@@ -23,52 +22,52 @@ final public class RegexGame implements Game {
 	}
 
 	private void addExercises1() {
-		list.add(new PerfectMatchRegex(list.size(), "a"));
-		list.add(new PerfectMatchRegex(list.size(), "b"));
-		list.add(new PerfectMatchRegex(list.size(), "ab"));
-		list.add(new PerfectMatchRegex(list.size(), "abc"));
-		list.add(new PerfectMatchRegex(list.size(), "\\"));
-		list.add(new PerfectMatchRegex(list.size(), "$"));
-		list.add(new PerfectMatchRegex(list.size(), "abcdefg"));
-		list.add(new PerfectMatchRegex(list.size(), "ab$cd^ef\\g"));
+		tasks.add(new PerfectMatchRegex("a"));
+		tasks.add(new PerfectMatchRegex("b"));
+		tasks.add(new PerfectMatchRegex("ab"));
+		tasks.add(new PerfectMatchRegex("abc"));
+		tasks.add(new PerfectMatchRegex("\\"));
+		tasks.add(new PerfectMatchRegex("$"));
+		tasks.add(new PerfectMatchRegex("abcdefg"));
+		tasks.add(new PerfectMatchRegex("ab$cd^ef\\g"));
 	}
 
 	private void addExercises2() {
-		list.add(new MultipleAnswersMatcher(list.size(), "a", "b"));
-		list.add(new MultipleAnswersMatcher(list.size(), "ad", "bd"));
-		list.add(new MultipleAnswersMatcher(list.size(), "ad", "bd", "cd"));
-		list.add(new MultipleAnswersMatcher(list.size(), "a", "b", "c"));
-		list.add(new MultipleAnswersMatcher(list.size(), "a", "b", "c", "A", "B", "C", "D"));
-		list.add(new MultipleAnswersMatcher(list.size(), "0", "1", "2"));
-		list.add(new MultipleAnswersMatcher(list.size(), "1", "4", "5"));
-		list.add(new MultipleAnswersMatcher(list.size(), "1a", "4a", "5a"));
-		list.add(new MultipleAnswersMatcher(list.size(), "1", "4", "5", "a"));
-		list.add(new MultipleAnswersMatcher(list.size(), " ", "\t", "\n", "\f", "\r"));
-		list.add(new MultipleAnswersMatcher(list.size(), " a", "\ta", "\na"));
-		list.add(new MultipleAnswersMatcher(list.size(), " ", "\t", "\n", "a"));
-		list.add(new MultipleAnswersMatcher(list.size(), "a", "b", "9"));
-		list.add(new MultipleAnswersMatcher(list.size(), "ap", "bp", "9p"));
-		list.add(new MultipleAnswersMatcher(list.size(), "a", "B", "9", "$", "\t", " "));
+		tasks.add(new MultipleAnswersMatcher("a", "b"));
+		tasks.add(new MultipleAnswersMatcher("ad", "bd"));
+		tasks.add(new MultipleAnswersMatcher("ad", "bd", "cd"));
+		tasks.add(new MultipleAnswersMatcher("a", "b", "c"));
+		tasks.add(new MultipleAnswersMatcher("a", "b", "c", "A", "B", "C", "D"));
+		tasks.add(new MultipleAnswersMatcher("0", "1", "2"));
+		tasks.add(new MultipleAnswersMatcher("1", "4", "5"));
+		tasks.add(new MultipleAnswersMatcher("1a", "4a", "5a"));
+		tasks.add(new MultipleAnswersMatcher("1", "4", "5", "a"));
+		tasks.add(new MultipleAnswersMatcher(" ", "\t", "\n", "\f", "\r"));
+		tasks.add(new MultipleAnswersMatcher(" a", "\ta", "\na"));
+		tasks.add(new MultipleAnswersMatcher(" ", "\t", "\n", "a"));
+		tasks.add(new MultipleAnswersMatcher("a", "b", "9"));
+		tasks.add(new MultipleAnswersMatcher("ap", "bp", "9p"));
+		tasks.add(new MultipleAnswersMatcher("a", "B", "9", "$", "\t", " "));
 	}
 
-	private boolean addExercises4() {
-		return list.add(new OperatorMatcher(list.size(), "a"));
+	private void addExercises4() {
+		tasks.add(new OperatorMatcher("a"));
 	}
 
 	private void addExercises5() {
-		list.add(new CaptureGroup(list.size(), "abcdef", "abcdef"));
-		list.add(new CaptureGroup(list.size(), "abcdef1a", "abcdef"));
-		list.add(new CaptureGroup(list.size(), "abcdef1a", "abcdef", "1a"));
-		list.add(new CaptureGroup(list.size(), "abcdef1a", "abcdef1a", "abcdef", "1"));
+		tasks.add(new CaptureGroup("abcdef", "abcdef"));
+		tasks.add(new CaptureGroup("abcdef1a", "abcdef"));
+		tasks.add(new CaptureGroup("abcdef1a", "abcdef", "1a"));
+		tasks.add(new CaptureGroup("abcdef1a", "abcdef1a", "abcdef", "1"));
 	}
 
 
 	public Task task(final int index) {
-		return list.get(index);
+		return tasks.in(index);
 	}
 
 	public int size() {
-		return list.size();
+		return tasks.size();
 	}
 
 	public String getDescription() {
@@ -76,7 +75,7 @@ final public class RegexGame implements Game {
 	}
 
 	public List<Task> getTasks() {
-		return list;
+		return tasks.all();
 	}
 
 	public String getName() {

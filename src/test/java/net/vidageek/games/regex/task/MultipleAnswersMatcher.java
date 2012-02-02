@@ -11,10 +11,15 @@ public class MultipleAnswersMatcher implements Task {
 	private final int index;
 	private final String[] matchingTargets;
 
-	public MultipleAnswersMatcher(int index, String...matchingTargets) {
-		this.index = index;
+	public MultipleAnswersMatcher(String...matchingTargets) {
+		this.index = 0;
 		this.matchingTargets = matchingTargets;
 		
+	}
+
+	private MultipleAnswersMatcher(int index, String... matchingTargets) {
+		this.index = index;
+		this.matchingTargets = matchingTargets;
 	}
 
 	public JudgedTask judge(String challenge) {
@@ -41,5 +46,9 @@ public class MultipleAnswersMatcher implements Task {
 	@Override
 	public String toString() {
 		return "Match em " + Joiner.on(" e ").join(this.matchingTargets);
+	}
+
+	public Task withIndex(final int index) {
+		return new MultipleAnswersMatcher(index, this.matchingTargets);
 	}
 }
