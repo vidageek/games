@@ -4,26 +4,36 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import net.vidageek.games.task.IndexedTask;
 import net.vidageek.games.task.Task;
 
 public class Tasks {
 
-	private List<Task> tasks = new ArrayList<Task>(); 
-	
+	private final List<Task> tasks = new ArrayList<Task>();
+
 	public void add(final Task task) {
-		this.tasks.add(task.withIndex(tasks.size()));
+		tasks.add(task);
 	}
 
-	public Task in(final int index) {
-		return this.tasks.get(index);
+	public IndexedTask in(final int index) {
+		return new IndexedTask(tasks.get(index), index);
 	}
 
 	public int size() {
 		return tasks.size();
 	}
 
-	public List<Task> all() {
-		return Collections.unmodifiableList(this.tasks);
+	public List<IndexedTask> all() {
+		return unmodifiableIndexedTasks();
+	}
+
+	private List<IndexedTask> unmodifiableIndexedTasks() {
+		List<IndexedTask> list = new ArrayList<IndexedTask>();
+		int i = 0;
+		for (Task task : tasks) {
+			list.add(new IndexedTask(task, i++));
+		}
+		return Collections.unmodifiableList(list);
 	}
 
 }

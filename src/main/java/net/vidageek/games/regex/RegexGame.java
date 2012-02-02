@@ -11,7 +11,7 @@ import net.vidageek.games.task.Task;
 
 final public class RegexGame implements Game {
 
-	private Tasks tasks;
+	private final Tasks tasks;
 
 	public RegexGame() {
 		tasks = new Tasks();
@@ -61,7 +61,6 @@ final public class RegexGame implements Game {
 		tasks.add(new CaptureGroup("abcdef1a", "abcdef1a", "abcdef", "1"));
 	}
 
-
 	public Task task(final int index) {
 		return tasks.in(index);
 	}
@@ -74,7 +73,7 @@ final public class RegexGame implements Game {
 		return "Um jogo muito legal para aprender RegEx";
 	}
 
-	public List<Task> getTasks() {
+	public List<? extends Task> getTasks() {
 		return tasks.all();
 	}
 

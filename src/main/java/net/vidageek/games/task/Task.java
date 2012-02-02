@@ -7,8 +7,4 @@ public interface Task {
 	String getDescription();
 
 	String getChallenge();
-
-	int getIndex();
-	
-	Task withIndex(final int index);
 }

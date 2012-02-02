@@ -12,7 +12,7 @@ public interface Game {
 
 	String getDescription();
 
-	Collection<Task> getTasks();
+	Collection<? extends Task> getTasks();
 
 	String getName();
 }
