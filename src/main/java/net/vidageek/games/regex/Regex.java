@@ -20,14 +20,15 @@ final public class Regex {
 	}
 
 	public JudgedTask match(final String matchingTarget) {
-		return pattern.matcher(matchingTarget).matches()? new Ok() : new Failed("[" + this.pattern.pattern() + "] não dá match em [" + matchingTarget + "]");
+		return pattern.matcher(matchingTarget).matches() ? new Ok() : new Failed("["
+				+ this.pattern.pattern() + "] não dá match em [" + matchingTarget + "]");
 	}
 
 	public GroupFinder group(final int position) {
 		return new GroupFinder(position, pattern);
 	}
 
-	public JudgedTask matchAll(String[] matchingTargets) {
+	public JudgedTask matchAll(final String... matchingTargets) {
 		Faileds fails = new Faileds();
 		for (String matchingTarget : matchingTargets) {
 			fails.addOnlyJudgedFailed(match(matchingTarget));
