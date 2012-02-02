@@ -38,4 +38,8 @@ public class MultipleAnswersMatcher implements Task {
 		return this.index;
 	}
 
+	@Override
+	public String toString() {
+		return "Match em " + Joiner.on(" e ").join(this.matchingTargets);
+	}
 }
