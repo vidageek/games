@@ -35,8 +35,7 @@ public class MultipleAnswersMatcher implements Task {
 	}
 
 	public int getIndex() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.index;
 	}
 
 }
