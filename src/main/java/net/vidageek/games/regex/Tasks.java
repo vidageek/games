@@ -15,7 +15,7 @@ public class Tasks {
 		tasks.add(task);
 	}
 
-	public IndexedTask in(final int index) {
+	public IndexedTask at(final int index) {
 		return new IndexedTask(tasks.get(index), index);
 	}
 

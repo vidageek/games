@@ -62,7 +62,7 @@ final public class RegexGame implements Game {
 	}
 
 	public Task task(final int index) {
-		return tasks.in(index);
+		return tasks.at(index);
 	}
 
 	public int size() {
