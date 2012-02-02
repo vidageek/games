@@ -25,8 +25,7 @@ public class MultipleAnswersMatcher implements Task {
 	}
 
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Matching com grupos de caracteres";
 	}
 
 	public String getChallenge() {
