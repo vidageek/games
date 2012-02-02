@@ -14,25 +14,24 @@ final public class RegexGame implements Game {
 	private final List<Task> list;
 
 	public RegexGame() {
-		int indexes = 0;
 		list = new ArrayList<Task>();
-		list.add(new PerfectMatchRegex(indexes++, "a"));
-		list.add(new PerfectMatchRegex(indexes++, "b"));
-		list.add(new PerfectMatchRegex(indexes++, "ab"));
-		list.add(new PerfectMatchRegex(indexes++, "abc"));
-		list.add(new PerfectMatchRegex(indexes++, "\\"));
-		list.add(new PerfectMatchRegex(indexes++, "$"));
-		list.add(new PerfectMatchRegex(indexes++, "abcdefg"));
-		list.add(new PerfectMatchRegex(indexes++, "ab$cd^ef\\g"));
+		list.add(new PerfectMatchRegex(list.size(), "a"));
+		list.add(new PerfectMatchRegex(list.size(), "b"));
+		list.add(new PerfectMatchRegex(list.size(), "ab"));
+		list.add(new PerfectMatchRegex(list.size(), "abc"));
+		list.add(new PerfectMatchRegex(list.size(), "\\"));
+		list.add(new PerfectMatchRegex(list.size(), "$"));
+		list.add(new PerfectMatchRegex(list.size(), "abcdefg"));
+		list.add(new PerfectMatchRegex(list.size(), "ab$cd^ef\\g"));
 
 		// Exercise 4
-		list.add(new OperatorMatcher(indexes++, "a"));
+		list.add(new OperatorMatcher(list.size(), "a"));
 
 		// Exercise 5
-		list.add(new CaptureGroup(indexes++, "abcdef", "abcdef"));
-		list.add(new CaptureGroup(indexes++, "abcdef1a", "abcdef"));
-		list.add(new CaptureGroup(indexes++, "abcdef1a", "abcdef", "1a"));
-		list.add(new CaptureGroup(indexes++, "abcdef1a", "abcdef1a", "abcdef", "1"));
+		list.add(new CaptureGroup(list.size(), "abcdef", "abcdef"));
+		list.add(new CaptureGroup(list.size(), "abcdef1a", "abcdef"));
+		list.add(new CaptureGroup(list.size(), "abcdef1a", "abcdef", "1a"));
+		list.add(new CaptureGroup(list.size(), "abcdef1a", "abcdef1a", "abcdef", "1"));
 	}
 
 	public Task task(final int index) {
