@@ -12,9 +12,13 @@ final public class MultipleAnswersMatcherTest {
 		assertTrue(new MultipleAnswersMatcher(0, "a", "b").judge("[ab]").ok());
 	}
 
-
 	@Test
 	public void cannotMatchWith1InvalidChalengeAnswer() throws Exception {
 		assertFalse(new MultipleAnswersMatcher(0, "a").judge("[c]").ok());
+	}
+
+	@Test
+	public void cannotMatchWith1InvalidAnd1ValidChalengeAnswer() throws Exception {
+		assertFalse(new MultipleAnswersMatcher(0, "b", "c").judge("[ca]").ok());
 	}
 }
