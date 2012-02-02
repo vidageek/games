@@ -8,8 +8,12 @@ final public class RegexGameTest {
 
 	@Test
 	public void allTasksMustHaveAnswers() {
-		new Person("a", "b", "ab", "abc", "\\\\", "\\$", "abcdefg", "ab\\$cd\\^ef\\\\g",
-				"a?", "([a-z]+)", "([a-z]+).*", "([a-z]+)(.*)", "(([a-z]+)(.*)a)")
+		new Person(
+				// TODO: Review this, strange control index
+				"a", "b", "ab", "abc", "\\\\", "\\$", "abcdefg", "ab\\$cd\\^ef\\\\g"
+				, "[ab]", "[ab]d", "[abc]d", "[a-c]", "[a-cA-D]", "[0-2]", "\\d", "\\da", "[\\da]", "\\s", "\\sa", "[\\sa]", "\\w", "\\wp", "."
+				, "a?"
+				, "([a-z]+)", "([a-z]+).*", "([a-z]+)(.*)", "(([a-z]+)(.*)a)")
 				.play(new RegexGame());
 	}
 
