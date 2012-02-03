@@ -4,11 +4,11 @@ import net.vidageek.games.regex.task.JudgeRegex;
 
 import com.google.common.base.Joiner;
 
-public class MultipleAnswersMatcher implements Task {
+public class CharClassRegex implements Task {
 
 	private final String[] matchingTargets;
 
-	public MultipleAnswersMatcher(String... matchingTargets) {
+	public CharClassRegex(String... matchingTargets) {
 		this.matchingTargets = matchingTargets;
 
 	}
@@ -18,7 +18,7 @@ public class MultipleAnswersMatcher implements Task {
 	}
 
 	public String getDescription() {
-		return "Matching com grupos de caracteres";
+		return "Matching com classes de caracteres";
 	}
 
 	public String getChallenge() {

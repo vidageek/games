@@ -4,18 +4,18 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-import net.vidageek.games.task.MultipleAnswersMatcher;
+import net.vidageek.games.task.CharClassRegex;
 
 import org.junit.Before;
 import org.junit.Test;
 
 final public class MultipleAnswersMatcherTest {
 
-	private MultipleAnswersMatcher taskWithMatchinTargestAAndB;
+	private CharClassRegex taskWithMatchinTargestAAndB;
 
 	@Before
 	public void setup() throws Exception {
-		taskWithMatchinTargestAAndB = new MultipleAnswersMatcher("A", "B");
+		taskWithMatchinTargestAAndB = new CharClassRegex("A", "B");
 	}
 	
 	@Test

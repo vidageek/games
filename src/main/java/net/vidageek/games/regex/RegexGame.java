@@ -6,7 +6,7 @@ import net.vidageek.games.Game;
 import net.vidageek.games.regex.task.CaptureGroup;
 import net.vidageek.games.regex.task.OperatorMatcher;
 import net.vidageek.games.regex.task.PerfectMatchRegex;
-import net.vidageek.games.task.MultipleAnswersMatcher;
+import net.vidageek.games.task.CharClassRegex;
 import net.vidageek.games.task.Task;
 
 final public class RegexGame implements Game {
@@ -21,6 +21,7 @@ final public class RegexGame implements Game {
 		addExercises5();
 	}
 
+
 	private void addExercises1() {
 		tasks.add(new PerfectMatchRegex("a"));
 		tasks.add(new PerfectMatchRegex("b"));
@@ -33,21 +34,21 @@ final public class RegexGame implements Game {
 	}
 
 	private void addExercises2() {
-		tasks.add(new MultipleAnswersMatcher("a", "b"));
-		tasks.add(new MultipleAnswersMatcher("ad", "bd"));
-		tasks.add(new MultipleAnswersMatcher("ad", "bd", "cd"));
-		tasks.add(new MultipleAnswersMatcher("a", "b", "c"));
-		tasks.add(new MultipleAnswersMatcher("a", "b", "c", "A", "B", "C", "D"));
-		tasks.add(new MultipleAnswersMatcher("0", "1", "2"));
-		tasks.add(new MultipleAnswersMatcher("1", "4", "5"));
-		tasks.add(new MultipleAnswersMatcher("1a", "4a", "5a"));
-		tasks.add(new MultipleAnswersMatcher("1", "4", "5", "a"));
-		tasks.add(new MultipleAnswersMatcher(" ", "\t", "\n", "\f", "\r"));
-		tasks.add(new MultipleAnswersMatcher(" a", "\ta", "\na"));
-		tasks.add(new MultipleAnswersMatcher(" ", "\t", "\n", "a"));
-		tasks.add(new MultipleAnswersMatcher("a", "b", "9"));
-		tasks.add(new MultipleAnswersMatcher("ap", "bp", "9p"));
-		tasks.add(new MultipleAnswersMatcher("a", "B", "9", "$", "\t", " "));
+		tasks.add(new CharClassRegex("a", "b"));
+		tasks.add(new CharClassRegex("ad", "bd"));
+		tasks.add(new CharClassRegex("ad", "bd", "cd"));
+		tasks.add(new CharClassRegex("a", "b", "c"));
+		tasks.add(new CharClassRegex("a", "b", "c", "A", "B", "C", "D"));
+		tasks.add(new CharClassRegex("0", "1", "2"));
+		tasks.add(new CharClassRegex("1", "4", "5"));
+		tasks.add(new CharClassRegex("1a", "4a", "5a"));
+		tasks.add(new CharClassRegex("1", "4", "5", "a"));
+		tasks.add(new CharClassRegex(" ", "\t", "\n", "\f", "\r"));
+		tasks.add(new CharClassRegex(" a", "\ta", "\na"));
+		tasks.add(new CharClassRegex(" ", "\t", "\n", "a"));
+		tasks.add(new CharClassRegex("a", "b", "9"));
+		tasks.add(new CharClassRegex("ap", "bp", "9p"));
+		tasks.add(new CharClassRegex("a", "B", "9", "$", "\t", " "));
 	}
 
 	private void addExercises4() {
