@@ -24,7 +24,7 @@ public class JudgeRegex {
 		}
 	}
 
-	public JudgedTask matchAny(String... matchingTargets) {
+	public JudgedTask cannotMatchAny(String... matchingTargets) {
 		try {
 			Faileds faileds = findUndue(matchingTargets);
 			return faileds.ok()? new Ok() : new Failed(faileds);

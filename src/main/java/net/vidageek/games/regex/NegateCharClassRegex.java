@@ -15,7 +15,7 @@ public class NegateCharClassRegex implements Task {
 	}
 
 	public JudgedTask judge(String challenge) {
-		return new JudgeRegex(challenge).matchAny(matchingTargets);
+		return new JudgeRegex(challenge).cannotMatchAny(matchingTargets);
 	}
 
 	public String getDescription() {
@@ -28,7 +28,7 @@ public class NegateCharClassRegex implements Task {
 
 	@Override
 	public String toString() {
-		return "Não pode dar match em [" + Joiner.on("e ").join(matchingTargets) + "]";
+		return "Não pode dar match em [" + Joiner.on(" e ").join(matchingTargets) + "]";
 	}
 	
 }
