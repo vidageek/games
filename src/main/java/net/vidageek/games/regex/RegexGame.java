@@ -4,9 +4,9 @@ import java.util.List;
 
 import net.vidageek.games.Game;
 import net.vidageek.games.regex.task.CaptureGroup;
-import net.vidageek.games.regex.task.MultipleAnswersMatcher;
 import net.vidageek.games.regex.task.OperatorMatcher;
 import net.vidageek.games.regex.task.PerfectMatchRegex;
+import net.vidageek.games.task.MultipleAnswersMatcher;
 import net.vidageek.games.task.Task;
 
 final public class RegexGame implements Game {

@@ -5,16 +5,9 @@ import net.vidageek.games.task.Task;
 
 final public class PerfectMatchRegex implements Task {
 
-	private final int index;
 	private final String matchingTarget;
 
 	public PerfectMatchRegex(final String matchingTarget) {
-		this.index = 0;
-		this.matchingTarget = matchingTarget;
-	}
-
-	private PerfectMatchRegex(final int index, final String matchingTarget) {
-		this.index = index;
 		this.matchingTarget = matchingTarget;
 	}
 
@@ -30,17 +23,8 @@ final public class PerfectMatchRegex implements Task {
 		return "Qual regex dá match em [" + matchingTarget + "]?";
 	}
 
-	public int getIndex() {
-		return index;
-	}
-
 	@Override
 	public String toString() {
 		return "Match em " + matchingTarget;
 	}
-
-	public Task withIndex(final int index) {
-		return new PerfectMatchRegex(index, this.matchingTarget);
-	}
-
 }

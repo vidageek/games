@@ -3,23 +3,17 @@ package net.vidageek.games.regex.task;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.google.common.base.Joiner;
+
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
 
 final public class CaptureGroup implements Task {
 
-	private final int index;
 	private final String matchingTarget;
 	private final String[] groupMatchingTargets;
 
 	public CaptureGroup(final String matchingTarget, final String... groupMatchingTargets) {
-		this.matchingTarget = matchingTarget;
-		this.index = 0;
-		this.groupMatchingTargets = groupMatchingTargets;
-	}
-
-	private CaptureGroup(int index, String matchingTarget, String... groupMatchingTargets) {
-		this.index = index;
 		this.matchingTarget = matchingTarget;
 		this.groupMatchingTargets = groupMatchingTargets;
 	}
@@ -57,24 +51,12 @@ final public class CaptureGroup implements Task {
 	}
 
 	private String captureTarget() {
-		String result = "";
-		for (String target : groupMatchingTargets) {
-			result += target + ", ";
-		}
-		return result.substring(0, result.length() - 2);
-	}
-
-	public int getIndex() {
-		return index;
+		return Joiner.on(", ").join(groupMatchingTargets);
 	}
 
 	@Override
 	public String toString() {
 		return "Capturar " + captureTarget() + " no string " + matchingTarget;
-	}
-
-	public Task withIndex(final int index) {
-		return new CaptureGroup(index, matchingTarget, this.groupMatchingTargets);
 	}
 
 }

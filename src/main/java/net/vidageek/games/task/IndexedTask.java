@@ -26,4 +26,8 @@ public final class IndexedTask implements Task {
 		return delegate.getChallenge();
 	}
 
+	@Override
+	public String toString() {
+		return delegate.toString();
+	}
 }
