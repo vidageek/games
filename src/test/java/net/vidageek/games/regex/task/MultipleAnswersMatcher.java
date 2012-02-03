@@ -1,6 +1,5 @@
 package net.vidageek.games.regex.task;
 
-import net.vidageek.games.regex.Regex;
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
 
@@ -11,10 +10,10 @@ public class MultipleAnswersMatcher implements Task {
 	private final int index;
 	private final String[] matchingTargets;
 
-	public MultipleAnswersMatcher(String...matchingTargets) {
+	public MultipleAnswersMatcher(String... matchingTargets) {
 		this.index = 0;
 		this.matchingTargets = matchingTargets;
-		
+
 	}
 
 	private MultipleAnswersMatcher(int index, String... matchingTargets) {
@@ -23,12 +22,7 @@ public class MultipleAnswersMatcher implements Task {
 	}
 
 	public JudgedTask judge(String challenge) {
-		try {
-			return new Regex(challenge).matchAll(this.matchingTargets);
-			
-		} catch (Exception e) {
-			return new Error(e);
-		}
+		return new JudgeRegex(challenge).matchAll(this.matchingTargets);
 	}
 
 	public String getDescription() {

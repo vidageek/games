@@ -19,9 +19,11 @@ final public class Regex {
 		pattern = Pattern.compile(regex);
 	}
 
-	public JudgedTask match(final String matchingTarget) {
-		return pattern.matcher(matchingTarget).matches() ? new Ok() : new Failed("["
-				+ this.pattern.pattern() + "] não dá match em [" + matchingTarget + "]");
+	private JudgedTask match(final String matchingTarget) {
+		if (pattern.matcher(matchingTarget).matches()) {
+			return new Ok();
+		}
+		return new Failed("[" + this.pattern.pattern() + "] não dá match em [" + matchingTarget + "]");
 	}
 
 	public GroupFinder group(final int position) {
@@ -33,7 +35,7 @@ final public class Regex {
 		for (String matchingTarget : matchingTargets) {
 			fails.addOnlyJudgedFailed(match(matchingTarget));
 		}
-		return fails.ok() ? new Ok() : fails;
+		return fails.ok() ? new Ok() : new Failed(fails);
 	}
 
 }

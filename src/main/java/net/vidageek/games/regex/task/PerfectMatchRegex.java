@@ -1,7 +1,5 @@
 package net.vidageek.games.regex.task;
 
-import java.util.regex.Pattern;
-
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
 
@@ -14,21 +12,14 @@ final public class PerfectMatchRegex implements Task {
 		this.index = 0;
 		this.matchingTarget = matchingTarget;
 	}
-	
+
 	private PerfectMatchRegex(final int index, final String matchingTarget) {
 		this.index = index;
 		this.matchingTarget = matchingTarget;
 	}
-	
+
 	public JudgedTask judge(final String challenge) {
-		try {
-			if (Pattern.compile(challenge).matcher(matchingTarget).matches()) {
-				return new Ok();
-			}
-			return new Failed("[" + challenge + "] não dá match em [" + matchingTarget + "]");
-		} catch (Exception e) {
-			return new Error(e);
-		}
+		return new JudgeRegex(challenge).match(matchingTarget);
 	}
 
 	public String getDescription() {

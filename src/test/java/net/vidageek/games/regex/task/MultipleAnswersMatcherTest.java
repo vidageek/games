@@ -1,9 +1,8 @@
 package net.vidageek.games.regex.task;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,17 +18,17 @@ final public class MultipleAnswersMatcherTest {
 	
 	@Test
 	public void shouldMatcherWithAllAnswers() {
-		assertTrue(taskWithMatchinTargestAAndB.judge("[AB]").ok());
+		assertEquals(Ok.class, taskWithMatchinTargestAAndB.judge("[AB]").getClass());
 	}
 
 	@Test
 	public void cannotMatchWith1InvalidChalengeAnswer() {
-		assertFalse(taskWithMatchinTargestAAndB.judge("[C]").ok());
+		assertEquals(Failed.class, taskWithMatchinTargestAAndB.judge("[C]").getClass());
 	}
 
 	@Test
 	public void cannotMatchWith1InvalidAnd1ValidChalengeAnswer() {
-		assertFalse(taskWithMatchinTargestAAndB.judge("[AC]").ok());
+		assertEquals(Failed.class, taskWithMatchinTargestAAndB.judge("[AC]").getClass());
 	}
 	
 	@Test

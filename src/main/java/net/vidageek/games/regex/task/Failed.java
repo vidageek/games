@@ -10,12 +10,21 @@ final public class Failed implements JudgedTask {
 		this.reason = reason;
 	}
 
+	public Failed(Faileds fails) {
+		this.reason = fails.getReason();
+	}
+
 	public boolean ok() {
 		return false;
 	}
 
 	public String getReason() {
 		return reason;
+	}
+	
+	@Override
+	public String toString() {
+		return this.reason;
 	}
 
 }

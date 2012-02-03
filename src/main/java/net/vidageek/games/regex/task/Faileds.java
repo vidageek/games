@@ -3,6 +3,8 @@ package net.vidageek.games.regex.task;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.base.Joiner;
+
 import net.vidageek.games.task.JudgedTask;
 
 public class Faileds implements JudgedTask {
@@ -14,8 +16,7 @@ public class Faileds implements JudgedTask {
 	}
 
 	public String getReason() {
-		
-		return null;
+		return Joiner.on("<br>").join(faileds);
 	}
 
 	public void addOnlyJudgedFailed(JudgedTask judgedTask) {
