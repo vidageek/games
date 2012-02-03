@@ -22,12 +22,12 @@ public class CharClassRegex implements Task {
 	}
 
 	public String getChallenge() {
-		return "Qual regex dá match em [" + matchingTargets() + "]";
+		return toString();
 	}
 
 	@Override
 	public String toString() {
-		return "Match em " + matchingTargets();
+		return "Qual regex dá match em [" + matchingTargets() + "]";
 	}
 
 	private String matchingTargets() {

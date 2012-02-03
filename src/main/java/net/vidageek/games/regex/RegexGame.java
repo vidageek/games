@@ -17,6 +17,7 @@ final public class RegexGame implements Game {
 		tasks = new Tasks();
 		addExercises1();
 		addExercises2();
+		addExercises3();
 		addExercises4();
 		addExercises5();
 	}
@@ -49,6 +50,20 @@ final public class RegexGame implements Game {
 		tasks.add(new CharClassRegex("a", "b", "9"));
 		tasks.add(new CharClassRegex("ap", "bp", "9p"));
 		tasks.add(new CharClassRegex("a", "B", "9", "$", "\t", " "));
+	}
+
+	private void addExercises3() {
+		tasks.add(new NegateCharClassRegex("a", "b"));
+		tasks.add(new NegateCharClassRegex("ad", "bd"));
+		tasks.add(new NegateCharClassRegex("ad", "bd", "cd"));
+		tasks.add(new NegateCharClassRegex("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"));
+		tasks.add(new NegateCharClassRegex("1a", "4a", "5a"));
+		tasks.add(new NegateCharClassRegex("1", "4", "5", "a"));
+		tasks.add(new NegateCharClassRegex("\t", "\n", "\f", "\r"));
+		tasks.add(new NegateCharClassRegex(" a", "\ta", "\na"));
+		tasks.add(new NegateCharClassRegex(" ", "\t", "\n", "a"));
+		tasks.add(new NegateCharClassRegex("a", "B", "9"));
+		tasks.add(new NegateCharClassRegex("ap", "Bp", "9p"));
 	}
 
 	private void addExercises4() {

@@ -19,7 +19,7 @@ final public class Regex {
 		pattern = Pattern.compile(regex);
 	}
 
-	private JudgedTask match(final String matchingTarget) {
+	public JudgedTask match(final String matchingTarget) {
 		if (pattern.matcher(matchingTarget).matches()) {
 			return new Ok();
 		}

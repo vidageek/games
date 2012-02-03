@@ -12,6 +12,7 @@ final public class RegexGameTest {
 				// TODO: Review this, strange control index
 				"a", "b", "ab", "abc", "\\\\", "\\$", "abcdefg", "ab\\$cd\\^ef\\\\g"
 				, "[ab]", "[ab]d", "[abc]d", "[a-c]", "[a-cA-D]", "[0-2]", "\\d", "\\da", "[\\da]", "\\s", "\\sa", "[\\sa]", "\\w", "\\wp", "."
+				, "[^ab]", "[^ab]d", "[^abc]d", "\\D", "\\Da", "[^\\da]", "\\S", "\\Sa", "[^\\sa]", "\\W", "\\Wp"
 				, "a?"
 				, "([a-z]+)", "([a-z]+).*", "([a-z]+)(.*)", "(([a-z]+)(.*)a)")
 				.play(new RegexGame());
