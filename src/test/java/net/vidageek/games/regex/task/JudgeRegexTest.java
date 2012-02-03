@@ -16,4 +16,8 @@ public class JudgeRegexTest {
 		assertEquals(Error.class, new JudgeRegex("aIncalidRegex)").cannotMatchAny("anyResponse").getClass());
 	}
 
+	@Test
+	public void shouldReturnJudgedFailedWhenSomeChalllegMatch() {
+		assertEquals(Failed.class, new JudgeRegex("\\w").cannotMatchAny("a").getClass());
+	}
 }
