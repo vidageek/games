@@ -1,6 +1,6 @@
 package net.vidageek.games.task;
 
-import net.vidageek.games.regex.task.JudgeRegex;
+import net.vidageek.games.regex.Regex;
 
 import com.google.common.base.Joiner;
 
@@ -14,7 +14,7 @@ public class CharClassRegex implements Task {
 	}
 
 	public JudgedTask judge(String challenge) {
-		return new JudgeRegex(challenge).matchAll(this.matchingTargets);
+		return new Regex(challenge).matchAll(this.matchingTargets);
 	}
 
 	public String getDescription() {
