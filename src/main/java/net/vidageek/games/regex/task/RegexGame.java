@@ -1,11 +1,8 @@
-package net.vidageek.games.regex;
+package net.vidageek.games.regex.task;
 
 import java.util.List;
 
 import net.vidageek.games.Game;
-import net.vidageek.games.regex.task.CaptureGroup;
-import net.vidageek.games.regex.task.OperatorMatcher;
-import net.vidageek.games.regex.task.PerfectMatchRegex;
 import net.vidageek.games.task.CharClassRegex;
 import net.vidageek.games.task.Task;
 

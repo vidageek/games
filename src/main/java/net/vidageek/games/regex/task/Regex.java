@@ -1,11 +1,11 @@
-package net.vidageek.games.regex;
+package net.vidageek.games.regex.task;
 
 import java.util.regex.Pattern;
 
-import net.vidageek.games.regex.task.Failed;
-import net.vidageek.games.regex.task.Faileds;
-import net.vidageek.games.regex.task.Ok;
 import net.vidageek.games.task.JudgedTask;
+import net.vidageek.games.task.status.Failed;
+import net.vidageek.games.task.status.Faileds;
+import net.vidageek.games.task.status.Ok;
 
 /**
  * @author jonasabreu

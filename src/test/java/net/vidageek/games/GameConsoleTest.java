@@ -4,8 +4,8 @@ import static org.mockito.Answers.RETURNS_DEEP_STUBS;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import net.vidageek.games.regex.task.Failed;
-import net.vidageek.games.regex.task.Ok;
+import net.vidageek.games.task.status.Failed;
+import net.vidageek.games.task.status.Ok;
 
 import org.junit.Before;
 import org.junit.Test;

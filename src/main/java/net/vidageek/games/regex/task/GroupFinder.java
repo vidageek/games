@@ -1,4 +1,4 @@
-package net.vidageek.games.regex;
+package net.vidageek.games.regex.task;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,6 +1,5 @@
 package net.vidageek.games.regex.task;
 
-import net.vidageek.games.regex.Regex;
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
 

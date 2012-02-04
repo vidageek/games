@@ -1,5 +1,6 @@
 package net.vidageek.games.regex;
 
+import net.vidageek.games.regex.task.RegexGame;
 import net.vidageek.games.regex.test.infra.Person;
 
 import org.junit.Test;

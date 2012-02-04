@@ -3,7 +3,10 @@ package net.vidageek.games.regex.task;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import net.vidageek.games.regex.task.CaptureGroup;
 import net.vidageek.games.task.JudgedTask;
+import net.vidageek.games.task.status.Error;
+import net.vidageek.games.task.status.Failed;
 
 import org.junit.Test;
 

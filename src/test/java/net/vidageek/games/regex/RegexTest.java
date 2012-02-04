@@ -3,6 +3,8 @@ package net.vidageek.games.regex;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
+import net.vidageek.games.regex.task.Regex;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

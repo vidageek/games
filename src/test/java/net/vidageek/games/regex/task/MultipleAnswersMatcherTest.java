@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 import net.vidageek.games.task.CharClassRegex;
+import net.vidageek.games.task.status.Failed;
+import net.vidageek.games.task.status.Ok;
 
 import org.junit.Before;
 import org.junit.Test;

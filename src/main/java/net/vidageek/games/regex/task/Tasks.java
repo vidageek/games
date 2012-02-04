@@ -1,4 +1,4 @@
-package net.vidageek.games.regex;
+package net.vidageek.games.regex.task;
 
 import java.util.ArrayList;
 import java.util.Collections;

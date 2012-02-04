@@ -1,7 +1,7 @@
 package net.vidageek.games.vraptor;
 
 import net.vidageek.games.Game;
-import net.vidageek.games.regex.RegexGame;
+import net.vidageek.games.regex.task.RegexGame;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.ComponentFactory;
 

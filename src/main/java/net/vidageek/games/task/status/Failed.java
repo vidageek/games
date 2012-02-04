@@ -1,4 +1,4 @@
-package net.vidageek.games.regex.task;
+package net.vidageek.games.task.status;
 
 import net.vidageek.games.task.JudgedTask;
 

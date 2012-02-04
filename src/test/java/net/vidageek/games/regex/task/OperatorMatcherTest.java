@@ -1,6 +1,7 @@
 package net.vidageek.games.regex.task;
 
 import static org.junit.Assert.assertTrue;
+import net.vidageek.games.regex.task.OperatorMatcher;
 import net.vidageek.games.task.JudgedTask;
 
 import org.junit.Test;

@@ -1,6 +1,6 @@
 package net.vidageek.games.task;
 
-import net.vidageek.games.regex.Regex;
+import net.vidageek.games.regex.task.Regex;
 
 import com.google.common.base.Joiner;
 

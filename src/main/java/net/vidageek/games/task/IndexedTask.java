@@ -1,6 +1,6 @@
 package net.vidageek.games.task;
 
-import net.vidageek.games.regex.task.Error;
+import net.vidageek.games.task.status.Error;
 
 public final class IndexedTask implements Task {
 

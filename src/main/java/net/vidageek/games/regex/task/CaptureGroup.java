@@ -7,6 +7,9 @@ import com.google.common.base.Joiner;
 
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
+import net.vidageek.games.task.status.Error;
+import net.vidageek.games.task.status.Failed;
+import net.vidageek.games.task.status.Ok;
 
 final public class CaptureGroup implements Task {
 

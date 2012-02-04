@@ -1,8 +1,10 @@
 package net.vidageek.games.regex.task;
 
 import static org.junit.Assert.assertEquals;
-import net.vidageek.games.regex.NegateCharClassRegex;
+import net.vidageek.games.regex.task.NegateCharClassRegex;
+import net.vidageek.games.regex.task.PerfectMatchRegex;
 import net.vidageek.games.task.IndexedTask;
+import net.vidageek.games.task.status.Error;
 
 import org.junit.Test;
 

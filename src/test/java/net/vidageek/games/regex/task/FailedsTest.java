@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.vidageek.games.task.status.Failed;
+import net.vidageek.games.task.status.Faileds;
+
 import org.junit.Test;
 
 import com.google.common.base.Joiner;
