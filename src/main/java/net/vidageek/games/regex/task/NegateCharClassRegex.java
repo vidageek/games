@@ -1,19 +1,18 @@
 package net.vidageek.games.regex.task;
 
+import static java.util.Arrays.copyOfRange;
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
 import net.vidageek.games.task.status.Failed;
 import net.vidageek.games.task.status.Faileds;
 import net.vidageek.games.task.status.Ok;
 
-import com.google.common.base.Joiner;
-
 public class NegateCharClassRegex implements Task {
 
-	private final String[] matchingTargets;
+	private final MatcherTargets matchingTargets;
 
 	public NegateCharClassRegex(String...matchingTargets) {
-		this.matchingTargets = matchingTargets;
+		this.matchingTargets = new MatcherTargets(matchingTargets[0], copyOfRange(matchingTargets, 1, matchingTargets.length));
 	}
 
 	public JudgedTask judge(String challenge) {
@@ -42,7 +41,7 @@ public class NegateCharClassRegex implements Task {
 
 	@Override
 	public String toString() {
-		return "Não pode dar match em [" + Joiner.on(" e ").join(matchingTargets) + "]";
+		return "Não pode dar match em [" + matchingTargets.showMessages() + "]";
 	}
 	
 }
