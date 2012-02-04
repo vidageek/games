@@ -1,5 +1,7 @@
 package net.vidageek.games.task;
 
+import net.vidageek.games.regex.task.Error;
+
 public final class IndexedTask implements Task {
 
 	private final Task delegate;
@@ -15,7 +17,11 @@ public final class IndexedTask implements Task {
 	}
 
 	public JudgedTask judge(final String challenge) {
-		return delegate.judge(challenge);
+		try {
+			return delegate.judge(challenge);
+		} catch (Exception e) {
+			return new Error(e);
+		}
 	}
 
 	public String getDescription() {

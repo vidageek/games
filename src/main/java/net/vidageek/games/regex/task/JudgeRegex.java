@@ -17,28 +17,21 @@ public class JudgeRegex {
 	}
 
 	public JudgedTask matchAll(String... matchingTargets) {
-		try {
-			return new Regex(challenge).matchAll(matchingTargets);
-		} catch (Exception e) {
-			return new Error(e);
-		}
+		return new Regex(challenge).matchAll(matchingTargets);
 	}
 
 	public JudgedTask cannotMatchAny(String... matchingTargets) {
-		try {
-			Faileds faileds = findUndue(matchingTargets);
-			return faileds.ok()? new Ok() : new Failed(faileds);
-		} catch (Exception e) {
-			return new Error(e);
-		}
+		Faileds faileds = findUndue(matchingTargets);
+		return faileds.ok() ? new Ok() : new Failed(faileds);
+
 	}
 
 	private Faileds findUndue(String... matchingTargets) {
 		Faileds faileds = new Faileds();
 		Regex regex = new Regex(challenge);
 		for (String matchingTarget : matchingTargets) {
-			if(regex.match(matchingTarget).ok()) {
-				faileds.addOnlyJudgedFailed(new Failed("Não deveria fazer match com ["+matchingTarget+"]"));
+			if (regex.match(matchingTarget).ok()) {
+				faileds.addOnlyJudgedFailed(new Failed("Não deveria fazer match com [" + matchingTarget + "]"));
 			}
 		}
 		return faileds;
