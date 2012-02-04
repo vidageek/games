@@ -1,10 +1,12 @@
 package net.vidageek.games.regex;
 
-import com.google.common.base.Joiner;
-
-import net.vidageek.games.regex.task.JudgeRegex;
+import net.vidageek.games.regex.task.Failed;
+import net.vidageek.games.regex.task.Faileds;
+import net.vidageek.games.regex.task.Ok;
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
+
+import com.google.common.base.Joiner;
 
 public class NegateCharClassRegex implements Task {
 
@@ -15,9 +17,21 @@ public class NegateCharClassRegex implements Task {
 	}
 
 	public JudgedTask judge(String challenge) {
-		return new JudgeRegex(challenge).cannotMatchAny(matchingTargets);
+		Faileds faileds = findUndueMatchWith(challenge);
+		return faileds.ok() ? new Ok() : new Failed(faileds);
 	}
 
+	private Faileds findUndueMatchWith(String challenge) {
+		Faileds faileds = new Faileds();
+		Regex regex = new Regex(challenge);
+		for (String matchingTarget : matchingTargets) {
+			if (regex.match(matchingTarget).ok()) {
+				faileds.addOnlyJudgedFailed(new Failed("Não deveria fazer match com [" + matchingTarget + "]"));
+			}
+		}
+		return faileds;
+	}
+	
 	public String getDescription() {
 		return "Matching com classes negadas de caracteres";
 	}

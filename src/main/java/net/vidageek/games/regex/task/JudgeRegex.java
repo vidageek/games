@@ -20,21 +20,4 @@ public class JudgeRegex {
 		return new Regex(challenge).matchAll(matchingTargets);
 	}
 
-	public JudgedTask cannotMatchAny(String... matchingTargets) {
-		Faileds faileds = findUndue(matchingTargets);
-		return faileds.ok() ? new Ok() : new Failed(faileds);
-
-	}
-
-	private Faileds findUndue(String... matchingTargets) {
-		Faileds faileds = new Faileds();
-		Regex regex = new Regex(challenge);
-		for (String matchingTarget : matchingTargets) {
-			if (regex.match(matchingTarget).ok()) {
-				faileds.addOnlyJudgedFailed(new Failed("Não deveria fazer match com [" + matchingTarget + "]"));
-			}
-		}
-		return faileds;
-	}
-
 }
