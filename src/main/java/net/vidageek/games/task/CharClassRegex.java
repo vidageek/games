@@ -15,7 +15,7 @@ public class CharClassRegex implements Task {
 	}
 
 	public JudgedTask judge(String challenge) {
-		return new Regex(challenge).matchAll(this.matchingTargets);
+		return new Regex(challenge).matchAll(this.matchingTargets).judgment();
 	}
 
 	public String getDescription() {

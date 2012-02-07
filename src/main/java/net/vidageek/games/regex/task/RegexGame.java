@@ -50,17 +50,17 @@ final public class RegexGame implements Game {
 	}
 
 	private void addExercises3() {
-		tasks.add(new NegateCharClassRegex("a", "b"));
-		tasks.add(new NegateCharClassRegex("ad", "bd"));
-		tasks.add(new NegateCharClassRegex("ad", "bd", "cd"));
-		tasks.add(new NegateCharClassRegex("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"));
-		tasks.add(new NegateCharClassRegex("1a", "4a", "5a"));
-		tasks.add(new NegateCharClassRegex("1", "4", "5", "a"));
-		tasks.add(new NegateCharClassRegex("\t", "\n", "\f", "\r"));
-		tasks.add(new NegateCharClassRegex(" a", "\ta", "\na"));
-		tasks.add(new NegateCharClassRegex(" ", "\t", "\n", "a"));
-		tasks.add(new NegateCharClassRegex("a", "B", "9"));
-		tasks.add(new NegateCharClassRegex("ap", "Bp", "9p"));
+		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("a", "b"), MatcherTargets.fromStrings("c", "d")));
+		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("ad", "bd"), MatcherTargets.fromStrings("cd", "dd")));
+		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("ad", "bd", "cd"), MatcherTargets.fromStrings("dd", "ed")));
+		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"), MatcherTargets.fromStrings(" ", "a")));
+		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("1a", "4a", "5a"), MatcherTargets.fromStrings(" a", "$a")));
+		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("1", "4", "5", "a"), MatcherTargets.fromStrings(" ", "b")));
+		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("\t", "\n", "\f", "\r"), MatcherTargets.fromStrings("A", "w")));
+		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings(" a", "\ta", "\na"), MatcherTargets.fromStrings("ca", "#a")));
+		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings(" ", "\t", "\n", "a"), MatcherTargets.fromStrings("Z", "A")));
+		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("a", "B", "9"), MatcherTargets.fromStrings(" ", "$")));
+		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("ap", "Bp", "9p"), MatcherTargets.fromStrings("$p", "#p")));
 	}
 
 	private void addExercises4() {
