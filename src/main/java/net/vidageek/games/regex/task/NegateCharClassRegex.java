@@ -1,31 +1,37 @@
 package net.vidageek.games.regex.task;
 
-import static java.util.Arrays.copyOfRange;
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
 import net.vidageek.games.task.status.Failed;
 import net.vidageek.games.task.status.Faileds;
-import net.vidageek.games.task.status.Ok;
 
 public class NegateCharClassRegex implements Task {
 
-	private final MatcherTargets matchingTargets;
+	private final MatcherTargets cannotMatch;
+	private final MatcherTargets shouldMatch;
 
-	public NegateCharClassRegex(String...matchingTargets) {
-		this.matchingTargets = new MatcherTargets(matchingTargets[0], copyOfRange(matchingTargets, 1, matchingTargets.length));
+
+	public NegateCharClassRegex(MatcherTargets cannotMatch, MatcherTargets shouldMatch) {
+		this.cannotMatch = cannotMatch;
+		this.shouldMatch = shouldMatch;
 	}
 
 	public JudgedTask judge(String challenge) {
 		Faileds faileds = findUndueMatchWith(challenge);
-		return faileds.ok() ? new Ok() : new Failed(faileds);
+		faileds.addAll(findDueMatchThatNotMatch(challenge));
+		return faileds.judgment();
+	}
+
+	private Faileds findDueMatchThatNotMatch(String challenge) {
+		return new Regex(challenge).matchAll(shouldMatch);
 	}
 
 	private Faileds findUndueMatchWith(String challenge) {
 		Faileds faileds = new Faileds();
 		Regex regex = new Regex(challenge);
-		for (String matchingTarget : matchingTargets) {
+		for (String matchingTarget : cannotMatch) {
 			if (regex.match(matchingTarget).ok()) {
-				faileds.addOnlyJudgedFailed(new Failed("Não deveria fazer match com [" + matchingTarget + "]"));
+				faileds.addOnlyJudgedFailed(new Failed("Não deveria fazer match com \"" + matchingTarget + "\""));
 			}
 		}
 		return faileds;
@@ -41,7 +47,7 @@ public class NegateCharClassRegex implements Task {
 
 	@Override
 	public String toString() {
-		return "Não pode dar match em [" + matchingTargets.showMessages() + "]";
+		return "Não pode dar match em [" + cannotMatch.showMessages() + "]";
 	}
 	
 }

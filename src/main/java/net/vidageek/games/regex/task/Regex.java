@@ -23,19 +23,19 @@ final public class Regex {
 		if (pattern.matcher(matchingTarget).matches()) {
 			return new Ok();
 		}
-		return new Failed("[" + this.pattern.pattern() + "] não dá match em [" + matchingTarget + "]");
+		return new Failed("\"" + this.pattern.pattern() + "\" não dá match em \"" + matchingTarget + "\"");
 	}
 
 	public GroupFinder group(final int position) {
 		return new GroupFinder(position, pattern);
 	}
 
-	public JudgedTask matchAll(final String... matchingTargets) {
+	public Faileds matchAll(final MatcherTargets negateClassShouldMatch) {
 		Faileds fails = new Faileds();
-		for (String matchingTarget : matchingTargets) {
+		for (String matchingTarget : negateClassShouldMatch) {
 			fails.addOnlyJudgedFailed(match(matchingTarget));
 		}
-		return fails.ok() ? new Ok() : new Failed(fails);
+		return fails;
 	}
 
 }

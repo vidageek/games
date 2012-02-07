@@ -19,7 +19,7 @@ public class MatcherTargetsTest {
 	}
 
 	private MatcherTargets aMatcherTargetWithAAndB() {
-		return new MatcherTargets("a", "b");
+		return MatcherTargets.fromStrings("a", "b");
 	}
 
 }

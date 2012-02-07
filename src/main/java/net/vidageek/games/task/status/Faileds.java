@@ -24,4 +24,14 @@ public class Faileds implements JudgedTask {
 			this.faileds.add((Failed)judgedTask);
 	}
 
+	public void addAll(Faileds faileds) {
+		for (Failed failed : faileds.faileds) {
+			addOnlyJudgedFailed(failed);
+		}
+	}
+
+	public JudgedTask judgment() {
+		return ok() ? new Ok() : new Failed(this);
+	}
+
 }

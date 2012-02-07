@@ -1,15 +1,16 @@
 package net.vidageek.games.task;
 
+import net.vidageek.games.regex.task.MatcherTargets;
 import net.vidageek.games.regex.task.Regex;
 
 import com.google.common.base.Joiner;
 
 public class CharClassRegex implements Task {
 
-	private final String[] matchingTargets;
+	private final MatcherTargets matchingTargets;
 
 	public CharClassRegex(String... matchingTargets) {
-		this.matchingTargets = matchingTargets;
+		this.matchingTargets = MatcherTargets.fromStrings(matchingTargets);
 
 	}
 

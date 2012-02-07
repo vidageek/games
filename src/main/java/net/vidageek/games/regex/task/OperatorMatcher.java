@@ -17,7 +17,7 @@ final public class OperatorMatcher implements Task {
 	}
 
 	public JudgedTask judge(final String challenge) {
-		return new Regex(challenge).matchAll(matchingTarget);
+		return new Regex(challenge).match(matchingTarget);
 	}
 
 	public String getDescription() {
