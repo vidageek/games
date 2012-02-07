@@ -1,9 +1,9 @@
 package net.vidageek.games.regex.task;
 
+import static net.vidageek.games.regex.task.MatcherTargets.fromStrings;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-
 import net.vidageek.games.task.CharClassRegex;
 import net.vidageek.games.task.status.Failed;
 import net.vidageek.games.task.status.Ok;
@@ -17,9 +17,9 @@ final public class MultipleAnswersMatcherTest {
 
 	@Before
 	public void setup() throws Exception {
-		taskWithMatchinTargestAAndB = new CharClassRegex("A", "B");
+		taskWithMatchinTargestAAndB = new CharClassRegex(fromStrings("A", "B"));
 	}
-	
+
 	@Test
 	public void shouldMatcherWithAllAnswers() {
 		assertEquals(Ok.class, taskWithMatchinTargestAAndB.judge("[AB]").getClass());
@@ -34,7 +34,7 @@ final public class MultipleAnswersMatcherTest {
 	public void cannotMatchWith1InvalidAnd1ValidChalengeAnswer() {
 		assertEquals(Failed.class, taskWithMatchinTargestAAndB.judge("[AC]").getClass());
 	}
-	
+
 	@Test
 	public void shouldShowCorrectChallenge() {
 		assertThat(taskWithMatchinTargestAAndB.getChallenge(), equalTo("Qual regex dá match em [A e B]"));

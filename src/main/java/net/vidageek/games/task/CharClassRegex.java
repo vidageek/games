@@ -9,13 +9,13 @@ public class CharClassRegex implements Task {
 
 	private final MatcherTargets matchingTargets;
 
-	public CharClassRegex(String... matchingTargets) {
-		this.matchingTargets = MatcherTargets.fromStrings(matchingTargets);
+	public CharClassRegex(final MatcherTargets matchingTargets) {
+		this.matchingTargets = matchingTargets;
 
 	}
 
-	public JudgedTask judge(String challenge) {
-		return new Regex(challenge).matchAll(this.matchingTargets).judgment();
+	public JudgedTask judge(final String challenge) {
+		return new Regex(challenge).matchAll(matchingTargets).judgment();
 	}
 
 	public String getDescription() {
@@ -32,8 +32,7 @@ public class CharClassRegex implements Task {
 	}
 
 	private String matchingTargets() {
-		return Joiner.on(" e ").join(this.matchingTargets);
+		return Joiner.on(" e ").join(matchingTargets);
 	}
-	
-	
+
 }

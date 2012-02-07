@@ -1,5 +1,7 @@
 package net.vidageek.games.regex.task;
 
+import static net.vidageek.games.regex.task.MatcherTargets.fromStrings;
+
 import java.util.List;
 
 import net.vidageek.games.Game;
@@ -19,7 +21,6 @@ final public class RegexGame implements Game {
 		addExercises5();
 	}
 
-
 	private void addExercises1() {
 		tasks.add(new PerfectMatchRegex("a"));
 		tasks.add(new PerfectMatchRegex("b"));
@@ -32,35 +33,36 @@ final public class RegexGame implements Game {
 	}
 
 	private void addExercises2() {
-		tasks.add(new CharClassRegex("a", "b"));
-		tasks.add(new CharClassRegex("ad", "bd"));
-		tasks.add(new CharClassRegex("ad", "bd", "cd"));
-		tasks.add(new CharClassRegex("a", "b", "c"));
-		tasks.add(new CharClassRegex("a", "b", "c", "A", "B", "C", "D"));
-		tasks.add(new CharClassRegex("0", "1", "2"));
-		tasks.add(new CharClassRegex("1", "4", "5"));
-		tasks.add(new CharClassRegex("1a", "4a", "5a"));
-		tasks.add(new CharClassRegex("1", "4", "5", "a"));
-		tasks.add(new CharClassRegex(" ", "\t", "\n", "\f", "\r"));
-		tasks.add(new CharClassRegex(" a", "\ta", "\na"));
-		tasks.add(new CharClassRegex(" ", "\t", "\n", "a"));
-		tasks.add(new CharClassRegex("a", "b", "9"));
-		tasks.add(new CharClassRegex("ap", "bp", "9p"));
-		tasks.add(new CharClassRegex("a", "B", "9", "$", "\t", " "));
+		tasks.add(new CharClassRegex(fromStrings("a", "b")));
+		tasks.add(new CharClassRegex(fromStrings("ad", "bd")));
+		tasks.add(new CharClassRegex(fromStrings("ad", "bd", "cd")));
+		tasks.add(new CharClassRegex(fromStrings("a", "b", "c")));
+		tasks.add(new CharClassRegex(fromStrings("a", "b", "c", "A", "B", "C", "D")));
+		tasks.add(new CharClassRegex(fromStrings("0", "1", "2")));
+		tasks.add(new CharClassRegex(fromStrings("1", "4", "5")));
+		tasks.add(new CharClassRegex(fromStrings("1a", "4a", "5a")));
+		tasks.add(new CharClassRegex(fromStrings("1", "4", "5", "a")));
+		tasks.add(new CharClassRegex(fromStrings(" ", "\t", "\n", "\f", "\r")));
+		tasks.add(new CharClassRegex(fromStrings(" a", "\ta", "\na")));
+		tasks.add(new CharClassRegex(fromStrings(" ", "\t", "\n", "a")));
+		tasks.add(new CharClassRegex(fromStrings("a", "b", "9")));
+		tasks.add(new CharClassRegex(fromStrings("ap", "bp", "9p")));
+		tasks.add(new CharClassRegex(fromStrings("a", "B", "9", "$", "\t", " ")));
 	}
 
 	private void addExercises3() {
-		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("a", "b"), MatcherTargets.fromStrings("c", "d")));
-		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("ad", "bd"), MatcherTargets.fromStrings("cd", "dd")));
-		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("ad", "bd", "cd"), MatcherTargets.fromStrings("dd", "ed")));
-		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"), MatcherTargets.fromStrings(" ", "a")));
-		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("1a", "4a", "5a"), MatcherTargets.fromStrings(" a", "$a")));
-		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("1", "4", "5", "a"), MatcherTargets.fromStrings(" ", "b")));
-		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("\t", "\n", "\f", "\r"), MatcherTargets.fromStrings("A", "w")));
-		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings(" a", "\ta", "\na"), MatcherTargets.fromStrings("ca", "#a")));
-		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings(" ", "\t", "\n", "a"), MatcherTargets.fromStrings("Z", "A")));
-		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("a", "B", "9"), MatcherTargets.fromStrings(" ", "$")));
-		tasks.add(new NegateCharClassRegex(MatcherTargets.fromStrings("ap", "Bp", "9p"), MatcherTargets.fromStrings("$p", "#p")));
+		tasks.add(new NegateCharClassRegex(fromStrings("a", "b"), fromStrings("c", "d")));
+		tasks.add(new NegateCharClassRegex(fromStrings("ad", "bd"), fromStrings("cd", "dd")));
+		tasks.add(new NegateCharClassRegex(fromStrings("ad", "bd", "cd"), fromStrings("dd", "ed")));
+		tasks.add(new NegateCharClassRegex(fromStrings("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"),
+				fromStrings(" ", "a")));
+		tasks.add(new NegateCharClassRegex(fromStrings("1a", "4a", "5a"), fromStrings(" a", "$a")));
+		tasks.add(new NegateCharClassRegex(fromStrings("1", "4", "5", "a"), fromStrings(" ", "b")));
+		tasks.add(new NegateCharClassRegex(fromStrings("\t", "\n", "\f", "\r"), fromStrings("A", "w")));
+		tasks.add(new NegateCharClassRegex(fromStrings(" a", "\ta", "\na"), fromStrings("ca", "#a")));
+		tasks.add(new NegateCharClassRegex(fromStrings(" ", "\t", "\n", "a"), fromStrings("Z", "A")));
+		tasks.add(new NegateCharClassRegex(fromStrings("a", "B", "9"), fromStrings(" ", "$")));
+		tasks.add(new NegateCharClassRegex(fromStrings("ap", "Bp", "9p"), fromStrings("$p", "#p")));
 	}
 
 	private void addExercises4() {
