@@ -34,8 +34,8 @@ public class GameConsole {
 		final JudgedTask judgedTask = game.task(index).judge(challenge);
 		result.include("judgedTask", judgedTask);
 		if (judgedTask.ok()) {
-			if (index + 1 < game.size()) {
-				result.redirectTo(this).task(gameName, index + 1);
+			if (game.hasNextTask(index)) {
+				result.redirectTo(this).task(gameName, game.nextTask(index));
 			} else {
 				result.redirectTo(this).index(gameName);
 			}
