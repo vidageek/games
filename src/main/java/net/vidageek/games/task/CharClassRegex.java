@@ -18,10 +18,6 @@ public class CharClassRegex implements Task {
 		return new Regex(challenge).matchAll(matchingTargets).judgment();
 	}
 
-	public String getDescription() {
-		return "Matching com classes de caracteres";
-	}
-
 	public String getChallenge() {
 		return toString();
 	}

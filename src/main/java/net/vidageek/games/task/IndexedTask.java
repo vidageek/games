@@ -2,12 +2,12 @@ package net.vidageek.games.task;
 
 import net.vidageek.games.task.status.Error;
 
-public final class IndexedTask implements Task {
+public final class IndexedTask implements TaskWithDescription {
 
-	private final Task delegate;
+	private final TaskWithDescription delegate;
 	private final int index;
 
-	public IndexedTask(final Task delegate, final int index) {
+	public IndexedTask(final TaskWithDescription delegate, final int index) {
 		this.delegate = delegate;
 		this.index = index;
 	}

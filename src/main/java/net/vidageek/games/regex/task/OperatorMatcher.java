@@ -20,10 +20,6 @@ final public class OperatorMatcher implements Task {
 		return new Regex(challenge).match(matchingTarget);
 	}
 
-	public String getDescription() {
-		return null;
-	}
-
 	public String getChallenge() {
 		return null;
 	}

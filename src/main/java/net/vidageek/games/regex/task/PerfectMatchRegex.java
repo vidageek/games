@@ -15,10 +15,6 @@ final public class PerfectMatchRegex implements Task {
 		return new Regex(challenge).match(matchingTarget);
 	}
 
-	public String getDescription() {
-		return "Matching simples de letras";
-	}
-
 	public String getChallenge() {
 		return "Qual regex dá match em [" + matchingTarget + "]?";
 	}

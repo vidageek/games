@@ -2,17 +2,17 @@ package net.vidageek.games;
 
 import java.util.Collection;
 
-import net.vidageek.games.task.Task;
+import net.vidageek.games.task.TaskWithDescription;
 
 public interface Game {
 
 	int size();
 
-	Task task(int index);
+	TaskWithDescription task(int index);
 
 	String getDescription();
 
-	Collection<? extends Task> getTasks();
+	Collection<? extends TaskWithDescription> getTasks();
 
 	String getName();
 

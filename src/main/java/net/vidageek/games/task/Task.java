@@ -4,7 +4,5 @@ public interface Task {
 
 	JudgedTask judge(String challenge);
 
-	String getDescription();
-
 	String getChallenge();
 }

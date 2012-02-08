@@ -9,18 +9,28 @@ import net.vidageek.games.task.Task;
 
 public class Tasks {
 
-	private final List<Task> tasks = new ArrayList<Task>();
+	private final List<TaskGroup> taskGroups = new ArrayList<TaskGroup>();
 
-	public void add(final Task task) {
-		tasks.add(task);
+	public void add(final TaskGroup group) {
+		taskGroups.add(group);
 	}
 
-	public IndexedTask at(final int index) {
-		return new IndexedTask(tasks.get(index), index);
+	public IndexedTask at(int index) {
+		int groupCount = 0;
+		while ((groupCount < taskGroups.size()) && (index - taskGroups.get(groupCount).size() >= 0)) {
+			index -= taskGroups.get(groupCount).size();
+			groupCount++;
+		}
+		TaskGroup group = taskGroups.get(groupCount);
+		return new IndexedTask(new GroupedTask(group, group.task(index)), index);
 	}
 
 	public int size() {
-		return tasks.size();
+		int res = 0;
+		for (TaskGroup group : taskGroups) {
+			res += group.size();
+		}
+		return res;
 	}
 
 	public List<IndexedTask> all() {
@@ -30,8 +40,10 @@ public class Tasks {
 	private List<IndexedTask> unmodifiableIndexedTasks() {
 		List<IndexedTask> list = new ArrayList<IndexedTask>();
 		int i = 0;
-		for (Task task : tasks) {
-			list.add(new IndexedTask(task, i++));
+		for (TaskGroup group : taskGroups) {
+			for (Task task : group) {
+				list.add(new IndexedTask(new GroupedTask(group, task), i++));
+			}
 		}
 		return Collections.unmodifiableList(list);
 	}

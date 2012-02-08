@@ -3,13 +3,13 @@ package net.vidageek.games.regex.task;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.google.common.base.Joiner;
-
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
 import net.vidageek.games.task.status.Error;
 import net.vidageek.games.task.status.Failed;
 import net.vidageek.games.task.status.Ok;
+
+import com.google.common.base.Joiner;
 
 final public class CaptureGroup implements Task {
 
@@ -43,10 +43,6 @@ final public class CaptureGroup implements Task {
 		} catch (Exception e) {
 			return new Error(e);
 		}
-	}
-
-	public String getDescription() {
-		return "Único grupo de captura";
 	}
 
 	public String getChallenge() {
