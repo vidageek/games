@@ -20,7 +20,7 @@ public class MatcherTargets implements Iterable<String> {
 	}
 
 	public String showMessages() {
-		return Joiner.on(" e ").join(matcherTargets);
+		return "\"" + Joiner.on("\" e \"").join(matcherTargets) + "\"";
 	}
 
 	public Iterator<String> iterator() {

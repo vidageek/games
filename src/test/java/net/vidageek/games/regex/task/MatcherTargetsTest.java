@@ -10,7 +10,7 @@ public class MatcherTargetsTest {
 
 	@Test
 	public void shouldShowMessageWithTargets() {
-		assertThat(aMatcherTargetWithAAndB().showMessages(), equalTo("a e b"));
+		assertThat(aMatcherTargetWithAAndB().showMessages(), equalTo("\"a\" e \"b\""));
 	}
 
 	@Test
