@@ -32,9 +32,15 @@ public class NegateCharClassRegexTest {
 	
 	@Test
 	public void shouldShowChallengeWithWhatShouldMatchAndWhatCannotMatch() {
-		String whatCannotMatch = "Não pode dar match em [" + cannotMatch.showMessages() + "]";
-		String whatShouldMatch = "Deve dar match em [" + shouldMatch.showMessages() + "]";
-		String completeMessage =  whatCannotMatch + "<br>" + whatShouldMatch;  
+		String completeMessage =  whatCannotMatch() + " e " + whatShouldMatch();  
 		assertThat(aNegateCharClassTask.getChallenge(), equalTo(completeMessage));
+	}
+
+	private String whatShouldMatch() {
+		return "Deve dar match em " + shouldMatch.showMessages();
+	}
+
+	private String whatCannotMatch() {
+		return "Não pode dar match em " + cannotMatch.showMessages();
 	}
 }
