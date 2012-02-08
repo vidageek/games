@@ -96,4 +96,12 @@ final public class RegexGame implements Game {
 		return "RegEx";
 	}
 
+	public boolean hasNextTask(final int index) {
+		return nextTask(index) < size();
+	}
+
+	public int nextTask(final int index) {
+		return index + 1;
+	}
+
 }

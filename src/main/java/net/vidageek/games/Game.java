@@ -15,4 +15,8 @@ public interface Game {
 	Collection<? extends Task> getTasks();
 
 	String getName();
+
+	boolean hasNextTask(int index);
+
+	int nextTask(int index);
 }

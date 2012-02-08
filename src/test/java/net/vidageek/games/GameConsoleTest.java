@@ -2,6 +2,7 @@ package net.vidageek.games;
 
 import static org.mockito.Answers.RETURNS_DEEP_STUBS;
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import net.vidageek.games.task.status.Failed;
@@ -58,7 +59,8 @@ final public class GameConsoleTest {
 	public void shouldRedirectToNextTaskIfTaskIsOk() {
 		final Ok judgedTask = new Ok();
 		when(game.task(3).judge("challenge")).thenReturn(judgedTask);
-		when(game.size()).thenReturn(5);
+		when(game.hasNextTask(anyInt())).thenReturn(true);
+		when(game.nextTask(anyInt())).thenReturn(4);
 
 		new GameConsole(result, game).submit("name", 3, "challenge");
 
