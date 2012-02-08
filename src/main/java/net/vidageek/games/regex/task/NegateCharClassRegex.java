@@ -47,7 +47,15 @@ public class NegateCharClassRegex implements Task {
 
 	@Override
 	public String toString() {
+		return cannotMatchChallenge() + "<br>" + shouldMatchChallenge();
+	}
+
+	private String cannotMatchChallenge() {
 		return "Não pode dar match em [" + cannotMatch.showMessages() + "]";
+	}
+
+	private String shouldMatchChallenge() {
+		return  "Deve dar match em [" + shouldMatch.showMessages() + "]";
 	}
 	
 }

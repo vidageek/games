@@ -1,6 +1,9 @@
 package net.vidageek.games.regex.task;
 
+import static net.vidageek.games.regex.task.MatcherTargets.fromStrings;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.status.Failed;
 
@@ -10,11 +13,13 @@ import org.junit.Test;
 public class NegateCharClassRegexTest {
 
 	private NegateCharClassRegex aNegateCharClassTask;
+	private MatcherTargets cannotMatch;
+	private MatcherTargets shouldMatch;
 
 	@Before
 	public void setup() throws Exception {
-		MatcherTargets cannotMatch = MatcherTargets.fromStrings("a", "b");
-		MatcherTargets shouldMatch = MatcherTargets.fromStrings("c", "d");
+		cannotMatch = fromStrings("a", "b");
+		shouldMatch = fromStrings("c", "d");
 		aNegateCharClassTask = new NegateCharClassRegex(cannotMatch, shouldMatch);
 	}
 	
@@ -26,9 +31,10 @@ public class NegateCharClassRegexTest {
 	}
 	
 	@Test
-	public void shouldShowWhatTargetMatchCannotMatchWhenFail() {
-		JudgedTask judge = aNegateCharClassTask.judge("[^abcd]");
-		assertEquals(Failed.class, judge.getClass());
-		assertEquals("\"[^abcd]\" não dá match em \"c\"<br>\"[^abcd]\" não dá match em \"d\"", judge.getReason());
+	public void shouldShowChallengeWithWhatShouldMatchAndWhatCannotMatch() {
+		String whatCannotMatch = "Não pode dar match em [" + cannotMatch.showMessages() + "]";
+		String whatShouldMatch = "Deve dar match em [" + shouldMatch.showMessages() + "]";
+		String completeMessage =  whatCannotMatch + "<br>" + whatShouldMatch;  
+		assertThat(aNegateCharClassTask.getChallenge(), equalTo(completeMessage));
 	}
 }
