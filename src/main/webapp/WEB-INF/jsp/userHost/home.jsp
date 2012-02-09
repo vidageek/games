@@ -1,0 +1,1 @@
+<a href="/play">Escolha um jogo</a>
