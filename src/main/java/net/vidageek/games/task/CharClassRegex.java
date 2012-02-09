@@ -24,7 +24,7 @@ public class CharClassRegex implements Task {
 
 	@Override
 	public String toString() {
-		return "Qual regex dá match em [" + matchingTargets() + "]";
+		return "Qual regex d&aacute; match em [" + matchingTargets() + "]";
 	}
 
 	private String matchingTargets() {

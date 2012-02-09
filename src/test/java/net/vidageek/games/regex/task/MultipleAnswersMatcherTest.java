@@ -37,6 +37,6 @@ final public class MultipleAnswersMatcherTest {
 
 	@Test
 	public void shouldShowCorrectChallenge() {
-		assertThat(taskWithMatchinTargestAAndB.getChallenge(), equalTo("Qual regex dá match em [A e B]"));
+		assertThat(taskWithMatchinTargestAAndB.getChallenge(), equalTo("Qual regex d&aacute; match em [A e B]"));
 	}
 }
