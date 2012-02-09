@@ -1,6 +1,6 @@
 #! /bin/bash
 
-/home/ubuntu/gradle/bin/gradle clean test assemble
+/home/ubuntu/gradle/bin/gradle test assemble
 
 BUILD=$?
 
