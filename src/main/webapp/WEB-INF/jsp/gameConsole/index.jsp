@@ -2,8 +2,6 @@
 
 <html>
 	<head>
-		<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-		<link href="/css/style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		<h1>${game.name}</h1>
