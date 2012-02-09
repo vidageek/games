@@ -15,12 +15,6 @@ final public class Error implements JudgedTask {
 	}
 
 	public String getReason() {
-		String reason = "Falhou porque exce&ccedil;&atilde;o foi lan&ccedil;ada:" + "<ul class=\"exception\">\n";
-		reason += "<li class=\"first\">" + e.getClass().getName() + "</li>\n";
-		for (StackTraceElement frame : e.getStackTrace()) {
-			reason += "<li>at&nbsp;" + frame + "</li>\n";
-		}
-		reason += "</ul>\n";
-		return reason;
+		return e.getMessage();
 	}
 }
