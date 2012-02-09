@@ -1,0 +1,43 @@
+@font-face {
+  font-family: Collegiate;
+  src: url("Collegiate.ttf");
+}
+
+.ribbon-holder {
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  height: 10em;
+  right: 0;
+}
+
+.ribbon, .ribbon:hover {
+  text-decoration: none;
+}
+
+.ribbon .text {
+  padding: 0.1em 3em;
+  border: 1px solid #ebaa65;
+}
+
+.ribbon {
+  font-family: Collegiate, sans-serif;
+  letter-spacing: -.1px;
+  opacity: 0.95;
+
+  padding: 0.25em 0;
+  position: relative;
+  top: 2.5em;
+
+  -moz-box-shadow: 0 0 13px #888;
+  -webkit-box-shadow: 0 0 13px #888;
+  color: #FFF;
+  display: block;
+  line-height: 1.35em;
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  right: -2.6em;
+  background-color: #E57504;
+  background: -webkit-gradient(linear, left bottom, left top, from(#dc7202), to(#ee7906));
+}
+

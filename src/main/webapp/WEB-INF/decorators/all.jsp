@@ -10,8 +10,15 @@
 	<meta content="pt-br" http-equiv="Content-Language" />
 	<title><decorator:title /></title>
 	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<div class="right ribbon-holder">
+	<a href="https://github.com/vidageek/games" class="orange ribbon">
+		<span class="text">Help me on GitHub</span>
+	</a>
+</div>
+
 <decorator:body />
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
