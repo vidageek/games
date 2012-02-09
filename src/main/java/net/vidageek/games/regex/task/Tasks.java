@@ -15,14 +15,15 @@ public class Tasks {
 		taskGroups.add(group);
 	}
 
-	public IndexedTask at(int index) {
+	public IndexedTask at(final int originalIndex) {
+		int index = originalIndex;
 		int groupCount = 0;
 		while ((groupCount < taskGroups.size()) && (index - taskGroups.get(groupCount).size() >= 0)) {
 			index -= taskGroups.get(groupCount).size();
 			groupCount++;
 		}
 		TaskGroup group = taskGroups.get(groupCount);
-		return new IndexedTask(new GroupedTask(group, group.task(index)), index);
+		return new IndexedTask(new GroupedTask(group, group.task(index)), originalIndex);
 	}
 
 	public int size() {
