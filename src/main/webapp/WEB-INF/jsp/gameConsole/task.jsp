@@ -14,7 +14,7 @@ ${task.description}
 ${task.challenge}
 
 <form method="POST" action="/play/${gameName}/task/${task.index}">
-	<input name="challenge" />
+	<input class="focus" name="challenge" />
 	<input type="submit" value="Enviar" />
 </form>
 </div>
