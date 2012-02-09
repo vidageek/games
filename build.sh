@@ -8,5 +8,5 @@ if [ $BUILD -ne 0 ]; then
 	exit $BUILD;
 fi;
 
-cp build/libs/games-1.0-SNAPSHOT.war ~/artifacts/games/games.war
+cp build/libs/games-0.1-SNAPSHOT.war ~/artifacts/games/games.war
 
