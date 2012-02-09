@@ -16,7 +16,7 @@ final public class PerfectMatchRegex implements Task {
 	}
 
 	public String getChallenge() {
-		return "Qual regex dá match em [" + matchingTarget + "]?";
+		return "Qual regex d&aacute; match em [" + matchingTarget + "]?";
 	}
 
 	@Override

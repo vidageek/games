@@ -23,7 +23,7 @@ final public class Regex {
 		if (pattern.matcher(matchingTarget).matches()) {
 			return new Ok();
 		}
-		return new Failed("\"" + this.pattern.pattern() + "\" não dá match em \"" + matchingTarget + "\"");
+		return new Failed("\"" + pattern.pattern() + "\" n&atilde;o d&aacute; match em \"" + matchingTarget + "\"");
 	}
 
 	public GroupFinder group(final int position) {

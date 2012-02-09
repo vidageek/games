@@ -30,7 +30,7 @@ public class NegateCharClassRegex implements Task {
 		Regex regex = new Regex(challenge);
 		for (String matchingTarget : cannotMatch) {
 			if (regex.match(matchingTarget).ok()) {
-				faileds.addOnlyJudgedFailed(new Failed("Não deveria fazer match com \"" + matchingTarget + "\""));
+				faileds.addOnlyJudgedFailed(new Failed("N&atilde;o deveria fazer match com \"" + matchingTarget + "\""));
 			}
 		}
 		return faileds;
@@ -46,11 +46,11 @@ public class NegateCharClassRegex implements Task {
 	}
 
 	private String cannotMatchChallenge() {
-		return "Não pode dar match em " + cannotMatch.showMessages();
+		return "N&atilde;o pode dar match em " + cannotMatch.showMessages();
 	}
 
 	private String shouldMatchChallenge() {
-		return  "Deve dar match em " + shouldMatch.showMessages();
+		return "Deve dar match em " + shouldMatch.showMessages();
 	}
 
 }

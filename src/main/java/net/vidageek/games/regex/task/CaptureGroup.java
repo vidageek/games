@@ -25,18 +25,18 @@ final public class CaptureGroup implements Task {
 		try {
 			Matcher matcher = Pattern.compile(challenge).matcher(matchingTarget);
 			if (!matcher.find()) {
-				return new Failed("A regex " + challenge + " não dá match em " + matchingTarget);
+				return new Failed("A regex " + challenge + " n&atilde;o d&aacute; match em " + matchingTarget);
 			}
 			if (matcher.groupCount() != groupMatchingTargets.length) {
-				return new Failed("A regex " + challenge + " não contém um grupo de captura.");
+				return new Failed("A regex " + challenge + " n&atilde;o cont&eacute;m um grupo de captura.");
 			}
 			if (!matchingTarget.equals(matcher.group(0))) {
-				return new Failed("A regex " + challenge + " não reconhece a string " + matchingTarget);
+				return new Failed("A regex " + challenge + " n&atilde;o reconhece a string " + matchingTarget);
 			}
 			int i = 1;
 			for (String target : groupMatchingTargets) {
 				if (!target.equals(matcher.group(i++))) {
-					return new Failed("A regex " + challenge + " não captura a string " + target);
+					return new Failed("A regex " + challenge + " n&atilde;o captura a string " + target);
 				}
 			}
 			return new Ok();
@@ -46,7 +46,7 @@ final public class CaptureGroup implements Task {
 	}
 
 	public String getChallenge() {
-		return "Qual regex dá match em " + matchingTarget + " e captura " + captureTarget() + "?";
+		return "Qual regex d&aacute; match em " + matchingTarget + " e captura " + captureTarget() + "?";
 	}
 
 	private String captureTarget() {

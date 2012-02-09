@@ -22,17 +22,18 @@ public class NegateCharClassRegexTest {
 		shouldMatch = fromStrings("c", "d");
 		aNegateCharClassTask = new NegateCharClassRegex(cannotMatch, shouldMatch);
 	}
-	
+
 	@Test
 	public void shouldReturnFailedWhenMatch() throws Exception {
 		JudgedTask judge = aNegateCharClassTask.judge("[^ef]");
 		assertEquals(Failed.class, judge.getClass());
-		assertEquals("Não deveria fazer match com \"a\"<br>Não deveria fazer match com \"b\"", judge.getReason());
+		assertEquals(	"N&atilde;o deveria fazer match com \"a\"<br>N&atilde;o deveria fazer match com \"b\"",
+						judge.getReason());
 	}
-	
+
 	@Test
 	public void shouldShowChallengeWithWhatShouldMatchAndWhatCannotMatch() {
-		String completeMessage =  whatCannotMatch() + " e " + whatShouldMatch();  
+		String completeMessage = whatCannotMatch() + " e " + whatShouldMatch();
 		assertThat(aNegateCharClassTask.getChallenge(), equalTo(completeMessage));
 	}
 
@@ -41,6 +42,6 @@ public class NegateCharClassRegexTest {
 	}
 
 	private String whatCannotMatch() {
-		return "Não pode dar match em " + cannotMatch.showMessages();
+		return "N&atilde;o pode dar match em " + cannotMatch.showMessages();
 	}
 }
