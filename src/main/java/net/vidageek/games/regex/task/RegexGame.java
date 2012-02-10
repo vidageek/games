@@ -5,6 +5,7 @@ import static net.vidageek.games.regex.task.MatcherTargets.fromStrings;
 import java.util.List;
 
 import net.vidageek.games.Game;
+import net.vidageek.games.regex.Descriptions;
 import net.vidageek.games.task.CharClassRegex;
 import net.vidageek.games.task.TaskWithDescription;
 
@@ -12,17 +13,17 @@ final public class RegexGame implements Game {
 
 	private final Tasks tasks;
 
-	public RegexGame() {
+	public RegexGame(final Descriptions descriptions) {
 		tasks = new Tasks();
-		addExercises1();
-		addExercises2();
-		addExercises3();
-		addExercises4();
-		addExercises5();
+		addExercises1(descriptions);
+		addExercises2(descriptions);
+		addExercises3(descriptions);
+		addExercises4(descriptions);
+		addExercises5(descriptions);
 	}
 
-	private void addExercises1() {
-		TaskGroup group = new TaskGroup();
+	private void addExercises1(final Descriptions descriptions) {
+		TaskGroup group = new TaskGroup("match.chars", descriptions);
 		group.add(new PerfectMatchRegex("a"));
 		group.add(new PerfectMatchRegex("b"));
 		group.add(new PerfectMatchRegex("ab"));
@@ -34,8 +35,8 @@ final public class RegexGame implements Game {
 		tasks.add(group);
 	}
 
-	private void addExercises2() {
-		TaskGroup group = new TaskGroup();
+	private void addExercises2(final Descriptions descriptions) {
+		TaskGroup group = new TaskGroup("match.chars.classes", descriptions);
 		group.add(new CharClassRegex(fromStrings("a", "b")));
 		group.add(new CharClassRegex(fromStrings("ad", "bd")));
 		group.add(new CharClassRegex(fromStrings("ad", "bd", "cd")));
@@ -54,8 +55,8 @@ final public class RegexGame implements Game {
 		tasks.add(group);
 	}
 
-	private void addExercises3() {
-		TaskGroup group = new TaskGroup();
+	private void addExercises3(final Descriptions descriptions) {
+		TaskGroup group = new TaskGroup("match.negate", descriptions);
 		group.add(new NegateCharClassRegex(fromStrings("a", "b"), fromStrings("c", "d")));
 		group.add(new NegateCharClassRegex(fromStrings("ad", "bd"), fromStrings("cd", "dd")));
 		group.add(new NegateCharClassRegex(fromStrings("ad", "bd", "cd"), fromStrings("dd", "ed")));
@@ -71,14 +72,14 @@ final public class RegexGame implements Game {
 		tasks.add(group);
 	}
 
-	private void addExercises4() {
-		TaskGroup group = new TaskGroup();
+	private void addExercises4(final Descriptions descriptions) {
+		TaskGroup group = new TaskGroup("match.operators", descriptions);
 		group.add(new OperatorMatcher("a"));
 		tasks.add(group);
 	}
 
-	private void addExercises5() {
-		TaskGroup group = new TaskGroup();
+	private void addExercises5(final Descriptions descriptions) {
+		TaskGroup group = new TaskGroup("match.capture", descriptions);
 		group.add(new CaptureGroup("abcdef", "abcdef"));
 		group.add(new CaptureGroup("abcdef1a", "abcdef"));
 		group.add(new CaptureGroup("abcdef1a", "abcdef", "1a"));

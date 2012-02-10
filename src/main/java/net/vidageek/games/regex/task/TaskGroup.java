@@ -5,13 +5,18 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import net.vidageek.games.regex.Descriptions;
 import net.vidageek.games.task.Task;
 
 final public class TaskGroup implements Iterable<Task> {
 
 	private final List<Task> tasks;
+	private final Descriptions descriptions;
+	private final String groupName;
 
-	public TaskGroup() {
+	public TaskGroup(final String groupName, final Descriptions descriptions) {
+		this.groupName = groupName;
+		this.descriptions = descriptions;
 		tasks = new ArrayList<Task>();
 	}
 
@@ -32,7 +37,7 @@ final public class TaskGroup implements Iterable<Task> {
 	}
 
 	public String getDescription() {
-		return null;
+		return descriptions.forGroup(groupName);
 	}
 
 }

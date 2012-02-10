@@ -11,15 +11,15 @@ final public class TasksTest {
 	@Test
 	public void allTasksMustObeyIndexing() {
 		Tasks tasks = new Tasks();
-		TaskGroup group = new TaskGroup();
+		TaskGroup group = new TaskGroup("", null);
 		group.add(new TestTask());
 		group.add(new TestTask());
 		tasks.add(group);
-		group = new TaskGroup();
+		group = new TaskGroup("", null);
 		group.add(new TestTask());
 		group.add(new TestTask());
 		tasks.add(group);
-		group = new TaskGroup();
+		group = new TaskGroup("", null);
 		group.add(new TestTask());
 		group.add(new TestTask());
 		tasks.add(group);
