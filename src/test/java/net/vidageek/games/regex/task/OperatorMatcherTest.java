@@ -16,6 +16,6 @@ public class OperatorMatcherTest {
 	@Test
 	public void shouldMatchWithZeroOrOneOperator() {
 		JudgedTask judge = new OperatorMatcher("a").judge("a?");
-		assertTrue(judge.ok());
+		assertTrue(judge.getOk());
 	}
 }

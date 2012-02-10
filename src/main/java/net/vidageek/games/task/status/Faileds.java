@@ -11,7 +11,7 @@ public class Faileds implements JudgedTask {
 
 	private List<Failed> faileds = new ArrayList<Failed>(); 
 	
-	public boolean ok() {
+	public boolean getOk() {
 		return this.faileds.isEmpty();
 	}
 
@@ -31,7 +31,7 @@ public class Faileds implements JudgedTask {
 	}
 
 	public JudgedTask judgment() {
-		return ok() ? new Ok() : new Failed(this);
+		return getOk() ? new Ok() : new Failed(this);
 	}
 
 }

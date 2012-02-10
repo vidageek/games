@@ -11,16 +11,21 @@
 	<title><decorator:title /></title>
 	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 <body>
-<div class="right ribbon-holder">
-	<a href="https://github.com/vidageek/games" class="orange ribbon">
+<div class="ribbon-holder">
+	<a href="https://github.com/vidageek/games" class="ribbon">
 		<span class="text">Ajude-nos no GitHub</span>
 	</a>
 </div>
+<div class="container">
 
 <decorator:body />
 
+</div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){

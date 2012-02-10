@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:if test="${not empty judgedTask}">
-	<div class="reason">
-		<p>Resposta:</p>
-		<p>${judgedTask.reason}</p>
-	</div>
-</c:if>  
-<div>
-${task.description}
-</div>
-<div>
-${task.challenge}
+<header id="game">
+<h1>${game.name} Game</h1>
+</header>
 
-<form method="POST" action="/play/${gameName}/task/${task.index}">
-	<input class="focus" name="challenge" />
-	<input type="submit" value="Enviar" />
-</form>
+<div class="row">
+	<div class="span5">
+		<c:if test="${not empty judgedTask}">
+			<div class="reason alert ${judgedTask.ok ? 'alert-success' : 'alert-error'}">
+				${judgedTask.reason}
+			</div>
+		</c:if>  
+		
+		<form method="POST" action="/play/${gameName}/task/${task.index}">
+			<label for="challenge"><strong>${task.challenge}</strong></label>
+			<input class="focus span4" name="challenge" />
+			<input class="btn-primary" type="submit" value="Check!" />
+		</form>
+	</div>
+	<div class="span7">
+		${task.description}
+	</div>
 </div>

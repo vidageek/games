@@ -4,7 +4,7 @@ import net.vidageek.games.task.JudgedTask;
 
 final public class Ok implements JudgedTask {
 
-	public boolean ok() {
+	public boolean getOk() {
 		return true;
 	}
 

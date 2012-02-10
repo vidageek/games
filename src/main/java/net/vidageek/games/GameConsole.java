@@ -27,13 +27,14 @@ public class GameConsole {
 	public void task(final String gameName, final int index) {
 		result.include("gameName", gameName);
 		result.include("task", game.task(index));
+		result.include("game", game);
 	}
 
 	@Post("/play/{gameName}/task/{index}")
 	public void submit(final String gameName, final int index, final String challenge) {
 		final JudgedTask judgedTask = game.task(index).judge(challenge);
 		result.include("judgedTask", judgedTask);
-		if (judgedTask.ok()) {
+		if (judgedTask.getOk()) {
 			if (game.hasNextTask(index)) {
 				result.redirectTo(this).task(gameName, game.nextTask(index));
 			} else {

@@ -10,7 +10,7 @@ final public class Error implements JudgedTask {
 		this.e = e;
 	}
 
-	public boolean ok() {
+	public boolean getOk() {
 		return false;
 	}
 

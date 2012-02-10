@@ -14,7 +14,7 @@ final public class Failed implements JudgedTask {
 		this.reason = fails.getReason();
 	}
 
-	public boolean ok() {
+	public boolean getOk() {
 		return false;
 	}
 

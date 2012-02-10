@@ -29,7 +29,7 @@ public class NegateCharClassRegex implements Task {
 		Faileds faileds = new Faileds();
 		Regex regex = new Regex(challenge);
 		for (String matchingTarget : cannotMatch) {
-			if (regex.match(matchingTarget).ok()) {
+			if (regex.match(matchingTarget).getOk()) {
 				faileds.addOnlyJudgedFailed(new Failed("N&atilde;o deveria fazer match com \"" + matchingTarget + "\""));
 			}
 		}
