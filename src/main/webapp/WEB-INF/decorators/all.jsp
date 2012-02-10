@@ -15,7 +15,7 @@
 <body>
 <div class="right ribbon-holder">
 	<a href="https://github.com/vidageek/games" class="orange ribbon">
-		<span class="text">Help me on GitHub</span>
+		<span class="text">Ajude-nos no GitHub</span>
 	</a>
 </div>
 
