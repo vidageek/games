@@ -8,6 +8,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta content="pt-br" http-equiv="Content-Language" />
+	<meta name="google-site-verification" content="FjDxiddkSQXOHTFWCpYqrXpjj7wCoCcX1krRxTCHuq0" />
 	<title><decorator:title /></title>
 	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
