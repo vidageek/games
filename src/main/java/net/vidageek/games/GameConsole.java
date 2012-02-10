@@ -41,6 +41,7 @@ public class GameConsole {
 				result.redirectTo(this).index(gameName);
 			}
 		} else {
+			result.include("challenge", challenge);
 			result.redirectTo(this).task(gameName, index);
 		}
 	}

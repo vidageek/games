@@ -41,6 +41,7 @@ final public class GameConsoleTest {
 
 		verify(gameConsole).task("name", 3);
 		verify(result).include("judgedTask", judgedTask);
+		verify(result).include("challenge", "challenge");
 	}
 
 	@Test
