@@ -15,7 +15,7 @@
 		
 		<form method="POST" action="/play/${gameName}/task/${task.index}">
 			<label for="challenge"><strong>${task.challenge}</strong></label>
-			<input class="focus span4" name="challenge" value="${challenge}"/>
+			<input class="focus span4" name="challenge" value="${challenge}" autocomplete="off"/>
 			<input class="btn-primary" type="submit" value="Check!" />
 		</form>
 		
