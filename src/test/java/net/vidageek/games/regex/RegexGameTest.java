@@ -40,7 +40,7 @@ final public class RegexGameTest {
 	@Test
 	public void hasNextTaskReturnsFalseIfThereIsNoSuchTask() {
 		RegexGame game = new RegexGame(descriptions);
-		assertFalse(game.hasNextTask(game.size() + 1));
+		assertFalse(game.hasNextTask(game.getSize() + 1));
 	}
 
 	@Test

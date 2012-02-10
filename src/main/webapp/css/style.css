@@ -11,6 +11,11 @@
 .reason {
 	width: 304px;	
 }
+
+/*Progress Bar*/
+.progress {
+	width: 354px;	
+}
 /*Ribbon*/
 .ribbon-holder {
   position: absolute;

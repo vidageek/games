@@ -92,7 +92,7 @@ final public class RegexGame implements Game {
 		return tasks.at(index);
 	}
 
-	public int size() {
+	public int getSize() {
 		return tasks.size();
 	}
 
@@ -109,7 +109,7 @@ final public class RegexGame implements Game {
 	}
 
 	public boolean hasNextTask(final int index) {
-		return nextTask(index) < size();
+		return nextTask(index) < getSize();
 	}
 
 	public int nextTask(final int index) {

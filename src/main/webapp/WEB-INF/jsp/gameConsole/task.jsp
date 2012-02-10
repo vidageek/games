@@ -18,7 +18,12 @@
 			<input class="focus span4" name="challenge" />
 			<input class="btn-primary" type="submit" value="Check!" />
 		</form>
+		
+		<div class="progress">
+	    	<div class="bar" style="width: ${(task.index/game.size)*100}%;"></div>
+	    </div>
 	</div>
+	
 	<div class="span7">
 		${task.description}
 	</div>

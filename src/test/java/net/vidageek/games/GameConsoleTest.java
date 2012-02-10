@@ -47,7 +47,7 @@ final public class GameConsoleTest {
 	public void shouldRedirectToGameBeginIfThereAreNoMoreTasks() {
 		final Ok judgedTask = new Ok();
 		when(game.task(3).judge("challenge")).thenReturn(judgedTask);
-		when(game.size()).thenReturn(4);
+		when(game.getSize()).thenReturn(4);
 
 		new GameConsole(result, game).submit("name", 3, "challenge");
 

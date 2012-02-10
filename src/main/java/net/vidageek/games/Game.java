@@ -6,7 +6,7 @@ import net.vidageek.games.task.TaskWithDescription;
 
 public interface Game {
 
-	int size();
+	int getSize();
 
 	TaskWithDescription task(int index);
 
