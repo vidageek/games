@@ -17,15 +17,15 @@
     <![endif]-->
 </head>
 <body>
-<div class="ribbon-holder">
-	<a href="https://github.com/vidageek/games" class="ribbon">
-		<span class="text">Ajude-nos no GitHub</span>
-	</a>
-</div>
 <div class="container">
 
 <decorator:body />
 
+</div>
+<div class="ribbon-holder">
+	<a href="https://github.com/vidageek/games" class="ribbon">
+		<span class="text">Ajude-nos no GitHub</span>
+	</a>
 </div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript">

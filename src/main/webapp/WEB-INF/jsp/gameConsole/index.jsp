@@ -3,6 +3,7 @@
 
 <html>
 	<head>
+		<title>Comece a jogar o ${game.name} Game</title>
 	</head>
 	<body>
 		<h1>${game.name}</h1>
