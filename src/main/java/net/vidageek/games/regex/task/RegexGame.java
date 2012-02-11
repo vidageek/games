@@ -30,8 +30,10 @@ final public class RegexGame implements Game {
 		group.add(new PerfectMatchRegex("abc"));
 		group.add(new PerfectMatchRegex("\\"));
 		group.add(new PerfectMatchRegex("$"));
-		group.add(new PerfectMatchRegex("abcdefg"));
-		group.add(new PerfectMatchRegex("ab$cd^ef\\g"));
+		group.add(new PerfectMatchRegex("abcdefg12345"));
+		group.add(new PerfectMatchRegex("Ab5"));
+		group.add(new PerfectMatchRegex("AbCdEfG6"));
+		group.add(new PerfectMatchRegex("ab$cd^Ef\\G1"));
 		tasks.add(group);
 	}
 
