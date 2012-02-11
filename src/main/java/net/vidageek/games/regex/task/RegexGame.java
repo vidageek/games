@@ -45,6 +45,9 @@ final public class RegexGame implements Game {
 		group.add(new CharClassRegex(fromStrings("a", "b", "c")));
 		group.add(new CharClassRegex(fromStrings("a", "b", "c", "A", "B", "C", "D")));
 		group.add(new CharClassRegex(fromStrings("0", "1", "2")));
+		group.add(new CharClassRegex(fromStrings(	"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+													"n",
+													"o", "p", "q", "r", "s", "t", "u", "v", "x", "w", "y", "z")));
 		group.add(new CharClassRegex(fromStrings("1", "4", "5")));
 		group.add(new CharClassRegex(fromStrings("1a", "4a", "5a")));
 		group.add(new CharClassRegex(fromStrings("1", "4", "5", "a")));
