@@ -3,10 +3,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="pt-br">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta content="pt-br" http-equiv="Content-Language" />
 	<meta name="google-site-verification" content="FjDxiddkSQXOHTFWCpYqrXpjj7wCoCcX1krRxTCHuq0" />
 	<title><decorator:title /></title>
 	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
