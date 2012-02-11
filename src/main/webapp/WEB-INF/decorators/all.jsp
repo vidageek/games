@@ -13,8 +13,8 @@
 	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="/css/style.css" rel="stylesheet" type="text/css" />
 	<!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 </head>
 <body>
 <div class="container">
