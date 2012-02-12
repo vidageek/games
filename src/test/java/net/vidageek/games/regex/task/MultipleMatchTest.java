@@ -3,7 +3,9 @@ package net.vidageek.games.regex.task;
 import static net.vidageek.games.regex.task.MatcherTargets.fromStrings;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import net.vidageek.games.task.MultipleMatch;
 import net.vidageek.games.task.status.Failed;
 import net.vidageek.games.task.status.Ok;
@@ -45,5 +47,17 @@ final public class MultipleMatchTest {
 	public void shouldShowCorrectChallengeFor3MatchingTargets() {
 		assertThat(	new MultipleMatch(fromStrings("a", "b", "c")).getChallenge(),
 					equalTo("Qual regex reconhece <code>a</code>, <code>b</code> e <code>c</code>?"));
+	}
+
+	@Test
+	public void shouldMatchAllString() {
+		assertTrue(new MultipleMatch(fromStrings("a")).judge(".").getOk());
+		assertTrue(new MultipleMatch(fromStrings("aaabc")).judge(".+").getOk());
+	}
+
+	@Test
+	public void shouldNotMatchPartialString() {
+		assertFalse(new MultipleMatch(fromStrings("aa")).judge(".").getOk());
+		assertFalse(new MultipleMatch(fromStrings("aaab\nc")).judge(".+").getOk());
 	}
 }
