@@ -16,10 +16,6 @@ public class MatcherTargets implements Iterable<String> {
 		matcherTargets.addAll(Arrays.asList(othersMatchersTargets));
 	}
 
-	public String showMessages() {
-		return "\"" + Joiner.on("\" e \"").join(matcherTargets) + "\"";
-	}
-
 	public Iterator<String> iterator() {
 		return Collections.unmodifiableCollection(matcherTargets).iterator();
 	}

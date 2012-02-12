@@ -10,11 +10,6 @@ import org.junit.Test;
 public class MatcherTargetsTest {
 
 	@Test
-	public void shouldShowMessageWithTargets() {
-		assertThat(aMatcherTargetWithAAndB().showMessages(), equalTo("\"a\" e \"b\""));
-	}
-
-	@Test
 	public void shouldInterateOverMatcherTargets() {
 		assertThat(aMatcherTargetWithAAndB(), hasItems("a", "b"));
 	}
