@@ -1,5 +1,6 @@
 package net.vidageek.games.regex.task;
 
+import static net.vidageek.games.regex.task.MatcherTargets.fromStrings;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.junit.matchers.JUnitMatchers.hasItems;
@@ -20,6 +21,16 @@ public class MatcherTargetsTest {
 
 	private MatcherTargets aMatcherTargetWithAAndB() {
 		return MatcherTargets.fromStrings("a", "b");
+	}
+
+	@Test
+	public void shouldBuildGoodHtmlFor2Target() {
+		assertThat(fromStrings("A", "B").asHtml(), equalTo("<code>A</code> e <code>B</code>"));
+	}
+
+	@Test
+	public void shouldBuildGoodHtmlFor3Target() {
+		assertThat(fromStrings("a", "b", "c").asHtml(), equalTo("<code>a</code>, <code>b</code> e <code>c</code>"));
 	}
 
 }

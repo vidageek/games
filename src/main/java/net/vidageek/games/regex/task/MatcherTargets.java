@@ -12,9 +12,9 @@ import com.google.common.base.Joiner;
 
 public class MatcherTargets implements Iterable<String> {
 
-	private List<String> matcherTargets = new ArrayList<String>();
+	private final List<String> matcherTargets = new ArrayList<String>();
 
-	private MatcherTargets(String aMatcherTarget, String... othersMatchersTargets) {
+	private MatcherTargets(final String aMatcherTarget, final String... othersMatchersTargets) {
 		matcherTargets.add(aMatcherTarget);
 		matcherTargets.addAll(Arrays.asList(othersMatchersTargets));
 	}
@@ -27,8 +27,21 @@ public class MatcherTargets implements Iterable<String> {
 		return Collections.unmodifiableCollection(matcherTargets).iterator();
 	}
 
-	public static MatcherTargets fromStrings(String... matchingTargets) {
+	public static MatcherTargets fromStrings(final String... matchingTargets) {
 		return new MatcherTargets(matchingTargets[0], copyOfRange(matchingTargets, 1, matchingTargets.length));
+	}
+
+	public String asHtml() {
+		return swapLastComma("<code>" + Joiner.on("</code>, <code>").join(this) + "</code>");
+	}
+
+	private String swapLastComma(final String string) {
+		for (int i = string.length() - 1; i >= 0; i--) {
+			if (string.charAt(i) == ',') {
+				return string.substring(0, i) + " e" + string.substring(i + 1);
+			}
+		}
+		return string;
 	}
 
 }

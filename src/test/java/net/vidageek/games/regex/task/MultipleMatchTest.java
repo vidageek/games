@@ -11,7 +11,7 @@ import net.vidageek.games.task.status.Ok;
 import org.junit.Before;
 import org.junit.Test;
 
-final public class MultipleAnswersMatcherTest {
+final public class MultipleMatchTest {
 
 	private MultipleMatch taskWithMatchinTargestAAndB;
 
