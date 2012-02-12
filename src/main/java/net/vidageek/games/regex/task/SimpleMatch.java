@@ -3,11 +3,11 @@ package net.vidageek.games.regex.task;
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
 
-final public class PerfectMatchRegex implements Task {
+final public class SimpleMatch implements Task {
 
 	private final String matchingTarget;
 
-	public PerfectMatchRegex(final String matchingTarget) {
+	public SimpleMatch(final String matchingTarget) {
 		this.matchingTarget = matchingTarget;
 	}
 
@@ -16,11 +16,11 @@ final public class PerfectMatchRegex implements Task {
 	}
 
 	public String getChallenge() {
-		return "Qual regex d&aacute; match em [" + matchingTarget + "]?";
+		return "Qual regex d&aacute; reconhece <code>" + matchingTarget + "</code>?";
 	}
 
 	@Override
 	public String toString() {
-		return "Match em " + matchingTarget;
+		return "Reconhece " + matchingTarget;
 	}
 }

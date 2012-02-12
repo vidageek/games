@@ -24,16 +24,16 @@ final public class RegexGame implements Game {
 
 	private void addExercises1(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.chars", descriptions);
-		group.add(new PerfectMatchRegex("a"));
-		group.add(new PerfectMatchRegex("b"));
-		group.add(new PerfectMatchRegex("ab"));
-		group.add(new PerfectMatchRegex("abc"));
-		group.add(new PerfectMatchRegex("\\"));
-		group.add(new PerfectMatchRegex("$"));
-		group.add(new PerfectMatchRegex("abcdefg12345"));
-		group.add(new PerfectMatchRegex("Ab5"));
-		group.add(new PerfectMatchRegex("AbCdEfG6"));
-		group.add(new PerfectMatchRegex("ab$cd^Ef\\G1"));
+		group.add(new SimpleMatch("a"));
+		group.add(new SimpleMatch("b"));
+		group.add(new SimpleMatch("ab"));
+		group.add(new SimpleMatch("abc"));
+		group.add(new SimpleMatch("\\"));
+		group.add(new SimpleMatch("$"));
+		group.add(new SimpleMatch("abcdefg12345"));
+		group.add(new SimpleMatch("Ab5"));
+		group.add(new SimpleMatch("AbCdEfG6"));
+		group.add(new SimpleMatch("ab$cd^Ef\\G1"));
 		tasks.add(group);
 	}
 

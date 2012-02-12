@@ -10,7 +10,7 @@ public class IndexedTaskTest {
 
 	@Test
 	public void shouldReturnJudgedTaskWithErrorWhenInvalidRegex() {
-		assertEquals(Error.class, new IndexedTask(new GroupedTask(new TaskGroup("", null), new PerfectMatchRegex("a")),
+		assertEquals(Error.class, new IndexedTask(new GroupedTask(new TaskGroup("", null), new SimpleMatch("a")),
 				1).judge("aIncalidRegex)").getClass());
 	}
 
