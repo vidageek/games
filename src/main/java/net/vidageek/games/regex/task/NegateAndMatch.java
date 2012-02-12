@@ -37,20 +37,13 @@ public class NegateAndMatch implements Task {
 	}
 
 	public String getChallenge() {
-		return toString();
+		return "Qual RegEx n&atilde;o reconhece " + cannotMatch.asHtml() + " mas reconhece " + shouldMatch.asHtml()
+				+ "?";
 	}
 
 	@Override
 	public String toString() {
-		return cannotMatchChallenge() + " e " + shouldMatchChallenge();
-	}
-
-	private String cannotMatchChallenge() {
-		return "N&atilde;o pode dar match em " + cannotMatch.showMessages();
-	}
-
-	private String shouldMatchChallenge() {
-		return "Deve dar match em " + shouldMatch.showMessages();
+		return getChallenge();
 	}
 
 }

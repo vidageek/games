@@ -33,15 +33,7 @@ public class NegateAndMatchTest {
 
 	@Test
 	public void shouldShowChallengeWithWhatShouldMatchAndWhatCannotMatch() {
-		String completeMessage = whatCannotMatch() + " e " + whatShouldMatch();
-		assertThat(aNegateCharClassTask.getChallenge(), equalTo(completeMessage));
-	}
-
-	private String whatShouldMatch() {
-		return "Deve dar match em " + shouldMatch.showMessages();
-	}
-
-	private String whatCannotMatch() {
-		return "N&atilde;o pode dar match em " + cannotMatch.showMessages();
+		assertThat(	aNegateCharClassTask.getChallenge(),
+					equalTo("Qual RegEx n&atilde;o reconhece <code>a</code> e <code>b</code> mas reconhece <code>c</code> e <code>d</code>?"));
 	}
 }
