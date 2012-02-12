@@ -10,9 +10,9 @@ import net.vidageek.games.task.status.Failed;
 import org.junit.Before;
 import org.junit.Test;
 
-public class NegateCharClassRegexTest {
+public class NegateAndMatchTest {
 
-	private NegateCharClassRegex aNegateCharClassTask;
+	private NegateAndMatch aNegateCharClassTask;
 	private MatcherTargets cannotMatch;
 	private MatcherTargets shouldMatch;
 
@@ -20,7 +20,7 @@ public class NegateCharClassRegexTest {
 	public void setup() throws Exception {
 		cannotMatch = from("a", "b");
 		shouldMatch = from("c", "d");
-		aNegateCharClassTask = new NegateCharClassRegex(cannotMatch, shouldMatch);
+		aNegateCharClassTask = new NegateAndMatch(cannotMatch, shouldMatch);
 	}
 
 	@Test

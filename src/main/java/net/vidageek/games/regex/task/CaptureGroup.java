@@ -14,11 +14,11 @@ import com.google.common.base.Joiner;
 final public class CaptureGroup implements Task {
 
 	private final String matchingTarget;
-	private final String[] groupMatchingTargets;
+	private final String[] captureGroupTargets;
 
-	public CaptureGroup(final String matchingTarget, final String... groupMatchingTargets) {
+	public CaptureGroup(final String matchingTarget, final String... captureGroupTargets) {
 		this.matchingTarget = matchingTarget;
-		this.groupMatchingTargets = groupMatchingTargets;
+		this.captureGroupTargets = captureGroupTargets;
 	}
 
 	public JudgedTask judge(final String challenge) {
@@ -27,14 +27,15 @@ final public class CaptureGroup implements Task {
 			if (!matcher.find()) {
 				return new Failed("A regex " + challenge + " n&atilde;o d&aacute; match em " + matchingTarget);
 			}
-			if (matcher.groupCount() != groupMatchingTargets.length) {
-				return new Failed("A regex " + challenge + " n&atilde;o cont&eacute;m um grupo de captura.");
+			if (matcher.groupCount() != captureGroupTargets.length) {
+				return new Failed("A regex " + challenge + " n&atilde;o cont&eacute;m " + captureGroupTargets.length
+						+ " grupo(s) de captura.");
 			}
 			if (!matchingTarget.equals(matcher.group(0))) {
 				return new Failed("A regex " + challenge + " n&atilde;o reconhece a string " + matchingTarget);
 			}
 			int i = 1;
-			for (String target : groupMatchingTargets) {
+			for (String target : captureGroupTargets) {
 				if (!target.equals(matcher.group(i++))) {
 					return new Failed("A regex " + challenge + " n&atilde;o captura a string " + target);
 				}
@@ -50,7 +51,7 @@ final public class CaptureGroup implements Task {
 	}
 
 	private String captureTarget() {
-		return Joiner.on(", ").join(groupMatchingTargets);
+		return Joiner.on(", ").join(captureGroupTargets);
 	}
 
 	@Override

@@ -61,18 +61,18 @@ final public class RegexGame implements Game {
 
 	private void addExercises3(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.negate", descriptions);
-		group.add(new NegateCharClassRegex(from("a", "b"), from("c", "d")));
-		group.add(new NegateCharClassRegex(from("ad", "bd"), from("cd", "dd")));
-		group.add(new NegateCharClassRegex(from("ad", "bd", "cd"), from("dd", "ed")));
-		group.add(new NegateCharClassRegex(from("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"),
+		group.add(new NegateAndMatch(from("a", "b"), from("c", "d")));
+		group.add(new NegateAndMatch(from("ad", "bd"), from("cd", "dd")));
+		group.add(new NegateAndMatch(from("ad", "bd", "cd"), from("dd", "ed")));
+		group.add(new NegateAndMatch(from("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"),
 				from(" ", "a")));
-		group.add(new NegateCharClassRegex(from("1a", "4a", "5a"), from(" a", "$a")));
-		group.add(new NegateCharClassRegex(from("1", "4", "5", "a"), from(" ", "b")));
-		group.add(new NegateCharClassRegex(from("\t", "\n", "\f", "\r"), from("A", "w")));
-		group.add(new NegateCharClassRegex(from(" a", "\ta", "\na"), from("ca", "#a")));
-		group.add(new NegateCharClassRegex(from(" ", "\t", "\n", "a"), from("Z", "A")));
-		group.add(new NegateCharClassRegex(from("a", "B", "9"), from(" ", "$")));
-		group.add(new NegateCharClassRegex(from("ap", "Bp", "9p"), from("$p", "#p")));
+		group.add(new NegateAndMatch(from("1a", "4a", "5a"), from(" a", "$a")));
+		group.add(new NegateAndMatch(from("1", "4", "5", "a"), from(" ", "b")));
+		group.add(new NegateAndMatch(from("\t", "\n", "\f", "\r"), from("A", "w")));
+		group.add(new NegateAndMatch(from(" a", "\ta", "\na"), from("ca", "#a")));
+		group.add(new NegateAndMatch(from(" ", "\t", "\n", "a"), from("Z", "A")));
+		group.add(new NegateAndMatch(from("a", "B", "9"), from(" ", "$")));
+		group.add(new NegateAndMatch(from("ap", "Bp", "9p"), from("$p", "#p")));
 		tasks.add(group);
 	}
 
