@@ -21,6 +21,6 @@ final public class SimpleMatch implements Task {
 
 	@Override
 	public String toString() {
-		return "Reconhece " + matchingTarget;
+		return getChallenge();
 	}
 }

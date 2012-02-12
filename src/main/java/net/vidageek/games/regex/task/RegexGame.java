@@ -6,7 +6,7 @@ import java.util.List;
 
 import net.vidageek.games.Game;
 import net.vidageek.games.regex.Descriptions;
-import net.vidageek.games.task.CharClassRegex;
+import net.vidageek.games.task.MultipleMatch;
 import net.vidageek.games.task.TaskWithDescription;
 
 final public class RegexGame implements Game {
@@ -39,24 +39,24 @@ final public class RegexGame implements Game {
 
 	private void addExercises2(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.chars.classes", descriptions);
-		group.add(new CharClassRegex(fromStrings("a", "b")));
-		group.add(new CharClassRegex(fromStrings("ad", "bd")));
-		group.add(new CharClassRegex(fromStrings("ad", "bd", "cd")));
-		group.add(new CharClassRegex(fromStrings("a", "b", "c")));
-		group.add(new CharClassRegex(fromStrings("a", "b", "c", "A", "B", "C", "D")));
-		group.add(new CharClassRegex(fromStrings("0", "1", "2")));
-		group.add(new CharClassRegex(fromStrings(	"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+		group.add(new MultipleMatch(fromStrings("a", "b")));
+		group.add(new MultipleMatch(fromStrings("ad", "bd")));
+		group.add(new MultipleMatch(fromStrings("ad", "bd", "cd")));
+		group.add(new MultipleMatch(fromStrings("a", "b", "c")));
+		group.add(new MultipleMatch(fromStrings("a", "b", "c", "A", "B", "C", "D")));
+		group.add(new MultipleMatch(fromStrings("0", "1", "2")));
+		group.add(new MultipleMatch(fromStrings(	"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
 													"n",
 													"o", "p", "q", "r", "s", "t", "u", "v", "x", "w", "y", "z")));
-		group.add(new CharClassRegex(fromStrings("1", "4", "5")));
-		group.add(new CharClassRegex(fromStrings("1a", "4a", "5a")));
-		group.add(new CharClassRegex(fromStrings("1", "4", "5", "a")));
-		group.add(new CharClassRegex(fromStrings(" ", "\t", "\n", "\f", "\r")));
-		group.add(new CharClassRegex(fromStrings(" a", "\ta", "\na")));
-		group.add(new CharClassRegex(fromStrings(" ", "\t", "\n", "a")));
-		group.add(new CharClassRegex(fromStrings("a", "b", "9")));
-		group.add(new CharClassRegex(fromStrings("ap", "bp", "9p")));
-		group.add(new CharClassRegex(fromStrings("a", "B", "9", "$", "\t", " ")));
+		group.add(new MultipleMatch(fromStrings("1", "4", "5")));
+		group.add(new MultipleMatch(fromStrings("1a", "4a", "5a")));
+		group.add(new MultipleMatch(fromStrings("1", "4", "5", "a")));
+		group.add(new MultipleMatch(fromStrings(" ", "\t", "\n", "\f", "\r")));
+		group.add(new MultipleMatch(fromStrings(" a", "\ta", "\na")));
+		group.add(new MultipleMatch(fromStrings(" ", "\t", "\n", "a")));
+		group.add(new MultipleMatch(fromStrings("a", "b", "9")));
+		group.add(new MultipleMatch(fromStrings("ap", "bp", "9p")));
+		group.add(new MultipleMatch(fromStrings("a", "B", "9", "$", "\t", " ")));
 		tasks.add(group);
 	}
 
