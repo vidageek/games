@@ -40,13 +40,13 @@ final public class MatchTest {
 	@Test
 	public void shouldShowCorrectChallenge() {
 		assertThat(	taskWithMatchinTargestAAndB.getChallenge(),
-					equalTo("Qual regex reconhece <code>A</code> e <code>B</code>?"));
+					equalTo("Qual RegEx reconhece <code>A</code> e <code>B</code>?"));
 	}
 
 	@Test
 	public void shouldShowCorrectChallengeFor3MatchingTargets() {
 		assertThat(	new Match(from("a", "b", "c")).getChallenge(),
-					equalTo("Qual regex reconhece <code>a</code>, <code>b</code> e <code>c</code>?"));
+					equalTo("Qual RegEx reconhece <code>a</code>, <code>b</code> e <code>c</code>?"));
 	}
 
 	@Test

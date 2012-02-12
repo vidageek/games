@@ -16,7 +16,7 @@ public class Match implements Task {
 	}
 
 	public String getChallenge() {
-		return "Qual regex reconhece " + matchingTargets.asHtml() + "?";
+		return "Qual RegEx reconhece " + matchingTargets.asHtml() + "?";
 	}
 
 	@Override
