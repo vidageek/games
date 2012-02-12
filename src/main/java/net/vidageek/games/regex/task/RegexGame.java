@@ -78,6 +78,16 @@ final public class RegexGame implements Game {
 
 	private void addExercises4(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.operators", descriptions);
+		group.add(new NegateAndMatch(from("b"), from("", "a")));
+		group.add(new NegateAndMatch(from("aa"), from("", "a", "b")));
+		group.add(new NegateAndMatch(from("", "aaaaaaaaab"), from("a", "aa", "aaaaaaaaa")));
+		group.add(new NegateAndMatch(from("", "abcdcba"), from("a", "abc", "cbaabc", "aabbcc")));
+		group.add(new NegateAndMatch(from("abcdcba"), from("", "a", "abc", "cbaabc", "aabbcc")));
+		group.add(new NegateAndMatch(from("aaaaaaaaab"), from("", "a", "aa", "aaaaaaaaa")));
+		group.add(new NegateAndMatch(from("ab", "ba"), from("a", "b")));
+		group.add(new NegateAndMatch(from("ba", "baa"), from("aa", "bb", "ab")));
+		group.add(new NegateAndMatch(from("a", "aa"), from("aaa")));
+		group.add(new NegateAndMatch(from("a", "ab", "abca"), from("abc", "cba")));
 		tasks.add(group);
 	}
 
