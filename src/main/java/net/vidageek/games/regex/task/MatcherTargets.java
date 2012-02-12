@@ -24,7 +24,7 @@ public class MatcherTargets implements Iterable<String> {
 	private final List<String> matcherTargets = new ArrayList<String>();
 	private final Set<String> cannotScapePatterns = Sets.newHashSet(" ");
 	private final Set<String> shouldScapePatterns = Sets.newHashSet("(?:(.*)(\\s)(.*))+");
-	
+
 	private final Map<String, String> fromToCharacterReplace = Maps.newConcurrentMap();
 
 	private MatcherTargets(String aMatcherTarget, String... othersMatchersTargets) {
@@ -58,15 +58,28 @@ public class MatcherTargets implements Iterable<String> {
 				Pattern compiledRegex = Pattern.compile(aRegex);
 				Matcher matcher = compiledRegex.matcher(input);
 				String result = "";
-				while(matcher.find()) {
-					result += matcher.replaceAll(matcher.group(1) + fromToCharacterReplace.get(matcher.group(2)) + matcher.group(3));
+				while (matcher.find()) {
+					result += matcher.replaceAll(matcher.group(1) + fromToCharacterReplace.get(matcher.group(2))
+							+ matcher.group(3));
 				}
 				return result;
 			}
 
 			private boolean scape(String input) {
 				String aRegex = thatMatchWith(input);
-				return aRegex != null && !cannotScapePatterns.contains(input);
+				return aRegex != null && shouldScape(input, aRegex);
+			}
+
+			private boolean shouldScape(String input, String withRegex) {
+				Matcher matchWith = Pattern.compile(withRegex).matcher(input);
+				while (matchWith.find()) {
+					for (int i = 1; i <= matchWith.groupCount(); i++) {
+						if (cannotScapePatterns.contains(matchWith.group(i))) {
+							return false;
+						}
+					}
+				}
+				return true;
 			}
 
 			private String thatMatchWith(String input) {

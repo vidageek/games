@@ -30,6 +30,11 @@ public class MatcherTargetsTest {
 	}
 
 	@Test
+	public void cannotScapeSpaceStringAndAChar() throws Exception {
+		assertThat(fromStrings(" a").showMessages(), equalTo("\" a\"")) ;
+	}
+
+	@Test
 	public void shouldInterateOverMatcherTargets() {
 		assertThat(aMatcherTargetWithAAndB(), hasItems("a", "b"));
 	}
