@@ -45,8 +45,9 @@ final public class RegexGame implements Game {
 		group.add(new Match(from("a", "b", "c")));
 		group.add(new Match(from("a", "b", "c", "A", "B", "C", "D")));
 		group.add(new Match(from("0", "1", "2")));
-		group.add(new Match(from("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
-												"o", "p", "q", "r", "s", "t", "u", "v", "x", "w", "y", "z")));
+		group.add(new Match(from(	"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
+									"q",
+									"r", "s", "t", "u", "v", "x", "w", "y", "z")));
 		group.add(new Match(from("1", "4", "5")));
 		group.add(new Match(from("1a", "4a", "5a")));
 		group.add(new Match(from("1", "4", "5", "a")));
@@ -64,8 +65,7 @@ final public class RegexGame implements Game {
 		group.add(new NegateAndMatch(from("a", "b"), from("c", "d")));
 		group.add(new NegateAndMatch(from("ad", "bd"), from("cd", "dd")));
 		group.add(new NegateAndMatch(from("ad", "bd", "cd"), from("dd", "ed")));
-		group.add(new NegateAndMatch(from("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"),
-				from(" ", "a")));
+		group.add(new NegateAndMatch(from("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"), from(" ", "a")));
 		group.add(new NegateAndMatch(from("1a", "4a", "5a"), from(" a", "$a")));
 		group.add(new NegateAndMatch(from("1", "4", "5", "a"), from(" ", "b")));
 		group.add(new NegateAndMatch(from("\t", "\n", "\f", "\r"), from("A", "w")));
@@ -78,7 +78,6 @@ final public class RegexGame implements Game {
 
 	private void addExercises4(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.operators", descriptions);
-		group.add(new OperatorMatcher("a"));
 		tasks.add(group);
 	}
 
