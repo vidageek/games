@@ -1,1 +1,34 @@
- 
+<h2>Reconhecimento de Letras</h2>
+
+<p>
+A parte mais b&aacute;sica para a constru&ccedil;&atilde;o de uma Express&atilde;o Regular (RegEx)
+s&atilde;o os caracteres simples. As RegEx mais b&aacute;sicas s&atilde;o compostas 
+apenas por caracteres simples, como <code>a</code>, <code>1</code> e <code>C</code>.
+</p>
+
+Exemplo:
+<ul>
+	<li>A RegEx <code>z</code> <strong>reconhece</strong> o padr&atilde;o <code>z</code></li>
+	<li>A RegEx <code>abcde</code> <strong>reconhece</strong> o padr&atilde;o <code>abcde</code></li>
+	<li>A RegEx <code>q</code> <strong>n&atilde;o</strong> reconhece o padr&atilde;o <code>m</code></li>
+</ul>
+
+<p>	
+A exce&ccedil;&atilde;o &agrave; essa regra s&atilde;o alguns caracteres, que possuem 
+um <strong>significado especial</strong> dentro das RegEx 
+(<code>$, ^, *, (, ), +, {, }, [, ], \, |, ?, -</code>). Para utiliz&aacute;-los 
+como caracteres normais, voc&ecirc; precisa colocar uma <strong><code>\</code></strong> antes deles.
+</p>
+
+Exemplo:
+<ul>
+	<li>A Regex <code>$</code> <strong>n&atilde;o</strong> reconhece o padr&atilde;o <code>$</code></li>
+	<li>A Regex <code>\$</code> <strong>reconhece</strong> o padr&atilde;o <code>$</code></li>
+	<li>A Regex <code>(</code> <strong>n&atilde;o</strong> reconhece o padr&atilde;o <code>(</code> e &eacute; inv&aacute;lida.</li>
+	<li>A Regex <code>ac\$\{6</code> <strong>reconhece</strong> o padr&atilde;o <code>ac${6</code></li>
+</ul>
+
+<p>
+O &uacute;ltimo detalhe que &eacute; importante levar em considera&ccedil;&atilde;o &eacute; que as RegEx diferenciam 
+caracteres mai&uacute;sculos de caracteres min&uacute;sculos. 
+</p>

@@ -1,6 +1,6 @@
 package net.vidageek.games.regex.task;
 
-import static net.vidageek.games.regex.task.MatcherTargets.fromStrings;
+import static net.vidageek.games.regex.task.MatcherTargets.from;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -10,17 +10,17 @@ import net.vidageek.games.task.status.Failed;
 import org.junit.Before;
 import org.junit.Test;
 
-public class NegateCharClassRegexTest {
+public class NegateAndMatchTest {
 
-	private NegateCharClassRegex aNegateCharClassTask;
+	private NegateAndMatch aNegateCharClassTask;
 	private MatcherTargets cannotMatch;
 	private MatcherTargets shouldMatch;
 
 	@Before
 	public void setup() throws Exception {
-		cannotMatch = fromStrings("a", "b");
-		shouldMatch = fromStrings("c", "d");
-		aNegateCharClassTask = new NegateCharClassRegex(cannotMatch, shouldMatch);
+		cannotMatch = from("a", "b");
+		shouldMatch = from("c", "d");
+		aNegateCharClassTask = new NegateAndMatch(cannotMatch, shouldMatch);
 	}
 
 	@Test
@@ -33,15 +33,7 @@ public class NegateCharClassRegexTest {
 
 	@Test
 	public void shouldShowChallengeWithWhatShouldMatchAndWhatCannotMatch() {
-		String completeMessage = whatCannotMatch() + " e " + whatShouldMatch();
-		assertThat(aNegateCharClassTask.getChallenge(), equalTo(completeMessage));
-	}
-
-	private String whatShouldMatch() {
-		return "Deve dar match em " + shouldMatch.showMessages();
-	}
-
-	private String whatCannotMatch() {
-		return "N&atilde;o pode dar match em " + cannotMatch.showMessages();
+		assertThat(	aNegateCharClassTask.getChallenge(),
+					equalTo("Qual RegEx n&atilde;o reconhece <code>a</code> e <code>b</code> mas reconhece <code>c</code> e <code>d</code>?"));
 	}
 }

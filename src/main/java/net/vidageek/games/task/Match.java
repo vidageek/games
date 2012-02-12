@@ -3,15 +3,12 @@ package net.vidageek.games.task;
 import net.vidageek.games.regex.task.MatcherTargets;
 import net.vidageek.games.regex.task.Regex;
 
-import com.google.common.base.Joiner;
-
-public class CharClassRegex implements Task {
+public class Match implements Task {
 
 	private final MatcherTargets matchingTargets;
 
-	public CharClassRegex(final MatcherTargets matchingTargets) {
+	public Match(final MatcherTargets matchingTargets) {
 		this.matchingTargets = matchingTargets;
-
 	}
 
 	public JudgedTask judge(final String challenge) {
@@ -19,16 +16,11 @@ public class CharClassRegex implements Task {
 	}
 
 	public String getChallenge() {
-		return toString();
+		return "Qual RegEx reconhece " + matchingTargets.asHtml() + "?";
 	}
 
 	@Override
 	public String toString() {
-		return "Qual regex d&aacute; match em [" + matchingTargets() + "]";
+		return getChallenge();
 	}
-
-	private String matchingTargets() {
-		return Joiner.on(" e ").join(matchingTargets);
-	}
-
 }

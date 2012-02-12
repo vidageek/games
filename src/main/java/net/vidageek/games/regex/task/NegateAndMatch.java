@@ -5,12 +5,12 @@ import net.vidageek.games.task.Task;
 import net.vidageek.games.task.status.Failed;
 import net.vidageek.games.task.status.Faileds;
 
-public class NegateCharClassRegex implements Task {
+public class NegateAndMatch implements Task {
 
 	private final MatcherTargets cannotMatch;
 	private final MatcherTargets shouldMatch;
 
-	public NegateCharClassRegex(final MatcherTargets cannotMatch, final MatcherTargets shouldMatch) {
+	public NegateAndMatch(final MatcherTargets cannotMatch, final MatcherTargets shouldMatch) {
 		this.cannotMatch = cannotMatch;
 		this.shouldMatch = shouldMatch;
 	}
@@ -37,20 +37,13 @@ public class NegateCharClassRegex implements Task {
 	}
 
 	public String getChallenge() {
-		return toString();
+		return "Qual RegEx n&atilde;o reconhece " + cannotMatch.asHtml() + " mas reconhece " + shouldMatch.asHtml()
+				+ "?";
 	}
 
 	@Override
 	public String toString() {
-		return cannotMatchChallenge() + " e " + shouldMatchChallenge();
-	}
-
-	private String cannotMatchChallenge() {
-		return "N&atilde;o pode dar match em " + cannotMatch.showMessages();
-	}
-
-	private String shouldMatchChallenge() {
-		return "Deve dar match em " + shouldMatch.showMessages();
+		return getChallenge();
 	}
 
 }

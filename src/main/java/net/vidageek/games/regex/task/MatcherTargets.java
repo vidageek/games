@@ -1,7 +1,6 @@
 package net.vidageek.games.regex.task;
 
 import static com.google.common.collect.Collections2.transform;
-import static java.util.Arrays.copyOfRange;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,10 +26,13 @@ public class MatcherTargets implements Iterable<String> {
 
 	private final Map<String, String> fromToCharacterReplace = Maps.newConcurrentMap();
 
-	private MatcherTargets(String aMatcherTarget, String... othersMatchersTargets) {
+	private MatcherTargets(final String... othersMatchersTargets) {
 		fillShouldMapChar();
-		matcherTargets.add(aMatcherTarget);
 		matcherTargets.addAll(Arrays.asList(othersMatchersTargets));
+	}
+
+	public static MatcherTargets from(final String... matchingTargets) {
+		return new MatcherTargets(matchingTargets);
 	}
 
 	private void fillShouldMapChar() {
@@ -98,8 +100,17 @@ public class MatcherTargets implements Iterable<String> {
 		return Collections.unmodifiableCollection(matcherTargets).iterator();
 	}
 
-	public static MatcherTargets fromStrings(String... matchingTargets) {
-		return new MatcherTargets(matchingTargets[0], copyOfRange(matchingTargets, 1, matchingTargets.length));
+	public String asHtml() {
+		return swapLastComma("<code>" + Joiner.on("</code>, <code>").join(scapeTarges()) + "</code>");
+	}
+
+	private String swapLastComma(final String string) {
+		for (int i = string.length() - 1; i >= 0; i--) {
+			if (string.charAt(i) == ',') {
+				return string.substring(0, i) + " e" + string.substring(i + 1);
+			}
+		}
+		return string;
 	}
 
 }

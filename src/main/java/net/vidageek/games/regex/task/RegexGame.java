@@ -1,12 +1,12 @@
 package net.vidageek.games.regex.task;
 
-import static net.vidageek.games.regex.task.MatcherTargets.fromStrings;
+import static net.vidageek.games.regex.task.MatcherTargets.from;
 
 import java.util.List;
 
 import net.vidageek.games.Game;
 import net.vidageek.games.regex.Descriptions;
-import net.vidageek.games.task.CharClassRegex;
+import net.vidageek.games.task.Match;
 import net.vidageek.games.task.TaskWithDescription;
 
 final public class RegexGame implements Game {
@@ -24,57 +24,70 @@ final public class RegexGame implements Game {
 
 	private void addExercises1(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.chars", descriptions);
-		group.add(new PerfectMatchRegex("a"));
-		group.add(new PerfectMatchRegex("b"));
-		group.add(new PerfectMatchRegex("ab"));
-		group.add(new PerfectMatchRegex("abc"));
-		group.add(new PerfectMatchRegex("\\"));
-		group.add(new PerfectMatchRegex("$"));
-		group.add(new PerfectMatchRegex("abcdefg"));
-		group.add(new PerfectMatchRegex("ab$cd^ef\\g"));
+		group.add(new Match(from("a")));
+		group.add(new Match(from("b")));
+		group.add(new Match(from("ab")));
+		group.add(new Match(from("abc")));
+		group.add(new Match(from("\\")));
+		group.add(new Match(from("$")));
+		group.add(new Match(from("abcdefg12345")));
+		group.add(new Match(from("Ab5")));
+		group.add(new Match(from("AbCdEfG6")));
+		group.add(new Match(from("ab$cd^Ef\\G1")));
 		tasks.add(group);
 	}
 
 	private void addExercises2(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.chars.classes", descriptions);
-		group.add(new CharClassRegex(fromStrings("a", "b")));
-		group.add(new CharClassRegex(fromStrings("ad", "bd")));
-		group.add(new CharClassRegex(fromStrings("ad", "bd", "cd")));
-		group.add(new CharClassRegex(fromStrings("a", "b", "c")));
-		group.add(new CharClassRegex(fromStrings("a", "b", "c", "A", "B", "C", "D")));
-		group.add(new CharClassRegex(fromStrings("0", "1", "2")));
-		group.add(new CharClassRegex(fromStrings("1", "4", "5")));
-		group.add(new CharClassRegex(fromStrings("1a", "4a", "5a")));
-		group.add(new CharClassRegex(fromStrings("1", "4", "5", "a")));
-		group.add(new CharClassRegex(fromStrings(" ", "\t", "\n", "\f", "\r")));
-		group.add(new CharClassRegex(fromStrings(" a", "\ta", "\na")));
-		group.add(new CharClassRegex(fromStrings(" ", "\t", "\n", "a")));
-		group.add(new CharClassRegex(fromStrings("a", "b", "9")));
-		group.add(new CharClassRegex(fromStrings("ap", "bp", "9p")));
-		group.add(new CharClassRegex(fromStrings("a", "B", "9", "$", "\t", " ")));
+		group.add(new Match(from("a", "b")));
+		group.add(new Match(from("ad", "bd")));
+		group.add(new Match(from("ad", "bd", "cd")));
+		group.add(new Match(from("a", "b", "c")));
+		group.add(new Match(from("a", "b", "c", "A", "B", "C", "D")));
+		group.add(new Match(from("0", "1", "2")));
+		group.add(new Match(from(	"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
+									"q",
+									"r", "s", "t", "u", "v", "x", "w", "y", "z")));
+		group.add(new Match(from("1", "4", "5")));
+		group.add(new Match(from("1a", "4a", "5a")));
+		group.add(new Match(from("1", "4", "5", "a")));
+		group.add(new Match(from(" ", "\t", "\n", "\f", "\r")));
+		group.add(new Match(from(" a", "\ta", "\na")));
+		group.add(new Match(from(" ", "\t", "\n", "a")));
+		group.add(new Match(from("a", "b", "9")));
+		group.add(new Match(from("ap", "bp", "9p")));
+		group.add(new Match(from("a", "B", "9", "$", "\t", " ")));
 		tasks.add(group);
 	}
 
 	private void addExercises3(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.negate", descriptions);
-		group.add(new NegateCharClassRegex(fromStrings("a", "b"), fromStrings("c", "d")));
-		group.add(new NegateCharClassRegex(fromStrings("ad", "bd"), fromStrings("cd", "dd")));
-		group.add(new NegateCharClassRegex(fromStrings("ad", "bd", "cd"), fromStrings("dd", "ed")));
-		group.add(new NegateCharClassRegex(fromStrings("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"),
-				fromStrings(" ", "a")));
-		group.add(new NegateCharClassRegex(fromStrings("1a", "4a", "5a"), fromStrings(" a", "$a")));
-		group.add(new NegateCharClassRegex(fromStrings("1", "4", "5", "a"), fromStrings(" ", "b")));
-		group.add(new NegateCharClassRegex(fromStrings("\t", "\n", "\f", "\r"), fromStrings("A", "w")));
-		group.add(new NegateCharClassRegex(fromStrings(" a", "\ta", "\na"), fromStrings("ca", "#a")));
-		group.add(new NegateCharClassRegex(fromStrings(" ", "\t", "\n", "a"), fromStrings("Z", "A")));
-		group.add(new NegateCharClassRegex(fromStrings("a", "B", "9"), fromStrings(" ", "$")));
-		group.add(new NegateCharClassRegex(fromStrings("ap", "Bp", "9p"), fromStrings("$p", "#p")));
+		group.add(new NegateAndMatch(from("a", "b"), from("c", "d")));
+		group.add(new NegateAndMatch(from("ad", "bd"), from("cd", "dd")));
+		group.add(new NegateAndMatch(from("ad", "bd", "cd"), from("dd", "ed")));
+		group.add(new NegateAndMatch(from("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"), from(" ", "a")));
+		group.add(new NegateAndMatch(from("1a", "4a", "5a"), from(" a", "$a")));
+		group.add(new NegateAndMatch(from("1", "4", "5", "a"), from(" ", "b")));
+		group.add(new NegateAndMatch(from("\t", "\n", "\f", "\r"), from("A", "w")));
+		group.add(new NegateAndMatch(from(" a", "\ta", "\na"), from("ca", "#a")));
+		group.add(new NegateAndMatch(from(" ", "\t", "\n", "a"), from("Z", "A")));
+		group.add(new NegateAndMatch(from("a", "B", "9"), from(" ", "$")));
+		group.add(new NegateAndMatch(from("ap", "Bp", "9p"), from("$p", "#p")));
 		tasks.add(group);
 	}
 
 	private void addExercises4(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.operators", descriptions);
-		group.add(new OperatorMatcher("a"));
+		group.add(new NegateAndMatch(from("b"), from("", "a")));
+		group.add(new NegateAndMatch(from("aa"), from("", "a", "b")));
+		group.add(new NegateAndMatch(from("", "aaaaaaaaab"), from("a", "aa", "aaaaaaaaa")));
+		group.add(new NegateAndMatch(from("", "abcdcba"), from("a", "abc", "cbaabc", "aabbcc")));
+		group.add(new NegateAndMatch(from("abcdcba"), from("", "a", "abc", "cbaabc", "aabbcc")));
+		group.add(new NegateAndMatch(from("aaaaaaaaab"), from("", "a", "aa", "aaaaaaaaa")));
+		group.add(new NegateAndMatch(from("ab", "ba"), from("a", "b")));
+		group.add(new NegateAndMatch(from("ba", "baa"), from("aa", "bb", "ab")));
+		group.add(new NegateAndMatch(from("a", "aa"), from("aaa")));
+		group.add(new NegateAndMatch(from("a", "ab", "abca"), from("abc", "cba")));
 		tasks.add(group);
 	}
 
