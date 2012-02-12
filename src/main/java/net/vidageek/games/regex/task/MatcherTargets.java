@@ -1,7 +1,5 @@
 package net.vidageek.games.regex.task;
 
-import static java.util.Arrays.copyOfRange;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,8 +12,7 @@ public class MatcherTargets implements Iterable<String> {
 
 	private final List<String> matcherTargets = new ArrayList<String>();
 
-	private MatcherTargets(final String aMatcherTarget, final String... othersMatchersTargets) {
-		matcherTargets.add(aMatcherTarget);
+	private MatcherTargets(final String... othersMatchersTargets) {
 		matcherTargets.addAll(Arrays.asList(othersMatchersTargets));
 	}
 
@@ -28,7 +25,7 @@ public class MatcherTargets implements Iterable<String> {
 	}
 
 	public static MatcherTargets from(final String... matchingTargets) {
-		return new MatcherTargets(matchingTargets[0], copyOfRange(matchingTargets, 1, matchingTargets.length));
+		return new MatcherTargets(matchingTargets);
 	}
 
 	public String asHtml() {
