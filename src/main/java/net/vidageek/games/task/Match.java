@@ -3,11 +3,11 @@ package net.vidageek.games.task;
 import net.vidageek.games.regex.task.MatcherTargets;
 import net.vidageek.games.regex.task.Regex;
 
-public class MultipleMatch implements Task {
+public class Match implements Task {
 
 	private final MatcherTargets matchingTargets;
 
-	public MultipleMatch(final MatcherTargets matchingTargets) {
+	public Match(final MatcherTargets matchingTargets) {
 		this.matchingTargets = matchingTargets;
 	}
 

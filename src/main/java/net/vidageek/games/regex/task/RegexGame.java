@@ -6,7 +6,7 @@ import java.util.List;
 
 import net.vidageek.games.Game;
 import net.vidageek.games.regex.Descriptions;
-import net.vidageek.games.task.MultipleMatch;
+import net.vidageek.games.task.Match;
 import net.vidageek.games.task.TaskWithDescription;
 
 final public class RegexGame implements Game {
@@ -24,38 +24,38 @@ final public class RegexGame implements Game {
 
 	private void addExercises1(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.chars", descriptions);
-		group.add(new MultipleMatch(fromStrings("a")));
-		group.add(new MultipleMatch(fromStrings("b")));
-		group.add(new MultipleMatch(fromStrings("ab")));
-		group.add(new MultipleMatch(fromStrings("abc")));
-		group.add(new MultipleMatch(fromStrings("\\")));
-		group.add(new MultipleMatch(fromStrings("$")));
-		group.add(new MultipleMatch(fromStrings("abcdefg12345")));
-		group.add(new MultipleMatch(fromStrings("Ab5")));
-		group.add(new MultipleMatch(fromStrings("AbCdEfG6")));
-		group.add(new MultipleMatch(fromStrings("ab$cd^Ef\\G1")));
+		group.add(new Match(fromStrings("a")));
+		group.add(new Match(fromStrings("b")));
+		group.add(new Match(fromStrings("ab")));
+		group.add(new Match(fromStrings("abc")));
+		group.add(new Match(fromStrings("\\")));
+		group.add(new Match(fromStrings("$")));
+		group.add(new Match(fromStrings("abcdefg12345")));
+		group.add(new Match(fromStrings("Ab5")));
+		group.add(new Match(fromStrings("AbCdEfG6")));
+		group.add(new Match(fromStrings("ab$cd^Ef\\G1")));
 		tasks.add(group);
 	}
 
 	private void addExercises2(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.chars.classes", descriptions);
-		group.add(new MultipleMatch(fromStrings("a", "b")));
-		group.add(new MultipleMatch(fromStrings("ad", "bd")));
-		group.add(new MultipleMatch(fromStrings("ad", "bd", "cd")));
-		group.add(new MultipleMatch(fromStrings("a", "b", "c")));
-		group.add(new MultipleMatch(fromStrings("a", "b", "c", "A", "B", "C", "D")));
-		group.add(new MultipleMatch(fromStrings("0", "1", "2")));
-		group.add(new MultipleMatch(fromStrings("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+		group.add(new Match(fromStrings("a", "b")));
+		group.add(new Match(fromStrings("ad", "bd")));
+		group.add(new Match(fromStrings("ad", "bd", "cd")));
+		group.add(new Match(fromStrings("a", "b", "c")));
+		group.add(new Match(fromStrings("a", "b", "c", "A", "B", "C", "D")));
+		group.add(new Match(fromStrings("0", "1", "2")));
+		group.add(new Match(fromStrings("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
 												"o", "p", "q", "r", "s", "t", "u", "v", "x", "w", "y", "z")));
-		group.add(new MultipleMatch(fromStrings("1", "4", "5")));
-		group.add(new MultipleMatch(fromStrings("1a", "4a", "5a")));
-		group.add(new MultipleMatch(fromStrings("1", "4", "5", "a")));
-		group.add(new MultipleMatch(fromStrings(" ", "\t", "\n", "\f", "\r")));
-		group.add(new MultipleMatch(fromStrings(" a", "\ta", "\na")));
-		group.add(new MultipleMatch(fromStrings(" ", "\t", "\n", "a")));
-		group.add(new MultipleMatch(fromStrings("a", "b", "9")));
-		group.add(new MultipleMatch(fromStrings("ap", "bp", "9p")));
-		group.add(new MultipleMatch(fromStrings("a", "B", "9", "$", "\t", " ")));
+		group.add(new Match(fromStrings("1", "4", "5")));
+		group.add(new Match(fromStrings("1a", "4a", "5a")));
+		group.add(new Match(fromStrings("1", "4", "5", "a")));
+		group.add(new Match(fromStrings(" ", "\t", "\n", "\f", "\r")));
+		group.add(new Match(fromStrings(" a", "\ta", "\na")));
+		group.add(new Match(fromStrings(" ", "\t", "\n", "a")));
+		group.add(new Match(fromStrings("a", "b", "9")));
+		group.add(new Match(fromStrings("ap", "bp", "9p")));
+		group.add(new Match(fromStrings("a", "B", "9", "$", "\t", " ")));
 		tasks.add(group);
 	}
 

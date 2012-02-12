@@ -6,20 +6,20 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-import net.vidageek.games.task.MultipleMatch;
+import net.vidageek.games.task.Match;
 import net.vidageek.games.task.status.Failed;
 import net.vidageek.games.task.status.Ok;
 
 import org.junit.Before;
 import org.junit.Test;
 
-final public class MultipleMatchTest {
+final public class MatchTest {
 
-	private MultipleMatch taskWithMatchinTargestAAndB;
+	private Match taskWithMatchinTargestAAndB;
 
 	@Before
 	public void setup() throws Exception {
-		taskWithMatchinTargestAAndB = new MultipleMatch(fromStrings("A", "B"));
+		taskWithMatchinTargestAAndB = new Match(fromStrings("A", "B"));
 	}
 
 	@Test
@@ -45,19 +45,19 @@ final public class MultipleMatchTest {
 
 	@Test
 	public void shouldShowCorrectChallengeFor3MatchingTargets() {
-		assertThat(	new MultipleMatch(fromStrings("a", "b", "c")).getChallenge(),
+		assertThat(	new Match(fromStrings("a", "b", "c")).getChallenge(),
 					equalTo("Qual regex reconhece <code>a</code>, <code>b</code> e <code>c</code>?"));
 	}
 
 	@Test
 	public void shouldMatchAllString() {
-		assertTrue(new MultipleMatch(fromStrings("a")).judge(".").getOk());
-		assertTrue(new MultipleMatch(fromStrings("aaabc")).judge(".+").getOk());
+		assertTrue(new Match(fromStrings("a")).judge(".").getOk());
+		assertTrue(new Match(fromStrings("aaabc")).judge(".+").getOk());
 	}
 
 	@Test
 	public void shouldNotMatchPartialString() {
-		assertFalse(new MultipleMatch(fromStrings("aa")).judge(".").getOk());
-		assertFalse(new MultipleMatch(fromStrings("aaab\nc")).judge(".+").getOk());
+		assertFalse(new Match(fromStrings("aa")).judge(".").getOk());
+		assertFalse(new Match(fromStrings("aaab\nc")).judge(".+").getOk());
 	}
 }
