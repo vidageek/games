@@ -1,6 +1,6 @@
 package net.vidageek.games.regex.task;
 
-import static net.vidageek.games.regex.task.MatcherTargets.fromStrings;
+import static net.vidageek.games.regex.task.MatcherTargets.from;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -19,7 +19,7 @@ final public class MatchTest {
 
 	@Before
 	public void setup() throws Exception {
-		taskWithMatchinTargestAAndB = new Match(fromStrings("A", "B"));
+		taskWithMatchinTargestAAndB = new Match(from("A", "B"));
 	}
 
 	@Test
@@ -45,19 +45,19 @@ final public class MatchTest {
 
 	@Test
 	public void shouldShowCorrectChallengeFor3MatchingTargets() {
-		assertThat(	new Match(fromStrings("a", "b", "c")).getChallenge(),
+		assertThat(	new Match(from("a", "b", "c")).getChallenge(),
 					equalTo("Qual regex reconhece <code>a</code>, <code>b</code> e <code>c</code>?"));
 	}
 
 	@Test
 	public void shouldMatchAllString() {
-		assertTrue(new Match(fromStrings("a")).judge(".").getOk());
-		assertTrue(new Match(fromStrings("aaabc")).judge(".+").getOk());
+		assertTrue(new Match(from("a")).judge(".").getOk());
+		assertTrue(new Match(from("aaabc")).judge(".+").getOk());
 	}
 
 	@Test
 	public void shouldNotMatchPartialString() {
-		assertFalse(new Match(fromStrings("aa")).judge(".").getOk());
-		assertFalse(new Match(fromStrings("aaab\nc")).judge(".+").getOk());
+		assertFalse(new Match(from("aa")).judge(".").getOk());
+		assertFalse(new Match(from("aaab\nc")).judge(".+").getOk());
 	}
 }

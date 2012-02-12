@@ -1,6 +1,6 @@
 package net.vidageek.games.regex.task;
 
-import static net.vidageek.games.regex.task.MatcherTargets.fromStrings;
+import static net.vidageek.games.regex.task.MatcherTargets.from;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -18,8 +18,8 @@ public class NegateCharClassRegexTest {
 
 	@Before
 	public void setup() throws Exception {
-		cannotMatch = fromStrings("a", "b");
-		shouldMatch = fromStrings("c", "d");
+		cannotMatch = from("a", "b");
+		shouldMatch = from("c", "d");
 		aNegateCharClassTask = new NegateCharClassRegex(cannotMatch, shouldMatch);
 	}
 

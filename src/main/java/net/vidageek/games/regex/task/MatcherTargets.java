@@ -27,7 +27,7 @@ public class MatcherTargets implements Iterable<String> {
 		return Collections.unmodifiableCollection(matcherTargets).iterator();
 	}
 
-	public static MatcherTargets fromStrings(final String... matchingTargets) {
+	public static MatcherTargets from(final String... matchingTargets) {
 		return new MatcherTargets(matchingTargets[0], copyOfRange(matchingTargets, 1, matchingTargets.length));
 	}
 
