@@ -11,20 +11,21 @@ public class MatcherTargetsTest {
 
 	@Test
 	public void shouldInterateOverMatcherTargets() {
-		assertThat(aMatcherTargetWithAAndB(), hasItems("a", "b"));
-	}
-
-	private MatcherTargets aMatcherTargetWithAAndB() {
-		return MatcherTargets.from("a", "b");
+		assertThat(from("a", "b"), hasItems("a", "b"));
 	}
 
 	@Test
-	public void shouldBuildGoodHtmlFor2Target() {
+	public void shouldBuildGoodHtmlFor1Target() {
+		assertThat(from("A").asHtml(), equalTo("<code>A</code>"));
+	}
+
+	@Test
+	public void shouldBuildGoodHtmlFor2Targets() {
 		assertThat(from("A", "B").asHtml(), equalTo("<code>A</code> e <code>B</code>"));
 	}
 
 	@Test
-	public void shouldBuildGoodHtmlFor3Target() {
+	public void shouldBuildGoodHtmlFor3Targets() {
 		assertThat(from("a", "b", "c").asHtml(), equalTo("<code>a</code>, <code>b</code> e <code>c</code>"));
 	}
 
