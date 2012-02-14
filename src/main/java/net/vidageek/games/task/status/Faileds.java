@@ -1,15 +1,17 @@
 package net.vidageek.games.task.status;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
-
-import com.google.common.base.Joiner;
 
 import net.vidageek.games.task.JudgedTask;
 
-public class Faileds implements JudgedTask {
+import com.google.common.base.Joiner;
 
-	private List<Failed> faileds = new ArrayList<Failed>(); 
+public class Faileds implements JudgedTask , Iterable<Failed> {
+
+	private final List<Failed> faileds = new ArrayList<Failed>(); 
 	
 	public boolean getOk() {
 		return this.faileds.isEmpty();
@@ -25,13 +27,17 @@ public class Faileds implements JudgedTask {
 	}
 
 	public void addAll(Faileds faileds) {
-		for (Failed failed : faileds.faileds) {
+		for (Failed failed : faileds) {
 			addOnlyJudgedFailed(failed);
 		}
 	}
 
 	public JudgedTask judgment() {
 		return getOk() ? new Ok() : new Failed(this);
+	}
+
+	public Iterator<Failed> iterator() {
+		return Collections.unmodifiableList(this.faileds).iterator();
 	}
 
 }
