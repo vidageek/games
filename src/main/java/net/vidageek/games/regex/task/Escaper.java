@@ -13,9 +13,9 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
 public class Escaper implements Function<String, String> {
-	public Set<String> cannotScapePatterns = Sets.newHashSet(" ");
-	public Set<String> shouldScapePatterns = Sets.newHashSet("(?:(.*)(\\s)(.*))+");
-	public Map<String, String> fromToCharacterReplace = Maps.newConcurrentMap();
+	private Set<String> cannotScapePatterns = Sets.newHashSet(" ");
+	private Set<String> shouldScapePatterns = Sets.newHashSet("(?:(.*)(\\s)(.*))+");
+	private Map<String, String> fromToCharacterReplace = Maps.newConcurrentMap();
 
 	public Escaper() {
 		fillShouldMapChar();
@@ -31,12 +31,12 @@ public class Escaper implements Function<String, String> {
 		fromToCharacterReplace.put("\\", "\\\\");
 	}
 
-	public List<String> all(List<String> words) {
+	public List<String> applyAll(List<String> words) {
 		return transform(words, this);
 	}
-
-	public String apply(String input) {
-		return scape(input) ? applyScapes(input) : input;
+	
+	public String apply(String word) {
+		return scape(word) ? applyScapes(word) : word;
 	}
 
 	private String applyScapes(String input) {
@@ -76,4 +76,5 @@ public class Escaper implements Function<String, String> {
 		}
 		return null;
 	}
+	
 }

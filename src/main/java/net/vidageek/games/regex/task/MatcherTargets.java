@@ -26,7 +26,7 @@ public class MatcherTargets implements Iterable<String> {
 	}
 
 	private List<String> scapeTarges() {
-		return escape.all(this.matcherTargets);
+		return escape.applyAll(this.matcherTargets);
 	}
 
 	public Iterator<String> iterator() {
