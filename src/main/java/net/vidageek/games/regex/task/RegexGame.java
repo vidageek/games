@@ -97,6 +97,9 @@ final public class RegexGame implements Game {
 		group.add(new CaptureGroup("abcdef1a", "abcdef"));
 		group.add(new CaptureGroup("abcdef1a", "abcdef", "1a"));
 		group.add(new CaptureGroup("abcdef1a", "abcdef1a", "abcdef", "1"));
+		group.add(new CaptureGroup("aa", "a"));
+		group.add(new CaptureGroup("aaaa", "aa"));
+		group.add(new CaptureGroup("aaaaaaaa", "aaaa"));
 		tasks.add(group);
 	}
 
