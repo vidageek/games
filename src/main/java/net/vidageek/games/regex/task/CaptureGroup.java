@@ -1,48 +1,50 @@
 package net.vidageek.games.regex.task;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
-import net.vidageek.games.task.status.Failed;
 import net.vidageek.games.task.status.Ok;
 
 import com.google.common.base.Joiner;
+import com.google.common.collect.Lists;
 
 final public class CaptureGroup implements Task {
 
 	private final String matchingTarget;
 	private final String[] captureGroupTargets;
+	private final List<GroupValidation> validations = Lists.newArrayList();
 
 	public CaptureGroup(final String matchingTarget, final String... captureGroupTargets) {
 		this.matchingTarget = matchingTarget;
 		this.captureGroupTargets = captureGroupTargets;
+		addAllValidations();
+	}
+
+	private void addAllValidations() {
+		validations.add(new ValidationIfMatch(this.matchingTarget));
+		validations.add(new ValidationIfAllCapture(this.captureGroupTargets));
+		validations.add(new ValidationCaptureCorrectGroup(this.matchingTarget));
+		validations.add(new ValidationIfAllGroupsMatch(this.captureGroupTargets));
 	}
 
 	public JudgedTask judge(final String challenge) {
-		Matcher matcher = Pattern.compile(challenge).matcher(matchingTarget);
-		if (!matcher.find()) {
-			return new Failed("A regex " + challenge + " n&atilde;o d&aacute; match em " + matchingTarget);
-		}
-		if (matcher.groupCount() != captureGroupTargets.length) {
-			return new Failed("A regex " + challenge + " n&atilde;o cont&eacute;m " + captureGroupTargets.length
-					+ " grupo(s) de captura.");
-		}
-		if (!matchingTarget.equals(matcher.group(0))) {
-			return new Failed("A regex " + challenge + " n&atilde;o reconhece a string " + matchingTarget);
-		}
-		return tryMatchAllGroups(challenge, matcher);
+		final Matcher matcher = Pattern.compile(challenge).matcher(matchingTarget);
+		return applyAllValidations(challenge, matcher);
+
 	}
 
-	private JudgedTask tryMatchAllGroups(final String challenge, Matcher matcher) {
-		int i = 1;
-		for (String target : captureGroupTargets) {
-			if (!target.equals(matcher.group(i++))) {
-				return new Failed("A regex " + challenge + " n&atilde;o captura a string " + target);
+	private JudgedTask applyAllValidations(final String challenge, final Matcher matcher) {
+		JudgedTask judge = new Ok();
+		for (GroupValidation validation : validations) {
+			judge = validation.judge(challenge, matcher);
+			if (!judge.getOk()) {
+				return judge;
 			}
 		}
-		return new Ok();
+		return judge;
 	}
 
 	public String getChallenge() {
