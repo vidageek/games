@@ -32,6 +32,10 @@ final public class CaptureGroup implements Task {
 		if (!matchingTarget.equals(matcher.group(0))) {
 			return new Failed("A regex " + challenge + " n&atilde;o reconhece a string " + matchingTarget);
 		}
+		return tryMatchAllGroups(challenge, matcher);
+	}
+
+	private JudgedTask tryMatchAllGroups(final String challenge, Matcher matcher) {
 		int i = 1;
 		for (String target : captureGroupTargets) {
 			if (!target.equals(matcher.group(i++))) {
