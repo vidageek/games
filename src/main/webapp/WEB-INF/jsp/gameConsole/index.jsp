@@ -7,6 +7,9 @@
 		<title>Comece a jogar o ${game.name} Game</title>
 	</head>
 	<body>
+		<div class="alert">
+		  <strong>Aviso!</strong> Estamos em Beta. Caso encontre algum problema, envie um email para games@vidageek.net
+		</div>
 		<h1>${game.name}</h1>
 		<h2>${game.description}</h2>
 		Voc&ecirc; pode come&ccedil;ar a jogar pelo <a href="/play/${gameName}/task/0">primeiro exerc&iacute;cio</a> ou escolher um abaixo:
