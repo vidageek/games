@@ -34,5 +34,11 @@
 				${task.description}
 			</div>
 		</div>
+		<content tag="customJavaScript">
+			<script type="text/javascript" src="/js/effects.js"></script>
+			<script>
+				effects.fadeOut('.reason.alert.alert-success', 2000);
+			</script>
+		</content>
 	</body>
 </html>
