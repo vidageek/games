@@ -19,6 +19,7 @@
 
 <decorator:body />
 
+
 </div>
 <div class="ribbon-holder">
 	<a href="https://github.com/vidageek/games" class="ribbon">
@@ -31,6 +32,8 @@ $(document).ready(function(){
 	$('.focus').focus();
 });
 </script>
+<decorator:getProperty property="page.customJavaScript"/>
+
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
