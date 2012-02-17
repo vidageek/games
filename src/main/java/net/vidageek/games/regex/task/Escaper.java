@@ -13,9 +13,8 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
 public class Escaper implements Function<String, String> {
-	private Set<String> cannotScapePatterns = Sets.newHashSet(" ");
-	private Set<String> shouldScapePatterns = Sets.newHashSet("(?:(.*)(\\s)(.*))+");
-	private Map<String, String> fromToCharacterReplace = Maps.newConcurrentMap();
+	private final Set<String> shouldScapePatterns = Sets.newHashSet("(?:(.*)(\\s)(.*))+");
+	private final Map<String, String> fromToCharacterReplace = Maps.newConcurrentMap();
 
 	public Escaper() {
 		fillShouldMapChar();
@@ -29,17 +28,21 @@ public class Escaper implements Function<String, String> {
 		fromToCharacterReplace.put("\f", "\\\\f");
 		fromToCharacterReplace.put("\'", "\\\\'");
 		fromToCharacterReplace.put("\\", "\\\\");
+		fromToCharacterReplace.put(" ", "-Espa&ccedil;o-");
 	}
 
-	public List<String> applyAll(List<String> words) {
+	public List<String> applyAll(final List<String> words) {
 		return transform(words, this);
 	}
-	
-	public String apply(String word) {
+
+	public String apply(final String word) {
+		if ("".equals(word)) {
+			return "-Vazio-";
+		}
 		return scape(word) ? applyScapes(word) : word;
 	}
 
-	private String applyScapes(String input) {
+	private String applyScapes(final String input) {
 		String aRegex = thatMatchWith(input);
 		Pattern compiledRegex = Pattern.compile(aRegex);
 		Matcher matcher = compiledRegex.matcher(input);
@@ -51,24 +54,12 @@ public class Escaper implements Function<String, String> {
 		return result;
 	}
 
-	private boolean scape(String input) {
+	private boolean scape(final String input) {
 		String aRegex = thatMatchWith(input);
-		return aRegex != null && shouldScape(input, aRegex);
+		return aRegex != null;
 	}
 
-	private boolean shouldScape(String input, String withRegex) {
-		Matcher matchWith = Pattern.compile(withRegex).matcher(input);
-		while (matchWith.find()) {
-			for (int i = 1; i <= matchWith.groupCount(); i++) {
-				if (cannotScapePatterns.contains(matchWith.group(i))) {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
-
-	private String thatMatchWith(String input) {
+	private String thatMatchWith(final String input) {
 		for (String aRegex : shouldScapePatterns) {
 			if (input.matches(aRegex)) {
 				return aRegex;
@@ -76,5 +67,5 @@ public class Escaper implements Function<String, String> {
 		}
 		return null;
 	}
-	
+
 }
