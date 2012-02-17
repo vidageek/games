@@ -14,26 +14,6 @@ public class MatcherTargetsTest {
 		assertThat(from("a", "b"), hasItems("a", "b"));
 	}
 
-	@Test
-	public void shouldShowLiterallySpaceCharacters() throws Exception {
-		assertThat(from("\t", "\n", "\f", "\r").showMessages(), equalTo("\"\\t\" e \"\\n\" e \"\\f\" e \"\\r\"")) ;
-	}
-
-	@Test
-	public void shouldShowLiterallySpaceCharactersAtString() throws Exception {
-		assertThat(from("a\te", "b\nf", "c\fg", "d\rh").showMessages(), equalTo("\"a\\te\" e \"b\\nf\" e \"c\\fg\" e \"d\\rh\"")) ;
-	}
-
-	@Test
-	public void cannotScapeSpaceString() throws Exception {
-		assertThat(from(" ").showMessages(), equalTo("\" \"")) ;
-	}
-
-	@Test
-	public void cannotScapeSpaceStringAndAChar() throws Exception {
-		assertThat(from(" a").showMessages(), equalTo("\" a\"")) ;
-	}
-
 	public void shouldBuildGoodHtmlFor1Target() {
 		assertThat(from("A").asHtml(), equalTo("<code>A</code>"));
 	}

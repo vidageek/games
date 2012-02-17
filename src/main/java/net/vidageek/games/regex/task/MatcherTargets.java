@@ -10,8 +10,8 @@ import com.google.common.collect.Lists;
 
 public class MatcherTargets implements Iterable<String> {
 
-	private Escaper escape = new Escaper();
-	private List<String> matcherTargets = Lists.newArrayList();
+	private final Escaper escape = new Escaper();
+	private final List<String> matcherTargets = Lists.newArrayList();
 
 	private MatcherTargets(final String... othersMatchersTargets) {
 		matcherTargets.addAll(Arrays.asList(othersMatchersTargets));
@@ -21,12 +21,8 @@ public class MatcherTargets implements Iterable<String> {
 		return new MatcherTargets(matchingTargets);
 	}
 
-	public String showMessages() {
-		return "\"" + Joiner.on("\" e \"").join(scapeTarges()) + "\"";
-	}
-
 	private List<String> scapeTarges() {
-		return escape.applyAll(this.matcherTargets);
+		return escape.applyAll(matcherTargets);
 	}
 
 	public Iterator<String> iterator() {
