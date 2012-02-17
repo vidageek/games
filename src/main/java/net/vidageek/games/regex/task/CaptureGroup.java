@@ -25,10 +25,10 @@ final public class CaptureGroup implements Task {
 	}
 
 	private void addAllValidations() {
-		validations.add(new ValidationIfMatch(this.matchingTarget));
-		validations.add(new ValidationIfAllCapture(this.captureGroupTargets));
-		validations.add(new ValidationCaptureCorrectGroup(this.matchingTarget));
-		validations.add(new ValidationIfAllGroupsMatch(this.captureGroupTargets));
+		validations.add(new ValidationIfMatch(matchingTarget));
+		validations.add(new ValidationIfAllCapture(captureGroupTargets));
+		validations.add(new ValidationCaptureCorrectGroup(matchingTarget));
+		validations.add(new ValidationIfAllGroupsMatch(captureGroupTargets));
 	}
 
 	public JudgedTask judge(final String challenge) {
@@ -49,7 +49,7 @@ final public class CaptureGroup implements Task {
 	}
 
 	public String getChallenge() {
-		return "Qual regex d&aacute; match em " + from(matchingTarget).asHtml()  + " e captura " + captureTarget() + "?";
+		return "Qual regex d&aacute; match em " + from(matchingTarget).asHtml() + " e captura " + captureTarget() + "?";
 	}
 
 	private String captureTarget() {
@@ -58,7 +58,7 @@ final public class CaptureGroup implements Task {
 
 	@Override
 	public String toString() {
-		return "Capturar " + captureTarget() + " no string " + from(matchingTarget).asHtml();
+		return getChallenge();
 	}
 
 }
