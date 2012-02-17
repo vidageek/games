@@ -1,5 +1,7 @@
 package net.vidageek.games.regex.task;
 
+import static net.vidageek.games.regex.task.MatcherTargets.from;
+
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,7 +10,6 @@ import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
 import net.vidageek.games.task.status.Ok;
 
-import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 
 final public class CaptureGroup implements Task {
@@ -48,16 +49,16 @@ final public class CaptureGroup implements Task {
 	}
 
 	public String getChallenge() {
-		return "Qual regex d&aacute; match em " + matchingTarget + " e captura " + captureTarget() + "?";
+		return "Qual regex d&aacute; match em " + from(matchingTarget).asHtml()  + " e captura " + captureTarget() + "?";
 	}
 
 	private String captureTarget() {
-		return Joiner.on(", ").join(captureGroupTargets);
+		return from(captureGroupTargets).asHtml();
 	}
 
 	@Override
 	public String toString() {
-		return "Capturar " + captureTarget() + " no string " + matchingTarget;
+		return "Capturar " + captureTarget() + " no string " + from(matchingTarget).asHtml();
 	}
 
 }
