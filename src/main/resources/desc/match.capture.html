@@ -1,1 +1,80 @@
- 
+
+<h2>Grupos de Captura</h2>
+
+<p>Imagine que agora gostariamos de por exemplo pegar parte de um
+	texto reconhecido por nossa ReGex, e o substituir por outras partes. Na
+	maioria das vezes desejamos pegar parte do nosso texto e fazer
+	manipulações sobre ele. Isso essencialmente é algo que dá bastante
+	sentido para se utilizar ReGex, somos capazes de fazer buscas de
+	padrões complexos e fazer algum tipo de processamento.</p>
+<p>
+	Para isso a regex tem um recurso chamado de <strong>grupos de
+		captura</strong>.
+</p>
+
+<p>
+	Para definir um grupo de captura você utiliza os caracteres
+	<code>(</code>
+	e
+	<code>)</code>
+	envolvendo o <strong>padrão de ReGex</strong> que você que capturar no
+	seu texto.
+</p>
+
+Exemplo:
+<ul>
+	<li>A RegEx <code>^Assunto: (\w+)</code> <strong>captura</strong>
+		o texto acompanhado do assunto.
+	</li>
+	<li>A RegEx <code>parametro=(\w+)</code> <strong>captura</strong>
+		o valor de um parametro.
+	</li>
+</ul>
+
+<p>
+	Outra coisa que podemos fazer é reconhecer padrões que se repetem no
+	texto, isto é, eu posso definir um grupo, e esperar que ele possa
+	ocorrer novamente, como no parametro do exemplo anterior, imagine que
+	queremos pegar o parametro e o valor, vamos definir algo como:
+	<code>(\w+)=(\w+)</code>
+	? Podemos reparar que os dois grupos são identicos, se a expressão for
+	mais complexa, seria deselegante copiar a expressão novamente, além de
+	termos que alterar os dois lados da ReGex caso seja preciso alguma
+	correção ou alteração na expressão. Para podemos nos referenciar a
+	grupos definidos anteriormente, podemos usar um recurso de numeração de
+	grupos de captura.
+</p>
+
+Exemplo:
+<ul>
+	<li>A RegEx <code>(\w+)=\1</code> <strong>reconhece</strong> o
+		nome do parametro pelo <code>(\w+)</code> seguido pelo sinal de <code>=</code>
+		e em seguida o padrão anterior referenciado pelo <code>\1</code>.
+	</li>
+</ul>
+
+<p>
+	Podemos definir mais de um grupo de captura, imaginando que gostariamos
+	de capturar um parametro com o nome composto por numeros seguidos de
+	letras, sendo o valor podendo apenas ser letras, como a expressão <strong>1234parametro=valor</strong>,
+	gostariamos de definir uma ReGex que separe o numero da palavra no nome
+	do parametro e outro que pegue o valor, então podemos fazer como o
+	seguinte:
+</p>
+
+Exemplo:
+<ul>
+	<li>A ReGex <code>(\d+)(\w+)=\2</code> <strong>reconhece</strong>
+		<code>1234</code> e <code>parametro</code> e o <code>valor</code>.
+	</li>
+</ul>
+
+<p>
+	Podemos observar que no caso utilizamos
+	<code>\2</code>
+	pois estamos referenciando que o
+	<code>valor</code>
+	é reconhecido pelo mesmo padrão do segundo grupo definido (
+	<code>(\w+)</code>
+	).
+</p>
