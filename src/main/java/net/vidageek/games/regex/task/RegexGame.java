@@ -15,14 +15,14 @@ final public class RegexGame implements Game {
 
 	public RegexGame(final Descriptions descriptions) {
 		tasks = new Tasks();
-		addExercises1(descriptions);
-		addExercises2(descriptions);
-		addExercises3(descriptions);
-		addExercises4(descriptions);
-		addExercises5(descriptions);
+		addCharsExercises(descriptions);
+		addCharClassesExercises(descriptions);
+		addOpositeCharClassExercises(descriptions);
+		addOperatorsExercises(descriptions);
+		addCaptureGroupExercises(descriptions);
 	}
 
-	private void addExercises1(final Descriptions descriptions) {
+	private void addCharsExercises(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.chars", descriptions);
 		group.add(new Match(from("a")));
 		group.add(new Match(from("b")));
@@ -37,7 +37,7 @@ final public class RegexGame implements Game {
 		tasks.add(group);
 	}
 
-	private void addExercises2(final Descriptions descriptions) {
+	private void addCharClassesExercises(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.chars.classes", descriptions);
 		group.add(new Match(from("a", "b")));
 		group.add(new Match(from("ad", "bd")));
@@ -60,7 +60,7 @@ final public class RegexGame implements Game {
 		tasks.add(group);
 	}
 
-	private void addExercises3(final Descriptions descriptions) {
+	private void addOpositeCharClassExercises(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.negate", descriptions);
 		group.add(new NegateAndMatch(from("a", "b"), from("c", "d")));
 		group.add(new NegateAndMatch(from("ad", "bd"), from("cd", "dd")));
@@ -76,7 +76,7 @@ final public class RegexGame implements Game {
 		tasks.add(group);
 	}
 
-	private void addExercises4(final Descriptions descriptions) {
+	private void addOperatorsExercises(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.operators", descriptions);
 		group.add(new NegateAndMatch(from("b"), from("", "a")));
 		group.add(new NegateAndMatch(from("aa"), from("", "a", "b")));
@@ -91,7 +91,7 @@ final public class RegexGame implements Game {
 		tasks.add(group);
 	}
 
-	private void addExercises5(final Descriptions descriptions) {
+	private void addCaptureGroupExercises(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.capture", descriptions);
 		group.add(new CaptureGroup("abcdef", "abcdef"));
 		group.add(new CaptureGroup("abcdef1a", "abcdef"));
