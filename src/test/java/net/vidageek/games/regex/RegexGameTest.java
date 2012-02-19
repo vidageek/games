@@ -26,7 +26,7 @@ final public class RegexGameTest {
 		new Person("a", "b", "ab", "abc", "\\\\", "\\$", "abcdefg12345", "Ab5", "AbCdEfG6", "ab\\$cd\\^Ef\\\\G1",
 				"[ab]", "[ab]d", "[abc]d", "[a-c]", "[a-cA-D]", "[0-2]", "[a-z]", "\\d", "\\da", "[\\da]", "\\s",
 				"\\sa", "[\\sa]", "\\w", "\\wp", ".", "[^ab]", "[^ab]d", "[^abc]d", "\\D", "\\Da", "[^\\da]", "\\S",
-				"\\Sa", "[^\\sa]", "\\W", "\\Wp", "a?", "[a-b]?", "a+", "[a-c]+", "[a-c]*", "a*", "a|b", "aa|bb|ab",
+				"\\Sa", "[^\\sa]", "\\W", "\\Wp", "a|b", "aa|bb|ab", "a?", "[a-b]?", "a+", "[a-c]+", "[a-c]*", "a*",
 				"a{3}", "[a-c]{3}", "([a-z]+)", "([a-z]+).*", "([a-z]+)(.*)", "(([a-z]+)(.*)a)", "(a+)\\1", "(a+)\\1",
 				"(a+)\\1").play(new RegexGame(descriptions));
 	}

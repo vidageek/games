@@ -18,6 +18,7 @@ final public class RegexGame implements Game {
 		addCharsExercises(descriptions);
 		addCharClassesExercises(descriptions);
 		addOpositeCharClassExercises(descriptions);
+		addPipeOperator(descriptions);
 		addOperatorsExercises(descriptions);
 		addCaptureGroupExercises(descriptions);
 	}
@@ -76,6 +77,13 @@ final public class RegexGame implements Game {
 		tasks.add(group);
 	}
 
+	private void addPipeOperator(final Descriptions descriptions) {
+		TaskGroup group = new TaskGroup("match.pipe", descriptions);
+		group.add(new NegateAndMatch(from("ab", "ba"), from("a", "b")));
+		group.add(new NegateAndMatch(from("ba", "baa"), from("aa", "bb", "ab")));
+		tasks.add(group);
+	}
+
 	private void addOperatorsExercises(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.operators", descriptions);
 		group.add(new NegateAndMatch(from("b"), from("", "a")));
@@ -84,8 +92,6 @@ final public class RegexGame implements Game {
 		group.add(new NegateAndMatch(from("", "abcdcba"), from("a", "abc", "cbaabc", "aabbcc")));
 		group.add(new NegateAndMatch(from("abcdcba"), from("", "a", "abc", "cbaabc", "aabbcc")));
 		group.add(new NegateAndMatch(from("aaaaaaaaab"), from("", "a", "aa", "aaaaaaaaa")));
-		group.add(new NegateAndMatch(from("ab", "ba"), from("a", "b")));
-		group.add(new NegateAndMatch(from("ba", "baa"), from("aa", "bb", "ab")));
 		group.add(new NegateAndMatch(from("a", "aa"), from("aaa")));
 		group.add(new NegateAndMatch(from("a", "ab", "abca"), from("abc", "cba")));
 		tasks.add(group);
