@@ -1,10 +1,8 @@
 package net.vidageek.games.regex.invariant;
 
 import static org.junit.Assert.assertTrue;
-
-import java.io.File;
-import java.net.URL;
-import java.util.Scanner;
+import net.vidageek.games.regex.invariant.infra.DescriptionInvariant;
+import net.vidageek.games.regex.invariant.infra.Invariant;
 
 import org.junit.Test;
 
@@ -14,15 +12,12 @@ final public class DescriptionInvariantTest {
 
 	@Test
 	public void allDescriptionsMustUseHtmlEntities() throws Throwable {
-		URL url = DescriptionInvariantTest.class.getResource("/desc/match.capture.html");
-		for (File file : new File(url.toString().substring("file:".length()).replace("match.capture.html", ""))
-				.listFiles()) {
-			if (file.getAbsolutePath().endsWith("html")) {
-				String content = new Scanner(file).useDelimiter("$$").next();
-				assertTrue(	"File " + file.getAbsolutePath() + " contains invalid chars: ["
-									+ content.replaceAll(ALLOWED_CHARS, "") + "]", containsInvalidChars(content));
+		new DescriptionInvariant().run(new Invariant() {
+			public void apply(final String content) throws Throwable {
+				assertTrue(	" Found invalid chars: [" + content.replaceAll(ALLOWED_CHARS, "") + "]",
+							containsInvalidChars(content));
 			}
-		}
+		});
 	}
 
 	private boolean containsInvalidChars(final String content) throws Throwable {
