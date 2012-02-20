@@ -2,13 +2,13 @@
 <h2>Grupos de Captura</h2>
 
 <p>Imagine que agora gostariamos de por exemplo pegar parte de um
-	texto reconhecido por nossa ReGex, e o substituir por outras partes. Na
+	texto reconhecido por nossa RegEx, e o substituir por outras partes. Na
 	maioria das vezes desejamos pegar parte do nosso texto e fazer
 	manipula&ccedil;&otilde;es sobre ele. Isso essencialmente &eacute; algo que d&aacute; bastante
-	sentido para se utilizar ReGex, somos capazes de fazer buscas de
+	sentido para se utilizar RegEx, somos capazes de fazer buscas de
 	padr&otilde;es complexos e fazer algum tipo de processamento.</p>
 <p>
-	Para isso a regex tem um recurso chamado de <strong>grupos de
+	Para isso a RegEx tem um recurso chamado de <strong>grupos de
 		captura</strong>.
 </p>
 
@@ -17,7 +17,7 @@
 	<code>(</code>
 	e
 	<code>)</code>
-	envolvendo o <strong>padr&atilde;o de ReGex</strong> que voc&ecirc; que capturar no
+	envolvendo o <strong>padr&atilde;o de RegEx</strong> que voc&ecirc; que capturar no
 	seu texto.
 </p>
 
@@ -39,7 +39,7 @@ Exemplo:
 	<code>(\w+)=(\w+)</code>
 	? Podemos reparar que os dois grupos s&atilde;o identicos, se a express&atilde;o for
 	mais complexa, seria deselegante copiar a express&atilde;o novamente, al&eacute;m de
-	termos que alterar os dois lados da ReGex caso seja preciso alguma
+	termos que alterar os dois lados da RegEx caso seja preciso alguma
 	corre&ccedil;&atilde;o ou altera&ccedil;&atilde;o na express&atilde;o. Para podemos nos referenciar a
 	grupos definidos anteriormente, podemos usar um recurso de numera&ccedil;&atilde;o de
 	grupos de captura.
@@ -57,14 +57,14 @@ Exemplo:
 	Podemos definir mais de um grupo de captura, imaginando que gostariamos
 	de capturar um parametro com o nome composto por numeros seguidos de
 	letras, sendo o valor podendo apenas ser letras, como a express&atilde;o <strong>1234parametro=valor</strong>,
-	gostariamos de definir uma ReGex que separe o numero da palavra no nome
+	gostariamos de definir uma RegEx que separe o numero da palavra no nome
 	do parametro e outro que pegue o valor, ent&atilde;o podemos fazer como o
 	seguinte:
 </p>
 
 Exemplo:
 <ul>
-	<li>A ReGex <code>(\d+)(\w+)=\2</code> <strong>reconhece</strong>
+	<li>A RegEx <code>(\d+)(\w+)=\2</code> <strong>reconhece</strong>
 		<code>1234</code> e <code>parametro</code> e o <code>valor</code>.
 	</li>
 </ul>
