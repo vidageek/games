@@ -2,6 +2,11 @@
   font-family: Collegiate;
   src: url("Collegiate.ttf");
 }
+
+.why {
+	margin-top: 30px;	
+}
+
 /*Code*/
 code {
 	padding: 0px 4px;	
