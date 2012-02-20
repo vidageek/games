@@ -35,6 +35,10 @@ final public class RegexGame implements Game {
 		group.add(new Match(from("Ab5")));
 		group.add(new Match(from("AbCdEfG6")));
 		group.add(new Match(from("ab$cd^Ef\\G1")));
+		group.add(new Match(from("")));
+		group.add(new Match(from(" ")));
+		group.add(new Match(from("\n")));
+		group.add(new Match(from("\t")));
 		tasks.add(group);
 	}
 
