@@ -1,6 +1,10 @@
 package net.vidageek.games.regex.task;
 
 import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+
+import net.vidageek.games.task.IndexedTask;
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
 
@@ -29,9 +33,16 @@ final public class TasksTest {
 	}
 	@Test
 	public void allTasksMustObeyIndexing() {
-
 		for (int i = 0; i < 6; i++) {
 			assertEquals(i, tasks.at(i).getIndex());
+		}
+	}
+	
+	@Test
+	public void listAllTasksShouldObeyIndexing() {
+		List<IndexedTask> all = tasks.all();
+		for (int i = 0; i < 6; i++) {
+			assertEquals(i, all.get(i).getIndex());
 		}
 	}
 
