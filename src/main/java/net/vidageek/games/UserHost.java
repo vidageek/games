@@ -10,9 +10,4 @@ final public class UserHost {
 	public void home() {
 
 	}
-
-	@Get("/play")
-	public void play() {
-
-	}
 }
