@@ -27,7 +27,7 @@ public class NegateAndMatchTest {
 	public void shouldReturnFailedWhenMatch() throws Exception {
 		JudgedTask judge = aNegateCharClassTask.judge("[^ef]");
 		assertEquals(Failed.class, judge.getClass());
-		assertEquals(	"N&atilde;o deveria fazer match com \"a\"<br>N&atilde;o deveria fazer match com \"b\"",
+		assertEquals(	"N&atilde;o deveria fazer match com <code>a</code><br />N&atilde;o deveria fazer match com <code>b</code>",
 						judge.getReason());
 	}
 

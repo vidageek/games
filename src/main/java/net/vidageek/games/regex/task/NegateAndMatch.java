@@ -31,8 +31,8 @@ public class NegateAndMatch implements Task {
 		Regex regex = new Regex(challenge);
 		for (String matchingTarget : cannotMatch) {
 			if (regex.match(matchingTarget).getOk()) {
-				faileds.addOnlyJudgedFailed(new Failed("N&atilde;o deveria fazer match com \""
-						+ from(matchingTarget).asHtml() + "\""));
+				faileds.addOnlyJudgedFailed(new Failed("N&atilde;o deveria fazer match com "
+						+ from(matchingTarget).asHtml() + ""));
 			}
 		}
 		return faileds;

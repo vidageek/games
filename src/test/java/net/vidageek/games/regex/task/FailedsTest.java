@@ -19,16 +19,16 @@ public class FailedsTest {
 		faileds.addOnlyJudgedFailed(new Failed("[aPattern] não dá match em [matchingTarget]"));
 		faileds.addOnlyJudgedFailed(new Failed("[aPattern1] não dá match em [matchingTarget1]"));
 	}
-	
+
 	@Test
 	public void shouldShowDescriptionToAnyFaileds() {
-		assertEquals(Joiner.on("<br>").join(faileds), faileds.getReason());
+		assertEquals(Joiner.on("<br />").join(faileds), faileds.getReason());
 	}
 
 	@Test
 	public void shouldShowDescriptionToAllFaileds() {
 		Faileds faileds = new Faileds();
 		faileds.addAll(this.faileds);
-		assertEquals(Joiner.on("<br>").join(faileds), faileds.getReason());
+		assertEquals(Joiner.on("<br />").join(faileds), faileds.getReason());
 	}
 }
