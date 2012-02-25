@@ -1,5 +1,7 @@
 package net.vidageek.games.regex.task;
 
+import static net.vidageek.games.regex.task.MatcherTargets.from;
+
 import java.util.regex.Matcher;
 
 import net.vidageek.games.task.JudgedTask;
@@ -10,14 +12,14 @@ public class ValidationIfAllCapture implements GroupValidation {
 
 	private final String[] captureGroupTargets;
 
-	public ValidationIfAllCapture(String...captureGroupTargets) {
+	public ValidationIfAllCapture(final String... captureGroupTargets) {
 		this.captureGroupTargets = captureGroupTargets;
 	}
-	
-	public JudgedTask judge(String challenge, Matcher matcher) {
+
+	public JudgedTask judge(final String challenge, final Matcher matcher) {
 		if (matcher.groupCount() != captureGroupTargets.length) {
-			return new Failed("A regex " + challenge + " n&atilde;o cont&eacute;m " + captureGroupTargets.length
-					+ " grupo(s) de captura.");
+			return new Failed("A regex " + from(challenge).asHtml() + " n&atilde;o cont&eacute;m "
+					+ captureGroupTargets.length + " grupo(s) de captura.");
 		}
 		return new Ok();
 	}
