@@ -39,9 +39,6 @@ dependencies {
 	}
 	compile 'com.google.inject:guice:3.0-rc2'
 	compile 'com.google.inject.extensions:guice-multibindings:3.0-rc2'
-	compile 'aopalliance:aopalliance:1.0'
-	compile 'javax.inject:javax.inject:1'
-	compile 'net.sf.scannotation:scannotation:1.0.2'
 
 	provided 'javax.servlet:servlet-api:2.5'
 	
