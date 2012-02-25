@@ -9,24 +9,25 @@ import net.vidageek.games.task.JudgedTask;
 
 import com.google.common.base.Joiner;
 
-public class Faileds implements JudgedTask , Iterable<Failed> {
+public class Faileds implements JudgedTask, Iterable<Failed> {
 
-	private final List<Failed> faileds = new ArrayList<Failed>(); 
-	
+	private final List<Failed> faileds = new ArrayList<Failed>();
+
 	public boolean getOk() {
-		return this.faileds.isEmpty();
+		return faileds.isEmpty();
 	}
 
 	public String getReason() {
-		return Joiner.on("<br>").join(faileds);
+		return Joiner.on("<br />").join(faileds);
 	}
 
-	public void addOnlyJudgedFailed(JudgedTask judgedTask) {
-		if (judgedTask instanceof Failed)
-			this.faileds.add((Failed)judgedTask);
+	public void addOnlyJudgedFailed(final JudgedTask judgedTask) {
+		if (judgedTask instanceof Failed) {
+			faileds.add((Failed) judgedTask);
+		}
 	}
 
-	public void addAll(Faileds faileds) {
+	public void addAll(final Faileds faileds) {
 		for (Failed failed : faileds) {
 			addOnlyJudgedFailed(failed);
 		}
@@ -37,7 +38,7 @@ public class Faileds implements JudgedTask , Iterable<Failed> {
 	}
 
 	public Iterator<Failed> iterator() {
-		return Collections.unmodifiableList(this.faileds).iterator();
+		return Collections.unmodifiableList(faileds).iterator();
 	}
 
 }

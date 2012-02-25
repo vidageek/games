@@ -1,5 +1,7 @@
 package net.vidageek.games.regex.task;
 
+import static net.vidageek.games.regex.task.MatcherTargets.from;
+
 import java.util.regex.Pattern;
 
 import net.vidageek.games.task.JudgedTask;
@@ -14,8 +16,10 @@ import net.vidageek.games.task.status.Ok;
 final public class Regex {
 
 	private final Pattern pattern;
+	private final String originalRegex;
 
 	public Regex(final String regex) {
+		originalRegex = regex;
 		pattern = Pattern.compile(regex);
 	}
 
@@ -23,7 +27,8 @@ final public class Regex {
 		if (pattern.matcher(matchingTarget).matches()) {
 			return new Ok();
 		}
-		return new Failed("\"" + pattern.pattern() + "\" n&atilde;o d&aacute; match em \"" + matchingTarget + "\"");
+		return new Failed("\"" + from(originalRegex).asHtml() + "\" n&atilde;o d&aacute; match em \""
+				+ from(matchingTarget).asHtml() + "\"");
 	}
 
 	public GroupFinder group(final int position) {

@@ -1,5 +1,6 @@
 package net.vidageek.games.regex.task;
 
+import static net.vidageek.games.regex.task.MatcherTargets.from;
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
 import net.vidageek.games.task.status.Failed;
@@ -9,12 +10,10 @@ public class NegateAndMatch implements Task {
 
 	private final MatcherTargets cannotMatch;
 	private final MatcherTargets shouldMatch;
-	private final Escaper escape;
 
 	public NegateAndMatch(final MatcherTargets cannotMatch, final MatcherTargets shouldMatch) {
 		this.cannotMatch = cannotMatch;
 		this.shouldMatch = shouldMatch;
-		this.escape = new Escaper();
 	}
 
 	public JudgedTask judge(final String challenge) {
@@ -32,7 +31,8 @@ public class NegateAndMatch implements Task {
 		Regex regex = new Regex(challenge);
 		for (String matchingTarget : cannotMatch) {
 			if (regex.match(matchingTarget).getOk()) {
-				faileds.addOnlyJudgedFailed(new Failed("N&atilde;o deveria fazer match com \"" + escape.apply(matchingTarget) + "\""));
+				faileds.addOnlyJudgedFailed(new Failed("N&atilde;o deveria fazer match com \""
+						+ from(matchingTarget).asHtml() + "\""));
 			}
 		}
 		return faileds;
