@@ -26,13 +26,10 @@ final public class RegexGame implements Game {
 	private void addCharsExercises(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.chars", descriptions);
 		group.add(new Match(from("a")));
-		group.add(new Match(from("b")));
-		group.add(new Match(from("ab")));
 		group.add(new Match(from("abc")));
 		group.add(new Match(from("\\")));
 		group.add(new Match(from("$")));
 		group.add(new Match(from("abcdefg12345")));
-		group.add(new Match(from("Ab5")));
 		group.add(new Match(from("AbCdEfG6")));
 		group.add(new Match(from("ab$cd^Ef\\G1")));
 		group.add(new Match(from("")));
@@ -46,8 +43,6 @@ final public class RegexGame implements Game {
 		TaskGroup group = new TaskGroup("match.chars.classes", descriptions);
 		group.add(new Match(from("a", "b")));
 		group.add(new Match(from("ad", "bd")));
-		group.add(new Match(from("ad", "bd", "cd")));
-		group.add(new Match(from("a", "b", "c")));
 		group.add(new Match(from("a", "b", "c", "A", "B", "C", "D")));
 		group.add(new Match(from("0", "1", "2")));
 		group.add(new Match(from(	"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
@@ -68,7 +63,6 @@ final public class RegexGame implements Game {
 	private void addOpositeCharClassExercises(final Descriptions descriptions) {
 		TaskGroup group = new TaskGroup("match.negate", descriptions);
 		group.add(new NegateAndMatch(from("a", "b"), from("c", "d")));
-		group.add(new NegateAndMatch(from("ad", "bd"), from("cd", "dd")));
 		group.add(new NegateAndMatch(from("ad", "bd", "cd"), from("dd", "ed")));
 		group.add(new NegateAndMatch(from("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"), from(" ", "a")));
 		group.add(new NegateAndMatch(from("1a", "4a", "5a"), from(" a", "$a")));
