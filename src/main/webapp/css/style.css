@@ -3,6 +3,10 @@
   src: url("Collegiate.ttf");
 }
 
+body {
+	padding-top: 40px;
+}
+
 .why {
 	margin-top: 30px;	
 }
