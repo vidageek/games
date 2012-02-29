@@ -2,22 +2,21 @@ package net.vidageek.games.auth.twitter;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.Api;
 import org.scribe.model.Token;
 import org.scribe.oauth.OAuthService;
 
 public class TwitterAuthProviderTest {
 	
-	private @Mock ServiceBuilder serviceBuilder;
+	private @Spy ServiceBuilder serviceBuilder = new ServiceBuilder();
 	private @Mock OAuthService oAuthService;
 	private @Mock Token requestToken;
 
@@ -29,11 +28,7 @@ public class TwitterAuthProviderTest {
 	}
 	
 	private void expectDatasToServiceBuilder() {
-		when(serviceBuilder.provider(Mockito.<Api>any())).thenReturn(serviceBuilder);
-		when(serviceBuilder.apiKey( anyString() )).thenReturn(serviceBuilder);
-		when(serviceBuilder.apiSecret( anyString() )).thenReturn(serviceBuilder);
-		when(serviceBuilder.callback( anyString() )).thenReturn(serviceBuilder);
-		when(serviceBuilder.build()).thenReturn(oAuthService);
+		doReturn(oAuthService).when(serviceBuilder).build();
 		when(oAuthService.getRequestToken()).thenReturn(requestToken);
 		when(oAuthService.getAuthorizationUrl(requestToken)).thenReturn(apiAuthorizeUrl);
 	}
