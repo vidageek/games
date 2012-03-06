@@ -20,8 +20,8 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<a id="select-a-provider" class="brand pull-right" data-toggle="modal"
-					href="#logon-provider">Logar...</a>
+				<!--a id="select-a-provider" class="brand pull-right" data-toggle="modal"
+					href="#logon-provider">Logar...</a-->
 			</div>
 			<div class="ribbon-holder" >
 				<a href="https://github.com/vidageek/games" class="ribbon"> 
