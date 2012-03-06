@@ -7,6 +7,7 @@ import static org.junit.matchers.JUnitMatchers.hasItems;
 import java.util.Arrays;
 
 import net.vidageek.games.auth.twitter.TwitterAuthPovider;
+import net.vidageek.games.vraptor.OAuthSecrets;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +21,7 @@ public class ProvidersTest {
 
 	@Before
 	public void setup() throws Exception {
-		twitterAuthPovider = new TwitterAuthPovider(new ServiceBuilder());
+		twitterAuthPovider = new TwitterAuthPovider(new ServiceBuilder(), new OAuthSecrets());
 		aTestAuthProvider = aTestAuthProvider();
 		providers = new Providers(Arrays.asList(twitterAuthPovider, aTestAuthProvider));
 	}
@@ -46,6 +47,6 @@ public class ProvidersTest {
 
 	@Test
 	public void shouldFindTheTwitterProvider() {
-		assertThat(providers.byName(twitterAuthPovider.name()), equalTo((AuthProvider)twitterAuthPovider));
+		assertThat(providers.byName(twitterAuthPovider.name()), equalTo((AuthProvider) twitterAuthPovider));
 	}
 }
