@@ -39,11 +39,13 @@ dependencies {
 	}
 	compile 'com.google.inject:guice:3.0-rc2'
 	compile 'com.google.inject.extensions:guice-multibindings:3.0-rc2'
+	compile files(fileTree(dir: "$projectDir/lib" as File, includes: ['*.jar']))
 
 	provided 'javax.servlet:servlet-api:2.5'
 	
 	testCompile 'org.mockito:mockito-core:1.9.0'
 	testCompile 'junit:junit:4.10'
+
 }
 
 [jettyRunWar, jettyRun]*.contextPath = '/'
