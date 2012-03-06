@@ -4,6 +4,6 @@ public interface AuthProvider {
 
 	String applicationAuthoritionUrl();
 
-	public abstract String name();
+	String name();
 
 }
