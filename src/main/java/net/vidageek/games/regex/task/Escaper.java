@@ -21,9 +21,9 @@ public class Escaper implements Function<String, String> {
 	}
 
 	private void fillShouldMapChar() {
-		fromToCharacterReplace.put("\t", "\\\\t");
+		fromToCharacterReplace.put("\t", "-Tab-");
 		fromToCharacterReplace.put("\b", "\\\\b");
-		fromToCharacterReplace.put("\n", "\\\\n");
+		fromToCharacterReplace.put("\n", "-Quebra-de-Linha-");
 		fromToCharacterReplace.put("\r", "\\\\r");
 		fromToCharacterReplace.put("\f", "\\\\f");
 		fromToCharacterReplace.put("\'", "\\\\'");

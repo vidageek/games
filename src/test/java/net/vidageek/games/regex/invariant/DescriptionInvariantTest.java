@@ -1,5 +1,6 @@
 package net.vidageek.games.regex.invariant;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.regex.Matcher;
@@ -19,7 +20,7 @@ final public class DescriptionInvariantTest {
 	@Invariant(affects = ".*\\.html", folder = "src/main/resources")
 	public void allDescriptionsMustUseHtmlEntities(final FileData data) throws Throwable {
 		final String content = data.getContent();
-		assertTrue(	" Found invalid chars: [" + content.replaceAll(ALLOWED_CHARS, "") + "]",
+		assertFalse("Found invalid chars: [" + content.replaceAll(ALLOWED_CHARS, "") + "]",
 					containsInvalidChars(content));
 	}
 
@@ -32,6 +33,6 @@ final public class DescriptionInvariantTest {
 	}
 
 	private boolean containsInvalidChars(final String content) throws Throwable {
-		return content.matches(ALLOWED_CHARS);
+		return !content.matches(ALLOWED_CHARS);
 	}
 }

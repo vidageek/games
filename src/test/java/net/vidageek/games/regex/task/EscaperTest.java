@@ -16,4 +16,14 @@ final public class EscaperTest {
 		assertEquals("-Vazio-", new Escaper().apply(""));
 	}
 
+	@Test
+	public void shouldTransformNewLineToNewLineDemarcation() {
+		assertEquals("-Quebra-de-Linha-", new Escaper().apply("\n"));
+	}
+
+	@Test
+	public void shouldTransformTabToTabDemarcation() {
+		assertEquals("-Tab-", new Escaper().apply("\t"));
+	}
+
 }
