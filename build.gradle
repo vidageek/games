@@ -54,3 +54,7 @@ dependencies {
 }
 
 [jettyRunWar, jettyRun]*.contextPath = '/'
+
+compileScala {
+	scalaCompileOptions.useCompileDaemon = true
+}
