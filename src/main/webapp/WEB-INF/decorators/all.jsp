@@ -53,16 +53,8 @@
 		</div>
 	</section>
 	
-	<script type="text/javascript"
-		src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script src="/js/games-packaged.js" />
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('.focus').focus();
-			$('#logon-provider').modal({backdrop: false, show: false})
-		});
-	</script>
-	<decorator:getProperty property="page.customJavaScript" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/games-packaged.js" ></script>
 
 	<script type="text/javascript">
 		var _gaq = _gaq || [];

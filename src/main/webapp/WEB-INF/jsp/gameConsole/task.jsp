@@ -4,7 +4,7 @@
 
 <html>
 	<head>
-		<title>Exercício ${task.index} do ${game.name} game</title>
+		<title>Exerc&iacute;cio ${task.index} do ${game.name} game</title>
 	</head>
 	<body>
 		<header id="game">
@@ -34,11 +34,5 @@
 				${task.description}
 			</div>
 		</div>
-		<content tag="customJavaScript">
-			<script type="text/javascript" src="/js/effects.js"></script>
-			<script>
-				effects.fadeOut('.reason.alert.alert-success', 2000);
-			</script>
-		</content>
 	</body>
 </html>

@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 final public class JspInvariantTest {
 
 	@Invariant(affects = ".*\\.jsp", folder = "src/main/webapp/WEB-INF/jsp")
-	public void tagsScriptNaoSaoPermitidasEmJspsNaoDecorados(final FileData data) {
+	public void tagsScriptNaoSaoPermitidasEmJsps(final FileData data) {
 		assertFalse(data.getContent().contains("<script"));
 	}
 }

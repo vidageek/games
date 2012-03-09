@@ -7,3 +7,4 @@ build
 bin
 classes
 games-packaged.js.gz
+.cache
