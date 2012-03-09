@@ -64,10 +64,6 @@ dependencies {
 
 [jettyRunWar, jettyRun]*.contextPath = '/'
 
-compileScala {
-	scalaCompileOptions.useCompileDaemon = true
-}
-
 js {
 	inputs.files fileTree(dir: "${webAppDirName}/js", include: "**/*.js")
 	outputs.file file("${webAppDirName}/js/games-packaged.js.gz")
