@@ -4,6 +4,7 @@ buildscript {
 	}
 	dependencies {
 		classpath 'com.eriwen:gradle-js-plugin:0.3'
+		classpath 'com.eriwen:gradle-css-plugin:0.2'
 	}
 }
 
@@ -12,6 +13,7 @@ apply plugin: 'jetty'
 apply plugin: 'maven'
 apply plugin: 'scala'
 apply plugin: 'js'
+apply plugin: 'css'
 
 sourceCompatibility = 1.5
 targetCompatibility = 1.5
@@ -68,6 +70,11 @@ js {
 	inputs.files fileTree(dir: "${webAppDirName}/js", include: "**/*.js")
 	outputs.file file("${webAppDirName}/js/games-packaged.js.gz")
 	warningLevel = 'QUIET'
+}
+
+css {
+    inputs.files fileTree(dir: "${webAppDirName}/css", include: "**/*.css")
+    outputs.file file("${webAppDirName}/css/games-packaged.css.gz")
 }
 
 war.dependsOn 'js'
