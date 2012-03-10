@@ -18,15 +18,15 @@ final public class TasksTest {
 	@Before
 	public void setup() throws Exception {
 		tasks = new Tasks();
-		TaskGroup group = new TaskGroup("", null);
+		TaskGroup group = new TaskGroup("b", "", null);
 		group.add(new TestTask());
 		group.add(new TestTask());
 		tasks.add(group);
-		group = new TaskGroup("", null);
+		group = new TaskGroup("b", "", null);
 		group.add(new TestTask());
 		group.add(new TestTask());
 		tasks.add(group);
-		group = new TaskGroup("", null);
+		group = new TaskGroup("b", "", null);
 		group.add(new TestTask());
 		group.add(new TestTask());
 		tasks.add(group);

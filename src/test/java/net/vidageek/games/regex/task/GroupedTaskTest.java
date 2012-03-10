@@ -25,7 +25,7 @@ final public class GroupedTaskTest {
 	public void shouldReturnGroupDescription() {
 		when(descriptions.forGroup("a")).thenReturn("description");
 
-		GroupedTask task = new GroupedTask(new TaskGroup("a", descriptions), new TestTask());
+		GroupedTask task = new GroupedTask(new TaskGroup("b", "a", descriptions), new TestTask());
 		assertEquals("description", task.getDescription());
 	}
 
