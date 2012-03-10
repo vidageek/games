@@ -43,7 +43,7 @@ public class TwitterAuthProviderTest {
 
 	@Test
 	public void shouldAutenticateWithTwitterOAuth() throws IOException {
-		String url = new TwitterAuthPovider(serviceBuilder, new OAuthSecrets()).applicationAuthoritionUrl();
+		String url = new TwitterAuthProvider(serviceBuilder, new OAuthSecrets()).applicationAuthoritionUrl();
 		assertThat(url, equalTo(apiAuthorizeUrl));
 	}
 
