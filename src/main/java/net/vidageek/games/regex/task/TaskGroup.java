@@ -13,8 +13,10 @@ final public class TaskGroup implements Iterable<Task> {
 	private final List<Task> tasks;
 	private final Descriptions descriptions;
 	private final String groupName;
+	private final String name;
 
-	public TaskGroup(final String groupName, final Descriptions descriptions) {
+	public TaskGroup(String name, final String groupName, final Descriptions descriptions) {
+		this.name = name;
 		this.groupName = groupName;
 		this.descriptions = descriptions;
 		tasks = new ArrayList<Task>();
@@ -38,6 +40,10 @@ final public class TaskGroup implements Iterable<Task> {
 
 	public String getDescription() {
 		return descriptions.forGroup(groupName);
+	}
+
+	public String getName() {
+		return name;
 	}
 
 }

@@ -24,7 +24,7 @@ final public class RegexGame implements Game {
 	}
 
 	private void addCharsExercises(final Descriptions descriptions) {
-		TaskGroup group = new TaskGroup("match.chars", descriptions);
+		TaskGroup group = new TaskGroup("Caracteres Simples", "match.chars", descriptions);
 		group.add(new Match(from("a")));
 		group.add(new Match(from("abc")));
 		group.add(new Match(from("\\")));
@@ -40,7 +40,7 @@ final public class RegexGame implements Game {
 	}
 
 	private void addCharClassesExercises(final Descriptions descriptions) {
-		TaskGroup group = new TaskGroup("match.chars.classes", descriptions);
+		TaskGroup group = new TaskGroup("Classes de Caracteres", "match.chars.classes", descriptions);
 		group.add(new Match(from("a", "b")));
 		group.add(new Match(from("ad", "bd")));
 		group.add(new Match(from("a", "b", "c", "A", "B", "C", "D")));
@@ -61,7 +61,7 @@ final public class RegexGame implements Game {
 	}
 
 	private void addOpositeCharClassExercises(final Descriptions descriptions) {
-		TaskGroup group = new TaskGroup("match.negate", descriptions);
+		TaskGroup group = new TaskGroup("Classes de Caracteres Opostas", "match.negate", descriptions);
 		group.add(new NegateAndMatch(from("a", "b"), from("c", "d")));
 		group.add(new NegateAndMatch(from("ad", "bd", "cd"), from("dd", "ed")));
 		group.add(new NegateAndMatch(from("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"), from(" ", "a")));
@@ -76,14 +76,14 @@ final public class RegexGame implements Game {
 	}
 
 	private void addPipeOperator(final Descriptions descriptions) {
-		TaskGroup group = new TaskGroup("match.pipe", descriptions);
+		TaskGroup group = new TaskGroup("M&uacute;ltiplos Padr&otilde;es", "match.pipe", descriptions);
 		group.add(new NegateAndMatch(from("ab", "ba"), from("a", "b")));
 		group.add(new NegateAndMatch(from("ba", "baa"), from("aa", "bb", "ab")));
 		tasks.add(group);
 	}
 
 	private void addOperatorsExercises(final Descriptions descriptions) {
-		TaskGroup group = new TaskGroup("match.operators", descriptions);
+		TaskGroup group = new TaskGroup("Operadores de Repeti&ccedil;&atilde;o", "match.operators", descriptions);
 		group.add(new NegateAndMatch(from("b"), from("", "a")));
 		group.add(new NegateAndMatch(from("aa"), from("", "a", "b")));
 		group.add(new NegateAndMatch(from("", "aaaaaaaaab"), from("a", "aa", "aaaaaaaaa")));
@@ -96,7 +96,7 @@ final public class RegexGame implements Game {
 	}
 
 	private void addCaptureGroupExercises(final Descriptions descriptions) {
-		TaskGroup group = new TaskGroup("match.capture", descriptions);
+		TaskGroup group = new TaskGroup("Grupos de Captura", "match.capture", descriptions);
 		group.add(new CaptureGroup("abcdef", "abcdef"));
 		group.add(new CaptureGroup("abcdef1a", "abcdef"));
 		group.add(new CaptureGroup("abcdef1a", "abcdef", "1a"));

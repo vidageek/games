@@ -31,4 +31,8 @@ final public class GroupedTask implements TaskWithDescription {
 		return task.toString();
 	}
 
+	public String getGroupName() {
+		return group.getName();
+	}
+
 }

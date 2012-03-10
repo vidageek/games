@@ -36,4 +36,8 @@ public final class IndexedTask implements TaskWithDescription {
 	public String toString() {
 		return delegate.toString();
 	}
+
+	public String getGroupName() {
+		return delegate.getGroupName();
+	}
 }
