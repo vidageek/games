@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://vidageek.net/autoweb" prefix="aw"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,8 +11,8 @@
 <meta name="google-site-verification"
 	content="FjDxiddkSQXOHTFWCpYqrXpjj7wCoCcX1krRxTCHuq0" />
 <title><decorator:title /></title>
-<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="/css/style.css" rel="stylesheet" type="text/css" />
+<aw:css url="/css/bootstrap.min.css" />
+<aw:css url="/css/style.css" />
 <!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -54,7 +55,7 @@
 	</section>
 	
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/games-packaged.js" ></script>
+	<aw:js url="/js/games-packaged.js" />
 
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
