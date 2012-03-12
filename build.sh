@@ -1,6 +1,6 @@
 #! /bin/bash
 
-/home/ubuntu/gradle/bin/gradle -i test assemble
+export GRADLE_OPTS="-XX:ThreadStackSize=256k -XX:+UseCompressedOops" && /home/ubuntu/gradle/bin/gradle -i test assemble
 
 BUILD=$?
 
