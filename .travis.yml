@@ -1,2 +1,2 @@
-language: scala
-script: ./build.sh
+language: java
+script: /bin/bash build.sh
