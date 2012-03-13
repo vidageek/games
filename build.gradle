@@ -79,3 +79,4 @@ css {
 }
 
 war.dependsOn 'js'
+war.dependsOn 'css'
