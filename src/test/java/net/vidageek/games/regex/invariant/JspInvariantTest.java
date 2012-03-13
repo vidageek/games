@@ -15,6 +15,11 @@ final public class JspInvariantTest {
 		assertFalse(data.getContent().contains("<script"));
 	}
 	
+	@Invariant(affects = ".*\\.jsp", folder = "src/main/webapp/WEB-INF/jsp")
+	public void tagsLinkNaoSaoPermitidasEmJsps(final FileData data) {
+		assertFalse(data.getContent().contains("<link"));
+	}
+	
 	@Invariant(affects = ".*\\.jsp", folder = "src/main/webapp/")
 	public void tagsCssNaoSaoPermitidas(final FileData data) {
 		assertFalse("Use <aw:css /> no lugar", data.getContent().contains("<link"));

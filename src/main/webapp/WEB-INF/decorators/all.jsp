@@ -11,8 +11,7 @@
 <meta name="google-site-verification"
 	content="FjDxiddkSQXOHTFWCpYqrXpjj7wCoCcX1krRxTCHuq0" />
 <title><decorator:title /></title>
-<aw:css url="/css/bootstrap.min.css" />
-<aw:css url="/css/style.css" />
+<aw:css url="/css/games-packaged.css" />
 <!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
