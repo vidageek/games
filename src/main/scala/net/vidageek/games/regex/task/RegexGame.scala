@@ -6,7 +6,7 @@ import net.vidageek.games.task.Match
 import net.vidageek.games.Game
 
 class RegexGame(descriptions: Descriptions) extends Game {
-  private val tasks = new Tasks
+  private val tasks = new Tasks()
   addCharsExercises(descriptions)
   addCharClassesExercises(descriptions)
   addOpositeCharClassExercises(descriptions)

@@ -34,6 +34,7 @@ final public class RegexGameTest {
 	@Test
 	public void hasNextTaskReturnsTrueIfThereIsSuchTask() {
 		RegexGame game = new RegexGame(descriptions);
+		System.out.println(game.getSize());
 		assertTrue(game.hasNextTask(0));
 	}
 
