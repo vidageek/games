@@ -11,13 +11,15 @@ import br.com.caelum.vraptor.ioc.Component
 @ApplicationScoped
 class OAuthSecrets {
   val properties = new Properties()
-  properties.load(new FileInputStream(new File(System.getProperty("user.home") + "/.vgGames/oauth_secrets")))
+  val file = new File(System.getProperty("user.home") + "/.vgGames/oauth_secrets")
+  if (file.exists) 
+  	properties.load(new FileInputStream(file)) 
 
   def apiKeyFor(providerName: String) = {
-    properties.getProperty(providerName + ".api.key")
+    properties.getProperty(providerName + ".api.key", "")
   }
 
   def apiSecretFor(providerName: String) = {
-    properties.getProperty(providerName + ".api.secret")
+    properties.getProperty(providerName + ".api.secret", "")
   }
 }
