@@ -16,7 +16,7 @@ import net.vidageek.games.auth.Providers
 class ProvidersFactory(secrets: OAuthSecrets) extends ComponentFactory[Providers] {
 
   def getInstance: Providers = {
-    val providers = Arrays.asList[AuthProvider](new TwitterAuthProvider(new ServiceBuilder, secrets))
+    val providers = Arrays.asList[AuthProvider](new TwitterAuthProvider(secrets))
     new Providers(providers)
   }
 }
