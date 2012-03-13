@@ -20,12 +20,9 @@ import org.scribe.oauth.OAuthService;
 
 public class TwitterAuthProviderTest {
 
-	private @Spy
-	final ServiceBuilder serviceBuilder = new ServiceBuilder();
-	private @Mock
-	OAuthService oAuthService;
-	private @Mock
-	Token requestToken;
+	private @Spy final ServiceBuilder serviceBuilder = new ServiceBuilder();
+	private @Mock OAuthService oAuthService;
+	private @Mock Token requestToken;
 
 	private final String apiAuthorizeUrl = "https://api.twitter.com/oauth/authorize?oauth_token=4roIG1lwdZWlvJBF2aCwn2m4za2liOD6oeTfQaumN7w";
 
