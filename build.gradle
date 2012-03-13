@@ -4,7 +4,8 @@ buildscript {
 	}
 	dependencies {
 		classpath 'com.eriwen:gradle-js-plugin:0.3'
-		classpath 'com.eriwen:gradle-css-plugin:0.2'
+		classpath files(fileTree(dir: "$projectDir/plugins" as File, includes: ['*.jar']))
+		classpath 'com.yahoo.platform.yui:yuicompressor:2.4.6'
 	}
 }
 
