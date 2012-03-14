@@ -22,7 +22,7 @@ class AuthController(result: Result, providers: Providers, player: Player) {
     result.redirectTo(classOf[UserHost]).home
   }
 
-  def logout(): Unit = {
+  def logout() = {
 	player.logout
 	result.redirectTo(classOf[UserHost]).home
   }
