@@ -20,8 +20,12 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<a id="select-a-provider" class="brand pull-right" data-toggle="modal"
-					href="#logon-provider">Logar...</a>
+				<c:if test="${player.autorized}">
+					<a id="logged" class="brand pull-right" href="#logado">${player.userName}</a>
+				</c:if>
+				<c:if test="${not player.autorized}">
+					<a id="select-a-provider" class="brand pull-right" data-toggle="modal" href="#logon-provider">Logar...</a>
+				</c:if>
 			</div>
 			<div class="ribbon-holder" >
 				<a href="https://github.com/vidageek/games" class="ribbon"> 
@@ -55,6 +59,7 @@
 	
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<aw:js url="/js/games-packaged.js" />
+	<aw:js url="/js/bootstrap-modal.js" />
 
 	<script type="text/javascript">
 		var _gaq = _gaq || [];

@@ -18,27 +18,14 @@ public class ProvidersTest {
 
 	private Providers providers;
 	private @Mock TwitterAuthProvider twitterAuthPovider;
-	private AuthProvider aTestAuthProvider;
+	private @Mock AuthProvider aTestAuthProvider;
 
 	@Before
 	public void setup() throws Exception {
 		initMocks(this);
 		when(twitterAuthPovider.name()).thenReturn("twitter");
-		aTestAuthProvider = aTestAuthProvider();
-		providers = new Providers(Arrays.asList(twitterAuthPovider, aTestAuthProvider));
-	}
-
-	private AuthProvider aTestAuthProvider() {
-		return new AuthProvider() {
-
-			public String name() {
-				return "TestProvider";
-			}
-
-			public String applicationAuthoritionUrl() {
-				return "http://url-authorization-test";
-			}
-		};
+		when(aTestAuthProvider.name()).thenReturn("TestProvider");
+		providers = new Providers(Arrays.<AuthProvider>asList(twitterAuthPovider, aTestAuthProvider));
 	}
 
 	@Test
