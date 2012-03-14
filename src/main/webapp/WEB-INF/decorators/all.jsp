@@ -21,7 +21,17 @@
 		<div class="navbar-inner">
 			<div class="container">
 				<c:if test="${player.autorized}">
-					<a id="logged" class="brand pull-right" href="#logado">${player.userName}</a>
+					<div class="nav-collapse">
+						<ul class="nav">
+							<li class="active">
+								<a id="logged" class="brand pull-right" href="#logado">${player.userName}</a>
+							</li>
+							<li class="divider-vertical"></li>
+							<li>
+								<a id="logged" class="brand pull-right" href="<c:url  value="/auth/logout" />">Logout</a>
+							</li>
+						</ul>
+					</div>
 				</c:if>
 				<c:if test="${not player.autorized}">
 					<a id="select-a-provider" class="brand pull-right" data-toggle="modal" href="#logon-provider">Logar...</a>

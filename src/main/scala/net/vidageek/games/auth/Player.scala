@@ -7,16 +7,22 @@ import org.scribe.model.Token
 @Component @SessionScoped
 class Player {
   // TODO: Melhorar isso, da erro de compilação esse negocio!
-  var accessToken: Token = null
   var provider: AuthProvider = null
   
   def authorize(authorization: AuthorizationVerifier) {
-    accessToken = provider.accessToken(authorization.verifier)
+    provider.accessToken(authorization.verifier)
   } 
   
   def getAutorized =  {
-    accessToken != null
+    provider != null
   }
   
-  def getUserName = provider.userName(accessToken)
+  def getUserName = provider.userName
+  
+  def logout =  {
+    if (getAutorized) {
+    	provider.logout
+    	provider = null
+    }
+  }
 }

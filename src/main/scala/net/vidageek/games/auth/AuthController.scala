@@ -11,14 +11,19 @@ import net.vidageek.games.UserHost
 class AuthController(result: Result, providers: Providers, player: Player) {
 
   @Get(Array("/auth/provider/{name}"))
-  def provider(name: String) = { 
+  def provider(name: String) = {
     player.provider = providers.byName(name)
-    result.redirectTo(player.provider.applicationAuthoritionUrl) 
+    result.redirectTo(player.provider.applicationAuthoritionUrl)
   }
-  
+
   @Get(Array("/authorization", "/authorization/"))
   def authorization(oauth_token: String, oauth_verifier: String) = {
     player.authorize(AuthorizationVerifier(oauth_verifier))
     result.redirectTo(classOf[UserHost]).home
+  }
+
+  def logout(): Unit = {
+	player.logout
+	result.redirectTo(classOf[UserHost]).home
   }
 }

@@ -6,5 +6,6 @@ trait AuthProvider {
   def applicationAuthoritionUrl: String
   def name: String
   def accessToken(verifier: Verifier): Token
-  def userName(accessToken: Token): String
+  def userName: String
+  def logout: Unit
 }

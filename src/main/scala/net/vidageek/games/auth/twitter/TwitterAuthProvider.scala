@@ -15,21 +15,29 @@ import scala.util.parsing.json.JSON
 class TwitterAuthProvider(secrets: OAuthSecrets) extends AuthProvider {
 
   val twitterService = OAuthServiceBuilder(this, secrets)
+  var accessToken: Token = null
 
   def applicationAuthoritionUrl: String = twitterService.autorizationUrl
 
   override def name: String = "twitter"
 
   override def accessToken(verifier: Verifier): Token = {
-    twitterService.accessToken(verifier)
+    accessToken = twitterService.accessToken(verifier)
+    accessToken
   }
 
-  override def userName(accessToken: Token): String = {
-    val credentials = new OAuthRequest(Verb.GET, "http://api.twitter.com/1/account/verify_credentials.json")
-    twitterService.authService.signRequest(accessToken, credentials)
-    val response = credentials.send
-    extractUserName(response)
+  override def logout: Unit = {
+    val request = new OAuthRequest(Verb.POST, "https://api.twitter.com/1/account/end_session.json")
+    sign(request)
+    request.send
   }
+  
+  override def userName: String = {
+    val credentials = new OAuthRequest(Verb.GET, "http://api.twitter.com/1/account/verify_credentials.json")
+    sign(credentials)
+    extractUserName(credentials.send)
+  }
+  private def sign(request: OAuthRequest) = twitterService.authService.signRequest(accessToken, request)
   
   private def extractUserName(response: Response): String = {
     JSON.parseFull(response.getBody) match {
