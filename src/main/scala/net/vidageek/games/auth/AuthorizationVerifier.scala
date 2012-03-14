@@ -2,8 +2,9 @@ package net.vidageek.games.auth
 import org.scribe.model.Verifier
 
 object AuthorizationVerifier {
-  def apply(oAuthVerifier: String): AuthorizationVerifier = {
-    new VerifiedResponse(new Verifier(oAuthVerifier))
+  def apply(oAuthVerifier: String): AuthorizationVerifier  = oAuthVerifier match {
+    case null => new UnatorizedResponse()
+    case _ => new VerifiedResponse(new Verifier(oAuthVerifier))
   }
 }
 
@@ -19,4 +20,10 @@ class VerifiedResponse(verifierResponse: Verifier) extends AuthorizationVerifier
   
   def verifier: Verifier = verifierResponse
   
+}
+
+class UnatorizedResponse() extends AuthorizationVerifier {
+  override def authorized = false
+  
+  def verifier: Verifier = new Verifier("InvalidVerifier")
 }

@@ -9,8 +9,9 @@ class Player {
   // TODO: Melhorar isso, da erro de compilação esse negocio!
   var provider: AuthProvider = null
   
-  def authorize(authorization: AuthorizationVerifier) {
-    provider.accessToken(authorization.verifier)
+  def authorize(authorization: AuthorizationVerifier) = authorization.authorized match {
+    case true => provider.accessToken(authorization.verifier)
+    case false => provider = null
   } 
   
   def getAutorized =  {
