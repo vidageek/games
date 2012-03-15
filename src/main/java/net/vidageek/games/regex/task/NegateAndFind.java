@@ -2,19 +2,23 @@ package net.vidageek.games.regex.task;
 
 import net.vidageek.games.task.JudgedTask;
 import net.vidageek.games.task.Task;
+import net.vidageek.games.task.status.Faileds;
 
 public class NegateAndFind implements Task {
 
 	private final MatcherTargets mustMatch;
 	private final MatcherTargets cannotMatch;
 
-	public NegateAndFind(MatcherTargets cannotMatch, MatcherTargets mustMatch) {
+	public NegateAndFind(final MatcherTargets cannotMatch,
+			final MatcherTargets mustMatch) {
 		this.cannotMatch = cannotMatch;
 		this.mustMatch = mustMatch;
 	}
 
-	public JudgedTask judge(String challenge) {
-		return null;
+	public JudgedTask judge(final String challenge) {
+		Faileds faileds = new Regex(challenge).findNone(cannotMatch);
+		faileds.addAll(new Regex(challenge).matchAll(mustMatch));
+		return faileds.judgment();
 	}
 
 	public String getChallenge() {

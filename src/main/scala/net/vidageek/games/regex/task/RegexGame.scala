@@ -100,10 +100,11 @@ class RegexGame(descriptions : Descriptions) extends Game {
     }
 
     private def addBeginEnd(descriptions : Descriptions) {
-        val group = new TaskGroup("Reconhecendo Come&ccedil;o e Fim", "match.beginEnd", descriptions)
-        group.add(new NegateAndFind(from("/blog", "/blog/abc"), from("/blog/1", "/blog/2")))
+        val group = new TaskGroup("Ancoras", "match.anchor", descriptions)
+        group.add(new NegateAndFind(from("/blog", "/blog/1abc"), from("/blog/1", "/blog/2")))
         group.add(new NegateAndFind(from("/blog/2"), from("/blog")))
-        group.add(new NegateAndFind(from("/blog/"), from("/blog/abc", "/blog/abcd")))
+        group.add(new NegateAndFind(from("a/blog/"), from("/blog/")))
+        group.add(new NegateAndFind(from("blogueiro"), from("blog")))
         tasks.add(group)
     }
 
