@@ -2,6 +2,7 @@ package net.vidageek.games.regex.task;
 
 import static net.vidageek.games.regex.task.MatcherTargets.from;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 import net.vidageek.games.task.JudgedTask;
@@ -14,10 +15,16 @@ public class MassNegateAndMatch implements Task {
 
 	public MassNegateAndMatch(final String fileName, final String challenge) {
 		this.challenge = challenge;
-		String[] mustMatch = new Scanner(MassNegateAndMatch.class.getResourceAsStream("/mass/" + fileName + ".match"))
-				.useDelimiter("$$").next().split("\n");
-		String[] cantMatch = new Scanner(MassNegateAndMatch.class.getResourceAsStream("/mass/" + fileName + ".not"))
-				.useDelimiter("$$").next().split("\n");
+		InputStream stream = MassNegateAndMatch.class.getResourceAsStream("/mass/" + fileName + ".match");
+		String[] mustMatch = new String[] {};
+		if (stream != null) {
+			mustMatch = new Scanner(stream).useDelimiter("$$").next().split("\n");
+		}
+		stream = MassNegateAndMatch.class.getResourceAsStream("/mass/" + fileName + ".not");
+		String[] cantMatch = new String[] {};
+		if (stream != null) {
+			cantMatch = new Scanner(stream).useDelimiter("$$").next().split("\n");
+		}
 		matcher = new NegateAndMatch(from(cantMatch), from(mustMatch));
 	}
 
