@@ -13,7 +13,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
     addPipeOperator(descriptions)
     addOperatorsExercises(descriptions)
     addCaptureGroupExercises(descriptions)
-    addBeginEnd(descriptions)
+    addAnchoringExercises(descriptions)
     addRealWorldRegexes(descriptions);
 
     private def addCharsExercises(descriptions : Descriptions) {
@@ -99,7 +99,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
         tasks.add(group)
     }
 
-    private def addBeginEnd(descriptions : Descriptions) {
+    private def addAnchoringExercises(descriptions : Descriptions) {
         val group = new TaskGroup("Ancoras", "match.anchor", descriptions)
         group.add(new NegateAndFind(from("/blog", "/blog/1abc"), from("/blog/1", "/blog/2")))
         group.add(new NegateAndFind(from("/blog/2"), from("/blog")))
