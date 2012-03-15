@@ -23,16 +23,12 @@ final public class RegexGameTest {
 
 	@Test
 	public void allTasksMustHaveAnswers() {
-		new Person("a", "abc", "\\\\", "\\$", "abcdefg12345", "AbCdEfG6",
-				"ab\\$cd\\^Ef\\\\G1", "", " ", "\\n", "\\t", "[ab]", "[ab]d",
-				"[a-cA-D]", "[0-2]", "[a-z]", "\\d", "\\da", "[\\da]", "\\s",
-				"\\sa", "[\\sa]", "\\w", "\\wp", ".", "[^ab]", "[^abc]d",
-				"\\D", "\\Da", "[^\\da]", "\\S", "\\Sa", "[^\\sa]", "\\W",
-				"\\Wp", "a|b", "aa|bb|ab", "a?", "[a-b]?", "a+", "[a-c]+",
-				"[a-c]*", "a*", "a{3}", "[a-c]{3}", "([a-z]+)", "([a-z]+).*",
-				"([a-z]+)(.*)", "(([a-z]+)(.*)a)", "(a+)\\1", "(a+)\\1",
-				"(a+)\\1", "^/blog/\\d$", "^/blog$", "^/blog/", "blog$")
-				.play(new RegexGame(descriptions));
+		new Person("a", "abc", "\\\\", "\\$", "abcdefg12345", "AbCdEfG6", "ab\\$cd\\^Ef\\\\G1", "", " ", "\\n", "\\t",
+				"[ab]", "[ab]d", "[a-cA-D]", "[0-2]", "[a-z]", "\\d", "\\da", "[\\da]", "\\s", "\\sa", "[\\sa]", "\\w",
+				"\\wp", ".", "[^ab]", "[^abc]d", "\\D", "\\Da", "[^\\da]", "\\S", "\\Sa", "[^\\sa]", "\\W", "\\Wp",
+				"a|b", "aa|bb|ab", "a?", "[a-b]?", "a+", "[a-c]+", "[a-c]*", "a*", "a{3}", "[a-c]{3}", "([a-z]+)",
+				"([a-z]+).*", "([a-z]+)(.*)", "(([a-z]+)(.*)a)", "(a+)\\1", "(a+)\\1", "(a+)\\1", "^/blog/\\d$",
+				"^/blog$", "^/blog/", "blog$", "([0-2]?\\d|3[01])/(\\d|1[0-2])/\\d+").play(new RegexGame(descriptions));
 	}
 
 	@Test
