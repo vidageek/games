@@ -120,6 +120,11 @@ class RegexGame(descriptions : Descriptions) extends Game {
     private def addRealWorldRegexes(descriptions : Descriptions) {
         val group = new TaskGroup("RegEx no Mundo Real", "match.real.world", descriptions)
         group.add(new MassNegateAndMatch("real/dates", "Qual RegEx &eacute; capaz de reconhecer datas como 1/1/1970?"))
+        group.add(new MassNegateAndMatch("real/ipV4V6", "Qual RegEx &eacute; capaz de reconhecer datas como 1/1/1970?"))
+        group.add(new MassNegateAndMatch("real/blog.urls", "Qual RegEx &eacute; capaz de reconhecer datas como 1/1/1970?"))
+        group.add(new MassNegateAndMatch("real/email", "Qual RegEx &eacute; capaz de reconhecer datas como 1/1/1970?"))
+        group.add(new MassNegateAndMatch("real/cpf", "Qual RegEx &eacute; capaz de reconhecer datas como 1/1/1970?"))
+        group.add(new MassNegateAndMatch("real/log", "Qual RegEx &eacute; capaz de reconhecer datas como 1/1/1970?"))
         tasks.add(group)
     }
 
