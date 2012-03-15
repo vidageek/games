@@ -14,6 +14,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
     addOperatorsExercises(descriptions)
     addCaptureGroupExercises(descriptions)
     addAnchoringExercises(descriptions)
+    addModesExercises(descriptions)
     addRealWorldRegexes(descriptions);
 
     private def addCharsExercises(descriptions : Descriptions) {
@@ -105,6 +106,14 @@ class RegexGame(descriptions : Descriptions) extends Game {
         group.add(new NegateAndFind(from("/blog/2"), from("/blog")))
         group.add(new NegateAndFind(from("a/blog/"), from("/blog/")))
         group.add(new NegateAndFind(from("blogueiro"), from("blog")))
+        tasks.add(group)
+    }
+
+    private def addModesExercises(descriptions : Descriptions) {
+        val group = new TaskGroup("Modos da RegEx", "match.modes", descriptions)
+        group.add(new MassNegateAndMatch("modes/regex", "Qual RegEx &eacute; capaz de reconhecer todas " +
+            "as variações de escrita de RegEx (regex, Regex, ...)?"))
+        group.add(new Match(from("\nabcd", "a\nbcd", "ab\ncd", "abc\nd", "abcd\n")))
         tasks.add(group)
     }
 

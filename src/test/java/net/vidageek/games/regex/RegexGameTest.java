@@ -28,7 +28,8 @@ final public class RegexGameTest {
 				"\\wp", ".", "[^ab]", "[^abc]d", "\\D", "\\Da", "[^\\da]", "\\S", "\\Sa", "[^\\sa]", "\\W", "\\Wp",
 				"a|b", "aa|bb|ab", "a?", "[a-b]?", "a+", "[a-c]+", "[a-c]*", "a*", "a{3}", "[a-c]{3}", "([a-z]+)",
 				"([a-z]+).*", "([a-z]+)(.*)", "(([a-z]+)(.*)a)", "(a+)\\1", "(a+)\\1", "(a+)\\1", "^/blog/\\d$",
-				"^/blog$", "^/blog/", "blog$", "([0-2]?\\d|3[01])/(\\d|1[0-2])/\\d+").play(new RegexGame(descriptions));
+				"^/blog$", "^/blog/", "blog$", "(?i)regex", "(?s).+", "([0-2]?\\d|3[01])/(\\d|1[0-2])/\\d+")
+				.play(new RegexGame(descriptions));
 	}
 
 	@Test
