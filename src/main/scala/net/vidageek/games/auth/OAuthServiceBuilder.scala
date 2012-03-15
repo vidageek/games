@@ -13,7 +13,7 @@ object OAuthServiceBuilder {
   
   def apply(provider: AuthProvider, secrets: OAuthSecrets) = {
     val authService = new ServiceBuilder().provider(apis(provider.name)).apiKey(secrets.apiKeyFor(provider.name))
-     .apiSecret(secrets.apiSecretFor(provider.name)).callback("http://localhost:8080/authorization").build
+     .apiSecret(secrets.apiSecretFor(provider.name)).callback("http://games.vidageek.net/authorization").build
     new OAuthServiceBuilder(authService)
   }
   
