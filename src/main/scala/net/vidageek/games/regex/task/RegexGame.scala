@@ -124,7 +124,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
         group.add(new MassNegateAndMatch("real/dates", "Qual RegEx &eacute; capaz de reconhecer datas como 1/1/1970?"))
         group.add(new MassNegateAndMatch("real/ipV4", "Qual RegEx &eacute; capaz de reconhecer IPs?"))
         group.add(new MassNegateAndMatch("real/log", "Qual RegEx &eacute; capaz de reconhecer linhas de log das 17 horas do dia 13, " +
-            "sendo que o padr&atilde?;o de data &eacute; <code>ano-mes-dia hora-minuto-segundo</code>"))
+            "sendo que o padr&atilde;o de data &eacute; <code>ano-mes-dia hora-minuto-segundo</code>"))
         tasks.add(group)
     }
 
