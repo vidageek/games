@@ -1,0 +1,14 @@
+17:06:46,632  INFO [WebAppBootstrapFactory] No static WebAppBootstrap found.
+17:06:46,632  INFO [BasicConfiguration  ] br.com.caelum.vraptor.scanning = null
+17:06:47,069  INFO [DefaultConverters   ] Registering bundled converters
+17:06:47,076  INFO [LinkToHandler       ] Registering linkTo component
+17:06:47,131  INFO [DefaultRouteBuilder ] /auth/provider/{name}                             [GET] -> AuthController.provider(String)
+17:06:47,132  INFO [DefaultRouteBuilder ] /auth/logout                                      [ALL] -> AuthController.logout()
+17:06:47,133  INFO [DefaultRouteBuilder ] /authorization                                    [GET] -> AuthController.authorization(String, String)
+17:06:47,134  INFO [DefaultRouteBuilder ] /authorization/                                   [GET] -> AuthController.authorization(String, String)
+17:06:47,136  INFO [DefaultRouteBuilder ] /                                                 [GET] -> UserHost.home()
+17:06:47,138  INFO [DefaultRouteBuilder ] /play/{gameName}                                  [GET] -> GameConsole.index(String)
+17:06:47,140  INFO [DefaultRouteBuilder ] /play/{gameName}/task/{index}                     [GET] -> GameConsole.task(String, int)
+17:06:47,141  INFO [DefaultRouteBuilder ] /play/{gameName}/task/{index}                     [POST] -> GameConsole.submit(String, int, String)
+17:06:47,178  INFO [VRaptor             ] VRaptor 3.4.0 successfuly initialized
+17:18:47,178  INFO [VRaptor             ] VRaptor 3.4.0 successfuly initialized :)
