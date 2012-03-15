@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 @RunWith(InvariantRunner.class)
 final public class DescriptionInvariantTest {
 
-	private static final String ALLOWED_CHARS = "[\\w\\s\\Q<>&/.,();+=^:\\?[]-${}|*\\E]*";
+	private static final String ALLOWED_CHARS = "[\\w\\s\\Q<>&/.,();+=^:\\?[]-${}|*\"\\E]*";
 
 	@Invariant(affects = ".*\\.html", folder = "src/main/resources")
 	public void allDescriptionsMustUseHtmlEntities(final FileData data) throws Throwable {
@@ -26,7 +26,7 @@ final public class DescriptionInvariantTest {
 
 	@Invariant(affects = ".*\\.html", folder = "src/main/resources")
 	public void regexMustBeProperlyWritten(final FileData data) throws Throwable {
-		Matcher matcher = Pattern.compile("(?i)(regex)").matcher(data.getContent());
+		Matcher matcher = Pattern.compile("(?i)(regex)[^\"]").matcher(data.getContent());
 		while (matcher.find()) {
 			assertTrue("Found invalid way of writing RegEx", "RegEx".equals(matcher.group(1)));
 		}
