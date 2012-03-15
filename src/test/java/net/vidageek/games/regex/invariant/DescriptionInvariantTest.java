@@ -21,11 +21,11 @@ final public class DescriptionInvariantTest {
 	public void allDescriptionsMustUseHtmlEntities(final FileData data) throws Throwable {
 		final String content = data.getContent();
 		assertFalse("Found invalid chars: [" + content.replaceAll(ALLOWED_CHARS, "") + "]",
-					containsInvalidChars(content));
+				containsInvalidChars(content));
 	}
 
 	@Invariant(affects = ".*\\.html", folder = "src/main/resources")
-	public void regexMustBeProperWritten(final FileData data) throws Throwable {
+	public void regexMustBeProperlyWritten(final FileData data) throws Throwable {
 		Matcher matcher = Pattern.compile("(?i)(regex)").matcher(data.getContent());
 		while (matcher.find()) {
 			assertTrue("Found invalid way of writing RegEx", "RegEx".equals(matcher.group(1)));
