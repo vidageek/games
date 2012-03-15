@@ -43,4 +43,15 @@ final public class Regex {
 		return fails;
 	}
 
+	public Faileds matchNone(MatcherTargets cannotMatch) {
+		Faileds faileds = new Faileds();
+		for (String matchingTarget : cannotMatch) {
+			if (match(matchingTarget).getOk()) {
+				faileds.addOnlyJudgedFailed(new Failed("N&atilde;o deveria fazer match com "
+						+ from(matchingTarget).asHtml() + ""));
+			}
+		}
+		return faileds;
+	}
+
 }

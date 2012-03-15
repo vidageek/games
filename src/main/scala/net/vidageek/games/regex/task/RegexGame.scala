@@ -101,15 +101,15 @@ class RegexGame(descriptions : Descriptions) extends Game {
 
     private def addBeginEnd(descriptions : Descriptions) {
         val group = new TaskGroup("Reconhecendo Come&ccedil;o e Fim", "match.beginEnd", descriptions)
-        group.add(new NegateAndMatch(from("/blog", "/blog/abc"), from("/blog/1", "/blog/2")))
-        group.add(new NegateAndMatch(from("/blog/2"), from("/blog")))
-        group.add(new NegateAndMatch(from("/blog/"), from("/blog/abc", "/blog/abcd")))
+        group.add(new NegateAndFind(from("/blog", "/blog/abc"), from("/blog/1", "/blog/2")))
+        group.add(new NegateAndFind(from("/blog/2"), from("/blog")))
+        group.add(new NegateAndFind(from("/blog/"), from("/blog/abc", "/blog/abcd")))
         tasks.add(group)
     }
-    
-    private def addRealWorldRegexes(descriptions: Descriptions) {
-    	val group = new TaskGroup("Real World RegEx", "match.realWorld", descriptions)
-    	tasks.add(group)
+
+    private def addRealWorldRegexes(descriptions : Descriptions) {
+        val group = new TaskGroup("Real World RegEx", "match.realWorld", descriptions)
+        tasks.add(group)
     }
 
     def task(index : Int) = tasks.at(index)
