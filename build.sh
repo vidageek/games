@@ -8,5 +8,5 @@ if [ $BUILD -ne 0 ]; then
        exit $BUILD;
 fi;
 
-scp -i /private/games.pem build/libs/games-0.1-SNAPSHOT.war ubuntu@games.vidagek.net:~/games.war
+scp -i /private/vidageek/games.pem build/libs/games* ubuntu@177.71.178.115:~/games.war
 
