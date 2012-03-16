@@ -13,6 +13,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
     addPipeOperator(descriptions)
     addOperatorsExercises(descriptions)
     addCaptureGroupExercises(descriptions)
+    addBackReferencesExercises(descriptions)
     addAnchoringExercises(descriptions)
     addModesExercises(descriptions)
     addRealWorldRegexes(descriptions);
@@ -94,6 +95,11 @@ class RegexGame(descriptions : Descriptions) extends Game {
         group.add(new CaptureGroup("abcdef1a", "abcdef"))
         group.add(new CaptureGroup("abcdef1a", "abcdef", "1a"))
         group.add(new CaptureGroup("abcdef1a", "abcdef1a", "abcdef", "1"))
+        tasks.add(group)
+    }
+
+    private def addBackReferencesExercises(descriptions : Descriptions) {
+        val group = new TaskGroup("Back References", "match.back", descriptions)
         group.add(new CaptureGroup("aa", "a"))
         group.add(new CaptureGroup("aaaa", "aa"))
         group.add(new CaptureGroup("aaaaaaaa", "aaaa"))
