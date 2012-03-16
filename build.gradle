@@ -39,6 +39,8 @@ sourceSets {
 
 eclipse.classpath.plusConfigurations += configurations.provided
 
+scalaVersion = '2.9.1-1'
+
 dependencies {
 	compile 'org.prevayler:prevayler-factory:2.5'
 	compile 'com.thoughtworks.xstream:xstream:1.4.2'
@@ -54,15 +56,16 @@ dependencies {
 	compile 'com.google.inject:guice:3.0-rc2'
 	compile 'com.google.inject.extensions:guice-multibindings:3.0-rc2'
 	compile files(fileTree(dir: "$projectDir/lib" as File, includes: ['*.jar']))
-	compile 'org.scala-lang:scala-library:2.9.1-1'
+	compile 'org.scala-lang:scala-library:' + scalaVersion
 
 	provided 'javax.servlet:servlet-api:2.5'
 	
 	testCompile 'org.mockito:mockito-core:1.9.0'
 	testCompile 'junit:junit:4.10'
+	testCompile 'org.specs2:specs2_2.9.1:1.8.1'
 
-	scalaTools 'org.scala-lang:scala-compiler:2.9.1-1'
-	scalaTools 'org.scala-lang:scala-library:2.9.1-1'
+	scalaTools 'org.scala-lang:scala-compiler:' + scalaVersion
+	scalaTools 'org.scala-lang:scala-library:' + scalaVersion
 }
 
 [jettyRunWar, jettyRun]*.contextPath = '/'
