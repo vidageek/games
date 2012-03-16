@@ -119,8 +119,8 @@ class RegexGame(descriptions : Descriptions) extends Game {
 
     private def addRealWorldRegexes(descriptions : Descriptions) {
         val group = new TaskGroup("RegEx no Mundo Real", "match.real.world", descriptions)
-        group.add(new MassNegateAndMatch("real/log", "Qual RegEx &eacute; capaz de reconhecer linhas de log das 17, " +
-            "sendo que o padr&atilde;o de data &eacute; <code>hora:minuto:segundo,millisegundo</code>"))
+        group.add(new MassNegateAndMatch("real/log", "Qual RegEx &eacute; capaz de reconhecer as linhas geradas &agrave;s 17 " +
+            "horas de um log cujo padrão é <code>hora:minuto:segundo,milisegundo mensagem</code>"))
         group.add(new MassNegateAndMatch("real/blog.urls", "Qual RegEx &eacute; capaz de reconhecer urls de blog como /blog/2012/03/12/post?"))
         group.add(new MassNegateAndMatch("real/email", "Qual RegEx &eacute; capaz de reconhecer emails como games@vidageek.net?"))
         group.add(new MassNegateAndMatch("real/dates", "Qual RegEx &eacute; capaz de reconhecer datas como 1/1/1970?"))
