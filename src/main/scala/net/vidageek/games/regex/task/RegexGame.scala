@@ -91,10 +91,10 @@ class RegexGame(descriptions : Descriptions) extends Game {
 
     private def addCaptureGroupExercises(descriptions : Descriptions) {
         val group = new TaskGroup("Grupos de Captura", "match.capture", descriptions)
-        group.add(new CaptureGroup("abcdef", "abcdef"))
-        group.add(new CaptureGroup("abcdef1a", "abcdef"))
-        group.add(new CaptureGroup("abcdef1a", "abcdef", "1a"))
-        group.add(new CaptureGroup("abcdef1a", "abcdef1a", "abcdef", "1"))
+        group.add(new CaptureGroup("Nome: asdrubal", "asdrubal"))
+        group.add(new CaptureGroup("Nome: asdrubal Sobrenome: solito", "asdrubal", "solito"))
+        group.add(new CaptureGroup("Carambolas", "Carambolas", "Cara", "bolas"))
+        group.add(new CaptureGroup("pasta de dente", "pasta de", "past", "de", "dente", "ente"))
         tasks.add(group)
     }
 
