@@ -100,9 +100,9 @@ class RegexGame(descriptions : Descriptions) extends Game {
 
     private def addBackReferencesExercises(descriptions : Descriptions) {
         val group = new TaskGroup("Back References", "match.back", descriptions)
-        group.add(new CaptureGroup("aa", "a"))
-        group.add(new CaptureGroup("aaaa", "aa"))
-        group.add(new CaptureGroup("aaaaaaaa", "aaaa"))
+        group.add(new MassNegateAndMatch("back/odd", "Qual RegEx reconhece todas as sequ&ecirc;ncias " +
+            "&iacute;mpares de <code>c</code>?"))
+        group.add(new NegateAndMatch(from("[a]abc[b]"), from("[a]abc[/a]", "[b]def[/b]")))
         tasks.add(group)
     }
 
