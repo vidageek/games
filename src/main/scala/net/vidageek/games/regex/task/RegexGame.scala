@@ -16,7 +16,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
     addBackReferencesExercises(descriptions)
     addAnchoringExercises(descriptions)
     addModesExercises(descriptions)
-    addRealWorldRegexes(descriptions);
+    addRealWorldRegexes(descriptions)
 
     private def addCharsExercises(descriptions : Descriptions) {
         val group = new TaskGroup("Caracteres Simples", "match.chars", descriptions)
