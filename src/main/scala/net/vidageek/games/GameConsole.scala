@@ -1,10 +1,7 @@
 package net.vidageek.games
 
-import net.vidageek.games.task.JudgedTask;
-import br.com.caelum.vraptor.Get;
-import br.com.caelum.vraptor.Post;
-import br.com.caelum.vraptor.Resource;
-import br.com.caelum.vraptor.Result;
+import net.vidageek.games.task.JudgedTask
+import br.com.caelum.vraptor.{Get, Post, Resource, Result}
 
 @Resource
 class GameConsole(result: Result, game: Game) {
