@@ -17,18 +17,11 @@ libraryDependencies ++= Seq(
   "org.scribe" % "scribe" % "1.3.0",
   "com.google.inject" % "guice" % "3.0-rc2",
   "com.google.inject.extensions" % "guice-multibindings" % "3.0-rc2",
-  "org.mockito" % "mockito-core" % "1.9.0" % "test",
-  "junit" % "junit" % "4.10" % "test",
-  "org.specs2" % "specs2_2.9.1" % "1.8.1" % "test",
   "javax.servlet" % "servlet-api" % "2.5" % "provided",
   "br.com.caelum" % "vraptor" % "3.4.0" excludeAll(
     ExclusionRule(organization = "org.springframework")
-  )
+  ),
+  "org.mockito" % "mockito-core" % "1.9.0" % "test",
+  "junit" % "junit" % "4.10" % "test",
+  "org.specs2" % "specs2_2.9.1" % "1.8.1" % "test"
 )
-
-resolvers += "sbt-idea-repo" at "http://mpeltonen.github.com/maven/"
-
-addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "0.11.0")
-
-
-
