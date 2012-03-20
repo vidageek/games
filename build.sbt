@@ -26,4 +26,4 @@ libraryDependencies ++= Seq(
   )
 )
 
-
+seq(netbeans.NetbeansTasks.netbeansSettings:_*)
