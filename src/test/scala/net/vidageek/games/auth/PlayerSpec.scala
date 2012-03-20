@@ -2,10 +2,11 @@ package net.vidageek.games.auth
 
 import org.specs2.mutable.Specification
 import org.specs2.mock.Mockito
+import net.vidageek.games.player.Player
 
 class PlayerSpec extends Specification with Mockito {
-  def aPlayer = { 
-    val player = new Player()
+  def aPlayer = {
+    val player = new Player("asdrubal")
     player.provider = mock[AuthProvider]
     player
   }
@@ -28,7 +29,7 @@ class PlayerSpec extends Specification with Mockito {
     }
   }
 
-  "The logout" should  {
+  "The logout" should {
     "unauthorize the player" in {
       val player = aPlayer
       player.logout

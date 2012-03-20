@@ -1,15 +1,17 @@
-package net.vidageek.games.auth
+package net.vidageek.games.player
 
 import br.com.caelum.vraptor.ioc.Component
 import br.com.caelum.vraptor.ioc.SessionScoped
+import net.vidageek.games.auth.AuthProvider
+import net.vidageek.games.auth.AuthorizationVerifier
 
 @Component
 @SessionScoped
-class Player {
-  var provider: AuthProvider = _
+class Player(val name : String) {
+  var provider : AuthProvider = _
 
-  def authorize(authorization: AuthorizationVerifier) = authorization.authorized match {
-    case true =>  provider.accessToken(authorization.verifier)
+  def authorize(authorization : AuthorizationVerifier) = authorization.authorized match {
+    case true => provider.accessToken(authorization.verifier)
     case false => provider = null
   }
 
