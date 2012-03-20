@@ -9,3 +9,4 @@ classes
 games-packaged.js.gz
 games-packaged.css.gz
 .cache
+/nbproject/private/
