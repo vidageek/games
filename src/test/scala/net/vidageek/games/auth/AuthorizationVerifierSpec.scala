@@ -2,7 +2,7 @@ package net.vidageek.games.auth
 
 import org.specs2.mutable._
 
-class AuthorizationVerifierTest extends Specification {
+class AuthorizationVerifierSpec extends Specification {
   
   "Authorization Verifier" should {
     "authorize with valid verifier" in {
@@ -12,5 +12,4 @@ class AuthorizationVerifierTest extends Specification {
       AuthorizationVerifier(null).authorized must beFalse
     }
   }
-
 }
