@@ -1,16 +1,18 @@
 package net.vidageek.games.auth.twitter
 
-import org.scribe.builder.api.TwitterApi
-import org.scribe.builder.ServiceBuilder
-import net.vidageek.games.vraptor.OAuthSecrets
+import scala.util.parsing.json.JSON
+
+import org.scribe.model.OAuthRequest
+import org.scribe.model.Response
+import org.scribe.model.Token
+import org.scribe.model.Verb
+import org.scribe.model.Verifier
+
+import br.com.caelum.vraptor.ioc.ApplicationScoped
+import br.com.caelum.vraptor.ioc.Component
 import net.vidageek.games.auth.AuthProvider
 import net.vidageek.games.auth.OAuthServiceBuilder
-import org.scribe.model.Verifier
-import org.scribe.model.Token
-import org.scribe.model.OAuthRequest
-import org.scribe.model.Verb
-import org.scribe.model.Response
-import scala.util.parsing.json.JSON
+import net.vidageek.games.vraptor.OAuthSecrets
 
 class TwitterAuthProvider(secrets: OAuthSecrets) extends AuthProvider {
 
