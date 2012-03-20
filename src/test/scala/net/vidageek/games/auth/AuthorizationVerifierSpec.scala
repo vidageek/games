@@ -8,7 +8,8 @@ class AuthorizationVerifierSpec extends Specification {
     "authorize with valid verifier" in {
       AuthorizationVerifier("validVerifier").authorized must beTrue
     }
-    "Not authorize" in {
+    
+    "not authorize" in {
       AuthorizationVerifier(null).authorized must beFalse
     }
   }
