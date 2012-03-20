@@ -1,4 +1,5 @@
 package net.vidageek.games.auth
+
 import org.scribe.model.Token
 import org.scribe.model.Verifier
 
