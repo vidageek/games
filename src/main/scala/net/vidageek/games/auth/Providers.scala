@@ -1,21 +1,17 @@
 package net.vidageek.games.auth
 
-import java.util.Map
 import java.util.Collection
 
 import scala.collection.JavaConversions.collectionAsScalaIterable
-
-import com.google.common.collect.Maps
+import scala.collection.mutable.Map
 
 class Providers(authProviders: Collection[AuthProvider]) {
-  val providers: Map[String, AuthProvider] = Maps.newConcurrentMap()
+  val providers: Map[String, AuthProvider] = Map()
   authProviders.foreach(add(_))
 
-  def add(provider: AuthProvider) {
-    providers.put(provider.name, provider)
-  }
+  def add(provider: AuthProvider): Unit = providers += ((provider.name, provider))
 
   def quantity = providers.size
 
-  def byName(name: String) = providers.get(name)
+  def byName(name: String) = providers(name)
 }
