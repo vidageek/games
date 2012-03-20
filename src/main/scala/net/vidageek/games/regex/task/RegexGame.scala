@@ -13,9 +13,10 @@ class RegexGame(descriptions : Descriptions) extends Game {
     addPipeOperator(descriptions)
     addOperatorsExercises(descriptions)
     addCaptureGroupExercises(descriptions)
+    addBackReferencesExercises(descriptions)
     addAnchoringExercises(descriptions)
     addModesExercises(descriptions)
-    addRealWorldRegexes(descriptions);
+    addRealWorldRegexes(descriptions)
 
     private def addCharsExercises(descriptions : Descriptions) {
         val group = new TaskGroup("Caracteres Simples", "match.chars", descriptions)
@@ -90,13 +91,18 @@ class RegexGame(descriptions : Descriptions) extends Game {
 
     private def addCaptureGroupExercises(descriptions : Descriptions) {
         val group = new TaskGroup("Grupos de Captura", "match.capture", descriptions)
-        group.add(new CaptureGroup("abcdef", "abcdef"))
-        group.add(new CaptureGroup("abcdef1a", "abcdef"))
-        group.add(new CaptureGroup("abcdef1a", "abcdef", "1a"))
-        group.add(new CaptureGroup("abcdef1a", "abcdef1a", "abcdef", "1"))
-        group.add(new CaptureGroup("aa", "a"))
-        group.add(new CaptureGroup("aaaa", "aa"))
-        group.add(new CaptureGroup("aaaaaaaa", "aaaa"))
+        group.add(new CaptureGroup("Nome: asdrubal", "asdrubal"))
+        group.add(new CaptureGroup("Nome: asdrubal Sobrenome: solito", "asdrubal", "solito"))
+        group.add(new CaptureGroup("Carambolas", "Carambolas", "Cara", "bolas"))
+        group.add(new CaptureGroup("pasta de dente", "pasta de", "past", "de", "dente", "ente"))
+        tasks.add(group)
+    }
+
+    private def addBackReferencesExercises(descriptions : Descriptions) {
+        val group = new TaskGroup("Back References", "match.back", descriptions)
+        group.add(new MassNegateAndMatch("back/odd", "Qual RegEx reconhece todas as sequ&ecirc;ncias " +
+            "&iacute;mpares de <code>c</code>?"))
+        group.add(new NegateAndMatch(from("[a]abc[b]"), from("[a]abc[/a]", "[b]def[/b]")))
         tasks.add(group)
     }
 
