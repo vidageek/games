@@ -1,15 +1,9 @@
 package net.vidageek.games.auth
 
-import java.util.Collection
-
-import scala.collection.JavaConversions.collectionAsScalaIterable
 import scala.collection.immutable.Map
 
-class Providers(authProviders: Collection[AuthProvider]) {
-  var providers: Map[String, AuthProvider] = Map()
-  authProviders.foreach(add(_))
-
-  def add(provider: AuthProvider): Unit = providers = providers + ((provider.name, provider))
+class Providers(authProviders: Seq[AuthProvider]) {
+  val providers = authProviders.foldLeft(Map[String, AuthProvider]())((m, p) => m + (p.name -> p))
 
   def quantity = providers.size
 
