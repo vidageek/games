@@ -13,7 +13,7 @@ val gzipCss = css := {
 } 
 
 lazy val project = Project (
-    "project",
+    "games",
     file ("."),
     settings = Defaults.defaultSettings ++ Seq(gzipCss)
   )
