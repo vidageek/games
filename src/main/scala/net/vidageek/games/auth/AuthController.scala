@@ -11,7 +11,7 @@ class AuthController(result: Result, providers: Providers, player: Player) {
   @Get(Array("/auth/provider/{name}"))
   def provider(name: String) {
     player.provider = providers.byName(name)
-    result.redirectTo(player.provider.applicationAuthoritionUrl)
+    result.redirectTo(player.provider.applicationAuthorizationUrl)
   }
 
   @Get(Array("/authorization", "/authorization/"))

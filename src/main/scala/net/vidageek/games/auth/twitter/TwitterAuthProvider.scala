@@ -19,7 +19,7 @@ class TwitterAuthProvider(secrets: OAuthSecrets) extends AuthProvider {
   val twitterService = OAuthServiceBuilder(this, secrets)
   var accessToken: Token = _
 
-  def applicationAuthoritionUrl = twitterService.autorizationUrl
+  def applicationAuthorizationUrl = twitterService.autorizationUrl
 
   override def name = "twitter"
 
