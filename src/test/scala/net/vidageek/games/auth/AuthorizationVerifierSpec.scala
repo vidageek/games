@@ -7,7 +7,7 @@ import org.junit.runner.RunWith
 @RunWith(classOf[JUnitRunner])
 class AuthorizationVerifierSpec extends Specification {
 
-  "Authorization Verifier" should {
+  "The authorized" should {
     "authorize with valid verifier" in {
       AuthorizationVerifier("validVerifier").authorized must beTrue
     }
