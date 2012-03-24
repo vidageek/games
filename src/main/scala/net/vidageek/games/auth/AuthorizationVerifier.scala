@@ -3,7 +3,7 @@ import org.scribe.model.Verifier
 
 object AuthorizationVerifier {
   def apply(oAuthVerifier: String): AuthorizationVerifier  = oAuthVerifier match {
-    case null => new UnatorizedResponse()
+    case null => new UnauthorizedResponse()
     case _ => new VerifiedResponse(new Verifier(oAuthVerifier))
   }
 }
@@ -22,7 +22,7 @@ class VerifiedResponse(verifierResponse: Verifier) extends AuthorizationVerifier
   
 }
 
-class UnatorizedResponse() extends AuthorizationVerifier {
+class UnauthorizedResponse() extends AuthorizationVerifier {
   override def authorized = false
   
   def verifier: Verifier = new Verifier("InvalidVerifier")
