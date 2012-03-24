@@ -1,7 +1,5 @@
 package net.vidageek.games.auth
 
-import br.com.caelum.vraptor.ioc.Component
-import br.com.caelum.vraptor.ioc.SessionScoped
 import br.com.caelum.vraptor.Get
 import br.com.caelum.vraptor.Resource
 import br.com.caelum.vraptor.Result
