@@ -5,13 +5,20 @@ import org.specs2.mock.Mockito
 
 class PlayerSpec extends Specification with Mockito {
   "The getAuthorized " should {
+    val player = new Player()
+    player.provider = mock[AuthProvider]
     val authorizationVerifier = mock[AuthorizationVerifier]
-    authorizationVerifier.authorized returns true
-    "be true when user aquire a authentication provider" in {
-      val player = new Player()
-      player.provider = mock[AuthProvider]
+
+    "be true when player aquire a authentication verifier" in {
+      authorizationVerifier.authorized returns true
       player.authorize(authorizationVerifier)
       player.getAuthorized must beTrue
+    }
+
+    "be false when player aquire unauthorized authorization verifier" in {
+      authorizationVerifier.authorized returns false
+      player.authorize(authorizationVerifier)
+      player.getAuthorized must beFalse
     }
   }
 }
