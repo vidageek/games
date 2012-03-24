@@ -14,14 +14,14 @@ class Player {
     case false => provider = null
   }
 
-  def getAutorized = {
+  def getAuthorized = {
     provider != null
   }
 
   def getUserName = provider.userName
 
   def logout = {
-    if (getAutorized) {
+    if (getAuthorized) {
       provider.logout
       provider = null
     }

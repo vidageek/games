@@ -20,7 +20,7 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<c:if test="${player.autorized}">
+				<c:if test="${player.authorized}">
 					<div class="nav-collapse">
 						<ul class="nav">
 							<li class="active">
