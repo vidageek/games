@@ -33,7 +33,7 @@
 						</ul>
 					</div>
 				</c:if>
-				<c:if test="${not player.autorized}">
+				<c:if test="${not player.authorized}">
 					<a id="select-a-provider" class="brand pull-right" data-toggle="modal" href="#logon-provider">Logar...</a>
 				</c:if>
 			</div>
@@ -57,7 +57,7 @@
 			<div class="modal-body">
 				<ul class="nav nav-tabs nav-stacked">
 					<li>
-						<a href="<c:url  value="/auth/provider/twitter" />">Twitter</a>
+						<a href="<c:url  value="/auth/provider/twitter" />?backUrl=<%= request.getRequestURL() %>">Twitter</a>
 					</li>
 				</ul>
 			</div>
