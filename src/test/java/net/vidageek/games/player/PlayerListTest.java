@@ -3,11 +3,13 @@ package net.vidageek.games.player;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class PlayerListTest {
 
   @Test
+  @Ignore
   public void shouldInsertPlayer() {
     PlayerList list = new PlayerList();
     list.append(new Player("asdrubal"));

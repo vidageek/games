@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="google-site-verification"
 	content="FjDxiddkSQXOHTFWCpYqrXpjj7wCoCcX1krRxTCHuq0" />
+<meta name="google-site-verification" content="igmWNUz0B_VblujqXG47m32FBgjyQ5Zc2Oq-3YzSZv8" />
 <title><decorator:title /></title>
 <aw:css url="/css/games-packaged.css" />
 <!--[if lt IE 9]>
