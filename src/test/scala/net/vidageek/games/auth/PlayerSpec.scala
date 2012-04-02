@@ -3,7 +3,10 @@ package net.vidageek.games.auth
 import org.specs2.mutable.Specification
 import org.specs2.mock.Mockito
 import net.vidageek.games.player.Player
+import org.junit.runner.RunWith
+import org.specs2.runner.JUnitRunner
 
+@RunWith(classOf[JUnitRunner])
 class PlayerSpec extends Specification with Mockito {
   def aPlayer = {
     val player = new Player("asdrubal")
