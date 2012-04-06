@@ -7,8 +7,8 @@ import net.vidageek.games.auth.AuthorizationVerifier
 
 @Component
 @SessionScoped
-class Player(val name : String) {
-  var provider : AuthProvider = _
+case class Player(val name : String) {
+  var provider: AuthProvider = _
 
   def authorize(authorization : AuthorizationVerifier) = authorization.authorized match {
     case true => provider.accessToken(authorization.verifier)
