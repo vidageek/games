@@ -7,15 +7,14 @@ import scala.collection.mutable.ListBuffer
 @Component
 class PlayerList {
 
-  val players : ListBuffer[Player] = ListBuffer[Player]()
+  val players: ListBuffer[Player] = ListBuffer[Player]()
 
-  def append(player : Player) = {
+  def append(player: Player) = {
     val prevayler = PrevaylerFactory.createPrevayler(players)
-
+    players += player
   }
 
-  def get(name : String) : Player = {
-    null
+  def get(name : String): Option[Player] = {
+    players.find(p => p.name == name)
   }
-
 }
