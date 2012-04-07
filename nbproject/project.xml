@@ -1,12 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://www.netbeans.org/ns/project/1">
     <type>org.netbeans.modules.scala.project</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/scala-project/1">
             <name>games</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
-            <source-roots><root name="Scala Source" id="src.dir"></root><root name="Java Source" id="src.java.dir"></root><root name="Resources" id="resources.dir"></root><root name="Configuration" id="sources.sbt.project"></root></source-roots>
-            <test-roots><root name="Scala Test Sources" id="test.src.dir"></root><root name="Java Test Sources" id="file.reference.test-java"></root><root name="Test Resources" id="test.resources.dir"></root></test-roots>
+            <source-roots>
+                <root id="src.dir" name="Scala Source"/>
+                <root id="src.java.dir" name="Java Source"/>
+                <root id="resources.dir" name="Resources"/>
+                <root id="sources.sbt.project" name="Configuration"/>
+            </source-roots>
+            <test-roots>
+                <root id="test.src.dir" name="Scala Test Sources"/>
+                <root id="test.resources.dir" name="Test Resources"/>
+            </test-roots>
         </data>
-        <references xmlns="http://www.netbeans.org/ns/ant-project-references/1"></references>
+        <references xmlns="http://www.netbeans.org/ns/ant-project-references/1"/>
     </configuration>
 </project>

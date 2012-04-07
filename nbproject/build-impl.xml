@@ -20,7 +20,7 @@ is divided into following sections:
 
         
         -->
-<project xmlns:jaxrpc="http://www.netbeans.org/ns/scala-project/jax-rpc" xmlns:scalaProject1="http://www.netbeans.org/ns/scala-project/1" basedir=".." default="default" name="sbt-netbeans-plugin-impl">
+<project xmlns:jaxrpc="http://www.netbeans.org/ns/scala-project/jax-rpc" xmlns:scalaProject1="http://www.netbeans.org/ns/scala-project/1" basedir=".." default="default" name="games-impl">
     <target depends="test,jar,javadoc" description="Build and test whole project." name="default"/>
     <!--
                 ======================
@@ -39,11 +39,11 @@ is divided into following sections:
         <condition property="scala.home" value="${env.SCALA_HOME}">
             <isset property="env.SCALA_HOME"/>
         </condition>
-        <!--fail unless="scala.home">
+        <fail unless="scala.home">
                     You must set SCALA_HOME or environment property and append "-J-Dscala.home=scalahomepath"
                     property to the end of "netbeans_default_options" in NetBeansInstallationPath/etc/netbeans.conf to point to
                     Scala installation directory.
-        </fail-->
+                </fail>
         <property name="scala.compiler" value="${scala.home}/lib/scala-compiler.jar"/>
         <property name="scala.library" value="${scala.home}/lib/scala-library.jar"/>
         <property name="scala.lib" value="${scala.home}/lib"/>
@@ -85,11 +85,15 @@ is divided into following sections:
         <condition property="have.tests">
             <or>
                 <available file="${test.src.dir}"/>
+                <available file="${test.resources.dir}"/>
             </or>
         </condition>
         <condition property="have.sources">
             <or>
                 <available file="${src.dir}"/>
+                <available file="${src.java.dir}"/>
+                <available file="${resources.dir}"/>
+                <available file="${sources.sbt.project}"/>
             </or>
         </condition>
         <condition property="netbeans.home+have.tests">
@@ -145,7 +149,11 @@ is divided into following sections:
     </target>
     <target depends="-pre-init,-init-private,-init-user,-init-project,-do-init" name="-init-check">
         <fail unless="src.dir">Must set src.dir</fail>
+        <fail unless="src.java.dir">Must set src.java.dir</fail>
+        <fail unless="resources.dir">Must set resources.dir</fail>
+        <fail unless="sources.sbt.project">Must set sources.sbt.project</fail>
         <fail unless="test.src.dir">Must set test.src.dir</fail>
+        <fail unless="test.resources.dir">Must set test.resources.dir</fail>
         <fail unless="build.dir">Must set build.dir</fail>
         <fail unless="dist.dir">Must set dist.dir</fail>
         <fail unless="build.classes.dir">Must set build.classes.dir</fail>
@@ -166,7 +174,7 @@ is divided into following sections:
     </target>
     <target name="-init-macrodef-javac">
         <macrodef name="javac" uri="http://www.netbeans.org/ns/scala-project/1">
-            <attribute default="${src.dir}" name="srcdir"/>
+            <attribute default="${src.dir}:${src.java.dir}:${resources.dir}:${sources.sbt.project}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <attribute default="${includes}" name="includes"/>
@@ -188,7 +196,7 @@ is divided into following sections:
             </sequential>
         </macrodef>
         <macrodef name="depend" uri="http://www.netbeans.org/ns/scala-project/1">
-            <attribute default="${src.dir}" name="srcdir"/>
+            <attribute default="${src.dir}:${src.java.dir}:${resources.dir}:${sources.sbt.project}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <sequential>
@@ -223,7 +231,7 @@ is divided into following sections:
     </target>
     <target name="-init-macrodef-scalac">
         <macrodef name="scalac" uri="http://www.netbeans.org/ns/scala-project/1">
-            <attribute default="${src.dir}" name="srcdir"/>
+            <attribute default="${src.dir}:${src.java.dir}:${resources.dir}:${sources.sbt.project}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <attribute default="${extdirs}" name="extdirs"/>
@@ -404,15 +412,16 @@ is divided into following sections:
         <scalaProject1:javac/>
         <copy todir="${build.classes.dir}">
             <fileset dir="${src.dir}" excludes="${build.classes.excludes},${excludes}&#10;                        " includes="${includes}"/>
+            <fileset dir="${src.java.dir}" excludes="${build.classes.excludes},${excludes}&#10;                        " includes="${includes}"/>
+            <fileset dir="${resources.dir}" excludes="${build.classes.excludes},${excludes}&#10;                        " includes="${includes}"/>
+            <fileset dir="${sources.sbt.project}" excludes="${build.classes.excludes},${excludes}&#10;                        " includes="${includes}"/>
         </copy>
     </target>
     <target name="-post-compile">
         <!-- Empty placeholder for easier customization. -->
         <!-- You can override this target in the ../build.xml file. -->
     </target>
-
     <target depends="init,deps-jar,-pre-pre-compile,-pre-compile,-do-compile,-post-compile" description="Compile project." name="compile"/>
-
     <target name="-pre-compile-single">
         <!-- Empty placeholder for easier customization. -->
         <!-- You can override this target in the ../build.xml file. -->
@@ -420,7 +429,7 @@ is divided into following sections:
     <target depends="init,deps-jar,-pre-pre-compile" name="-do-compile-single">
         <fail unless="javac.includes">Must select some files in the IDE or set javac.includes</fail>
         <scalaProject1:force-recompile/>
-        <scalaProject1:scalac excludes="" includes="${javac.includes}" sourcepath="${src.dir}"/>
+        <scalaProject1:scalac excludes="" includes="${javac.includes}" sourcepath="${src.dir}:${src.java.dir}:${resources.dir}:${sources.sbt.project}"/>
     </target>
     <target name="-post-compile-single">
         <!-- Empty placeholder for easier customization. -->
@@ -460,7 +469,7 @@ is divided into following sections:
             <map from="${build.classes.dir.resolved}" to="${dist.jar.resolved}"/>
         </pathconvert>
         <echo>java -cp "${run.classpath.with.dist.jar}" ${main.class}
-        </echo>
+                </echo>
     </target>
     <target depends="init,compile,-pre-pre-jar,-pre-jar" if="manifest.available+main.class+mkdist.available" name="-do-jar-with-libraries">
         <property location="${build.classes.dir}" name="build.classes.dir.resolved"/>
@@ -486,7 +495,7 @@ is divided into following sections:
         <echo>To run this application from the command line without Ant, try:</echo>
         <property location="${dist.jar}" name="dist.jar.resolved"/>
         <echo>java -jar "${dist.jar.resolved}"
-        </echo>
+                </echo>
     </target>
     <target name="-post-jar">
         <!-- Empty placeholder for easier customization. -->
@@ -578,12 +587,13 @@ is divided into following sections:
         <!-- You can override this target in the ../build.xml file. -->
     </target>
     <target if="do.depend.true" name="-compile-test-depend">
-        <scalaProject1:depend classpath="${javac.test.classpath}" destdir="${build.test.classes.dir}" srcdir="${test.src.dir}"/>
+        <scalaProject1:depend classpath="${javac.test.classpath}" destdir="${build.test.classes.dir}" srcdir="${test.src.dir}:${test.resources.dir}"/>
     </target>
     <target depends="init,compile,-pre-pre-compile-test,-pre-compile-test,-compile-test-depend" if="have.tests" name="-do-compile-test">
-        <scalaProject1:scalac classpath="${javac.test.classpath}" destdir="${build.test.classes.dir}" srcdir="${test.src.dir}"/>
+        <scalaProject1:scalac classpath="${javac.test.classpath}" destdir="${build.test.classes.dir}" srcdir="${test.src.dir}:${test.resources.dir}"/>
         <copy todir="${build.test.classes.dir}">
             <fileset dir="${test.src.dir}" excludes="${build.classes.excludes},${excludes}&#10;                        " includes="${includes}"/>
+            <fileset dir="${test.resources.dir}" excludes="${build.classes.excludes},${excludes}&#10;                        " includes="${includes}"/>
         </copy>
     </target>
     <target name="-post-compile-test">
@@ -598,9 +608,10 @@ is divided into following sections:
     <target depends="init,compile,-pre-pre-compile-test,-pre-compile-test-single" if="have.tests" name="-do-compile-test-single">
         <fail unless="javac.includes">Must select some files in the IDE or set javac.includes</fail>
         <scalaProject1:force-recompile destdir="${build.test.classes.dir}"/>
-        <scalaProject1:scalac classpath="${javac.test.classpath}" destdir="${build.test.classes.dir}" excludes="" includes="${javac.includes}" sourcepath="${test.src.dir}" srcdir="${test.src.dir}"/>
+        <scalaProject1:scalac classpath="${javac.test.classpath}" destdir="${build.test.classes.dir}" excludes="" includes="${javac.includes}" sourcepath="${test.src.dir}:${test.resources.dir}" srcdir="${test.src.dir}:${test.resources.dir}"/>
         <copy todir="${build.test.classes.dir}">
             <fileset dir="${test.src.dir}" excludes="${build.classes.excludes},${excludes}&#10;                        " includes="${includes}"/>
+            <fileset dir="${test.resources.dir}" excludes="${build.classes.excludes},${excludes}&#10;                        " includes="${includes}"/>
         </copy>
     </target>
     <target name="-post-compile-test-single">
@@ -709,5 +720,4 @@ is divided into following sections:
         <!-- You can override this target in the ../build.xml file. -->
     </target>
     <target depends="init,deps-clean,-do-clean,-post-clean" description="Clean build products." name="clean"/>
-
 </project>
