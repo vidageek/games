@@ -4,8 +4,8 @@ import java.util.regex.Matcher;
 
 import net.vidageek.games.task.JudgedTask;
 
-public interface GroupValidation {
+trait GroupValidation {
 
-	JudgedTask judge(String challenge, Matcher matcher);
+	def judge(challenge: String, matcher: Matcher): JudgedTask
 
 }
