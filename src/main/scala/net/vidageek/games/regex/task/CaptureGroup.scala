@@ -34,14 +34,12 @@ class CaptureGroup(val matchingTarget: String, val captureGroupTargets: String*)
 	}
 
 	def applyAllValidations(challenge: String, matcher: Matcher): JudgedTask = {
-		var judge: JudgedTask = new Ok()
-		for (validation  <- validations) {
-			judge = validation.judge(challenge, matcher);
-			if (!judge.getOk()) {
-				return judge;
-			}
-		}
-		judge;
+		validations.foldLeft[JudgedTask](new Ok())((judge, validation) => 
+		  	judge.getOk() match {
+		  	  case true => validation.judge(challenge, matcher)
+		  	  case false => judge 
+		  	}
+		)
 	}
 
 	def getChallenge: String = {
