@@ -24,11 +24,6 @@ object GamesVidageekBuild extends Build {
 	    libraryDependencies += "org.eclipse.jetty" % "jetty-webapp" % "7.4.5.v20110725" % "container"
   )
 	  
-	  
-  //	    "org.eclipse.jetty" % "jetty-server" % "7.6.0.v20120127" % "container"
-  
-  
-  
   lazy val coreSettings: Seq[Setting[_]] = commonSettings ++ Seq(
     libraryDependencies ++= Seq(
         "org.prevayler" % "prevayler-factory" % "2.5",
