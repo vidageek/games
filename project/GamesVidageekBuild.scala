@@ -57,15 +57,26 @@ object GamesVidageekBuild extends Build {
     _ / "src" / "main" / "webapp"
   }
 
-  lazy val tasks: Seq[Setting[_]] = Seq(gzipCss)
+  lazy val webappDirFile = file(".") / "src" / "main" / "webapp"
 
-  lazy val css = TaskKey[Unit]("css", "Resolve GZip to CSS")
+  lazy val tasks: Seq[Setting[_]] = Seq(gzipCss, gzipJs)
+
+  lazy val css = TaskKey[Unit]("gzip-css", "Resolve GZip to CSS")
+
+  lazy val js = TaskKey[Unit]("gzip-js", "Resolve GZip to JS")
 
   lazy val gzipCss = css :=  {
-    val cssDir = file(".") / "src" / "main" / "webapp" / "css"
-    val cssS: Array[File] = listFiles(cssDir, FileFilter.globFilter("*.css"))
-    val gzipOut: GZIPOutputStream = new GZIPOutputStream(new FileOutputStream(cssDir / "games-packaged.css.gz"))
-    cssS foreach(cssFile => gzip(new FileInputStream(cssFile), gzipOut))
+    gzipAsset(webappDirFile / "css", "css")
+  }
+
+  lazy val gzipJs = js :=  {
+    gzipAsset(webappDirFile / "js", "js")
+  }
+
+  def gzipAsset(assetDir: File, assetType: String) = {
+    val assets: Array[File] = listFiles(assetDir, FileFilter.globFilter("*." + assetType))
+    val gzipOut: GZIPOutputStream = new GZIPOutputStream(new FileOutputStream(assetDir / "games-packaged." + assetType + ".gz"))
+    assets foreach(asset => gzip(new FileInputStream(asset), gzipOut))
     gzipOut close()
   }
 }
