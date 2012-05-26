@@ -1,3 +1,5 @@
+import java.io.{FileOutputStream, FileInputStream}
+import java.util.zip.{GZIPOutputStream, GZIPInputStream}
 import sbt._
 import Keys._
 import com.github.siasia._
@@ -61,7 +63,9 @@ object GamesVidageekBuild extends Build {
 
   lazy val gzipCss = css :=  {
     val cssDir = file(".") / "src" / "main" / "webapp" / "css"
-    val csss: Array[File] = listFiles(cssDir, FileFilter.globFilter("*.css"))
-    csss.foreach(cssFile => gzip(cssFile, cssDir / "games-packaged.css.gz"))
+    val cssS: Array[File] = listFiles(cssDir, FileFilter.globFilter("*.css"))
+    val gzipOut: GZIPOutputStream = new GZIPOutputStream(new FileOutputStream(cssDir / "games-packaged.css.gz"))
+    cssS foreach(cssFile => gzip(new FileInputStream(cssFile), gzipOut))
+    gzipOut close()
   }
 }
