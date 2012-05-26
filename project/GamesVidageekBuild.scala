@@ -44,12 +44,12 @@ object GamesVidageekBuild extends Build {
 	    ),
 	    "org.mockito" % "mockito-core" % "1.9.0" % "test",
 	    "junit" % "junit" % "4.10" % "test",
-	    "com.novocode" % "junit-interface" % "0.8" % "test->default",
+	    "com.novocode" % "junit-interface" % "0.8" % "test",
 	    "org.specs2" % "specs2_2.9.1" % "1.8.1" % "test",
 	    "org.eclipse.jetty" % "jetty-webapp" % "7.4.5.v20110725" % "container"
     ),
     classDirectory in Compile <<= webappDir {
-      _ / "classes"
+      _ / "WEB-INF" / "classes"
     }
   )
 
