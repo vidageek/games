@@ -1,9 +1,9 @@
 import sbt._
 import Keys._
 import com.github.siasia._
-import PluginKeys._
 import WebPlugin._
 import WebappPlugin._
+import IO._
 
 object GamesVidageekBuild extends Build {
 
@@ -11,7 +11,7 @@ object GamesVidageekBuild extends Build {
     "VidaGeek games",
     file(".")
   ) settings(coreSettings ++ tasks ++ coreWebSettings: _*)
-  
+
   lazy val commonSettings: Seq[Setting[_]] = Seq(
     organization := "net.vidageek",
     name := "games",
@@ -19,11 +19,11 @@ object GamesVidageekBuild extends Build {
     scalaVersion := "2.9.2",
     scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-unchecked")
   )
-  
+
   lazy val coreWebSettings = webSettings ++ inConfig(Runtime)(webappSettings0) ++ Seq(
 	    libraryDependencies += "org.eclipse.jetty" % "jetty-webapp" % "7.4.5.v20110725" % "container"
   )
-	  
+
   lazy val coreSettings: Seq[Setting[_]] = commonSettings ++ Seq(
     libraryDependencies ++= Seq(
         "org.prevayler" % "prevayler-factory" % "2.5",
@@ -46,16 +46,22 @@ object GamesVidageekBuild extends Build {
 	    "org.specs2" % "specs2_2.9.1" % "1.8.1" % "test",
 	    "org.eclipse.jetty" % "jetty-webapp" % "7.4.5.v20110725" % "container"
     ),
-    classDirectory in Compile <<= baseDirectory {
-      _ / "src" / "main" / "webapp"/ "WEB-INF" / "classes"
+    classDirectory in Compile <<= webappDir {
+      _ / "classes"
     }
   )
-  
+
+  lazy val webappDir = baseDirectory {
+    _ / "src" / "main" / "webapp"
+  }
+
   lazy val tasks: Seq[Setting[_]] = Seq(gzipCss)
-  
+
   lazy val css = TaskKey[Unit]("css", "Resolve GZip to CSS")
 
-  lazy val gzipCss = css := {
-    println(file("."))
+  lazy val gzipCss = css :=  {
+    val cssDir = file(".") / "src" / "main" / "webapp" / "css"
+    val csss: Array[File] = listFiles(cssDir, FileFilter.globFilter("*.css"))
+    csss.foreach(cssFile => gzip(cssFile, cssDir / "games-packaged.css.gz"))
   }
 }
