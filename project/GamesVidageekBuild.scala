@@ -19,11 +19,16 @@ object GamesVidageekBuild extends Build {
     name := "games",
     version := "0.1-SNAPSHOT",
     scalaVersion := "2.9.2",
-    scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-unchecked")
+    scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-unchecked", "-g:vars")
   )
 
   lazy val coreWebSettings = webSettings ++ inConfig(Runtime)(webappSettings0) ++ Seq(
-	    libraryDependencies += "org.eclipse.jetty" % "jetty-webapp" % "7.4.5.v20110725" % "container"
+	    libraryDependencies ++= Seq(
+        "org.eclipse.jetty" % "jetty-webapp" % "7.4.5.v20110725" % "container",
+        "org.eclipse.jetty" % "jetty-servlets" % "7.4.5.v20110725" % "container",
+        "org.eclipse.jetty" % "jetty-jsp-2.1" % "7.4.5.v20110725" % "container",
+        "org.mortbay.jetty" % "jsp-2.1-glassfish" % "2.1.v20100127" % "container"
+      )
   )
 
   lazy val coreSettings: Seq[Setting[_]] = commonSettings ++ Seq(
@@ -45,8 +50,7 @@ object GamesVidageekBuild extends Build {
 	    "org.mockito" % "mockito-core" % "1.9.0" % "test",
 	    "junit" % "junit" % "4.10" % "test",
 	    "com.novocode" % "junit-interface" % "0.8" % "test",
-	    "org.specs2" % "specs2_2.9.1" % "1.8.1" % "test",
-	    "org.eclipse.jetty" % "jetty-webapp" % "7.4.5.v20110725" % "container"
+	    "org.specs2" % "specs2_2.9.1" % "1.8.1" % "test"
     ),
     classDirectory in Compile <<= webappDir {
       _ / "WEB-INF" / "classes"
