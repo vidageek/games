@@ -100,7 +100,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
 
     private def addBackReferencesExercises(descriptions : Descriptions) {
         val group = new TaskGroup("Back References", "match.back", descriptions)
-        group.add(new MassNegateAndMatch("back/odd", "Qual RegEx reconhece todas as sequ&ecirc;ncias " +
+        group.add(MassNegateAndMatch("back/odd", "Qual RegEx reconhece todas as sequ&ecirc;ncias " +
             "&iacute;mpares de <code>c</code>?"))
         group.add(new NegateAndMatch(from("[a]abc[b]"), from("[a]abc[/a]", "[b]def[/b]")))
         tasks.add(group)
@@ -117,7 +117,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
 
     private def addModesExercises(descriptions : Descriptions) {
         val group = new TaskGroup("Modos da RegEx", "match.modes", descriptions)
-        group.add(new MassNegateAndMatch("modes/regex", "Qual RegEx &eacute; capaz de reconhecer todas " +
+        group.add(MassNegateAndMatch("modes/regex", "Qual RegEx &eacute; capaz de reconhecer todas " +
             "as variações de escrita de RegEx (regex, Regex, ...)?"))
         group.add(new Match(from("\nabcd", "a\nbcd", "ab\ncd", "abc\nd", "abcd\n")))
         tasks.add(group)
@@ -125,12 +125,12 @@ class RegexGame(descriptions : Descriptions) extends Game {
 
     private def addRealWorldRegexes(descriptions : Descriptions) {
         val group = new TaskGroup("RegEx no Mundo Real", "match.real.world", descriptions)
-        group.add(new MassNegateAndMatch("real/log", "Qual RegEx &eacute; capaz de reconhecer as linhas geradas &agrave;s 17 " +
+        group.add(MassNegateAndMatch("real/log", "Qual RegEx &eacute; capaz de reconhecer as linhas geradas &agrave;s 17 " +
             "horas de um log cujas mensagems parecem com </code>17:06:46,632  mensagem qualquer</code>"))
-        group.add(new MassNegateAndMatch("real/blog.urls", "Qual RegEx &eacute; capaz de reconhecer urls de blog como /blog/2012/03/12/post?"))
-        group.add(new MassNegateAndMatch("real/email", "Qual RegEx &eacute; capaz de reconhecer emails como games@vidageek.net?"))
-        group.add(new MassNegateAndMatch("real/dates", "Qual RegEx &eacute; capaz de reconhecer datas como 1/1/1970?"))
-        group.add(new MassNegateAndMatch("real/ipV4", "Qual RegEx &eacute; capaz de reconhecer IPs?"))
+        group.add(MassNegateAndMatch("real/blog.urls", "Qual RegEx &eacute; capaz de reconhecer urls de blog como /blog/2012/03/12/post?"))
+        group.add(MassNegateAndMatch("real/email", "Qual RegEx &eacute; capaz de reconhecer emails como games@vidageek.net?"))
+        group.add(MassNegateAndMatch("real/dates", "Qual RegEx &eacute; capaz de reconhecer datas como 1/1/1970?"))
+        group.add(MassNegateAndMatch("real/ipV4", "Qual RegEx &eacute; capaz de reconhecer IPs?"))
         tasks.add(group)
     }
 
