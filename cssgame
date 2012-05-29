@@ -1,0 +1,70 @@
+seletor pela tag
+color
+font
+font-style
+background
+rgba
+text-align
+text-transform
+text-decoration
+margin
+width
+height
+padding
+border
+word wrap
+text-indent
+whitespace
+line-height
+box-shadow
+text-shadow
+opacity
+outline
+letter-space
+word-space
+gradient
+
+display (inline, inline-block, table, table-cell, block)
+
+visibility
+
+float
+
+overflow
+
+position (absolute, relative)
+top, left, right, bottom
+
+z-index
+
+list style
+
+vertical align
+
+
+seletor pela class
+seletor pela class (contendo todas class1.class2.class3)
+
+seletor pelo id
+
+seletor diferentes (div > ul)
+
+pseudo seletores (after, before, odd, even, nth-child, attribute, last, first, childs, valid)
+
+
+
+content
+
+transition
+rotate
+
+clip
+
+imagem base64
+borda dupla
+borda em texto
+animação com transition
+lightbox
+keyframe
+!important
+speach bubble
