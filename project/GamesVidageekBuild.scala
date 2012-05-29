@@ -63,11 +63,17 @@ object GamesVidageekBuild extends Build {
 
   lazy val webappDirFile = file(".") / "src" / "main" / "webapp"
 
-  lazy val tasks: Seq[Setting[_]] = Seq(gzipCss, gzipJs)
+  lazy val tasks: Seq[Setting[_]] = Seq(gzipCss, gzipJs, gzipAssets)
+
+  lazy val assets = TaskKey[Unit]("gzip-assets", "Resolve GZip to CSS")
 
   lazy val css = TaskKey[Unit]("gzip-css", "Resolve GZip to CSS")
 
   lazy val js = TaskKey[Unit]("gzip-js", "Resolve GZip to JS")
+
+  lazy val gzipAssets = assets <<= (css, js) map { (_, _) =>
+
+  }
 
   lazy val gzipCss = css :=  {
     gzipAsset(webappDirFile / "css", "css")
