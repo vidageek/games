@@ -8,6 +8,8 @@ bin
 classes
 games-packaged.js.gz
 games-packaged.css.gz
+games-packaged.js
+games-packaged.css
 .cache
 /nbproject/private/
 .idea

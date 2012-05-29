@@ -1,5 +1,3 @@
-import java.io.{FileOutputStream, FileInputStream}
-import java.util.zip.{GZIPOutputStream, GZIPInputStream}
 import sbt._
 import Keys._
 import com.github.siasia._
@@ -86,8 +84,9 @@ object GamesVidageekBuild extends Build {
 
   def gzipAsset(assetDir: File, assetType: String) = {
     val assets: Array[File] = listFiles(assetDir, FileFilter.globFilter("*." + assetType))
-    val gzipOut: GZIPOutputStream = new GZIPOutputStream(new FileOutputStream(assetDir / "games-packaged." + assetType + ".gz"))
-    assets foreach(asset => gzip(new FileInputStream(asset), gzipOut))
-    gzipOut close()
+
+    val finalAsset = assetDir / ("games-packaged." + assetType)
+
+    assets foreach(asset => append(finalAsset, readBytes(asset)))
   }
 }
