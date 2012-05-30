@@ -6,6 +6,7 @@ import net.vidageek.games.task.status.Faileds
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
+import scala.collection.JavaConverters._
 
 @RunWith(classOf[JUnitRunner])
 class FailedsSpec extends Specification {
@@ -15,13 +16,13 @@ class FailedsSpec extends Specification {
     faileds.addOnlyJudgedFailed(new Failed("[aPattern1] não dá match em [matchingTarget1]"))
     
     "show description to any faileds" in {
-      Joiner.on("<br />").join(faileds) must_== faileds.getReason()
+      Joiner.on("<br />").join(faileds asJava) must_== faileds.getReason()
     }
 
     "show description to all faileds" in {
       val testFaileds = new Faileds()
       testFaileds.addAll(faileds)
-      Joiner.on("<br />").join(testFaileds) must_== testFaileds.getReason()
+      Joiner.on("<br />").join(testFaileds asJava) must_== testFaileds.getReason()
     }
   }
 }
