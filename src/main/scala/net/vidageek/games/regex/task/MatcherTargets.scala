@@ -22,8 +22,5 @@ class MatcherTargets private(matcherTargets: List[String]) extends java.lang.Ite
 
 object MatcherTargets {
   def from(matchingTargets: String*): MatcherTargets = new MatcherTargets(matchingTargets.toList)
-  
-  // workaround to suit some java callers - can probably be removed when those are ported to scala
   def from(matchingTargets: Array[String]): MatcherTargets = new MatcherTargets(matchingTargets.toList)
-  def from(matchingTargets: String): MatcherTargets  = new MatcherTargets(Array(matchingTargets).toList)
 }
