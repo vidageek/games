@@ -1,14 +1,13 @@
 package net.vidageek.games.regex.task
 
 import com.google.common.base.Joiner
-import java.util.Collections
 import scala.collection.JavaConverters._
 
-class MatcherTargets private(matcherTargets: List[String]) extends java.lang.Iterable[String] {
+class MatcherTargets private(matcherTargets: List[String]) extends Iterable[String] {
   private val escape = new Escaper()
   private def scapeTarges() = escape.applyAll(matcherTargets asJava)
 
-  def iterator(): java.util.Iterator[String] = Collections.unmodifiableCollection(matcherTargets asJava).iterator()
+  def iterator(): Iterator[String] = matcherTargets.iterator
 
   def asHtml(): String = swapLastComma("<code>" + Joiner.on("</code>, <code>").join(scapeTarges()) + "</code>")
 

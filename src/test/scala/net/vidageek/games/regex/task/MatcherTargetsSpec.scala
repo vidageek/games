@@ -10,7 +10,7 @@ import scala.collection.JavaConverters._
 class MatcherTargetsSpec extends Specification {
   "matcher targets" should {
     "interate over matcher targets" in {
-      from("a", "b").asScala must contain("a", "b").only
+      from("a", "b") must contain("a", "b").only
     }
 
     "build good html for 1 target" in {

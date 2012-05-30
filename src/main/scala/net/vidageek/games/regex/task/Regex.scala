@@ -6,7 +6,6 @@ import net.vidageek.games.task.status.Failed
 import net.vidageek.games.task.status.Faileds
 import net.vidageek.games.task.status.Ok
 import net.vidageek.games.regex.task.MatcherTargets._
-import scala.collection.JavaConverters._
 
 class Regex(regex: String) {
   val pattern = Pattern.compile(regex)
@@ -22,7 +21,7 @@ class Regex(regex: String) {
 
   def matchAll(negateClassShouldMatch: MatcherTargets): Faileds = {
     val fails = new Faileds()
-    negateClassShouldMatch.asScala foreach {matchingTarget =>
+    negateClassShouldMatch foreach {matchingTarget =>
       fails.addOnlyJudgedFailed(doMatch(matchingTarget))
     }
     fails
@@ -37,7 +36,7 @@ class Regex(regex: String) {
 
   def matchNone(cannotMatch: MatcherTargets): Faileds = {
     val faileds = new Faileds()
-    cannotMatch.asScala foreach {matchingTarget => 
+    cannotMatch foreach {matchingTarget => 
       if (doMatch(matchingTarget).getOk()) {
         faileds.addOnlyJudgedFailed(new Failed("N&atilde;o deveria fazer match com " + from(matchingTarget).asHtml()))
       }
@@ -47,7 +46,7 @@ class Regex(regex: String) {
 
   def findNone(cannotMatch: MatcherTargets): Faileds = {
     val faileds = new Faileds()
-    cannotMatch.asScala foreach {matchingTarget =>
+    cannotMatch foreach {matchingTarget =>
       if (find(matchingTarget).getOk()) {
         faileds.addOnlyJudgedFailed(new Failed("N&atilde;o deveria reconhecer parcialmente " + from(matchingTarget).asHtml()))
       }
