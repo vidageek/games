@@ -4,7 +4,6 @@ import net.vidageek.games.regex.task.MatcherTargets.from
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
-import scala.collection.JavaConverters._
 
 @RunWith(classOf[JUnitRunner])
 class MatcherTargetsSpec extends Specification {
