@@ -11,7 +11,7 @@ import scala.collection.JavaConverters._
 class Regex(regex: String) {
   val pattern = Pattern.compile(regex)
 
-  def `match`(matchingTarget: String): JudgedTask = {
+  def doMatch(matchingTarget: String): JudgedTask = {
     if (pattern.matcher(matchingTarget).matches())
       new Ok()
     else
@@ -23,7 +23,7 @@ class Regex(regex: String) {
   def matchAll(negateClassShouldMatch: MatcherTargets): Faileds = {
     val fails = new Faileds()
     negateClassShouldMatch.asScala foreach {matchingTarget =>
-      fails.addOnlyJudgedFailed(`match`(matchingTarget))
+      fails.addOnlyJudgedFailed(doMatch(matchingTarget))
     }
     fails
   }
@@ -38,7 +38,7 @@ class Regex(regex: String) {
   def matchNone(cannotMatch: MatcherTargets): Faileds = {
     val faileds = new Faileds()
     cannotMatch.asScala foreach {matchingTarget => 
-      if (`match`(matchingTarget).getOk()) {
+      if (doMatch(matchingTarget).getOk()) {
         faileds.addOnlyJudgedFailed(new Failed("N&atilde;o deveria fazer match com " + from(matchingTarget).asHtml()))
       }
     }
