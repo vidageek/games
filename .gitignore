@@ -17,3 +17,4 @@ games-packaged.css
 /nbproject/
 /build.xml
 .history
+.scala_dependencies
