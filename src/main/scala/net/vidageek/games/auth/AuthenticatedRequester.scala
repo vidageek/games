@@ -15,6 +15,10 @@ class AuthenticatedRequester(accessToken: Token, oauthService: OAuthService) {
     request(Verb.GET, url)
   }
 
+  def post(url:String): Response = {
+    request(Verb.POST, url)
+  }
+
   private def request(verb: Verb, url: String) = {
     val get = new OAuthRequest(Verb.GET, url)
     oauthService.signRequest(accessToken, get)

@@ -6,8 +6,6 @@ import org.scribe.model.Token
 import org.scribe.model.Verifier
 import org.scribe.oauth.OAuthService
 
-import br.com.caelum.vraptor.ioc.ApplicationScoped
-import br.com.caelum.vraptor.ioc.Component
 import net.vidageek.games.vraptor.OAuthSecrets
 
 object OAuthServiceBuilder {

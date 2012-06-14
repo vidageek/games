@@ -5,19 +5,16 @@ import scala.util.parsing.json.JSON
 import org.scribe.model.OAuthRequest
 import org.scribe.model.Response
 import org.scribe.model.Token
-import org.scribe.model.Verb
 import org.scribe.model.Verifier
 
-import br.com.caelum.vraptor.ioc.ApplicationScoped
-import br.com.caelum.vraptor.ioc.Component
-import net.vidageek.games.auth.AuthProvider
-import net.vidageek.games.auth.OAuthServiceBuilder
 import net.vidageek.games.vraptor.OAuthSecrets
+import net.vidageek.games.auth.{AuthenticatedRequester, AuthProvider, OAuthServiceBuilder}
 
 class TwitterAuthProvider(secrets: OAuthSecrets) extends AuthProvider {
 
   val twitterService = OAuthServiceBuilder(this, secrets)
   var accessToken: Token = _
+  var requester:AuthenticatedRequester = null
 
   def applicationAuthorizationUrl = twitterService.autorizationUrl
 
@@ -25,19 +22,16 @@ class TwitterAuthProvider(secrets: OAuthSecrets) extends AuthProvider {
 
   override def accessToken(verifier: Verifier) = {
     accessToken = twitterService.accessToken(verifier)
+    requester = new AuthenticatedRequester(accessToken, twitterService.authService)
     accessToken
   }
 
   override def logout {
-    val request = new OAuthRequest(Verb.POST, "https://api.twitter.com/1/account/end_session.json")
-    sign(request)
-    request.send
+    requester.post("https://api.twitter.com/1/account/end_session.json")
   }
 
   override def userName: String = {
-    val credentials = new OAuthRequest(Verb.GET, "http://api.twitter.com/1/account/verify_credentials.json")
-    sign(credentials)
-    extractUserName(credentials.send)
+    extractUserName(requester.get("http://api.twitter.com/1/account/verify_credentials.json"))
   }
   private def sign(request: OAuthRequest) = twitterService.authService.signRequest(accessToken, request)
 
