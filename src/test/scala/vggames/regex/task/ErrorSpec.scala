@@ -9,7 +9,7 @@ import vggames.shared.task.status.Error
 class ErrorSpec extends Specification {
   "the error class" should {
     "stacktraceShouldBePrintedInAnHtmlListWithClassException" in {
-      new Error(new Throwable("Message :D")).getReason() must_== "Message :D"
+      new Error(new Throwable("Message :D")).getReason must_== "Message :D"
     }
   }
 }
