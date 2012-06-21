@@ -1,12 +1,12 @@
-package net.vidageek.games.auth
+package vggames.auth
 
-import org.scribe.model.{Token, Response, OAuthRequest}
+import org.scribe.model.OAuthRequest
+import org.scribe.model.Response
+import org.scribe.model.Token
 import org.scribe.oauth.OAuthService
 import org.specs2.mock.Mockito
 import org.specs2.mutable.Specification
 import org.specs2.specification.Scope
-
-import vggames.auth.AuthenticatedRequester
 
 class AuthenticatedRequesterSpec extends Specification {
   "Authentication Requester" should {
