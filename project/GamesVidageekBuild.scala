@@ -35,7 +35,6 @@ object GamesVidageekBuild extends Build {
 
   lazy val coreSettings: Seq[Setting[_]] = commonSettings ++ Seq(
     libraryDependencies ++= Seq(
-        "org.prevayler" % "prevayler-factory" % "2.5",
 	    "com.thoughtworks.xstream" % "xstream" % "1.4.2",
 	    "log4j" % "log4j" % "1.2.16",
 	    "org.apache.velocity" % "velocity" % "1.7",
