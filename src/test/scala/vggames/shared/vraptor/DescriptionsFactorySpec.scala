@@ -17,7 +17,7 @@ class DescriptionsFactorySpec extends Specification with Mockito {
       val data = mock[RequestData]
       data.game returns "regex"
 
-      val factory = new DescriptionsFactory(data)
+      val factory = new DescriptionsFactory(data, new DescriptionsCache)
       factory.getInstance must be(factory.getInstance)
       factory.getInstance must be(factory.getInstance)
       factory.getInstance must be(factory.getInstance)
