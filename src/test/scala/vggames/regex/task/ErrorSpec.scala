@@ -1,9 +1,9 @@
 package vggames.regex.task
 
-import vggames.task.status.Error
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
+import vggames.shared.task.status.Error
 
 @RunWith(classOf[JUnitRunner])
 class ErrorSpec extends Specification {

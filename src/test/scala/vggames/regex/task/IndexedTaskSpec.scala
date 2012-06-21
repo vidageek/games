@@ -1,11 +1,12 @@
 package vggames.regex.task
 
-import vggames.task._
-import vggames.task.status.Error
 import vggames.regex.task.MatcherTargets._
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
+import vggames.shared.task.IndexedTask
+import vggames.shared.task.Match
+import vggames.shared.task.status.Error
 
 @RunWith(classOf[JUnitRunner])
 class IndexedTaskSpec extends Specification {

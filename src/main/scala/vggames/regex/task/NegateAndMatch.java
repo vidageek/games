@@ -1,8 +1,8 @@
 package vggames.regex.task;
 
-import vggames.task.JudgedTask;
-import vggames.task.Task;
-import vggames.task.status.Faileds;
+import vggames.shared.task.JudgedTask;
+import vggames.shared.task.Task;
+import vggames.shared.task.status.Faileds;
 
 public class NegateAndMatch implements Task {
 

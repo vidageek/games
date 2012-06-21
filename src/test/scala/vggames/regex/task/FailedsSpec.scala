@@ -1,12 +1,13 @@
 package vggames.regex.task
 
+
 import com.google.common.base.Joiner
-import vggames.task.status.Failed
-import vggames.task.status.Faileds
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
 import scala.collection.JavaConverters._
+import vggames.shared.task.status.Faileds
+import vggames.shared.task.status.Failed
 
 @RunWith(classOf[JUnitRunner])
 class FailedsSpec extends Specification {

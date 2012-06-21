@@ -1,11 +1,11 @@
 package vggames.regex.task
 
-import vggames.task.Task
-import vggames.task.TaskWithDescription
+import vggames.shared.task.TaskWithDescription
+import vggames.shared.task.Task
 
-class GroupedTask(group: TaskGroup, task: Task) extends TaskWithDescription {
+class GroupedTask(group : TaskGroup, task : Task) extends TaskWithDescription {
 
-  def judge(challenge: String) = task.judge(challenge)
+  def judge(challenge : String) = task.judge(challenge)
 
   def getChallenge = task.getChallenge
 

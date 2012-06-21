@@ -2,15 +2,14 @@ package vggames.regex.task
 
 import scala.collection.JavaConverters.seqAsJavaListConverter
 import scala.collection.mutable.ListBuffer
-
-import vggames.task.IndexedTask
+import vggames.shared.task.IndexedTask
 
 class Tasks {
   val taskGroups = ListBuffer[TaskGroup]()
 
-  def add(group: TaskGroup): Unit = taskGroups += group
+  def add(group : TaskGroup) : Unit = taskGroups += group
 
-  def at(originalIndex: Int) = {
+  def at(originalIndex : Int) = {
     var index = originalIndex
     var groupCount = 0
     while ((groupCount < taskGroups.size) && (index - taskGroups(groupCount).size >= 0)) {
@@ -23,7 +22,7 @@ class Tasks {
 
   def size = taskGroups.foldLeft(0)(_ + _.size)
 
-  def all: java.util.List[IndexedTask] = unmodifiableIndexedTasks.asJava
+  def all : java.util.List[IndexedTask] = unmodifiableIndexedTasks.asJava
 
   private def unmodifiableIndexedTasks = {
     val list = ListBuffer[IndexedTask]()

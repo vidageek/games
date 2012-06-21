@@ -1,19 +1,18 @@
 package vggames.regex.task
 
-import vggames.task.Match
-import vggames.task.status.Failed
-import vggames.task.status.Ok
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
 
-import vggames.regex.task.MatcherTargets.from;
+import vggames.regex.task.MatcherTargets.from
+import vggames.shared.task.status.{Ok, Failed}
+import vggames.shared.task.Match
 
 @RunWith(classOf[JUnitRunner])
 class MatchSpec extends Specification {
   "a match" should {
     val taskWithMatchinTargestAAndB = new Match(from("A", "B"))
-    
+
     "matcher with all answers" in {
       taskWithMatchinTargestAAndB.judge("[AB]") must beAnInstanceOf[Ok]
     }

@@ -1,11 +1,10 @@
 package vggames.regex.task
 
-import vggames.task.status.Failed
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
-
-import vggames.regex.task.MatcherTargets.from;
+import vggames.regex.task.MatcherTargets.from
+import vggames.shared.task.status.Failed
 
 @RunWith(classOf[JUnitRunner])
 class NegateAndMatchSpec extends Specification {
