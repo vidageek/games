@@ -5,7 +5,7 @@ import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
 
 import vggames.regex.task.MatcherTargets.from
-import vggames.shared.task.status.{Ok, Failed}
+import vggames.shared.task.status.{ Ok, Failed }
 import vggames.shared.task.Match
 
 @RunWith(classOf[JUnitRunner])
@@ -34,13 +34,13 @@ class MatchSpec extends Specification {
     }
 
     "match all string" in {
-      new Match(from("a")).judge(".").getOk() must beTrue
-      new Match(from("aaabc")).judge(".+").getOk() must beTrue
+      new Match(from("a")).judge(".").getOk must beTrue
+      new Match(from("aaabc")).judge(".+").getOk must beTrue
     }
 
     "not match partial string" in {
-      new Match(from("aa")).judge(".").getOk() must beFalse
-      new Match(from("aaab\nc")).judge(".+").getOk() must beFalse
+      new Match(from("aa")).judge(".").getOk must beFalse
+      new Match(from("aaab\nc")).judge(".+").getOk must beFalse
     }
   }
 }
