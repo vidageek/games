@@ -1,13 +1,11 @@
-package vggames.regex
+package vggames.shared
 
-import java.util.concurrent.ConcurrentHashMap
 import br.com.caelum.vraptor.ioc.ApplicationScoped
 import br.com.caelum.vraptor.ioc.Component
+import java.util.concurrent.ConcurrentHashMap
 import java.util.Scanner
 
-@Component
-@ApplicationScoped
-class Descriptions {
+class Descriptions(game : String) {
 
   private val descriptions = new ConcurrentHashMap[String, String]
 
@@ -16,7 +14,7 @@ class Descriptions {
     if (description != null) {
       return description
     }
-    val stream = classOf[Descriptions].getResourceAsStream("/desc/" + groupName + ".html")
+    val stream = classOf[Descriptions].getResourceAsStream("/desc/" + game + "/" + groupName + ".html")
     if (stream == null) {
       description = "No description for group " + groupName
     } else {

@@ -4,7 +4,7 @@ import org.junit.runner.RunWith
 import org.specs2.mock.Mockito
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
-import vggames.regex.Descriptions
+import vggames.shared.Descriptions
 
 @RunWith(classOf[JUnitRunner])
 class GroupedTaskSpec extends Specification with Mockito {

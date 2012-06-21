@@ -1,9 +1,9 @@
 package vggames.regex.task
 
 import vggames.regex.task.MatcherTargets.from
-import vggames.regex.Descriptions
 import vggames.shared.Game
 import vggames.shared.task.Match
+import vggames.shared.Descriptions
 
 class RegexGame(descriptions : Descriptions) extends Game {
   private val tasks = new Tasks()
