@@ -15,7 +15,7 @@ class GroupedTaskSpec extends Specification with Mockito {
       descriptions.forGroup("a") returns "description"
 
       val task = new GroupedTask(new TaskGroup("b", "a", descriptions), new TestTask())
-      task.getDescription() must_== "description"
+      task.getDescription must_== "description"
     }
   }
 }
