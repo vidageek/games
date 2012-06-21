@@ -8,9 +8,10 @@ import java.util.Scanner
 @Component
 @ApplicationScoped
 class Descriptions {
-  val descriptions = new ConcurrentHashMap[String, String]
 
-  def forGroup(groupName: String): String = {
+  private val descriptions = new ConcurrentHashMap[String, String]
+
+  def forGroup(groupName : String) : String = {
     var description = descriptions.get(groupName)
     if (description != null) {
       return description
