@@ -1,12 +1,12 @@
 package vggames.shared.vraptor
 
 import br.com.caelum.vraptor.ioc.ComponentFactory
-import vggames.shared.Descriptions
 import java.util.concurrent.ConcurrentHashMap
 import br.com.caelum.vraptor.ioc.Component
 import br.com.caelum.vraptor.ioc.ApplicationScoped
 import br.com.caelum.vraptor.ioc.Component
 import br.com.caelum.vraptor.ioc.ApplicationScoped
+import vggames.shared.task.Descriptions
 
 @Component
 class DescriptionsFactory(data : RequestData, cache : DescriptionsCache) extends ComponentFactory[Descriptions] {

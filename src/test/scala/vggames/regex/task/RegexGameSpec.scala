@@ -4,7 +4,7 @@ import org.specs2.mock.Mockito
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
 import org.junit.runner.RunWith
-import vggames.shared.Descriptions
+import vggames.shared.task.Descriptions
 
 @RunWith(classOf[JUnitRunner])
 class RegexGameSpec extends Specification with Mockito {

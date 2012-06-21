@@ -1,7 +1,5 @@
-package vggames.shared
+package vggames.shared.task
 
-import br.com.caelum.vraptor.ioc.ApplicationScoped
-import br.com.caelum.vraptor.ioc.Component
 import java.util.concurrent.ConcurrentHashMap
 import java.util.Scanner
 

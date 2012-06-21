@@ -6,7 +6,7 @@ import scala.collection.JavaConversions.asScalaIterator
 import br.com.caelum.vraptor.ioc.ApplicationScoped
 import br.com.caelum.vraptor.ioc.Component
 import vggames.shared.task.Task
-import vggames.shared.Descriptions
+import vggames.shared.task.Descriptions
 
 class TaskGroup(name : String, groupName : String, descriptions : Descriptions) extends Iterable[Task] {
   val tasks = new ArrayList[Task]

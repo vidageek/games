@@ -3,7 +3,7 @@ package vggames.regex.task
 import vggames.regex.task.MatcherTargets.from
 import vggames.shared.Game
 import vggames.shared.task.Match
-import vggames.shared.Descriptions
+import vggames.shared.task.Descriptions
 
 class RegexGame(descriptions : Descriptions) extends Game {
   private val tasks = new Tasks()
