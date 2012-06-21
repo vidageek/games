@@ -3,23 +3,23 @@ package vggames.regex.task
 import com.google.common.base.Joiner
 import scala.collection.JavaConverters._
 
-class MatcherTargets private(matcherTargets: List[String]) extends Iterable[String] {
-  private val escape = new Escaper()
-  private def scapeTarges() = escape.applyAll(matcherTargets asJava)
+class MatcherTargets private (matcherTargets : List[String]) extends Iterable[String] {
+  private val escaper = new Escaper
+  private def scapeTarges() = escaper.applyAll(matcherTargets)
 
-  def iterator(): Iterator[String] = matcherTargets.iterator
+  def iterator() : Iterator[String] = matcherTargets.iterator
 
-  def asHtml(): String = swapLastComma("<code>" + Joiner.on("</code>, <code>").join(scapeTarges()) + "</code>")
+  def asHtml() : String = swapLastComma("<code>" + scapeTarges.mkString("</code>, <code>") + "</code>")
 
-  private def swapLastComma(string: String) = {
+  private def swapLastComma(string : String) = {
     if (string contains ",")
       string.reverse.replaceFirst(",", "e ").reverse
-    else 
+    else
       string
   }
 }
 
 object MatcherTargets {
-  def from(matchingTargets: String*): MatcherTargets = new MatcherTargets(matchingTargets.toList)
-  def from(matchingTargets: Array[String]): MatcherTargets = new MatcherTargets(matchingTargets.toList)
+  def from(matchingTargets : String*) : MatcherTargets = new MatcherTargets(matchingTargets.toList)
+  def from(matchingTargets : Array[String]) : MatcherTargets = new MatcherTargets(matchingTargets.toList)
 }
