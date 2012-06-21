@@ -40,7 +40,6 @@ object GamesVidageekBuild extends Build {
 	    "org.apache.velocity" % "velocity" % "1.7",
 	    "javax.servlet" % "jstl" % "1.2",
 	    "opensymphony" % "sitemesh" % "2.4.2",
-	    "com.google.guava" % "guava" % "r09",
 	    "org.scribe" % "scribe" % "1.3.0",
 	    "com.google.inject" % "guice" % "3.0-rc2",
 	    "com.google.inject.extensions" % "guice-multibindings" % "3.0-rc2",
