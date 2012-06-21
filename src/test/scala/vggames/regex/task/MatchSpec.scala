@@ -1,6 +1,7 @@
 package vggames.regex.task
 
 import org.junit.runner.RunWith
+
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
 
@@ -26,11 +27,11 @@ class MatchSpec extends Specification {
     }
 
     "show correct challenge" in {
-      taskWithMatchinTargestAAndB.getChallenge() must_== "Qual RegEx reconhece <code>A</code> e <code>B</code>?"
+      taskWithMatchinTargestAAndB.getChallenge must_== "Qual RegEx reconhece <code>A</code> e <code>B</code>?"
     }
 
     "show correct challenge for 3 matching targets" in {
-      new Match(from("a", "b", "c")).getChallenge() must_== "Qual RegEx reconhece <code>a</code>, <code>b</code> e <code>c</code>?"
+      new Match(from("a", "b", "c")).getChallenge must_== "Qual RegEx reconhece <code>a</code>, <code>b</code> e <code>c</code>?"
     }
 
     "match all string" in {

@@ -16,8 +16,5 @@ class NegateAndFind(cannotMatch : MatcherTargets, mustMatch : MatcherTargets) ex
     "Qual RegEx n&atilde;o reconhece parcialmente" + cannotMatch.asHtml + " mas reconhece " + mustMatch.asHtml + "?";
   }
 
-  override def toString : String = {
-    getChallenge();
-  }
-
+  override def toString : String = getChallenge
 }
