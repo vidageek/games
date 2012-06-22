@@ -6,7 +6,7 @@ import vggames.shared.task.Match
 import vggames.shared.task.Descriptions
 
 class RegexGame(descriptions : Descriptions) extends Game {
-  private val tasks = new Tasks()
+  override val tasks = new Tasks()
   addCharsExercises(descriptions)
   addCharClassesExercises(descriptions)
   addOpositeCharClassExercises(descriptions)
@@ -134,17 +134,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
     tasks.add(group)
   }
 
-  def task(index : Int) = tasks.at(index)
-
-  def getSize = tasks.size
-
   def getDescription = "Um jogo muito legal para aprender RegEx"
 
-  def getTasks = tasks.all
-
   def getName = "RegEx"
-
-  def hasNextTask(index : Int) = nextTask(index) < getSize
-
-  def nextTask(index : Int) = index + 1
 }

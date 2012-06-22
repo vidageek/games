@@ -5,9 +5,16 @@ import br.com.caelum.vraptor.ioc.ComponentFactory
 import vggames.regex.task.RegexGame
 import vggames.shared.Game
 import vggames.shared.task.Descriptions
+import vggames.scala.ScalaGame
 
 @Component
-class GameFactory(descriptions : Descriptions) extends ComponentFactory[Game] {
+class GameFactory(descriptions : Descriptions, data : RequestData) extends ComponentFactory[Game] {
 
-  def getInstance : Game = new RegexGame(descriptions)
+  def getInstance : Game = {
+    data.game match {
+      case "regex" => new RegexGame(descriptions)
+      case "scala" => new ScalaGame(descriptions)
+    }
+  }
+
 }
