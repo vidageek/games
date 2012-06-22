@@ -2,10 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<h1>Task Scala!!!!</h1>
-
 <div class="row">
-	<div class="span5">
+	<div class="span6">
 		<c:if test="${not empty judgedTask}">
 			<div class="reason alert ${judgedTask.ok ? 'alert-success' : 'alert-error'}">
 				${judgedTask.reason}
@@ -14,7 +12,7 @@
 		
 		<form method="POST" action="/play/${gameName}/task/${task.index}">
 			<label for="challenge"><strong>${task.challenge}</strong></label>
-			<input class="focus span4" name="challenge" id="challenge" value="${challenge}" autocomplete="off"/>
+			<textarea class="focus span6" name="challenge" id="challenge" value="${challenge}" autocomplete="off"></textarea>
 			<input class="btn-primary" type="submit" value="Check!" />
 		</form>
 		
@@ -23,7 +21,16 @@
 	    </div>
 	</div>
 	
-	<div class="span7">
+	<div class="span6">
 		${task.description}
 	</div>
+	
+	<script>
+      var editor = CodeMirror.fromTextArea(document.getElementById("challenge"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        theme: "eclipse",
+        mode: "text/x-scala"
+      });
+    </script>
 </div>
