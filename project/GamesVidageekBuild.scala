@@ -25,34 +25,34 @@ object GamesVidageekBuild extends Build {
   )
 
   lazy val coreWebSettings = webSettings ++ inConfig(Runtime)(webappSettings0) ++ Seq(
-	    libraryDependencies ++= Seq(
-        "org.eclipse.jetty" % "jetty-webapp" % "7.4.5.v20110725" % "container",
-        "org.eclipse.jetty" % "jetty-servlets" % "7.4.5.v20110725" % "container",
-        "org.eclipse.jetty" % "jetty-jsp-2.1" % "7.4.5.v20110725" % "container",
-        "org.mortbay.jetty" % "jsp-2.1-glassfish" % "2.1.v20100127" % "container"
-      )
+    libraryDependencies ++= Seq(
+      "org.eclipse.jetty" % "jetty-webapp" % "7.4.5.v20110725" % "container",
+      "org.eclipse.jetty" % "jetty-servlets" % "7.4.5.v20110725" % "container",
+      "org.eclipse.jetty" % "jetty-jsp-2.1" % "7.4.5.v20110725" % "container",
+      "org.mortbay.jetty" % "jsp-2.1-glassfish" % "2.1.v20100127" % "container"
+    )
   )
 
   lazy val coreSettings: Seq[Setting[_]] = commonSettings ++ Seq(
     libraryDependencies ++= Seq(
-	    "com.thoughtworks.xstream" % "xstream" % "1.4.2",
-	    "log4j" % "log4j" % "1.2.16",
-	    "org.apache.velocity" % "velocity" % "1.7",
-	    "javax.servlet" % "jstl" % "1.2",
-	    "opensymphony" % "sitemesh" % "2.4.2",
-	    "org.scribe" % "scribe" % "1.3.0",
-	    "com.google.inject" % "guice" % "3.0-rc2",
-	    "com.google.inject.extensions" % "guice-multibindings" % "3.0-rc2",
-	    "javax.servlet" % "servlet-api" % "2.5" % "provided",
-	    "br.com.caelum" % "vraptor" % "3.4.1" excludeAll (
-	      ExclusionRule(organization = "org.springframework")
-	    ),
-            "com.typesafe.akka" % "akka-actor" % "2.0.2",
-            "org.scala-lang" % "scala-compiler" % "2.9.2",
-	    "org.mockito" % "mockito-core" % "1.9.0" % "test",
-	    "junit" % "junit" % "4.10" % "test",
-	    "com.novocode" % "junit-interface" % "0.8" % "test",
-	    "org.specs2" %% "specs2" % "1.11" % "test"
+      "com.thoughtworks.xstream" % "xstream" % "1.4.2",
+      "log4j" % "log4j" % "1.2.16",
+      "org.apache.velocity" % "velocity" % "1.7",
+      "javax.servlet" % "jstl" % "1.2",
+      "opensymphony" % "sitemesh" % "2.4.2",
+      "org.scribe" % "scribe" % "1.3.0",
+      "com.google.inject" % "guice" % "3.0-rc2",
+      "com.google.inject.extensions" % "guice-multibindings" % "3.0-rc2",
+      "javax.servlet" % "servlet-api" % "2.5" % "provided",
+      "br.com.caelum" % "vraptor" % "3.4.1" excludeAll (
+        ExclusionRule(organization = "org.springframework")
+      ),
+      "com.typesafe.akka" % "akka-actor" % "2.0.2",
+      "com.twitter" % "util-eval" % "5.2.0",
+      "org.mockito" % "mockito-core" % "1.9.0" % "test",
+      "junit" % "junit" % "4.10" % "test",
+      "com.novocode" % "junit-interface" % "0.8" % "test",
+      "org.specs2" %% "specs2" % "1.11" % "test"
     ),
     classDirectory in Compile <<= webappDir {
       _ / "WEB-INF" / "classes"
