@@ -47,10 +47,12 @@ object GamesVidageekBuild extends Build {
 	    "br.com.caelum" % "vraptor" % "3.4.1" excludeAll (
 	      ExclusionRule(organization = "org.springframework")
 	    ),
+            "com.typesafe.akka" % "akka-actor" % "2.0.2",
+            "org.scala-lang" % "scala-compiler" % "2.9.2",
 	    "org.mockito" % "mockito-core" % "1.9.0" % "test",
 	    "junit" % "junit" % "4.10" % "test",
 	    "com.novocode" % "junit-interface" % "0.8" % "test",
-	    "org.specs2" % "specs2_2.9.1" % "1.8.1" % "test"
+	    "org.specs2" %% "specs2" % "1.11" % "test"
     ),
     classDirectory in Compile <<= webappDir {
       _ / "WEB-INF" / "classes"
