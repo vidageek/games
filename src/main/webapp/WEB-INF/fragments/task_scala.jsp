@@ -25,12 +25,4 @@
 		${task.description}
 	</div>
 	
-	<script>
-      var editor = CodeMirror.fromTextArea(document.getElementById("challenge"), {
-        lineNumbers: true,
-        matchBrackets: true,
-        theme: "eclipse",
-        mode: "text/x-scala"
-      });
-    </script>
 </div>

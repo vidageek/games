@@ -37,6 +37,11 @@
 		<taglib-uri>http://www.opensymphony.com/sitemesh/page</taglib-uri>
 		<taglib-location>/WEB-INF/sitemesh-page.tld</taglib-location>
 	</taglib>
+	
+	<taglib>
+		<taglib-uri>http://vidageek.net/games</taglib-uri>
+		<taglib-location>/WEB-INF/games.tld</taglib-location>
+	</taglib>
 
 	<filter>
 		<filter-name>vraptor</filter-name>

@@ -4,6 +4,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://vidageek.net/autoweb" prefix="aw"%>
+<%@ taglib uri="http://vidageek.net/games" prefix="g"%>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,12 +18,8 @@
 <!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<aw:js url="/js/games-packaged.js" />
-	<aw:js url="/js/codemirror.js" />
-	<aw:js url="/js/clike.js" />
-	<aw:js url="/js/bootstrap-modal.js" />
-
+	<g:specificCss />
+	
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
 		_gaq.push([ '_setAccount', 'UA-1508082-6' ]);
@@ -90,6 +88,12 @@
 			</div>
 		</div>
 	</section>
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<aw:js url="/js/games-packaged.js" />
+	<aw:js url="/js/bootstrap-modal.js" />
+
+	<g:specificJs />
 	
 </body>
 </html>

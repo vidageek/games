@@ -24,6 +24,10 @@ class RequestDataSpec extends Specification with Mockito {
     "identify which game is being played if it has something beyond /" in new RequestDataScope("/play/regex/asdrubal") {
       "regex" must_== new RequestData(request).game
     }
+
+    "returns empty string if can't find game" in new RequestDataScope("/") {
+      "" must_== new RequestData(request).game
+    }
   }
 
   class RequestDataScope(uri : String) extends Scope {

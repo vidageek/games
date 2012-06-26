@@ -8,6 +8,10 @@ import br.com.caelum.vraptor.ioc.RequestScoped
 class RequestData(request : HttpServletRequest) {
 
   private val gameRegex = "/play/([^/]+)/?.*".r
-  val gameRegex(game) = request.getRequestURI;
+
+  val game : String = {
+    val m = gameRegex.findFirstMatchIn(request.getRequestURI)
+    if (m.isDefined) m.get.group(1) else ""
+  }
 
 }

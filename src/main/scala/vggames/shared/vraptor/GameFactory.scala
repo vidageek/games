@@ -14,6 +14,8 @@ class GameFactory(descriptions : Descriptions, data : RequestData) extends Compo
     data.game match {
       case "regex" => new RegexGame(descriptions)
       case "scala" => new ScalaGame(descriptions)
+      case other => throw new RuntimeException("Não foi possível criar o jogo [" + other + "]. Talvez " +
+        "seja necessário registrá-lo na GameFactory")
     }
   }
 

@@ -44,6 +44,7 @@ object GamesVidageekBuild extends Build {
       "com.google.inject" % "guice" % "3.0-rc2",
       "com.google.inject.extensions" % "guice-multibindings" % "3.0-rc2",
       "javax.servlet" % "servlet-api" % "2.5" % "provided",
+      "javax.servlet.jsp" % "jsp-api" % "2.1" % "provided",
       "br.com.caelum" % "vraptor" % "3.4.1" excludeAll (
         ExclusionRule(organization = "org.springframework")
       ),
