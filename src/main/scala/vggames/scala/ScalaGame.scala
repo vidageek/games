@@ -1,9 +1,9 @@
 package vggames.scala
 
-import vggames.regex.task.{Tasks, TaskGroup}
-import vggames.scala.tasks.Sum
+import vggames.regex.task.{ Tasks, TaskGroup }
 import vggames.shared.task.Descriptions
 import vggames.shared.Game
+import vggames.scala.tasks.SimpleEval
 
 class ScalaGame(descriptions : Descriptions) extends Game {
 
@@ -12,9 +12,11 @@ class ScalaGame(descriptions : Descriptions) extends Game {
   addBasicTasks
 
   def addBasicTasks = {
-    val group = new TaskGroup("Exemplo", "example", descriptions)
-    group.add(new Sum)
-
+    val group = new TaskGroup("Operações Básicas", "basic", descriptions)
+    group.add(SimpleEval("val a = 1;\nval b = 2;", 3, "Escreva código que soma duas variáveis a e b"))
+    group.add(SimpleEval("val a = 1;\nval b = 2;", -1, "Escreva código que subtrai duas variáveis a e b"))
+    group.add(SimpleEval("val a = 1;\nval b = 2;", 2, "Escreva código que multiplica duas variáveis a e b"))
+    group.add(SimpleEval("val a = 1;\nval b = 2;", 0, "Escreva código que divide duas variáveis a e b"))
     tasks.add(group)
   }
 
