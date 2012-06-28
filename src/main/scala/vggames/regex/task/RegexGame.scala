@@ -7,18 +7,18 @@ import vggames.shared.task.Descriptions
 
 class RegexGame(descriptions : Descriptions) extends Game {
   override val tasks = new Tasks()
-  addCharsExercises(descriptions)
-  addCharClassesExercises(descriptions)
-  addOpositeCharClassExercises(descriptions)
-  addPipeOperator(descriptions)
-  addOperatorsExercises(descriptions)
-  addCaptureGroupExercises(descriptions)
-  addBackReferencesExercises(descriptions)
-  addAnchoringExercises(descriptions)
-  addModesExercises(descriptions)
-  addRealWorldRegexes(descriptions)
+  addCharsExercises
+  addCharClassesExercises
+  addOpositeCharClassExercises
+  addPipeOperator
+  addOperatorsExercises
+  addCaptureGroupExercises
+  addBackReferencesExercises
+  addAnchoringExercises
+  addModesExercises
+  addRealWorldRegexes
 
-  private def addCharsExercises(descriptions : Descriptions) {
+  private def addCharsExercises = {
     val group = new TaskGroup("Caracteres Simples", "match.chars", descriptions)
     group.add(new Match(from("a")))
     group.add(new Match(from("abc")))
@@ -34,7 +34,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
     tasks.add(group)
   }
 
-  private def addCharClassesExercises(descriptions : Descriptions) {
+  private def addCharClassesExercises = {
     val group = new TaskGroup("Classes de Caracteres", "match.chars.classes", descriptions)
     group.add(new Match(from("a", "b")))
     group.add(new Match(from("ad", "bd")))
@@ -54,7 +54,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
     tasks.add(group)
   }
 
-  private def addOpositeCharClassExercises(descriptions : Descriptions) {
+  private def addOpositeCharClassExercises = {
     val group = new TaskGroup("Classes de Caracteres Opostas", "match.negate", descriptions)
     group.add(new NegateAndMatch(from("a", "b"), from("c", "d")))
     group.add(new NegateAndMatch(from("ad", "bd", "cd"), from("dd", "ed")))
@@ -69,14 +69,14 @@ class RegexGame(descriptions : Descriptions) extends Game {
     tasks.add(group)
   }
 
-  private def addPipeOperator(descriptions : Descriptions) {
+  private def addPipeOperator = {
     val group = new TaskGroup("M&uacute;ltiplos Padr&otilde;es", "match.pipe", descriptions)
     group.add(new NegateAndMatch(from("ab", "ba"), from("a", "b")))
     group.add(new NegateAndMatch(from("ba", "baa"), from("aa", "bb", "ab")))
     tasks.add(group)
   }
 
-  private def addOperatorsExercises(descriptions : Descriptions) {
+  private def addOperatorsExercises = {
     val group = new TaskGroup("Operadores de Repeti&ccedil;&atilde;o", "match.operators", descriptions)
     group.add(new NegateAndMatch(from("b"), from("", "a")))
     group.add(new NegateAndMatch(from("aa"), from("", "a", "b")))
@@ -89,7 +89,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
     tasks.add(group)
   }
 
-  private def addCaptureGroupExercises(descriptions : Descriptions) {
+  private def addCaptureGroupExercises = {
     val group = new TaskGroup("Grupos de Captura", "match.capture", descriptions)
     group.add(new CaptureGroup("Nome: asdrubal", "asdrubal"))
     group.add(new CaptureGroup("Nome: asdrubal Sobrenome: solito", "asdrubal", "solito"))
@@ -98,7 +98,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
     tasks.add(group)
   }
 
-  private def addBackReferencesExercises(descriptions : Descriptions) {
+  private def addBackReferencesExercises = {
     val group = new TaskGroup("Back References", "match.back", descriptions)
     group.add(MassNegateAndMatch("back/odd", "Qual RegEx reconhece todas as sequ&ecirc;ncias " +
       "&iacute;mpares de <code>c</code>?"))
@@ -106,7 +106,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
     tasks.add(group)
   }
 
-  private def addAnchoringExercises(descriptions : Descriptions) {
+  private def addAnchoringExercises = {
     val group = new TaskGroup("Ancoras", "match.anchor", descriptions)
     group.add(new NegateAndFind(from("/blog", "/blog/1abc"), from("/blog/1", "/blog/2")))
     group.add(new NegateAndFind(from("/blog/2"), from("/blog")))
@@ -115,7 +115,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
     tasks.add(group)
   }
 
-  private def addModesExercises(descriptions : Descriptions) {
+  private def addModesExercises = {
     val group = new TaskGroup("Modos da RegEx", "match.modes", descriptions)
     group.add(MassNegateAndMatch("modes/regex", "Qual RegEx &eacute; capaz de reconhecer todas " +
       "as variações de escrita de RegEx (regex, Regex, ...)?"))
@@ -123,7 +123,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
     tasks.add(group)
   }
 
-  private def addRealWorldRegexes(descriptions : Descriptions) {
+  private def addRealWorldRegexes = {
     val group = new TaskGroup("RegEx no Mundo Real", "match.real.world", descriptions)
     group.add(MassNegateAndMatch("real/log", "Qual RegEx &eacute; capaz de reconhecer as linhas geradas &agrave;s 17 " +
       "horas de um log cujas mensagems parecem com </code>17:06:46,632  mensagem qualquer</code>"))
