@@ -1,10 +1,12 @@
 package vggames.scala
 
-import vggames.regex.task.{ Tasks, TaskGroup }
+import br.com.caelum.vraptor.ioc.Component
+import vggames.regex.task.{Tasks, TaskGroup}
+import vggames.scala.tasks.SimpleEval
 import vggames.shared.task.Descriptions
 import vggames.shared.Game
-import vggames.scala.tasks.SimpleEval
 
+@Component
 class ScalaGame(descriptions : Descriptions) extends Game {
 
   override val tasks = new Tasks
