@@ -4,7 +4,7 @@ import akka.actor.{Actor, ActorLogging}
 
 class CodeProcessorActor extends Actor with ActorLogging {
   def receive = {
-    case Compile(code) => sender ! CompilationResult(new CodeProcessor().processCode(code))
+    case Compile(code) => sender ! CompilationResult(new ScalaProcessor().processCode(code))
     case msg => log.warning("received some unknown message: {}", msg)
   }
 }

@@ -8,7 +8,7 @@ import org.specs2.runner.JUnitRunner
 class CodeProcessorSpec extends Specification {
   "code processor" should {
     "return true for a simple true boolean expression" in {
-      new CodeProcessor().processCode("true") must_== true
+      new ScalaProcessor().processCode[Boolean]("true") must_== true
     }
   }
 }
