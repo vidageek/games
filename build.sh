@@ -1,8 +1,6 @@
 #! /bin/bash
 
-export JAVA_OPTS='-Xmx512m -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=372m -XX:+UseCompressedOops'
-
-SBT='java -jar /opt/sbt/sbt-launch-0.11.3-2.jar'
+SBT='java -jar /opt/sbt/sbt-launch-0.11.3-2.jar -Xmx512m -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=372m -XX:+UseCompressedOops'
 
 BUILD=0
 
