@@ -3,7 +3,7 @@
 SBT_JAR=/opt/local/share/sbt/sbt-launch.jar
 SBT_JAR=/opt/sbt/sbt-launch-0.11.3-2.jar
 
-SBT="java -XX:MaxPermSize=372m -XX:+UseCompressedOops -jar $SBT_JAR"
+SBT="java -jar $SBT_JAR"
 
 BUILD=0
 
