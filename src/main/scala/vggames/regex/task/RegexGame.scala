@@ -1,8 +1,7 @@
 package vggames.regex.task
 
-import br.com.caelum.vraptor.ioc.Component
 import vggames.regex.task.MatcherTargets.from
-import vggames.shared.task.{ Match, Descriptions }
+import vggames.shared.task.{Match, Descriptions}
 import vggames.shared.Game
 
 class RegexGame(descriptions : Descriptions) extends Game {

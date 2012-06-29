@@ -2,11 +2,9 @@ package vggames.shared.auth
 
 import org.scribe.builder.api.TwitterApi
 import org.scribe.builder.ServiceBuilder
-import org.scribe.model.Token
-import org.scribe.model.Verifier
+import org.scribe.model.{Verifier, Token}
 import org.scribe.oauth.OAuthService
-import br.com.caelum.vraptor.ioc.ApplicationScoped
-import br.com.caelum.vraptor.ioc.Component
+
 import vggames.shared.vraptor.OAuthSecrets
 
 object OAuthServiceBuilder {

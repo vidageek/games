@@ -1,7 +1,6 @@
 package vggames.regex.task;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.Pattern
 
 class GroupFinder(position : Int, pattern : Pattern) {
 

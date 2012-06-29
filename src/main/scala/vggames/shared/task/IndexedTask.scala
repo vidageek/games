@@ -1,6 +1,6 @@
 package vggames.shared.task;
 
-import vggames.shared.task.status.Error;
+import vggames.shared.task.status.Error
 
 class IndexedTask(delegate : TaskWithDescription, index : Int) extends TaskWithDescription {
 

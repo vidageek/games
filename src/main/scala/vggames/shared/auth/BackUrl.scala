@@ -1,6 +1,6 @@
 package vggames.shared.auth
-import br.com.caelum.vraptor.ioc.SessionScoped
-import br.com.caelum.vraptor.ioc.Component
+
+import br.com.caelum.vraptor.ioc.{SessionScoped, Component}
 
 @Component
 @SessionScoped

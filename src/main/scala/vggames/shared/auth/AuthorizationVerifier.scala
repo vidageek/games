@@ -1,4 +1,5 @@
 package vggames.shared.auth
+
 import org.scribe.model.Verifier
 
 object AuthorizationVerifier {

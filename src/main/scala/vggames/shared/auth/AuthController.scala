@@ -1,9 +1,7 @@
 package vggames.shared.auth
 
-import br.com.caelum.vraptor.Get
-import br.com.caelum.vraptor.Resource
-import br.com.caelum.vraptor.Result
-import javax.servlet.http.HttpServletRequest
+import br.com.caelum.vraptor.ioc.{SessionScoped, Component}
+import br.com.caelum.vraptor.{Result, Resource, Get}
 import vggames.shared.player.Player
 import vggames.shared.UserHost
 

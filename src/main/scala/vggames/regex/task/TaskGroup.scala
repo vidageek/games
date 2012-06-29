@@ -1,12 +1,10 @@
 package vggames.regex.task
 
-import java.util.ArrayList
-import java.util.Collections
+import java.util.{Collections, ArrayList}
+
 import scala.collection.JavaConversions.asScalaIterator
-import br.com.caelum.vraptor.ioc.ApplicationScoped
-import br.com.caelum.vraptor.ioc.Component
-import vggames.shared.task.Task
-import vggames.shared.task.Descriptions
+
+import vggames.shared.task.{Task, Descriptions}
 
 class TaskGroup(name : String, groupName : String, descriptions : Descriptions) extends Iterable[Task] {
   val tasks = new ArrayList[Task]

@@ -1,11 +1,8 @@
 package vggames.shared.vraptor
 
-import br.com.caelum.vraptor.ioc.ApplicationScoped
-import br.com.caelum.vraptor.ioc.Component
-import br.com.caelum.vraptor.ioc.ComponentFactory
-import vggames.shared.auth.Providers
-import vggames.shared.auth.AuthProvider
+import br.com.caelum.vraptor.ioc.{ComponentFactory, Component, ApplicationScoped}
 import vggames.shared.auth.twitter.TwitterAuthProvider
+import vggames.shared.auth.{Providers, AuthProvider}
 
 @Component
 @ApplicationScoped

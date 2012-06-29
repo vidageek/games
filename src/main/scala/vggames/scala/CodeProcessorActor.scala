@@ -1,6 +1,7 @@
 package vggames.scala
 
-import akka.actor.{Actor, ActorLogging}
+import akka.actor.actorRef2Scala
+import akka.actor.{ActorLogging, Actor}
 
 class CodeProcessorActor extends Actor with ActorLogging {
   def receive = {

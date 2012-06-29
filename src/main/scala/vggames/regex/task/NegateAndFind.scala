@@ -1,8 +1,6 @@
 package vggames.regex.task;
 
-import vggames.shared.task.JudgedTask;
-import vggames.shared.task.Task;
-import vggames.shared.task.status.Faileds;
+import vggames.shared.task.{Task, JudgedTask}
 
 class NegateAndFind(cannotMatch : MatcherTargets, mustMatch : MatcherTargets) extends Task {
 

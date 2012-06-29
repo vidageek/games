@@ -1,7 +1,9 @@
 package vggames.shared.task.status
 
+import scala.collection.JavaConverters.seqAsJavaListConverter
+
 import com.google.common.base.Joiner
-import scala.collection.JavaConverters._
+
 import vggames.shared.task.JudgedTask
 
 class Faileds extends JudgedTask with Iterable[Failed] {

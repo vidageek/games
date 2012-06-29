@@ -1,8 +1,7 @@
 package vggames.regex.task;
 
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 import java.util.concurrent.ConcurrentHashMap
+import java.util.regex.Pattern
 import java.util.Map
 
 class Escaper {

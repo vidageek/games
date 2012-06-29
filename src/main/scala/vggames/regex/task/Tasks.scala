@@ -2,6 +2,7 @@ package vggames.regex.task
 
 import scala.collection.JavaConverters.seqAsJavaListConverter
 import scala.collection.mutable.ListBuffer
+
 import vggames.shared.task.IndexedTask
 
 class Tasks {

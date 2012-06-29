@@ -1,11 +1,9 @@
 package vggames.shared.vraptor
 
-import java.io.File
-import java.io.FileInputStream
+import java.io.{FileInputStream, File}
 import java.util.Properties
 
-import br.com.caelum.vraptor.ioc.ApplicationScoped
-import br.com.caelum.vraptor.ioc.Component
+import br.com.caelum.vraptor.ioc.{Component, ApplicationScoped}
 
 @Component
 @ApplicationScoped

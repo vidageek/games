@@ -1,15 +1,15 @@
 package vggames.shared.tags
 
-import net.vidageek.autoweb.taglib.AutowebSimpleTagSupport
-import net.vidageek.autoweb.taglib.core.CssTagCore
-import net.vidageek.autoweb.taglib.support.TagEnvironment
-import scala.io.Source
-import net.vidageek.autoweb.taglib.core.AutowebSimpleTag
-import net.vidageek.autoweb.taglib.core.JsTagCore
 import java.io.ByteArrayInputStream
-import vggames.shared.vraptor.RequestData
-import javax.servlet.jsp.PageContext
+
+import scala.io.Source
+
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.jsp.PageContext
+import net.vidageek.autoweb.taglib.core.{JsTagCore, CssTagCore, AutowebSimpleTag}
+import net.vidageek.autoweb.taglib.support.TagEnvironment
+import net.vidageek.autoweb.taglib.AutowebSimpleTagSupport
+import vggames.shared.vraptor.RequestData
 
 class SpecificCss extends AutowebSimpleTagSupport {
 

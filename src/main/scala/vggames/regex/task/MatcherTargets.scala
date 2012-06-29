@@ -1,8 +1,5 @@
 package vggames.regex.task
 
-import com.google.common.base.Joiner
-import scala.collection.JavaConverters._
-
 class MatcherTargets private (matcherTargets : List[String]) extends Iterable[String] {
   private val escaper = new Escaper
   private def scapeTarges() = escaper.applyAll(matcherTargets)

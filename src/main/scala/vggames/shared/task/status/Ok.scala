@@ -1,6 +1,6 @@
 package vggames.shared.task.status;
 
-import vggames.shared.task.JudgedTask;
+import vggames.shared.task.JudgedTask
 
 case class Ok() extends JudgedTask {
 

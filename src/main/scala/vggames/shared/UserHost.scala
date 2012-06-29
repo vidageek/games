@@ -1,7 +1,6 @@
 package vggames.shared
 
-import br.com.caelum.vraptor.Get
-import br.com.caelum.vraptor.Resource
+import br.com.caelum.vraptor.{Resource, Get}
 
 @Resource
 class UserHost {

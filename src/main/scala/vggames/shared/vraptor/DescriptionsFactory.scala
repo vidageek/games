@@ -1,11 +1,8 @@
 package vggames.shared.vraptor
 
-import br.com.caelum.vraptor.ioc.ComponentFactory
 import java.util.concurrent.ConcurrentHashMap
-import br.com.caelum.vraptor.ioc.Component
-import br.com.caelum.vraptor.ioc.ApplicationScoped
-import br.com.caelum.vraptor.ioc.Component
-import br.com.caelum.vraptor.ioc.ApplicationScoped
+
+import br.com.caelum.vraptor.ioc.{ComponentFactory, Component, ApplicationScoped}
 import vggames.shared.task.Descriptions
 
 @Component

@@ -1,9 +1,10 @@
 package vggames.regex
 
-import vggames.regex.task.Regex
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
+
+import vggames.regex.task.Regex
 
 @RunWith(classOf[JUnitRunner])
 class RegexTest extends Specification {

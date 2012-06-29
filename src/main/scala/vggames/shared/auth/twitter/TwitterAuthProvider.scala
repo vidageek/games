@@ -1,12 +1,11 @@
 package vggames.shared.auth.twitter
 
 import scala.util.parsing.json.JSON
-import org.scribe.model.{ Verifier, Token, Response, OAuthRequest }
-import br.com.caelum.vraptor.ioc.{ Component, ApplicationScoped }
-import vggames.shared.auth.AuthenticatedRequester
-import vggames.shared.auth.OAuthServiceBuilder
+
+import org.scribe.model.{Verifier, Token, Response, OAuthRequest}
+
+import vggames.shared.auth.{OAuthServiceBuilder, AuthenticatedRequester, AuthProvider}
 import vggames.shared.vraptor.OAuthSecrets
-import vggames.shared.auth.AuthProvider
 
 class TwitterAuthProvider(secrets : OAuthSecrets) extends AuthProvider {
 

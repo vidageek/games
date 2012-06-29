@@ -1,7 +1,6 @@
 package vggames.shared.task;
 
-import vggames.regex.task.MatcherTargets;
-import vggames.regex.task.Regex;
+import vggames.regex.task.{Regex, MatcherTargets}
 
 class Match(matchingTargets : MatcherTargets) extends Task {
 

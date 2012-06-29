@@ -1,9 +1,7 @@
 package vggames.shared.player
 
-import br.com.caelum.vraptor.ioc.Component
-import br.com.caelum.vraptor.ioc.SessionScoped
-import vggames.shared.auth.AuthProvider
-import vggames.shared.auth.AuthorizationVerifier
+import br.com.caelum.vraptor.ioc.{SessionScoped, Component}
+import vggames.shared.auth.{AuthorizationVerifier, AuthProvider}
 
 @Component
 @SessionScoped

@@ -1,14 +1,12 @@
 package vggames.regex.task;
 
-import scala.collection.mutable._
-import vggames.regex.task.MatcherTargets._
-import java.util.List
-import java.util.regex.Matcher
-import java.util.regex.Pattern
-import com.google.common.collect.Lists
-import vggames.shared.task.JudgedTask
-import vggames.shared.task.Task
+import java.util.regex.{Pattern, Matcher}
+
+import scala.collection.mutable.ListBuffer
+
+import vggames.regex.task.MatcherTargets.from
 import vggames.shared.task.status.Ok
+import vggames.shared.task.{Task, JudgedTask}
 
 class CaptureGroup(val matchingTarget : String, val captureGroupTargets : String*) extends Task {
 

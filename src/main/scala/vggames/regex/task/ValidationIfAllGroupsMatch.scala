@@ -1,10 +1,10 @@
 package vggames.regex.task;
 
-import vggames.regex.task.MatcherTargets._
 import java.util.regex.Matcher
-import vggames.shared.task.status.Ok
+
+import vggames.regex.task.MatcherTargets.from
+import vggames.shared.task.status.{Ok, Failed}
 import vggames.shared.task.JudgedTask
-import vggames.shared.task.status.Failed
 
 class ValidationIfAllGroupsMatch(captureGroupTargets : String*) extends GroupValidation {
 

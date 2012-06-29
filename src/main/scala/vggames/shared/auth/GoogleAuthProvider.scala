@@ -1,7 +1,7 @@
 package vggames.shared.auth
 
-import org.scribe.model.Verifier
-import org.scribe.model.Token
+import org.scribe.model.{Verifier, Token}
+
 import vggames.shared.vraptor.OAuthSecrets
 
 class GoogleAuthProvider(secrets : OAuthSecrets) extends AuthProvider {

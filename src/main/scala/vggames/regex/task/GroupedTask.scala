@@ -1,7 +1,6 @@
 package vggames.regex.task
 
-import vggames.shared.task.TaskWithDescription
-import vggames.shared.task.Task
+import vggames.shared.task.{TaskWithDescription, Task}
 
 class GroupedTask(group : TaskGroup, task : Task) extends TaskWithDescription {
 

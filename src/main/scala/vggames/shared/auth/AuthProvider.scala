@@ -1,7 +1,6 @@
 package vggames.shared.auth
 
-import org.scribe.model.Token
-import org.scribe.model.Verifier
+import org.scribe.model.{Verifier, Token}
 
 trait AuthProvider {
   def applicationAuthorizationUrl: String

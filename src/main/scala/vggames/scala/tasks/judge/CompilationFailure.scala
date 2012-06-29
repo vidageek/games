@@ -1,6 +1,5 @@
 package vggames.scala.tasks.judge
 
-import vggames.shared.task.status.Failed
 import vggames.shared.task.JudgedTask
 
 case class CompilationFailure(failure : Throwable) extends JudgedTask {
