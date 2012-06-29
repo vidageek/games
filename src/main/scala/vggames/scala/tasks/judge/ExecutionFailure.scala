@@ -6,6 +6,8 @@ case class ExecutionFailure(failure : Throwable) extends JudgedTask {
 
   def getOk = false
 
-  def getReason = "Exception foi lançada durante execução:  \n" + failure.getMessage
+  def getReason = "Exception foi lan&ccedil;ada durante execu&ccedil;&atilde;o:  \n" + failure.getMessage
+
+  override def toString = getReason
 
 }

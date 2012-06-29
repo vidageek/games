@@ -17,7 +17,7 @@ case class SimpleEval[T](codeToPrepend : String, expectedValue : T, challenge : 
       if (expectedValue == resposta)
         Ok()
       else
-        Failed("Não somou dois números")
+        Failed("N&atilde;o somou dois n&uacute;meros")
     } catch {
       case e : CompilerException => CompilationFailure(e)
       case e => ExecutionFailure(e)

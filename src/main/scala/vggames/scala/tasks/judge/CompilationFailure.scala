@@ -7,6 +7,8 @@ case class CompilationFailure(failure : Throwable) extends JudgedTask {
 
   def getOk = false
 
-  def getReason = "<pre>Falha de compilação: \n" + failure.getMessage + "</pre>"
+  def getReason = "<pre>Falha de compila&ccedil;&atilde;o: \n" + failure.getMessage + "</pre>"
+
+  override def toString = getReason
 
 }

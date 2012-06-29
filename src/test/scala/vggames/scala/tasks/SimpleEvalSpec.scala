@@ -15,17 +15,17 @@ class SimpleEvalSpec extends Specification {
 
     "returns a failure if the code does not sum two values" in {
       val fail = SimpleEval("val a = 1;\nval b = 2;", 3, "").judge("a / b")
-      fail.getReason must_== "Não somou dois números"
+      fail.getReason must_== "N&atilde;o somou dois n&uacute;meros"
     }
 
     "returns a compilation failure if the code does not compile" in {
       val fail = SimpleEval("val a = 1;\nval b = 2;", 3, "").judge("a +")
-      fail.getReason must startWith("Falha de compilação: ")
+      fail.getReason must contain("Falha de compila&ccedil;&atilde;o: ")
     }
 
     "returns a exception failure if the code throws an exception" in {
       val fail = SimpleEval("val a = 1;\nval b = 2;", 3, "").judge("1 / 0")
-      fail.getReason must startWith("Exception foi lançada durante execução: ")
+      fail.getReason must startWith("Exception foi lan&ccedil;ada durante execu&ccedil;&atilde;o: ")
     }
   }
 
