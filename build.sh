@@ -7,6 +7,9 @@ SBT="java -Xmx512m -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=372m -XX:+UseCo
 
 BUILD=0
 
+$SBT compile
+let BUILD=$BUILD+$?
+
 $SBT test
 let BUILD=$BUILD+$?
 
