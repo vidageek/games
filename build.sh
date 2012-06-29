@@ -1,6 +1,9 @@
 #! /bin/bash
 
-SBT="java -Xmx512m -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=372m -XX:+UseCompressedOops -jar /opt/sbt/sbt-launch-0.11.3-2.jar"
+SBT_JAR=/opt/local/share/sbt/sbt-launch.jar
+SBT_JAR=/opt/sbt/sbt-launch-0.11.3-2.jar"
+
+SBT="java -Xmx512m -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=372m -XX:+UseCompressedOops -jar $SBT_JAR"
 
 BUILD=0
 

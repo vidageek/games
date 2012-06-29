@@ -8,12 +8,12 @@ import vggames.shared.task.Descriptions
 import vggames.scala.ScalaGame
 
 @Component
-class GameFactory(descriptions : Descriptions, data : RequestData, regexGame : RegexGame, scalaGame : ScalaGame) extends ComponentFactory[Game] {
+class GameFactory(descriptions : Descriptions, data : RequestData) extends ComponentFactory[Game] {
 
   def getInstance : Game = {
     data.game match {
-      case "regex" => regexGame
-      case "scala" => scalaGame
+      case "regex" => new RegexGame(descriptions)
+      case "scala" => new ScalaGame(descriptions)
       case other => throw new RuntimeException("Não foi possível criar o jogo [" + other + "]. Talvez " +
         "seja necessário registrá-lo na GameFactory")
     }
