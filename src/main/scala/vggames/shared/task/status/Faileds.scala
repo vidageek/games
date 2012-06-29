@@ -1,9 +1,5 @@
 package vggames.shared.task.status
 
-import scala.collection.JavaConverters.seqAsJavaListConverter
-
-import com.google.common.base.Joiner
-
 import vggames.shared.task.JudgedTask
 
 class Faileds extends JudgedTask with Iterable[Failed] {
@@ -12,7 +8,7 @@ class Faileds extends JudgedTask with Iterable[Failed] {
 
   def getOk() : Boolean = faileds.isEmpty
 
-  def getReason() : String = Joiner.on("<br />").join(faileds asJava)
+  def getReason() : String = faileds.mkString("<br />")
 
   def addOnlyJudgedFailed(judgedTask : JudgedTask) {
     judgedTask match {
