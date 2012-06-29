@@ -5,7 +5,7 @@ import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-class CodeProcessorSpec extends Specification {
+class ScalaProcessorSpec extends Specification {
   "code processor" should {
     "return true for a simple true boolean expression" in {
       new ScalaProcessor().processCode[Boolean]("true") must_== true
