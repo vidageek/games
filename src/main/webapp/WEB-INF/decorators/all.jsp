@@ -91,7 +91,6 @@
 	
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<aw:js url="/js/games-packaged.js" />
-	<aw:js url="/js/bootstrap-modal.js" />
 
 	<g:specificJs />
 	
