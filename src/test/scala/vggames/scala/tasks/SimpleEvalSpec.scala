@@ -29,4 +29,11 @@ class SimpleEvalSpec extends Specification {
     }
   }
 
+  "Simple Eval" should {
+    "throw exception for unsafe code" in {
+      val fail = SimpleEval("val a = 1;\nval b = 2;", 3, "").judge("System.exit(-1)")
+      fail.getReason must contain("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
+    }
+  }
+
 }
