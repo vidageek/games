@@ -1,0 +1,17 @@
+div.reason ul li {
+	list-style: none;
+}
+
+div.reason ul {
+	margin-left: 15px;
+}
+
+li.spec {
+	padding-left: 15px;
+	color: #468847;
+	font-weight: bold;
+}
+
+li.spec-fail {
+	color: #B94A48;
+}
