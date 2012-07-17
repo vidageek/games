@@ -58,12 +58,14 @@ class ScalaProcessor {
 class UnsafeCallable[T](code : () => Any) extends Callable[T] {
 
   def call : T = {
+    val old = System.getSecurityManager
     System.setSecurityManager(TaskRunSecurityManager)
     TaskRunSecurityManager.unsafe.set(true)
     try {
       code().asInstanceOf[T]
     } finally {
       TaskRunSecurityManager.unsafe.set(false)
+      System.setSecurityManager(old)
     }
   }
 }
