@@ -50,10 +50,10 @@ object GamesVidageekBuild extends Build {
       ),
       "com.typesafe.akka" % "akka-actor" % "2.0.2",
       "com.twitter" % "util-eval" % "5.2.0",
+      "org.specs2" %% "specs2" % "1.11",
       "org.mockito" % "mockito-core" % "1.9.0" % "test",
       "junit" % "junit" % "4.10" % "test",
       "com.novocode" % "junit-interface" % "0.8" % "test",
-      "org.specs2" %% "specs2" % "1.11" % "test",
       "com.typesafe.akka" % "akka-testkit" % "2.0.2" % "test"
     ),
     classDirectory in Compile <<= webappDir {
