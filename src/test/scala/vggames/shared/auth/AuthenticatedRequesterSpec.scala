@@ -1,12 +1,14 @@
 package vggames.shared.auth
 
-import org.scribe.model.{Token, Response, OAuthRequest}
+import org.scribe.model.{ Token, Response, OAuthRequest }
 import org.scribe.oauth.OAuthService
 import org.specs2.mock.Mockito
 import org.specs2.mutable.Specification
 import org.specs2.specification.Scope
+import org.junit.runner.RunWith
+import org.specs2.runner.JUnitRunner
 
-
+@RunWith(classOf[JUnitRunner])
 class AuthenticatedRequesterSpec extends Specification {
   "Authentication Requester" should {
     "sends a get" in new RequesterInformations {
