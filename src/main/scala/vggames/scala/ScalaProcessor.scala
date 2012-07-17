@@ -38,6 +38,8 @@ class ScalaProcessor {
   }
 
   private def compile(code : String, eval : Eval) = {
+    if (code.contains("finally") || code.contains("catch"))
+      throw new SecurityException("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
     val wrapped = wrap(className, code)
     eval.compile(wrapped)
   }
@@ -45,7 +47,7 @@ class ScalaProcessor {
   def wrap(className : String, code : String) = {
     "package scalagameunsafe\n" +
       "class " + className + " extends (() => Any) {\n" +
-      "  def apply() = {\n" +
+      "  def apply():Any = {\n" +
       code + "\n" +
       "  }\n" +
       "}\n"

@@ -2,10 +2,10 @@ package vggames.scala.tasks
 
 import com.twitter.util.Eval.CompilerException
 
-import vggames.scala.tasks.judge.{ExecutionFailure, CompilationFailure}
+import vggames.scala.tasks.judge.{ ExecutionFailure, CompilationFailure }
 import vggames.scala.ScalaProcessor
-import vggames.shared.task.status.{Ok, Failed}
-import vggames.shared.task.{Task, JudgedTask}
+import vggames.shared.task.status.{ Ok, Failed }
+import vggames.shared.task.{ Task, JudgedTask }
 
 case class SimpleEval[T](codeToPrepend : String, expectedValue : T, challenge : String) extends Task {
 
