@@ -1,31 +1,19 @@
 package vggames.scala
 
-import vggames.regex.task.{ Tasks, TaskGroup }
-import vggames.scala.tasks.SimpleEval
+import vggames.regex.task.{Tasks, TaskGroup}
+import vggames.scala.specs.{Specs2Eval, ExampleSpec}
 import vggames.shared.task.Descriptions
 import vggames.shared.Game
-import vggames.scala.specs.Specs2Eval
-import vggames.scala.specs.ExampleSpec
 
 class ScalaGame(descriptions : Descriptions) extends Game {
 
   override val tasks = new Tasks
 
-  addBasicTasks
   addSpecs2Tasks
-
-  def addBasicTasks = {
-    val group = new TaskGroup("Operações Básicas", "basic", descriptions)
-    group.add(SimpleEval("val a = 1;\nval b = 2;", 3, "Escreva código que soma duas variáveis a e b"))
-    group.add(SimpleEval("val a = 1;\nval b = 2;", -1, "Escreva código que subtrai duas variáveis a e b"))
-    group.add(SimpleEval("val a = 1;\nval b = 2;", 2, "Escreva código que multiplica duas variáveis a e b"))
-    group.add(SimpleEval("val a = 1;\nval b = 2;", 0, "Escreva código que divide duas variáveis a e b"))
-    tasks.add(group)
-  }
 
   def addSpecs2Tasks = {
     val group = new TaskGroup("Test", "basic", descriptions)
-    group.add(Specs2Eval("Escreva código que soma duas variáveis a e b", new ExampleSpec()))
+    group.add(Specs2Eval(new ExampleSpec()))
     tasks.add(group)
   }
 

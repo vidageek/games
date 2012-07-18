@@ -1,21 +1,26 @@
 package vggames.scala.specs
 
-import org.specs2.mutable.Specification
+class ExampleSpec extends GameSpecification[(Int, Int) => Int] {
 
-class ExampleSpec extends Specification {
+  def challenge = ""
+
+  def wrap(className : String, code : String) = {
+    "package scalagameunsafe\n" +
+      "class " + className + " extends ((Int, Int) => Int) {\n" +
+      "  def apply(a:Int, b:Int):Int = {\n" +
+      code + "\n" +
+      "  }\n" +
+      "}\n"
+  }
 
   "a example spec" should {
     "run against user code" in {
-      new UserCode().apply(1, 2) must_== 3
+      code(1, 2) must_== 3
     }
 
     "run against user code2" in {
-      new UserCode().apply(1, 2) must_== 2
+      code(1, 2) must_== 2
     }
   }
 
-}
-
-class UserCode {
-  def apply(a : Int, b : Int) = a + b
 }
