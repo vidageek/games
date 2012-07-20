@@ -7,6 +7,7 @@ import org.specs2.runner.JUnitRunner
 import vggames.shared.task.IndexedTask
 import vggames.shared.task.Match
 import vggames.shared.task.status.Error
+import vggames.shared.task.GroupedTask
 
 @RunWith(classOf[JUnitRunner])
 class IndexedTaskSpec extends Specification {

@@ -2,8 +2,8 @@ package vggames.regex.task
 
 import scala.collection.JavaConverters.seqAsJavaListConverter
 import scala.collection.mutable.ListBuffer
-
 import vggames.shared.task.IndexedTask
+import vggames.shared.task.GroupedTask
 
 class Tasks {
   val taskGroups = ListBuffer[TaskGroup]()
