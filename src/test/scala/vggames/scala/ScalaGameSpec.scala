@@ -20,11 +20,11 @@ class ScalaGameSpec extends Specification {
 
     "have answers for all tasks" in {
       val game = new ScalaGame(new Descriptions("scala"))
-      val becauseSpecsToldMeSo = List("a + b").foldLeft(0)((i, code) => {
+      val becauseSpecsForcesMeTo = List("a + b", "b - a", "a * b", "a / b").foldLeft(0)((i, code) => {
         game.task(i).judge(code) must_== Ok()
         i + 1
       })
-      becauseSpecsToldMeSo must_== game.getSize
+      becauseSpecsForcesMeTo must_== game.getSize
     }
   }
 
