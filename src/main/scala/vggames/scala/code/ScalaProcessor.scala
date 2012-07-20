@@ -1,17 +1,19 @@
-package vggames.scala
+package vggames.scala.code
 
-import java.security.Permission
-import java.util.concurrent.{ TimeUnit, ThreadPoolExecutor, ThreadFactory, Executors, Callable, SynchronousQueue }
-import com.twitter.util.Eval
 import ScalaProcessor.executor
+import com.twitter.util.Eval
+import java.security.Permission
+import java.util.concurrent.SynchronousQueue
+import java.util.concurrent.Callable
+import java.util.concurrent.Executors
+import java.util.concurrent.ThreadFactory
+import java.util.concurrent.ThreadPoolExecutor
+import java.util.concurrent.TimeUnit
 import vggames.scala.specs.GameSpecification
+import vggames.scala.tasks.judge.ExecutionFailure
 import vggames.shared.task.JudgedTask
-import vggames.scala.specs.GameJudger
-import org.specs2.specification.StandardFragments
-import vggames.scala.tasks.judge.ExecutionFailure
-import vggames.scala.tasks.judge.ExecutionFailure
-import vggames.scala.specs.CodeRestrictions
-import vggames.scala.specs.Wrappers._
+import vggames.scala.code.Wrappers._
+import vggames.scala.tasks.judge.GameJudger
 
 object ScalaProcessor {
   val executor = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS, new SynchronousQueue[Runnable], new DaemonThreadFactory)
@@ -80,4 +82,17 @@ object TaskRunSecurityManager extends SecurityManager {
   def handlePermission(perm : Permission) =
     if (unsafe.get)
       throw new SecurityException("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
+}
+
+object Wrappers {
+
+  def wrap(className : String, code : String, extendsType : String, runSignature : String) = {
+    "package scalagameunsafe\n" +
+      "import vggames.scala.specs._\n" +
+      "class " + className + " extends " + extendsType + " {\n" +
+      "  def run" + runSignature + " = {\n" +
+      code + "\n" +
+      "  }\n" +
+      "}\n"
+  }
 }

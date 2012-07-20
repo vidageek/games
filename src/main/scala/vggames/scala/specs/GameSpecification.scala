@@ -1,6 +1,7 @@
 package vggames.scala.specs
 
 import org.specs2.mutable.Specification
+import vggames.scala.code.CodeRestrictions
 
 trait GameSpecification[T <: CodeRestrictions[_]] extends Specification {
 

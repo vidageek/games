@@ -1,9 +1,10 @@
 package vggames.scala
 
-import vggames.regex.task.{Tasks, TaskGroup}
-import vggames.scala.specs.{Specs2Eval, ExampleSpec}
+import vggames.regex.task.{ Tasks, TaskGroup }
+import vggames.scala.specs.ExampleSpec
 import vggames.shared.task.Descriptions
 import vggames.shared.Game
+import vggames.scala.code.Specs2Eval
 
 class ScalaGame(descriptions : Descriptions) extends Game {
 

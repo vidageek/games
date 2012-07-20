@@ -1,5 +1,7 @@
 package vggames.scala.specs
 
+import vggames.scala.code.RestrictedFunction2
+
 class ExampleSpec extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
 
   def runSignature = "(a:Int, b:Int):Int"

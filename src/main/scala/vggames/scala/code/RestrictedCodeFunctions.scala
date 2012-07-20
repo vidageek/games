@@ -1,19 +1,4 @@
-package vggames.scala.specs
-
-import vggames.scala.TaskRunSecurityManager
-
-object Wrappers {
-
-  def wrap(className : String, code : String, extendsType : String, runSignature : String) = {
-    "package scalagameunsafe\n" +
-      "import vggames.scala.specs._\n" +
-      "class " + className + " extends " + extendsType + " {\n" +
-      "  def run" + runSignature + " = {\n" +
-      code + "\n" +
-      "  }\n" +
-      "}\n"
-  }
-}
+package vggames.scala.code
 
 sealed trait CodeRestrictions[+R] {
   def restrict[V >: R](code : => V) : V = {

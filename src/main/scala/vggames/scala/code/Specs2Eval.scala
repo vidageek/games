@@ -1,10 +1,11 @@
-package vggames.scala.specs
+package vggames.scala.code
 
-import vggames.scala.ScalaProcessor
-import vggames.shared.task.{ Task, JudgedTask }
 import com.twitter.util.Eval.CompilerException
-import vggames.scala.tasks.judge.ExecutionFailure
+import vggames.scala.specs.GameSpecification
 import vggames.scala.tasks.judge.CompilationFailure
+import vggames.scala.tasks.judge.ExecutionFailure
+import vggames.shared.task.JudgedTask
+import vggames.shared.task.Task
 
 case class Specs2Eval[T <: CodeRestrictions[_]](spec : GameSpecification[T]) extends Task {
 

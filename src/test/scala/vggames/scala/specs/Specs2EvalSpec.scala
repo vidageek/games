@@ -3,8 +3,9 @@ package vggames.scala.specs
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
-
 import vggames.shared.task.status.Ok
+import vggames.scala.code.RestrictedFunction2
+import vggames.scala.code.Specs2Eval
 
 @RunWith(classOf[JUnitRunner])
 class Specs2EvalSpec extends Specification {

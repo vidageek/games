@@ -1,5 +1,6 @@
-package vggames.scala.specs
+package vggames.scala.tasks.judge
 
+import org.specs2.execute.Error
 import org.specs2.main.Arguments
 import org.specs2.reporter.DefaultReporter
 import org.specs2.reporter.Exporter
@@ -10,11 +11,11 @@ import org.specs2.specification.ExecutedSpecStart
 import org.specs2.specification.ExecutedSpecification
 import org.specs2.specification.ExecutedText
 import org.specs2.specification.ExecutingSpecification
+import vggames.scala.specs.GameSpecification
 import vggames.shared.task.status.Failed
 import vggames.shared.task.status.Ok
 import vggames.shared.task.JudgedTask
-import vggames.scala.tasks.judge.ExecutionFailure
-import org.specs2.execute.Error
+import vggames.scala.code.CodeRestrictions
 
 class GameJudger[T <: CodeRestrictions[_]](spec : GameSpecification[T]) extends DefaultReporter with TextPrinter with Exporter {
 
