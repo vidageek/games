@@ -32,7 +32,7 @@ class GameJudger[T <: CodeRestrictions[_]](spec : GameSpecification[T]) extends 
       result += name.name
       fragments.foreach {
         case f : ExecutedSpecStart => result += "\n<ul>\n"
-        case f : ExecutedText => result += "<li>" + f.text + "</li>\n"
+        case f : ExecutedText => result += "<li>" + f.text.replace("should", "deve") + "</li>\n"
         case f : ExecutedResult if f.isFailure => {
           result += """<li class="spec-fail spec">""" + f.text + "</li>\n"
           fail = true
