@@ -7,6 +7,8 @@ SBT="java -jar $SBT_JAR"
 
 BUILD=0
 
+rm -fr target
+
 $SBT compile
 let BUILD=$BUILD+$?
 
