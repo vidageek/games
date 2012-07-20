@@ -6,6 +6,7 @@ import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
 import vggames.shared.task.Descriptions
 import vggames.shared.task.GroupedTask
+import vggames.shared.task.TaskGroup
 
 @RunWith(classOf[JUnitRunner])
 class GroupedTaskSpec extends Specification with Mockito {

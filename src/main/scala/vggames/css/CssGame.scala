@@ -3,7 +3,7 @@ package vggames.css
 import vggames.shared.task.Descriptions
 import br.com.caelum.vraptor.ioc.Component
 import vggames.shared.Game
-import vggames.regex.task.Tasks
+import vggames.shared.task.Tasks
 
 @Component
 class CssGame(descriptions : Descriptions) extends Game {

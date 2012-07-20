@@ -1,10 +1,8 @@
-package vggames.regex.task
+package vggames.shared.task
 
-import java.util.{Collections, ArrayList}
-
+import java.util.ArrayList
+import java.util.Collections
 import scala.collection.JavaConversions.asScalaIterator
-
-import vggames.shared.task.{Task, Descriptions}
 
 class TaskGroup(name : String, groupName : String, descriptions : Descriptions) extends Iterable[Task] {
   val tasks = new ArrayList[Task]

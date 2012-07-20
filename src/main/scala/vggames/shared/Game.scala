@@ -1,9 +1,8 @@
 package vggames.shared
 
 import java.util.Collection
-
-import vggames.regex.task.Tasks
 import vggames.shared.task.TaskWithDescription
+import vggames.shared.task.Tasks
 
 trait Game {
 

@@ -1,8 +1,10 @@
 package vggames.regex.task
 
 import vggames.regex.task.MatcherTargets.from
-import vggames.shared.task.{Match, Descriptions}
+import vggames.shared.task.{ Match, Descriptions }
 import vggames.shared.Game
+import vggames.shared.task.Tasks
+import vggames.shared.task.TaskGroup
 
 class RegexGame(descriptions : Descriptions) extends Game {
   override val tasks = new Tasks()
