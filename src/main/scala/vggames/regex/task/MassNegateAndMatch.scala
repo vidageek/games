@@ -3,7 +3,7 @@ package vggames.regex.task
 import java.util.Scanner
 
 import MatcherTargets.from
-import vggames.shared.task.{Task, JudgedTask}
+import vggames.shared.task.{ Task, JudgedTask }
 
 class MassNegateAndMatch(challenge : String, matcher : NegateAndMatch) extends Task {
   def judge(challenge : String) : JudgedTask = matcher.judge(challenge)
@@ -18,7 +18,7 @@ object MassNegateAndMatch {
     val cantMatch = arrayFromFile("/mass/" + fileName + ".not")
     val matcher = new NegateAndMatch(from(cantMatch), from(mustMatch))
 
-    new MassNegateAndMatch(fileName, matcher)
+    new MassNegateAndMatch(challenge, matcher)
   }
 
   private def arrayFromFile(filePath : String) = {
