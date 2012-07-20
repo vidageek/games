@@ -2,7 +2,7 @@ package vggames.scala.specs
 
 import org.specs2.mutable.Specification
 
-trait GameSpecification[T] extends Specification {
+trait GameSpecification[T <: CodeRestrictions[_]] extends Specification {
 
   def challenge : String
 

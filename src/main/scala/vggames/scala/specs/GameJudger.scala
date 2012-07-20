@@ -16,7 +16,7 @@ import vggames.shared.task.JudgedTask
 import vggames.scala.tasks.judge.ExecutionFailure
 import org.specs2.execute.Error
 
-class GameJudger[T](spec : GameSpecification[T]) extends DefaultReporter with TextPrinter with Exporter {
+class GameJudger[T <: CodeRestrictions[_]](spec : GameSpecification[T]) extends DefaultReporter with TextPrinter with Exporter {
 
   def judgement : JudgedTask = {
     report(spec)(new Arguments())

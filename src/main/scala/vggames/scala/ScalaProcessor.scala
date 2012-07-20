@@ -52,7 +52,7 @@ class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
 
 }
 
-class UnsafeCallable(spec : GameSpecification[_]) extends Callable[JudgedTask] {
+class UnsafeCallable(spec : GameSpecification[_ <: CodeRestrictions[_]]) extends Callable[JudgedTask] {
 
   def call : JudgedTask = {
     try {
