@@ -64,15 +64,15 @@ class Specs2EvalSpec extends Specification {
     }
   }
 
-  class TestSpec(c : String) extends GameSpecification[(Int, Int) => Int] {
+  class TestSpec(c : String) extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
 
     def challenge = c
 
     def wrap(className : String, code : String) = {
       "package scalagameunsafe\n" +
-        "class " + className + " extends ((Int, Int) => Int) {\n" +
-        "  def apply(a:Int, b:Int):Int = {\n" +
-        "vggames.scala.TaskRunSecurityManager.unsafe.set(true)\n" +
+        "import vggames.scala.specs._\n" +
+        "class " + className + " extends RestrictedFunction2[Int, Int, Int] {\n" +
+        "  def run(a:Int, b:Int):Int = {\n" +
         code + "\n" +
         "  }\n" +
         "}\n"

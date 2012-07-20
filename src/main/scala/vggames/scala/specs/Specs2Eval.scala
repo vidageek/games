@@ -6,7 +6,7 @@ import com.twitter.util.Eval.CompilerException
 import vggames.scala.tasks.judge.ExecutionFailure
 import vggames.scala.tasks.judge.CompilationFailure
 
-case class Specs2Eval[T](spec : GameSpecification[T]) extends Task {
+case class Specs2Eval[T <: CodeRestrictions[_]](spec : GameSpecification[T]) extends Task {
 
   def getChallenge = spec.challenge
 

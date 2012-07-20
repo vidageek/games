@@ -1,24 +1,25 @@
 package vggames.scala.specs
 
-class ExampleSpec extends GameSpecification[(Int, Int) => Int] {
+class ExampleSpec extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
 
-  def challenge = ""
+  def challenge = "Deve somar duas variáveis <code>a</code> e <code>b</code>"
 
   def wrap(className : String, code : String) = {
     "package scalagameunsafe\n" +
-      "class " + className + " extends ((Int, Int) => Int) {\n" +
-      "  def apply(a:Int, b:Int):Int = {\n" +
+      "import vggames.scala.specs._\n" +
+      "class " + className + " extends RestrictedFunction2[Int, Int, Int] {\n" +
+      "  def run(a:Int, b:Int):Int = {\n" +
       code + "\n" +
       "  }\n" +
       "}\n"
   }
 
-  "a example spec" should {
-    "run against user code" in {
+  "O seu código" should {
+    "1 + 2 == 3" in {
       code(1, 2) must_== 3
     }
 
-    "run against user code2" in {
+    "1 + 2 == 2" in {
       code(1, 2) must_== 2
     }
   }

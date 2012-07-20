@@ -10,6 +10,7 @@ import vggames.scala.specs.GameJudger
 import org.specs2.specification.StandardFragments
 import vggames.scala.tasks.judge.ExecutionFailure
 import vggames.scala.tasks.judge.ExecutionFailure
+import vggames.scala.specs.CodeRestrictions
 
 object ScalaProcessor {
   val executor = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS, new SynchronousQueue[Runnable], new DaemonThreadFactory)
@@ -26,7 +27,7 @@ class DaemonThreadFactory extends ThreadFactory {
   }
 }
 
-class ScalaProcessor[T](spec : GameSpecification[T]) {
+class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
 
   val className = "ExpressionRunner"
 
@@ -54,17 +55,10 @@ class ScalaProcessor[T](spec : GameSpecification[T]) {
 class UnsafeCallable(spec : GameSpecification[_]) extends Callable[JudgedTask] {
 
   def call : JudgedTask = {
-    val old = System.getSecurityManager
-    System.setSecurityManager(TaskRunSecurityManager)
-    TaskRunSecurityManager.unsafe.set(true)
     try {
-      val a = (new GameJudger(spec)).judgement
-      a
+      (new GameJudger(spec)).judgement
     } catch {
       case t => { t.printStackTrace; new ExecutionFailure(t) }
-    } finally {
-      TaskRunSecurityManager.unsafe.set(false)
-      System.setSecurityManager(old)
     }
   }
 }
@@ -72,7 +66,6 @@ class UnsafeCallable(spec : GameSpecification[_]) extends Callable[JudgedTask] {
 object TaskRunSecurityManager extends SecurityManager {
 
   val unsafe = new ThreadLocal[Boolean]
-  val oldSecurityManager = System.getSecurityManager
 
   override def checkPermission(perm : Permission) = {
     handlePermission(perm)
@@ -83,15 +76,6 @@ object TaskRunSecurityManager extends SecurityManager {
   }
 
   def handlePermission(perm : Permission) =
-    if (unsafe.get && !allowed(perm)) {
+    if (unsafe.get)
       throw new SecurityException("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
-    }
-
-  def allowed(perm : Permission) : Boolean = {
-    perm.getName.contains("specs") ||
-      perm.getName.contains("modifyThread") ||
-      perm.getName.contains("user.dir") ||
-      perm.getName.contains("line.separator") ||
-      perm.getName.contains("vggames")
-  }
 }
