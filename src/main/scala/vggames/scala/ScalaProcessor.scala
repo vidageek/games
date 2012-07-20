@@ -11,6 +11,7 @@ import org.specs2.specification.StandardFragments
 import vggames.scala.tasks.judge.ExecutionFailure
 import vggames.scala.tasks.judge.ExecutionFailure
 import vggames.scala.specs.CodeRestrictions
+import vggames.scala.specs.Wrappers._
 
 object ScalaProcessor {
   val executor = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS, new SynchronousQueue[Runnable], new DaemonThreadFactory)
@@ -30,6 +31,7 @@ class DaemonThreadFactory extends ThreadFactory {
 class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
 
   val className = "ExpressionRunner"
+  val fullName = "scalagameunsafe.ExpressionRunner"
 
   def processCode(code : String) : JudgedTask = {
     val eval = new Eval(None)
@@ -38,7 +40,7 @@ class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
   }
 
   def run(className : String, eval : Eval) : JudgedTask = {
-    val code = eval.findClass("scalagameunsafe." + className).newInstance.asInstanceOf[T]
+    val code = eval.findClass(fullName).newInstance.asInstanceOf[T]
     spec.code = code
     executor.submit(new UnsafeCallable(spec)).get(2, TimeUnit.SECONDS)
   }
@@ -46,7 +48,7 @@ class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
   private def compile(code : String, eval : Eval) = {
     if (code.contains("finally") || code.contains("catch"))
       throw new SecurityException("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
-    val wrapped = spec.wrap(className, code)
+    val wrapped = wrap(className, code, spec.extendsType, spec.runSignature)
     eval.compile(wrapped)
   }
 

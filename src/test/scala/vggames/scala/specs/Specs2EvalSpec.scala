@@ -66,17 +66,11 @@ class Specs2EvalSpec extends Specification {
 
   class TestSpec(c : String) extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
 
-    def challenge = c
+    def runSignature = "(a:Int, b:Int):Int"
 
-    def wrap(className : String, code : String) = {
-      "package scalagameunsafe\n" +
-        "import vggames.scala.specs._\n" +
-        "class " + className + " extends RestrictedFunction2[Int, Int, Int] {\n" +
-        "  def run(a:Int, b:Int):Int = {\n" +
-        code + "\n" +
-        "  }\n" +
-        "}\n"
-    }
+    def extendsType = "RestrictedFunction2[Int, Int, Int]"
+
+    def challenge = c
 
     "a" should {
       "b" in {
