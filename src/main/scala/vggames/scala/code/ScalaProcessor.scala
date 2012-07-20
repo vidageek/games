@@ -88,7 +88,7 @@ object Wrappers {
 
   def wrap(className : String, code : String, extendsType : String, runSignature : String) = {
     "package scalagameunsafe\n" +
-      "import vggames.scala.specs._\n" +
+      "import vggames.scala.code._\n" +
       "class " + className + " extends " + extendsType + " {\n" +
       "  def run" + runSignature + " = {\n" +
       code + "\n" +
