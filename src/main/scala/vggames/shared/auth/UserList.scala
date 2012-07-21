@@ -17,10 +17,7 @@ class UserList {
 
   def findBy(providerName:String, name: String): Option[User] = {
     users.getOrElse(providerName, mutable.Set.empty).find {
-      user => user match {
-        case User(found, _) => name == found
-        case _ => false
-      }
+      user => user match { case User(found, _) => name == found }
     }
   }
 }
