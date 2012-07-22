@@ -3,11 +3,11 @@ package vggames.shared.auth
 import collection.mutable._
 import collection.mutable
 
-object UserList {
-  def apply() = new UserList
+object Users {
+  def apply() = new Users
 }
 
-class UserList {
+class Users {
   private val users = Map[String, Set[User]]()
   def +=(providerUser:(String, User)) = {
     val usersByProvider = users.getOrElse(providerUser._1, Set[User]())

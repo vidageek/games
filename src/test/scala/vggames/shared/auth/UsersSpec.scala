@@ -5,7 +5,7 @@ import org.specs2.mock.Mockito
 import org.scribe.model.Token
 import org.specs2.specification.Scope
 
-class UserListSpec extends Specification with Mockito {
+class UsersSpec extends Specification with Mockito {
   "Find by" should {
     "returns None when there isnt uses" in new FindAByContext {
       users findBy("other-provider-name", "user-name") must_== None
@@ -40,6 +40,6 @@ class UserListSpec extends Specification with Mockito {
 }
 
 trait FindAByContext extends Scope with Mockito {
-  val users = UserList()
+  val users = Users()
   val user = User("user-name", mock[Token])
 }
