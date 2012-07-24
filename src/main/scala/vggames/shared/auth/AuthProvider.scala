@@ -2,7 +2,7 @@ package vggames.shared.auth
 
 import org.scribe.model.Verifier
 
-trait AuthProvider {
+trait AuthProvider extends Serializable {
   def applicationAuthorizationUrl: String
   def name: String
   def accessToken(verifier: Verifier)
