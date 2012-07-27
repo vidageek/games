@@ -19,7 +19,7 @@ class AddUserSpec extends Specification {
 trait ExecuteAndQueryContext extends Scope with Mockito {
   val user = User("user-name", mock[Token])
 
-  val users = Users()
+  val users = Users("src/test/resources/prevayler")
 
   val provider = mock[AuthProvider]
   provider.name returns "provider-name"
