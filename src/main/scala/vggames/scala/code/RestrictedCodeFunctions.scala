@@ -16,10 +16,7 @@ sealed trait CodeRestrictions[+R] {
 
 trait RestrictedFunction2[-T1, -T2, +R] extends Function2[T1, T2, R] with CodeRestrictions[R] {
   override def toString = "<restricted Function2>"
-
-  override def apply(v1 : T1, v2 : T2) : R = {
-    restrict(run(v1, v2))
-  }
+  override def apply(v1 : T1, v2 : T2) : R = restrict(run(v1, v2))
 
   def run(v1 : T1, v2 : T2) : R
 }
