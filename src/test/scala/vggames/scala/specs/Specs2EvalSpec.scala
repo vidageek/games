@@ -65,7 +65,7 @@ class Specs2EvalSpec extends Specification {
     }
     
     "timeout and fail for infinite loops" in {
-      val fail = Specs2Eval(new TestSpec("while")).judge("""while(true){print(" true-" + Thread.currentThread); Thread.sleep(500)};1""")
+      val fail = Specs2Eval(new TestSpec("while")).judge("""while(true){Thread.sleep(500)};1""")
       fail.getReason must contain("Exceeded max compilation and run time.")
     }
   }
