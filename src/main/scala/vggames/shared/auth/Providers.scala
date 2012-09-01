@@ -7,5 +7,5 @@ class Providers(authProviders: Seq[AuthProvider]) {
 
   def quantity = providers.size
 
-  def byName(name: String) = providers(name)
+  def apply(name: String) = providers(name)
 }

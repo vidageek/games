@@ -6,7 +6,6 @@ import org.specs2.runner.JUnitRunner
 import org.junit.runner.RunWith
 import vggames.shared.auth.twitter.TwitterAuthProvider
 
-@RunWith(classOf[JUnitRunner])
 class ProvidersSpec extends Specification with Mockito {
   val twitterAuthPovider = mock[TwitterAuthProvider]
   val aTestAuthProvider = mock[AuthProvider]
@@ -19,12 +18,12 @@ class ProvidersSpec extends Specification with Mockito {
   "providers" should {
     "have the twitter provider" in {
       providers.quantity must_== 2
-      providers.byName("twitter") must_== twitterAuthPovider
-      providers.byName("TestProvider") must_== aTestAuthProvider
+      providers("twitter") must_== twitterAuthPovider
+      providers("TestProvider") must_== aTestAuthProvider
     }
 
     "find the twitter provider" in {
-      providers.byName(twitterAuthPovider.name) must_== twitterAuthPovider
+      providers(twitterAuthPovider.name) must_== twitterAuthPovider
     }
   }
 }
