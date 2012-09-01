@@ -22,7 +22,12 @@ class TwitterAuthProvider(secrets : OAuthSecrets) extends AuthProvider {
   }
 
   override def logout {
-    requester.get.post("https://api.twitter.com/1/account/end_session.json")
+    authenticatedRequester.post("https://api.twitter.com/1/account/end_session.json")
+  }
+
+
+  private def authenticatedRequester = {
+    requester.get
   }
 
   override def userName : String = {
