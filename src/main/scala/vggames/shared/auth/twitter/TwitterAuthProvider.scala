@@ -6,10 +6,11 @@ import org.scribe.model.{Verifier, Token, Response, OAuthRequest}
 
 import vggames.shared.auth.{OAuthServiceBuilder, AuthenticatedRequester, AuthProvider}
 import vggames.shared.vraptor.OAuthSecrets
+import org.scribe.builder.ServiceBuilder
+import org.scribe.builder.api.{TwitterApi, Api}
 
-class TwitterAuthProvider(secrets : OAuthSecrets) extends AuthProvider {
-
-  val twitterService = OAuthServiceBuilder(this, secrets)
+class TwitterAuthProvider(secrets : OAuthSecrets, callbackUrl:String) extends AuthProvider {
+  val twitterService = OAuthServiceBuilder(this, secrets, callbackUrl + "/" + name)
   var accessToken : Token = _
   var requester : Option[AuthenticatedRequester] = None
 
@@ -25,7 +26,6 @@ class TwitterAuthProvider(secrets : OAuthSecrets) extends AuthProvider {
     authenticatedRequester.post("https://api.twitter.com/1/account/end_session.json")
   }
 
-
   private def authenticatedRequester = {
     requester.get
   }
@@ -33,6 +33,8 @@ class TwitterAuthProvider(secrets : OAuthSecrets) extends AuthProvider {
   override def userName : String = {
     extractUserName(requester.get.get("http://api.twitter.com/1/account/verify_credentials.json"))
   }
+
+  override def api: Class[_ <: Api] = classOf[TwitterApi]
 
   private def extractUserName(response : Response) : String = {
     JSON.parseFull(response.getBody) match {
@@ -43,4 +45,5 @@ class TwitterAuthProvider(secrets : OAuthSecrets) extends AuthProvider {
       case _ => ""
     }
   }
+
 }

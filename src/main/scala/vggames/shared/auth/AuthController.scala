@@ -15,8 +15,8 @@ class AuthController(result : Result, providers : Providers, player : Player, vi
     result.redirectTo(player.provider.applicationAuthorizationUrl)
   }
 
-  @Get(Array("/authorization", "/authorization/"))
-  def authorization(oauth_token : String, oauth_verifier : String) {
+  @Get(Array("/authorization/provider/{name}"))
+  def authorization(name: String, oauth_token : String, oauth_verifier : String) {
     player.authorize(AuthorizationVerifier(oauth_verifier))
     result.redirectTo(viseted.value)
   }

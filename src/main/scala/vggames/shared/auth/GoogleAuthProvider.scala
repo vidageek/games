@@ -3,9 +3,10 @@ package vggames.shared.auth
 import org.scribe.model.{Verifier, Token}
 
 import vggames.shared.vraptor.OAuthSecrets
+import org.scribe.builder.api.{Api, GoogleApi}
 
-class GoogleAuthProvider(secrets : OAuthSecrets) extends AuthProvider {
-  val googleService = OAuthServiceBuilder(this, secrets)
+class GoogleAuthProvider(secrets : OAuthSecrets, callbackUrl: String) extends AuthProvider {
+  val googleService = OAuthServiceBuilder(this, secrets, callbackUrl + "/" + name)
   var accessToken : Token = _
 
   override def applicationAuthorizationUrl = googleService.autorizationUrl
@@ -20,4 +21,6 @@ class GoogleAuthProvider(secrets : OAuthSecrets) extends AuthProvider {
   override def userName : String = ""
 
   override def logout : Unit = {}
+
+  override def api: Class[_ <: Api] = classOf[GoogleApi]
 }

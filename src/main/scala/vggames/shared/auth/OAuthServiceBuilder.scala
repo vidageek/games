@@ -8,11 +8,10 @@ import org.scribe.oauth.OAuthService
 import vggames.shared.vraptor.OAuthSecrets
 
 object OAuthServiceBuilder {
-  val apis = Map("twitter" -> classOf[TwitterApi])
 
-  def apply(provider : AuthProvider, secrets : OAuthSecrets) = {
-    val authService = new ServiceBuilder().provider(apis(provider.name)).apiKey(secrets.apiKeyFor(provider.name))
-      .apiSecret(secrets.apiSecretFor(provider.name)).callback("http://games.vidageek.net/authorization").build
+  def apply(provider : AuthProvider, secrets : OAuthSecrets, callbackUri: String) = {
+    val authService = new ServiceBuilder().provider(provider.api).apiKey(secrets.apiKeyFor(provider.name))
+      .apiSecret(secrets.apiSecretFor(provider.name)).callback(callbackUri).build
     new OAuthServiceBuilder(authService)
   }
 }
