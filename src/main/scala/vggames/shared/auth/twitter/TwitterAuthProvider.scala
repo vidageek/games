@@ -4,23 +4,23 @@ import scala.util.parsing.json.JSON
 
 import org.scribe.model.{Verifier, Token, Response, OAuthRequest}
 
-import vggames.shared.auth.{OAuthServiceBuilder, AuthenticatedRequester, AuthProvider}
+import vggames.shared.auth.{AutheticatesWithProvider, AuthenticatedRequester, AuthProvider}
 import vggames.shared.vraptor.OAuthSecrets
 import org.scribe.builder.ServiceBuilder
 import org.scribe.builder.api.{TwitterApi, Api}
 
 class TwitterAuthProvider(secrets : OAuthSecrets, callbackUrl:String) extends AuthProvider {
-  val twitterService = OAuthServiceBuilder(this, secrets, callbackUrl + "/" + name)
-  var accessToken : Token = _
-  var requester : Option[AuthenticatedRequester] = None
+  val twitterService = AutheticatesWithProvider(this, secrets, callbackUrl + "/" + name)
 
-  def applicationAuthorizationUrl = twitterService.autorizationUrl
-
-  override def name = "twitter"
+  def applicationAuthorizationUrl = twitterService.authorizationUrl
 
   override def accessToken(verifier : Verifier) = {
     requester = Some(new AuthenticatedRequester(twitterService.accessToken(verifier), twitterService.authService))
   }
+
+  var requester : Option[AuthenticatedRequester] = None
+
+  override def name = "twitter"
 
   override def logout {
     authenticatedRequester.post("https://api.twitter.com/1/account/end_session.json")
