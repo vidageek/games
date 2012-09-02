@@ -15,9 +15,12 @@ object AuthenticateWithProvider {
   }
 }
 
-class AuthenticateWithProvider(val authService : OAuthService) extends Serializable {
+class AuthenticateWithProvider(authService : OAuthService) extends Serializable {
   val requestToken = authService.getRequestToken
+
   def authorizationUrl = authService.getAuthorizationUrl(requestToken)
 
-  def accessToken(verifier : Verifier) : Token = authService.getAccessToken(requestToken, verifier)
+  def requester(verifier: Verifier): AuthenticatedRequester = new AuthenticatedRequester(accessToken(verifier), authService)
+
+  private def accessToken(verifier : Verifier) : Token = authService.getAccessToken(requestToken, verifier)
 }

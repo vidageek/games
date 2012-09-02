@@ -9,29 +9,15 @@ import vggames.shared.vraptor.OAuthSecrets
 import org.scribe.builder.ServiceBuilder
 import org.scribe.builder.api.{TwitterApi, Api}
 
-class TwitterAuthProvider(secrets : OAuthSecrets, callbackUrl:String) extends AuthProvider {
-  val twitterService = AutheticatesWithProvider(this, secrets, callbackUrl + "/" + name)
-
-  def applicationAuthorizationUrl = twitterService.authorizationUrl
-
-  override def accessToken(verifier : Verifier) = {
-    requester = Some(new AuthenticatedRequester(twitterService.accessToken(verifier), twitterService.authService))
-  }
-
-  var requester : Option[AuthenticatedRequester] = None
-
+class TwitterAuthProvider(requester: AuthenticatedRequester) extends AuthProvider {
   override def name = "twitter"
 
   override def logout {
-    authenticatedRequester.post("https://api.twitter.com/1/account/end_session.json")
-  }
-
-  private def authenticatedRequester = {
-    requester.get
+    requester.post("https://api.twitter.com/1/account/end_session.json")
   }
 
   override def userName : String = {
-    extractUserName(requester.get.get("http://api.twitter.com/1/account/verify_credentials.json"))
+    extractUserName(requester.get("http://api.twitter.com/1/account/verify_credentials.json"))
   }
 
   override def api: Class[_ <: Api] = classOf[TwitterApi]

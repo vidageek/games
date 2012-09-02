@@ -42,22 +42,24 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<c:if test="${player.authorized}">
-					<div class="nav-collapse">
-						<ul class="nav">
-							<li class="active">
-								<a id="logged" class="brand pull-right" href="#logado">${player.userName}</a>
-							</li>
-							<li class="divider-vertical"></li>
-							<li>
-								<a id="logged" class="brand pull-right" href="<c:url  value="/auth/logout" />">Logout</a>
-							</li>
-						</ul>
-					</div>
-				</c:if>
-				<c:if test="${not player.authorized}">
-					<a id="select-a-provider" class="brand pull-right" data-toggle="modal" href="#logon-provider">Logar...</a>
-				</c:if>
+			    <c:choose>
+                    <c:when test="${empty player}">
+                        <a id="select-a-provider" class="brand pull-right" data-toggle="modal" href="#logon-provider">Logar...</a>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="nav-collapse">
+                            <ul class="nav">
+                                <li class="active">
+                                    <a id="logged" class="brand pull-right" href="#logado">${player.userName}</a>
+                                </li>
+                                <li class="divider-vertical"></li>
+                                <li>
+                                    <a id="logged" class="brand pull-right" href="<c:url  value="/auth/logout" />">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </c:otherwise>
+			    </c:choose>
 			</div>
 			<div class="ribbon-holder" >
 				<a href="https://github.com/vidageek/games" class="ribbon"> 
