@@ -53,7 +53,7 @@ object GamesVidageekBuild extends Build {
       "org.prevayler" % "prevayler-core" % "2.5",
       "org.prevayler" % "prevayler-factory" % "2.5",
       "org.prevayler.extras" % "prevayler-xstream" % "2.5",
-      "org.specs2" %% "specs2" % "1.11",
+      "org.specs2" %% "specs2" % "1.12.1",
       
       "org.mockito" % "mockito-core" % "1.9.0" % "test",
       "junit" % "junit" % "4.10" % "test",
