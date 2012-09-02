@@ -19,7 +19,5 @@ class AuthenticateWithProvider(val authService : OAuthService) extends Serializa
   val requestToken = authService.getRequestToken
   def authorizationUrl = authService.getAuthorizationUrl(requestToken)
 
-  def accessToken(verifier : Verifier) : Token = {
-    authService.getAccessToken(requestToken, verifier)
-  }
+  def accessToken(verifier : Verifier) : Token = authService.getAccessToken(requestToken, verifier)
 }
