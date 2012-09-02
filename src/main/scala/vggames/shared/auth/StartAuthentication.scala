@@ -15,5 +15,9 @@ case class StartAuthentication(all: Providers, configs: OAuthSecrets, request : 
   }
 
   def withA(providerName: String): AuthenticateWithProvider =
-    AuthenticateWithProvider(all(providerName), configs, request.url + "/authorization/provider/" + providerName)
+    AuthenticateWithProvider(all(providerName), configs, callbackUrlBy(providerName))
+
+  private def callbackUrlBy(providerName: String): String = {
+    request.url + "/authorization/provider/" + providerName
+  }
 }
