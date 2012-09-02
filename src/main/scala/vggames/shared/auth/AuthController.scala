@@ -9,7 +9,7 @@ class AuthController(result : Result, viseted : BackUrl, authenticate: StartAuth
   @Get(Array("/auth/provider/{provider}"))
   def provider(provider : String, backUrl : String) {
     viseted.value = backUrl
-    // TODO: Needs Persist the AutheticatesWithProvider
+    // TODO: Needs Persist the AuthenticateWithProvider
     result.redirectTo(authenticate.withA(provider).authorizationUrl)
   }
 

@@ -6,7 +6,7 @@ import vggames.shared.vraptor.OAuthSecrets
 import org.scribe.builder.api.{Api, GoogleApi}
 
 class GoogleAuthProvider(secrets : OAuthSecrets, callbackUrl: String) extends AuthProvider {
-  val googleService = AutheticatesWithProvider(this, secrets, callbackUrl + "/" + name)
+  val googleService = AuthenticateWithProvider(this, secrets, callbackUrl + "/" + name)
   var accessToken : Token = _
 
   override def applicationAuthorizationUrl = googleService.authorizationUrl

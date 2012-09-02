@@ -6,16 +6,16 @@ import org.scribe.oauth.OAuthService
 
 import vggames.shared.vraptor.OAuthSecrets
 
-object AutheticatesWithProvider {
+object AuthenticateWithProvider {
 
   def apply(provider : AuthProvider, secrets : OAuthSecrets, callbackUri: String) = {
     val authService = new ServiceBuilder().provider(provider.api).apiKey(secrets.apiKeyFor(provider.name))
       .apiSecret(secrets.apiSecretFor(provider.name)).callback(callbackUri).build
-    new AutheticatesWithProvider(authService)
+    new AuthenticateWithProvider(authService)
   }
 }
 
-class AutheticatesWithProvider(val authService : OAuthService) {
+class AuthenticateWithProvider(val authService : OAuthService) extends Serializable {
   val requestToken = authService.getRequestToken
   def authorizationUrl = authService.getAuthorizationUrl(requestToken)
 

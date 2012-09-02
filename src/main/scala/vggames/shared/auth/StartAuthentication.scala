@@ -7,13 +7,13 @@ import java.net.URL
 
 @Component
 case class StartAuthentication(all: Providers, configs: OAuthSecrets, request : HttpServletRequest) {
-  implicit def requestRequestedHost(request: HttpServletRequest) = new {
+  private implicit def requestRequestedHost(request: HttpServletRequest) = new {
     def url: String = {
       val url = new URL(request.getRequestURL.toString)
       "%s://%s".format(url.getProtocol, url.getAuthority)
     }
   }
 
-  def withA(providerName: String): AutheticatesWithProvider =
-    AutheticatesWithProvider(all(providerName), configs, request.url + "/authorization/provider/" + providerName)
+  def withA(providerName: String): AuthenticateWithProvider =
+    AuthenticateWithProvider(all(providerName), configs, request.url + "/authorization/provider/" + providerName)
 }
