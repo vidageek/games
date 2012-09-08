@@ -9,23 +9,20 @@ import vggames.scala.tasks.judge.ExecutionFailure
 
 sealed trait CodeRestrictions[+R] {
   implicit val timeout = Timeout(5 seconds)
-  
+
   def restrict[V >: R](code : => V) : V = {
     val future = GameMaster.master ? Run(() => {
-        val old = System.getSecurityManager
-        System.setSecurityManager(TaskRunSecurityManager)
-        TaskRunSecurityManager.unsafe.set(true)
-        try {
-          code
-        } finally {
-          TaskRunSecurityManager.unsafe.set(false)
-          System.setSecurityManager(old)
-        }
+      System.setSecurityManager(TaskRunSecurityManager)
+      TaskRunSecurityManager.unsafe.set(true)
+      try {
+        code
+      } finally {
+        TaskRunSecurityManager.unsafe.set(false)
       }
-    )
-    
+    })
+
     Await.result(future, timeout.duration) match {
-      case e: ExecutionFailure => throw e.failure
+      case e : ExecutionFailure => throw e.failure
       case ok => ok.asInstanceOf[V]
     }
   }

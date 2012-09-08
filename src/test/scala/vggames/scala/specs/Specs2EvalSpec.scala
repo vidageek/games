@@ -63,18 +63,18 @@ class Specs2EvalSpec extends Specification {
       val fail = Specs2Eval(new TestSpec("finally")).judge("""try {} finally {return ""};1""")
       fail.getReason must contain("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
     }
-    
+
     "timeout and fail for infinite loops" in {
       val fail = Specs2Eval(new TestSpec("while")).judge("""while(true){Thread.sleep(500)};1""")
       fail.getReason must contain("Exceeded max compilation and run time.")
     }
   }
-  
+
   class TestSpec(c : String) extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
     def runSignature = "(a:Int, b:Int):Int"
     def extendsType = "RestrictedFunction2[Int, Int, Int]"
     def challenge = c
-    
+
     "a" should {
       "b" in { code(1, 2) must_== 3 }
       "c" in { code(2, 3) must_== 5 }
