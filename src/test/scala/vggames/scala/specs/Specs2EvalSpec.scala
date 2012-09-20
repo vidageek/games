@@ -6,9 +6,11 @@ import org.specs2.runner.JUnitRunner
 import vggames.shared.task.status.Ok
 import vggames.scala.code.RestrictedFunction2
 import vggames.scala.code.Specs2Eval
+import org.specs2.main.ArgProperty
 
 @RunWith(classOf[JUnitRunner])
 class Specs2EvalSpec extends Specification {
+  sequential
 
   "Sum judge" should {
     "returns ok if the code sums two values" in {
