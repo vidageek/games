@@ -6,7 +6,6 @@ import vggames.shared.Game
 import vggames.shared.task.Tasks
 import vggames.shared.task.TaskGroup
 
-@Component
 class CssGame(descriptions : Descriptions) extends Game {
 
   val tasks : Tasks = new Tasks
