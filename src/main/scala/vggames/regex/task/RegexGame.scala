@@ -103,7 +103,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
     val group = new TaskGroup("Back References", "match.back", descriptions)
     group.add(MassNegateAndMatch("back/odd", "Qual RegEx reconhece todas as sequ&ecirc;ncias " +
       "&iacute;mpares de <code>c</code>?"))
-    group.add(new NegateAndMatch(from("[a]abc[b]"), from("[a]abc[/a]", "[b]def[/b]")))
+    group.add(new NegateAndMatch(from("[a]abc[/b]"), from("[a]abc[/a]", "[b]def[/b]")))
     tasks.add(group)
   }
 
