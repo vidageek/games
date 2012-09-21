@@ -11,7 +11,7 @@ import vggames.scala.tasks.judge.GameJudger
 class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
   val className = "ExpressionRunner"
   val fullName = "scalagameunsafe.ExpressionRunner"
-  
+
   def processCode(code : String) : JudgedTask = {
     val eval = new Eval(None)
     compile(code, eval)
@@ -29,7 +29,8 @@ class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
   }
 
   private def compile(code : String, eval : Eval) = {
-    if (code.contains("finally") || code.contains("catch"))
+    if (code.contains("finally") || code.contains("catch") ||
+      code.contains(TaskRunSecurityManager.getClass.getSimpleName.replace("$", "")))
       throw new SecurityException("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
     val wrapped = wrap(className, code, spec.extendsType, spec.runSignature)
     eval.compile(wrapped)
@@ -49,11 +50,11 @@ object TaskRunSecurityManager extends SecurityManager {
 object Wrappers {
   def wrap(className : String, code : String, extendsType : String, runSignature : String) = {
     "package scalagameunsafe\n" +
-    "import vggames.scala.code._\n" +
-    "class " + className + " extends " + extendsType + " {\n" +
-    "  def run" + runSignature + " = {\n" +
-    code + "\n" +
-    "  }\n" +
-    "}\n"
+      "import vggames.scala.code._\n" +
+      "class " + className + " extends " + extendsType + " {\n" +
+      "  def run" + runSignature + " = {\n" +
+      code + "\n" +
+      "  }\n" +
+      "}\n"
   }
 }

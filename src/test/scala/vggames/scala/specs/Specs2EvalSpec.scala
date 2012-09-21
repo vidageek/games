@@ -66,6 +66,11 @@ class Specs2EvalSpec extends Specification {
       fail.getReason must contain("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
     }
 
+    "fail for attempt to allow task to run priviledged code" in {
+      val fail = Specs2Eval(new TestSpec("finally")).judge("""TaskRunSecurityManager.unsafe.set(false);1""")
+      fail.getReason must contain("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
+    }
+
     "timeout and fail for infinite loops" in {
       val fail = Specs2Eval(new TestSpec("while")).judge("""while(true){Thread.sleep(500)};1""")
       fail.getReason must contain("Exceeded max compilation and run time.")
