@@ -10,6 +10,11 @@
 		<div class="alert">
 		  <strong>Aviso!</strong> Estamos em Beta. Caso encontre algum problema, envie um email para games@vidageek.net
 		</div>
+		<c:if test="${not empty gameEnded}">
+			<div class="alert alert-success">
+				Parabéns! Você acabou de resolver o último exercício de ${game.name}. O importante agora é continuar praticando. <br />
+			</div>
+		</c:if>  
 		<h1>${game.name}</h1>
 		<h2>${game.description}</h2>
 		Voc&ecirc; pode come&ccedil;ar a jogar pelo <a href="/play/${gameName}/task/0">primeiro exerc&iacute;cio</a> ou escolher um grupo abaixo:

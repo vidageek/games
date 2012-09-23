@@ -5,7 +5,7 @@
 <div class="row">
 	<div class="span5">
 		<c:if test="${not empty judgedTask}">
-			<div class="reason alert ${judgedTask.ok ? 'alert-success' : 'alert-error'}">
+			<div id="challenge-result" class="reason alert ${judgedTask.ok ? 'alert-success' : 'alert-error'}">
 				${judgedTask.reason}
 			</div>
 		</c:if>  
