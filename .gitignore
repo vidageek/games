@@ -18,3 +18,4 @@ games-packaged.css
 /build.xml
 .history
 .scala_dependencies
+*.swp
