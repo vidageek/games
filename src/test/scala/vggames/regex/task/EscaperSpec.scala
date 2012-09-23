@@ -4,6 +4,9 @@ import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
 
+import vggames.regex.Escaper;
+import vggames.regex.Escaper
+
 @RunWith(classOf[JUnitRunner])
 class EscaperSpec extends Specification {
   "the escaper" should {

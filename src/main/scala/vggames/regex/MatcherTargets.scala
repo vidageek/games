@@ -1,4 +1,4 @@
-package vggames.regex.task
+package vggames.regex
 
 class MatcherTargets private (matcherTargets : List[String]) extends Iterable[String] {
   private val escaper = new Escaper

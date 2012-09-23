@@ -1,6 +1,6 @@
-package vggames.regex.task;
+package vggames.regex
 
-import vggames.shared.task.{Task, JudgedTask}
+import vggames.shared.task.{ Task, JudgedTask }
 
 class NegateAndMatch(cannotMatch : MatcherTargets, shouldMatch : MatcherTargets) extends Task {
 

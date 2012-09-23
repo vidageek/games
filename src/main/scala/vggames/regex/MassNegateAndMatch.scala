@@ -1,8 +1,6 @@
-package vggames.regex.task
+package vggames.regex
 
 import java.util.Scanner
-
-import MatcherTargets.from
 import vggames.shared.task.{ Task, JudgedTask }
 
 class MassNegateAndMatch(challenge : String, matcher : NegateAndMatch) extends Task {

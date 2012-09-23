@@ -3,7 +3,10 @@ package vggames.regex.task
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
+
+import vggames.regex.CaptureGroup;
 import vggames.shared.task.status.Failed
+import vggames.regex.CaptureGroup
 
 @RunWith(classOf[JUnitRunner])
 class CaptureGroupSpec extends Specification {

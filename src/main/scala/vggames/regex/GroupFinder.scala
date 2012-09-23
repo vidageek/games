@@ -1,4 +1,4 @@
-package vggames.regex.task;
+package vggames.regex
 
 import java.util.regex.Pattern
 

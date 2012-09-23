@@ -1,7 +1,7 @@
-package vggames.regex.task
+package vggames.regex
 
-import vggames.regex.task.MatcherTargets.from
-import vggames.shared.task.{ Match, Descriptions }
+import vggames.regex.MatcherTargets._
+import vggames.shared.task.{ Descriptions }
 import vggames.shared.Game
 import vggames.shared.task.Tasks
 import vggames.shared.task.TaskGroup

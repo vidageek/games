@@ -1,14 +1,14 @@
 package vggames.regex.task
 
-import vggames.regex.task.MatcherTargets._
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
 import vggames.shared.task.IndexedTask
-import vggames.shared.task.Match
 import vggames.shared.task.status.Error
 import vggames.shared.task.GroupedTask
 import vggames.shared.task.TaskGroup
+import vggames.regex.MatcherTargets._
+import vggames.regex.Match
 
 @RunWith(classOf[JUnitRunner])
 class IndexedTaskSpec extends Specification {

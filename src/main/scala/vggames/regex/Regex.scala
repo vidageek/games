@@ -1,10 +1,10 @@
-package vggames.regex.task
+package vggames.regex
 
 import java.util.regex.Pattern
-
-import vggames.regex.task.MatcherTargets.from
-import vggames.shared.task.status.{Ok, Faileds, Failed}
+import vggames.shared.task.status.{ Ok, Faileds, Failed }
 import vggames.shared.task.JudgedTask
+
+import vggames.regex.MatcherTargets._
 
 class Regex(regex : String) {
   val pattern = Pattern.compile(regex)

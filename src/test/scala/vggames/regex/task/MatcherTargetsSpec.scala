@@ -4,7 +4,7 @@ import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
 
-import vggames.regex.task.MatcherTargets.from;
+import vggames.regex.MatcherTargets.from;
 
 @RunWith(classOf[JUnitRunner])
 class MatcherTargetsSpec extends Specification {

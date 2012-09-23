@@ -1,7 +1,6 @@
-package vggames.regex.task;
+package vggames.regex
 
 import java.util.regex.Matcher
-
 import vggames.shared.task.JudgedTask
 
 trait GroupValidation {
