@@ -53,6 +53,8 @@ object GamesVidageekBuild extends Build {
       "org.prevayler" % "prevayler-core" % "2.5",
       "org.prevayler" % "prevayler-factory" % "2.5",
       "org.prevayler.extras" % "prevayler-xstream" % "2.5",
+      "org.scalaquery" % "scalaquery_2.9.0-1" % "0.9.5",
+      "org.xerial" % "sqlite-jdbc" % "3.7.2",
       "org.specs2" %% "specs2" % "1.12.1",
       
       "org.mockito" % "mockito-core" % "1.9.0" % "test",

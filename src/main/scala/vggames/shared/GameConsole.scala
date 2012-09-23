@@ -1,9 +1,11 @@
 package vggames.shared
 
 import br.com.caelum.vraptor.{ Result, Resource, Post, Get }
+import vggames.shared.log.Log
+import vggames.shared.log.Submission
 
 @Resource
-class GameConsole(result : Result, game : Game) {
+class GameConsole(result : Result, game : Game, log : Log) {
 
   @Get(Array("/play/{gameName}"))
   def index(gameName : String) {
@@ -20,7 +22,11 @@ class GameConsole(result : Result, game : Game) {
 
   @Post(Array("/play/{gameName}/task/{index}"))
   def submit(gameName : String, index : Int, challenge : String) {
-    val judgedTask = game.task(index).judge(challenge)
+    val task = game.task(index)
+    val judgedTask = task.judge(challenge)
+
+    log.log(Submission(gameName, task, challenge, judgedTask))
+
     result.include("judgedTask", judgedTask)
     if (judgedTask.getOk) {
       if (game.hasNextTask(index)) {
