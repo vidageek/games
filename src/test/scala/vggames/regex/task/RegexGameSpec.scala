@@ -16,7 +16,7 @@ class RegexGameSpec extends Specification with Mockito {
   "regex game" should {
     "have answers for all tasks" in {
       val answers =
-        List("a", "abc", "\\\\", "\\$", "abcdefg12345", "AbCdEfG6", "ab\\$cd\\^Ef\\\\G1", "", " ", "\\n", "\\t",
+        List("a", "abc", "\\\\", "\\$", "abcdefg12345", "AbCdEfG6", "ab\\$cd\\^Ef\\\\G1", "", " ", "\\n", "\\t", "\\f", "\\r",
           "[ab]", "[ab]d", "[a-cA-D]", "[0-2]", "[a-z]", "\\d", "\\da", "[\\da]", "\\s", "\\sa", "[\\sa]", "\\w",
           "\\wp", ".", "[^ab]", "[^abc]d", "\\D", "\\Da", "[^\\da]", "\\S", "\\Sa", "[^\\sa]", "\\W", "\\Wp",
           "a|b", "aa|bb|ab", "a?", "[a-b]?", "a+", "[a-c]+", "[a-c]*", "a*", "a{3}", "[a-c]{3}", "Nome: (.*)",

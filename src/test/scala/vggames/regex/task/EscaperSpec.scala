@@ -25,5 +25,8 @@ class EscaperSpec extends Specification {
     "transform tab to tab demarcation" in {
       new Escaper().apply("\t") must_== "-Tab-"
     }
+    "transform return to return demarcation" in {
+      new Escaper().apply("\r") must_== "-Retorno-"
+    }
   }
 }

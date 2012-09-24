@@ -3,7 +3,7 @@ package vggames.regex
 import vggames.shared.Game
 import vggames.shared.task.{ Descriptions, TaskGroup, Tasks }
 
-class RegexGame(descriptions : Descriptions) extends Game {
+class RegexGame(descriptions: Descriptions) extends Game {
   override val tasks = new Tasks(
     addCharsExercises,
     addCharClassesExercises,
@@ -28,7 +28,9 @@ class RegexGame(descriptions : Descriptions) extends Game {
       new Match(""),
       new Match(" "),
       new Match("\n"),
-      new Match("\t"))
+      new Match("\t"),
+      new Match("\f"),
+      new Match("\r"))
 
   private def addCharClassesExercises =
     new TaskGroup("Classes de Caracteres", "match.chars.classes", descriptions,

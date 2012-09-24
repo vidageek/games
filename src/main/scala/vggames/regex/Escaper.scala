@@ -5,8 +5,8 @@ import java.util.regex.Pattern
 import java.util.Map
 
 class Escaper {
-  private val shouldScapePatterns : Set[String] = Set("(?:(.*)(\\s)(.*))+")
-  private val fromToCharacterReplace : Map[String, String] = new ConcurrentHashMap[String, String];
+  private val shouldScapePatterns: Set[String] = Set("(?:(.*)(\\s)(.*))+")
+  private val fromToCharacterReplace: Map[String, String] = new ConcurrentHashMap[String, String];
 
   fillShouldMapChar
 
@@ -14,25 +14,25 @@ class Escaper {
     fromToCharacterReplace.put("\t", "-Tab-");
     fromToCharacterReplace.put("\b", "\\\\b");
     fromToCharacterReplace.put("\n", "-Quebra-de-Linha-");
-    fromToCharacterReplace.put("\r", "\\\\r");
-    fromToCharacterReplace.put("\f", "\\\\f");
+    fromToCharacterReplace.put("\r", "-Retorno-");
+    fromToCharacterReplace.put("\f", "-Quebra-de-P&aacute;gina");
     fromToCharacterReplace.put("\'", "\\\\'");
     fromToCharacterReplace.put("\\", "\\\\");
     fromToCharacterReplace.put(" ", "-Espa&ccedil;o-");
   }
 
-  def applyAll(words : List[String]) : List[String] = {
+  def applyAll(words: List[String]): List[String] = {
     words.map(apply)
   }
 
-  def apply(word : String) : String = {
+  def apply(word: String): String = {
     if ("".equals(word)) {
       return "-Vazio-";
     }
     if (scape(word)) applyScapes(word) else word
   }
 
-  def applyScapes(input : String) : String = {
+  def applyScapes(input: String): String = {
     val aRegex = thatMatchWith(input).getOrElse("");
     val compiledRegex = Pattern.compile(aRegex);
     val matcher = compiledRegex.matcher(input);
@@ -43,10 +43,10 @@ class Escaper {
     return result;
   }
 
-  private def scape(input : String) : Boolean = {
+  private def scape(input: String): Boolean = {
     thatMatchWith(input).isDefined
   }
 
-  private def thatMatchWith(input : String) : Option[String] = shouldScapePatterns.filter(input.matches(_)).headOption
+  private def thatMatchWith(input: String): Option[String] = shouldScapePatterns.filter(input.matches(_)).headOption
 
 }
