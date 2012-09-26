@@ -16,7 +16,9 @@ import java.util.Scanner
 class Listener extends ServletContextListener {
 
   implicit def addVersion(line : String) = new {
-    def version = line.replaceAll("^(\\d+).*", "$1").toInt
+    val regex = "^(\\d+).*".r
+    val regex(versionAsString) = line
+    def version = versionAsString.toInt
   }
 
   override def contextInitialized(event : ServletContextEvent) {
