@@ -22,10 +22,12 @@ class GameConsole(result : Result, game : Game, log : Log) {
 
   @Post(Array("/play/{gameName}/task/{index}"))
   def submit(gameName : String, index : Int, challenge : String) {
-    val task = game.task(index)
-    val judgedTask = task.judge(challenge)
+    val cleanChallenge = if (challenge == null) "" else challenge
 
-    log.log(Submission(gameName, task, challenge, judgedTask))
+    val task = game.task(index)
+    val judgedTask = task.judge(cleanChallenge)
+
+    log.log(Submission(gameName, task, cleanChallenge, judgedTask))
 
     result.include("judgedTask", judgedTask)
     if (judgedTask.getOk) {
@@ -36,7 +38,7 @@ class GameConsole(result : Result, game : Game, log : Log) {
         result.redirectTo(this).index(gameName)
       }
     } else {
-      result.include("challenge", challenge)
+      result.include("challenge", cleanChallenge)
       result.redirectTo(this).task(gameName, index)
     }
   }
