@@ -6,8 +6,10 @@ import akka.actor.Actor
 import br.com.caelum.vraptor.ioc.Component
 import akka.actor.ActorSystem
 import akka.actor.Props
+import br.com.caelum.vraptor.ioc.ApplicationScoped
 
 @Component
+@ApplicationScoped
 class Log {
   val logActor = ActorSystem("GameLog").actorOf(Props[GameLog], "GameLogActor")
   def log(item : LogItem) : Unit = logActor ! item
