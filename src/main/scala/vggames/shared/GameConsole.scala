@@ -15,9 +15,13 @@ class GameConsole(result : Result, game : Game, log : Log) {
 
   @Get(Array("/play/{gameName}/task/{index}"))
   def task(gameName : String, index : Int) {
-    result.include("gameName", gameName)
-    result.include("task", game.task(index))
-    result.include("game", game)
+    if (taskExists(index)) {
+      result.include("gameName", gameName)
+      result.include("task", game.task(index))
+      result.include("game", game)
+    } else {
+      result.redirectTo(this).index(gameName)
+    }
   }
 
   @Post(Array("/play/{gameName}/task/{index}"))
@@ -42,4 +46,6 @@ class GameConsole(result : Result, game : Game, log : Log) {
       result.redirectTo(this).task(gameName, index)
     }
   }
+
+  def taskExists(index : Int) = index >= 0 && index < game.getSize
 }
