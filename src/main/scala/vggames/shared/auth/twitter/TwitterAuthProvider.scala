@@ -5,7 +5,7 @@ import scala.util.parsing.json.JSON
 import org.scribe.model.{Verifier, Token, Response, OAuthRequest}
 
 import vggames.shared.auth.{AuthenticateWithProvider, AuthenticatedRequester, AuthProvider}
-import vggames.shared.vraptor.OAuthSecrets
+import vggames.shared.vraptor.Secrets
 import org.scribe.builder.ServiceBuilder
 import org.scribe.builder.api.{TwitterApi, Api}
 

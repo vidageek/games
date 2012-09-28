@@ -4,11 +4,11 @@ import org.scribe.builder.ServiceBuilder
 import org.scribe.model.{Verifier, Token}
 import org.scribe.oauth.OAuthService
 
-import vggames.shared.vraptor.OAuthSecrets
+import vggames.shared.vraptor.Secrets
 
 object AuthenticateWithProvider {
 
-  def apply(provider : AuthProvider, secrets : OAuthSecrets, callbackUri: String) = {
+  def apply(provider : AuthProvider, secrets : Secrets, callbackUri: String) = {
     val authService = new ServiceBuilder().provider(provider.api).apiKey(secrets.apiKeyFor(provider.name))
       .apiSecret(secrets.apiSecretFor(provider.name)).callback(callbackUri).build
     new AuthenticateWithProvider(authService)

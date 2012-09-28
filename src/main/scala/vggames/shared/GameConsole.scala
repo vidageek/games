@@ -47,5 +47,5 @@ class GameConsole(result : Result, game : Game, log : Log) {
     }
   }
 
-  def taskExists(index : Int) = index >= 0 && index < game.getSize
+  private def taskExists(index : Int) = index >= 0 && index < game.getSize
 }

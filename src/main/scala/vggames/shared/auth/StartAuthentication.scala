@@ -1,12 +1,12 @@
 package vggames.shared.auth
 
-import vggames.shared.vraptor.OAuthSecrets
+import vggames.shared.vraptor.Secrets
 import br.com.caelum.vraptor.ioc.Component
 import javax.servlet.http.HttpServletRequest
 import java.net.URL
 
 @Component
-case class StartAuthentication(all: Providers, configs: OAuthSecrets, request : HttpServletRequest) {
+case class StartAuthentication(all: Providers, configs: Secrets, request : HttpServletRequest) {
   private implicit def requestRequestedHost(request: HttpServletRequest) = new {
     def url: String = {
       val url = new URL(request.getRequestURL.toString)

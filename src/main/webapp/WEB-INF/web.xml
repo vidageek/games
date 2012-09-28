@@ -5,7 +5,10 @@
 	<listener>
 		<listener-class>vggames.dbff.Listener</listener-class>
 	</listener>
-
+	
+	<listener>
+		<listener-class>vggames.shared.email.Notifier</listener-class>
+	</listener>
 
 	<filter>
 		<filter-name>sitemesh</filter-name>

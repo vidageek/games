@@ -2,7 +2,7 @@ package vggames.shared.auth
 
 import org.scribe.model.{Verifier, Token}
 
-import vggames.shared.vraptor.OAuthSecrets
+import vggames.shared.vraptor.Secrets
 import org.scribe.builder.api.{Api, GoogleApi}
 
 class GoogleAuthProvider(requester: AuthenticatedRequester) extends AuthProvider {
