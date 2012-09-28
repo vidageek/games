@@ -15,7 +15,6 @@ class CaptureGroup(val matchingTarget : String, val captureGroupTargets : String
 
   def addAllValidations() : Unit = {
     validations += new ValidationIfMatch(matchingTarget)
-    validations += new ValidationIfAllCapture(captureGroupTargets.toList : _*)
     validations += new ValidationCaptureCorrectGroup(matchingTarget)
     validations += new ValidationIfAllGroupsMatch(captureGroupTargets.toList : _*)
   }
@@ -23,7 +22,6 @@ class CaptureGroup(val matchingTarget : String, val captureGroupTargets : String
   def judge(challenge : String) : JudgedTask = {
     val matcher : Matcher = Pattern.compile(challenge).matcher(matchingTarget);
     return applyAllValidations(challenge, matcher);
-
   }
 
   def applyAllValidations(challenge : String, matcher : Matcher) : JudgedTask = {
@@ -34,16 +32,10 @@ class CaptureGroup(val matchingTarget : String, val captureGroupTargets : String
       })
   }
 
-  def getChallenge : String = {
-    "Qual regex d&aacute; match em " + from(matchingTarget).asHtml() + " e captura " + captureTarget + "?"
-  }
+  def getChallenge = "Qual regex d&aacute; match em " + from(matchingTarget).asHtml() + " e captura " + captureTarget + "?"
 
-  def captureTarget : String = {
-    from(captureGroupTargets.toList : _*).asHtml()
-  }
+  def captureTarget : String = from(captureGroupTargets.toList : _*).asHtml()
 
-  override def toString() : String = {
-    getChallenge
-  }
+  override def toString() = getChallenge
 
 }

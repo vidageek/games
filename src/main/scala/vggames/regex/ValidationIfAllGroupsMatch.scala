@@ -10,7 +10,7 @@ class ValidationIfAllGroupsMatch(captureGroupTargets : String*) extends GroupVal
   def judge(challenge : String, matcher : Matcher) : JudgedTask = {
     var i = 1
     for (target <- captureGroupTargets.toList) {
-      if (!target.equals(matcher.group(i))) {
+      if (i > matcher.groupCount() || !target.equals(matcher.group(i))) {
         return new Failed("A regex " + from(challenge).asHtml() + " n&atilde;o captura a string " + from(target).asHtml())
       }
       i += 1
