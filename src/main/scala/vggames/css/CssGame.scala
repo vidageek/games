@@ -10,11 +10,9 @@ class CssGame(descriptions : Descriptions) extends Game {
 
   val tasks : Tasks = new Tasks(addTestTask)
 
-  def addTestTask = {
-    val group = new TaskGroup("Css test", "css.test", descriptions)
-    group.add(new CssTask("bla"))
-    group
-  }
+  def addTestTask =
+    new TaskGroup("Css test", "css.test", descriptions,
+      new CssTask("bla"))
 
   def getDescription = "Um jogo muito legal para aprender CSS"
 

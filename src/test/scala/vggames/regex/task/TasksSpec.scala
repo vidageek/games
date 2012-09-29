@@ -10,22 +10,15 @@ import vggames.shared.task.TaskGroup
 class TasksSpec extends Specification {
   "Tasks" should {
     val tasks = new Tasks(
-      {
-        val group = new TaskGroup("b", "", null)
-        group.add(new TestTask())
-        group.add(new TestTask())
-        group
-      }, {
-        val group = new TaskGroup("b", "", null)
-        group.add(new TestTask())
-        group.add(new TestTask())
-        group
-      }, {
-        val group = new TaskGroup("b", "", null)
-        group.add(new TestTask())
-        group.add(new TestTask())
-        group
-      })
+      new TaskGroup("b", "", null,
+        new TestTask(),
+        new TestTask()),
+      new TaskGroup("b", "", null,
+        new TestTask(),
+        new TestTask()),
+      new TaskGroup("b", "", null,
+        new TestTask(),
+        new TestTask()))
 
     "all tasks must obey indexing" in {
       0 until 6 map { i =>
