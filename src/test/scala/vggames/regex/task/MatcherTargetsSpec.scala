@@ -4,12 +4,17 @@ import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
 import vggames.regex.MatcherTargets
+import scala.collection.mutable.ListBuffer
 
 @RunWith(classOf[JUnitRunner])
 class MatcherTargetsSpec extends Specification {
   "matcher targets" should {
     "interate over matcher targets" in {
-      new MatcherTargets(List("a", "b")) must contain("a", "b").only
+      val list = ListBuffer[String]()
+      new MatcherTargets(List("a", "b")) foreach { target =>
+        list += target
+      }
+      List("a", "b") must_== list.toList
     }
 
     "build good html for 1 target" in {

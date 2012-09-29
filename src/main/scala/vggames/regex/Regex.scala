@@ -18,8 +18,8 @@ class Regex(regex : String) {
 
   def matchAll(negateClassShouldMatch : MatcherTargets) : Faileds = {
     val fails = new Faileds()
-    negateClassShouldMatch foreach { matchingTarget =>
-      fails.addOnlyJudgedFailed(doMatch(matchingTarget))
+    negateClassShouldMatch foreach { target =>
+      fails.addOnlyJudgedFailed(doMatch(target))
     }
     fails
   }
