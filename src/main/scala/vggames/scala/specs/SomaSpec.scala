@@ -8,7 +8,7 @@ class SomaSpec extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
 
   def extendsType = "RestrictedFunction2[Int, Int, Int]"
 
-  def challenge = "Some duas vari&aacute;veis <code>a</code> e <code>b</code>"
+  def getChallenge = "Some duas vari&aacute;veis <code>a</code> e <code>b</code>"
 
   "O seu código" should {
     "somar a e b e resultar em 3 quando a = 1 e b = 2" in {
