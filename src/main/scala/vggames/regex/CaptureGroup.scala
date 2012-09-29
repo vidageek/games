@@ -6,7 +6,6 @@ import scala.collection.mutable.ListBuffer
 
 import vggames.shared.task.{ JudgedTask, Task }
 import vggames.shared.task.status.Ok
-import vggames.regex.MatcherTargets._
 
 class CaptureGroup(val matchingTarget : String, val captureGroupTargets : String*) extends Task {
 
@@ -32,10 +31,7 @@ class CaptureGroup(val matchingTarget : String, val captureGroupTargets : String
       })
   }
 
-  def getChallenge = "Qual regex d&aacute; match em " + from(matchingTarget).asHtml() + " e captura " + captureTarget + "?"
+  def getChallenge = "Qual regex d&aacute; match em " + matchingTarget.asHtml() + " e captura " + captureTarget + "?"
 
-  def captureTarget : String = from(captureGroupTargets.toList : _*).asHtml()
-
-  override def toString() = getChallenge
-
+  def captureTarget : String = captureGroupTargets.asHtml()
 }

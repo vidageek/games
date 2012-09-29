@@ -5,14 +5,13 @@ import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
 
-import vggames.regex.MatcherTargets.from;
 import vggames.shared.task.status.{ Ok, Failed }
 import vggames.regex.Match
 
 @RunWith(classOf[JUnitRunner])
 class MatchSpec extends Specification {
   "a match" should {
-    val taskWithMatchinTargestAAndB = new Match(from("A", "B"))
+    val taskWithMatchinTargestAAndB = new Match(List("A", "B"))
 
     "matcher with all answers" in {
       taskWithMatchinTargestAAndB.judge("[AB]") must beAnInstanceOf[Ok]
@@ -31,17 +30,17 @@ class MatchSpec extends Specification {
     }
 
     "show correct challenge for 3 matching targets" in {
-      new Match(from("a", "b", "c")).getChallenge must_== "Qual RegEx reconhece <code>a</code>, <code>b</code> e <code>c</code>?"
+      new Match(List("a", "b", "c")).getChallenge must_== "Qual RegEx reconhece <code>a</code>, <code>b</code> e <code>c</code>?"
     }
 
     "match all string" in {
-      new Match(from("a")).judge(".").getOk must beTrue
-      new Match(from("aaabc")).judge(".+").getOk must beTrue
+      new Match("a").judge(".").getOk must beTrue
+      new Match("aaabc").judge(".+").getOk must beTrue
     }
 
     "not match partial string" in {
-      new Match(from("aa")).judge(".").getOk must beFalse
-      new Match(from("aaab\nc")).judge(".+").getOk must beFalse
+      new Match("aa").judge(".").getOk must beFalse
+      new Match("aaab\nc").judge(".+").getOk must beFalse
     }
   }
 }

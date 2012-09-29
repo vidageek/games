@@ -13,6 +13,4 @@ class NegateAndMatch(cannotMatch : MatcherTargets, shouldMatch : MatcherTargets)
   def getChallenge : String = {
     "Qual RegEx n&atilde;o reconhece " + cannotMatch.asHtml + " mas reconhece " + shouldMatch.asHtml + "?";
   }
-
-  override def toString : String = getChallenge
 }

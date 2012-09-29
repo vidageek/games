@@ -1,6 +1,6 @@
 package vggames.regex
 
-class MatcherTargets private (matcherTargets : List[String]) extends Iterable[String] {
+class MatcherTargets(matcherTargets : List[String]) extends Iterable[String] {
   private val escaper = new Escaper
   private def scapeTarges() = escaper.applyAll(matcherTargets)
 
@@ -14,9 +14,4 @@ class MatcherTargets private (matcherTargets : List[String]) extends Iterable[St
     else
       string
   }
-}
-
-object MatcherTargets {
-  def from(matchingTargets : String*) : MatcherTargets = new MatcherTargets(matchingTargets.toList)
-  def from(matchingTargets : Array[String]) : MatcherTargets = new MatcherTargets(matchingTargets.toList)
 }

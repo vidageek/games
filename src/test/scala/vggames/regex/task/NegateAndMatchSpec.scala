@@ -5,16 +5,13 @@ import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
 
 import vggames.regex.NegateAndMatch;
-import vggames.regex.MatcherTargets.from;
 import vggames.shared.task.status.Failed
 import vggames.regex.NegateAndMatch
 
 @RunWith(classOf[JUnitRunner])
 class NegateAndMatchSpec extends Specification {
   "a negate and match" should {
-    val cannotMatch = from("a", "b")
-    val shouldMatch = from("c", "d")
-    val aNegateCharClassTask = new NegateAndMatch(cannotMatch, shouldMatch)
+    val aNegateCharClassTask = new NegateAndMatch(List("a", "b"), List("c", "d"))
 
     "return failed when match" in {
       val judge = aNegateCharClassTask.judge("[^ef]")

@@ -1,6 +1,5 @@
 package vggames.regex
 
-import vggames.regex.MatcherTargets._
 import vggames.shared.task.{ Descriptions }
 import vggames.shared.Game
 import vggames.shared.task.Tasks
@@ -21,72 +20,72 @@ class RegexGame(descriptions : Descriptions) extends Game {
 
   private def addCharsExercises = {
     val group = new TaskGroup("Caracteres Simples", "match.chars", descriptions)
-    group.add(new Match(from("a")))
-    group.add(new Match(from("abc")))
-    group.add(new Match(from("\\")))
-    group.add(new Match(from("$")))
-    group.add(new Match(from("abcdefg12345")))
-    group.add(new Match(from("AbCdEfG6")))
-    group.add(new Match(from("ab$cd^Ef\\G1")))
-    group.add(new Match(from("")))
-    group.add(new Match(from(" ")))
-    group.add(new Match(from("\n")))
-    group.add(new Match(from("\t")))
+    group.add(new Match("a"))
+    group.add(new Match("abc"))
+    group.add(new Match("\\"))
+    group.add(new Match("$"))
+    group.add(new Match("abcdefg12345"))
+    group.add(new Match("AbCdEfG6"))
+    group.add(new Match("ab$cd^Ef\\G1"))
+    group.add(new Match(""))
+    group.add(new Match(" "))
+    group.add(new Match("\n"))
+    group.add(new Match("\t"))
     tasks.add(group)
   }
 
   private def addCharClassesExercises = {
     val group = new TaskGroup("Classes de Caracteres", "match.chars.classes", descriptions)
-    group.add(new Match(from("a", "b")))
-    group.add(new Match(from("ad", "bd")))
-    group.add(new Match(from("a", "b", "c", "A", "B", "C", "D")))
-    group.add(new Match(from("0", "1", "2")))
-    group.add(new Match(from("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
+    group.add(new Match(List("a", "b")))
+    group.add(new Match(List("ad", "bd")))
+    group.add(new Match(List("a", "b", "c", "A", "B", "C", "D")))
+    group.add(new Match(List("0", "1", "2")))
+    group.add(new Match(List("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
       "q", "r", "s", "t", "u", "v", "x", "w", "y", "z")))
-    group.add(new Match(from("1", "4", "5")))
-    group.add(new Match(from("1a", "4a", "5a")))
-    group.add(new Match(from("1", "4", "5", "a")))
-    group.add(new Match(from(" ", "\t", "\n", "\f", "\r")))
-    group.add(new Match(from(" a", "\ta", "\na")))
-    group.add(new Match(from(" ", "\t", "\n", "a")))
-    group.add(new Match(from("a", "b", "9")))
-    group.add(new Match(from("ap", "bp", "9p")))
-    group.add(new Match(from("a", "B", "9", "$", "\t", " ")))
+    group.add(new Match(List("1", "4", "5")))
+    group.add(new Match(List("1a", "4a", "5a")))
+    group.add(new Match(List("1", "4", "5", "a")))
+    group.add(new Match(List(" ", "\t", "\n", "\f", "\r")))
+    group.add(new Match(List(" a", "\ta", "\na")))
+    group.add(new Match(List(" ", "\t", "\n", "a")))
+    group.add(new Match(List("a", "b", "9")))
+    group.add(new Match(List("ap", "bp", "9p")))
+    group.add(new Match(List("a", "B", "9", "$", "\t", " ")))
     tasks.add(group)
   }
 
   private def addOpositeCharClassExercises = {
     val group = new TaskGroup("Classes de Caracteres Opostas", "match.negate", descriptions)
-    group.add(new NegateAndMatch(from("a", "b"), from("c", "d")))
-    group.add(new NegateAndMatch(from("ad", "bd", "cd"), from("dd", "ed")))
-    group.add(new NegateAndMatch(from("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"), from(" ", "a")))
-    group.add(new NegateAndMatch(from("1a", "4a", "5a"), from(" a", "$a")))
-    group.add(new NegateAndMatch(from("1", "4", "5", "a"), from(" ", "b")))
-    group.add(new NegateAndMatch(from("\t", "\n", "\f", "\r"), from("A", "w")))
-    group.add(new NegateAndMatch(from(" a", "\ta", "\na"), from("ca", "#a")))
-    group.add(new NegateAndMatch(from(" ", "\t", "\n", "a"), from("Z", "A")))
-    group.add(new NegateAndMatch(from("a", "B", "9"), from(" ", "$")))
-    group.add(new NegateAndMatch(from("ap", "Bp", "9p"), from("$p", "#p")))
+    group.add(new NegateAndMatch(List("a", "b"), List("c", "d")))
+    group.add(new NegateAndMatch(List("ad", "bd", "cd"), List("dd", "ed")))
+    group.add(new NegateAndMatch(List("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"), List(" ", "a")))
+    group.add(new NegateAndMatch(List("1a", "4a", "5a"), List(" a", "$a")))
+    group.add(new NegateAndMatch(List("1", "4", "5", "a"), List(" ", "b")))
+    group.add(new NegateAndMatch(List("\t", "\n", "\f", "\r"), List("A", "w")))
+    group.add(new NegateAndMatch(List(" a", "\ta", "\na"), List("ca", "#a")))
+    group.add(new NegateAndMatch(List(" ", "\t", "\n", "a"), List("Z", "A")))
+    group.add(new NegateAndMatch(List("a", "B", "9"), List(" ", "$")))
+    group.add(new NegateAndMatch(List("ap", "Bp", "9p"), List("$p", "#p")))
     tasks.add(group)
   }
 
   private def addPipeOperator = {
     val group = new TaskGroup("M&uacute;ltiplos Padr&otilde;es", "match.pipe", descriptions)
-    group.add(new NegateAndMatch(from("ab", "ba"), from("a", "b")))
-    group.add(new NegateAndMatch(from("ba", "baa"), from("aa", "bb", "ab")))
+    group.add(new NegateAndMatch(List("ab", "ba"), List("a", "b")))
+    group.add(new NegateAndMatch(List("ba", "baa"), List("aa", "bb", "ab")))
     tasks.add(group)
   }
 
   private def addOperatorsExercises = {
     val group = new TaskGroup("Operadores de Repeti&ccedil;&atilde;o", "match.operators", descriptions)
-    group.add(new NegateAndMatch(from("b"), from("", "a")))
-    group.add(new NegateAndMatch(from("aa"), from("", "a", "b")))
-    group.add(new NegateAndMatch(from("", "aaaaaaaaab"), from("a", "aa", "aaaaaaaaa")));
-    group.add(new NegateAndMatch(from("", "abcdcba"), from("a", "abc", "cbaabc", "aabbcc")))
-    group.add(new NegateAndMatch(from("abcdcba"), from("", "a", "abc", "cbaabc", "aabbcc")))
-    group.add(new NegateAndMatch(from("aaaaaaaaab"), from("", "a", "aa", "aaaaaaaaa")))
-    group.add(new NegateAndMatch(from("a", "aa"), from("aaa")))
-    group.add(new NegateAndMatch(from("a", "ab", "abca"), from("abc", "cba")))
+    group.add(new NegateAndMatch("b", List("", "a")))
+    group.add(new NegateAndMatch("aa", List("", "a", "b")))
+    group.add(new NegateAndMatch(List("", "aaaaaaaaab"), List("a", "aa", "aaaaaaaaa")));
+    group.add(new NegateAndMatch(List("", "abcdcba"), List("a", "abc", "cbaabc", "aabbcc")))
+    group.add(new NegateAndMatch(List("abcdcba"), List("", "a", "abc", "cbaabc", "aabbcc")))
+    group.add(new NegateAndMatch(List("aaaaaaaaab"), List("", "a", "aa", "aaaaaaaaa")))
+    group.add(new NegateAndMatch(List("a", "aa"), "aaa"))
+    group.add(new NegateAndMatch(List("a", "ab", "abca"), List("abc", "cba")))
     tasks.add(group)
   }
 
@@ -103,16 +102,16 @@ class RegexGame(descriptions : Descriptions) extends Game {
     val group = new TaskGroup("Back References", "match.back", descriptions)
     group.add(MassNegateAndMatch("back/odd", "Qual RegEx reconhece todas as sequ&ecirc;ncias " +
       "&iacute;mpares de <code>c</code>?"))
-    group.add(new NegateAndMatch(from("[a]abc[/b]"), from("[a]abc[/a]", "[b]def[/b]")))
+    group.add(new NegateAndMatch("[a]abc[/b]", List("[a]abc[/a]", "[b]def[/b]")))
     tasks.add(group)
   }
 
   private def addAnchoringExercises = {
     val group = new TaskGroup("Ancoras", "match.anchor", descriptions)
-    group.add(new NegateAndFind(from("/blog", "/blog/1abc"), from("/blog/1", "/blog/2")))
-    group.add(new NegateAndFind(from("/blog/2"), from("/blog")))
-    group.add(new NegateAndFind(from("a/blog/"), from("/blog/")))
-    group.add(new NegateAndFind(from("blogueiro"), from("blog")))
+    group.add(new NegateAndFind(List("/blog", "/blog/1abc"), List("/blog/1", "/blog/2")))
+    group.add(new NegateAndFind("/blog/2", "/blog"))
+    group.add(new NegateAndFind("a/blog/", "/blog/"))
+    group.add(new NegateAndFind("blogueiro", "blog"))
     tasks.add(group)
   }
 
@@ -120,7 +119,7 @@ class RegexGame(descriptions : Descriptions) extends Game {
     val group = new TaskGroup("Modos da RegEx", "match.modes", descriptions)
     group.add(MassNegateAndMatch("modes/regex", "Qual RegEx &eacute; capaz de reconhecer todas " +
       "as variações de escrita de RegEx (regex, Regex, ...)?"))
-    group.add(new Match(from("\nabcd", "a\nbcd", "ab\ncd", "abc\nd", "abcd\n")))
+    group.add(new Match(List("\nabcd", "a\nbcd", "ab\ncd", "abc\nd", "abcd\n")))
     tasks.add(group)
   }
 
