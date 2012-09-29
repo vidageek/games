@@ -8,14 +8,12 @@ import vggames.shared.task.TaskGroup
 
 class CssGame(descriptions : Descriptions) extends Game {
 
-  val tasks : Tasks = new Tasks
-
-  addTestTask
+  val tasks : Tasks = new Tasks(addTestTask)
 
   def addTestTask = {
     val group = new TaskGroup("Css test", "css.test", descriptions)
     group.add(new CssTask("bla"))
-    tasks.add(group)
+    group
   }
 
   def getDescription = "Um jogo muito legal para aprender CSS"

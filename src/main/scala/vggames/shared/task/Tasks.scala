@@ -3,10 +3,7 @@ package vggames.shared.task
 import scala.collection.JavaConverters.seqAsJavaListConverter
 import scala.collection.mutable.ListBuffer
 
-class Tasks {
-  val taskGroups = ListBuffer[TaskGroup]()
-
-  def add(group : TaskGroup) : Unit = taskGroups += group
+class Tasks(taskGroups : TaskGroup*) {
 
   def at(originalIndex : Int) = {
     var index = originalIndex
