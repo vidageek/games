@@ -28,5 +28,13 @@ class EscaperSpec extends Specification {
     "transform return to return demarcation" in {
       new Escaper().apply("\r") must_== "-Retorno-"
     }
+
+    "not escape a normal word" in {
+      new Escaper().apply("asdrubal") must_== "asdrubal"
+    }
+
+    "transform multiple blanks to its demarcations" in {
+      new Escaper().apply("The Spa\tce") must_== "The-Espa&ccedil;o-Spa-Tab-ce"
+    }
   }
 }
