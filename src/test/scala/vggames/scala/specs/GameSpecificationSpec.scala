@@ -8,7 +8,7 @@ import vggames.scala.code.RestrictedFunction2
 import org.specs2.main.ArgProperty
 
 @RunWith(classOf[JUnitRunner])
-class Specs2EvalSpec extends Specification {
+class GameSpecificationSpec extends Specification {
   sequential
 
   "Sum judge" should {
