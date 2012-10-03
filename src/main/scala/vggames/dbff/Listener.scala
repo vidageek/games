@@ -46,11 +46,11 @@ object DB {
 
   def version : Int = {
     if (versionTableExists)
-      query("""select version from dbff_version;""")(_.getInt(1))
+      query("""SELECT version FROM dbff_version;""")(_.getInt(1))
     else {
       println("Criando tabela de controle de versao do schema")
-      update("""create table dbff_version ("version" int)""")
-      update("""insert into dbff_version values(0)""")
+      update("""CREATE TABLE dbff_version ("version" int)""")
+      update("""INSERT INTO dbff_version values(0)""")
       0
     }
   }
@@ -59,7 +59,7 @@ object DB {
     val filename = "/dbff/" + name
     println("Rodando script " + filename)
     update(Read(filename).getLines.mkString("\n"))
-    update("update dbff_version set version=" + version)
+    update("UPDATE dbff_version SET version=" + version)
   }
 
   def versionTableExists : Boolean = query("SELECT name FROM sqlite_master WHERE type='table' AND name='dbff_version';")(_.next)
