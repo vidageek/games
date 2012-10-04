@@ -13,6 +13,7 @@ body {
 
 /*Code*/
 code {
+    white-space: nowrap;
 	padding: 0px 4px;	
 }
 
