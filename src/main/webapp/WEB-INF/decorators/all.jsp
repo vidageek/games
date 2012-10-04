@@ -44,17 +44,17 @@
 			<div class="container">
 			    <c:choose>
                     <c:when test="${empty player}">
-                        <a id="select-a-provider" class="brand pull-right" data-toggle="modal" href="#logon-provider">Logar...</a>
+                        <a id="select-a-provider" class="brand pull-right" data-toggle="modal" href="#logon-provider">Login</a>
                     </c:when>
                     <c:otherwise>
                         <div class="nav-collapse">
                             <ul class="nav">
                                 <li class="active">
-                                    <a id="logged" class="brand pull-right" href="#logado">${player.userName}</a>
+                                    <a id="logged" class="brand pull-right" href="#logado">${player.email}</a>
                                 </li>
                                 <li class="divider-vertical"></li>
                                 <li>
-                                    <a id="logged" class="brand pull-right" href="<c:url  value="/auth/logout" />">Logout</a>
+                                    <a id="logged" class="brand pull-right" href="<c:url  value="/logout" />">Logout</a>
                                 </li>
                             </ul>
                         </div>
@@ -74,19 +74,17 @@
 
 	<section>
 		<div id="logon-provider" class="modal hide fade in">
-			<div class="modal-header">
-				<a class="close" data-dismiss="modal">×</a>
-				<h3>Selecione por onde deseja logar</h3>
-			</div>
 			<div class="modal-body">
-				<ul class="nav nav-tabs nav-stacked">
-					<li>
-						<a href="<c:url  value="/auth/provider/twitter" />?backUrl=<%= request.getRequestURL() %>">Twitter</a>
-					</li>
-				</ul>
-			</div>
-			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
+				<a class="close" data-dismiss="modal">X</a>
+				<form action="/player" method="POST">
+					<label for="email">Email:</label>
+					<input name="email" />
+					<input type="submit" value="Logar" />
+				</form>
+				
+				<div class="alert alert-info">
+					<a href="/senha">Porquê não preciso colocar minha senha?</a>
+				</div>
 			</div>
 		</div>
 	</section>

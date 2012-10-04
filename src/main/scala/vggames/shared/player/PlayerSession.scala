@@ -11,12 +11,16 @@ import javax.servlet.http.HttpServletRequest
 class PlayerSession(request : HttpServletRequest, response : HttpServletResponse, players : Players) {
 
   def login(player : Player) : Unit = {
-    response.addCookie(new LoginCookie(player.token))
+    response.addCookie(new LoginCookie(player.token, request.getServerName))
     PlayerSession.activePlayers += ((player.token, player))
   }
 
+  def logout {
+    response.addCookie(new LogoutCookie("player", request.getServerName))
+  }
+
   def actualPlayer : Option[Player] = {
-    val cookie = request.getCookies.find(_.getName == "player")
+    val cookie = Option(request.getCookies).getOrElse(Array()).find(_.getName == "player")
     if (!cookie.isDefined) return None
 
     val token = cookie.get.getValue
@@ -31,6 +35,14 @@ object PlayerSession {
   val activePlayers : ConcurrentMap[String, Player] = asScalaConcurrentMap(new ConcurrentHashMap[String, Player]())
 }
 
-class LoginCookie(token : String) extends Cookie("player", token) {
-  setMaxAge(Integer.MAX_VALUE)
+class LogoutCookie(token : String, domain : String) extends Cookie("player", token) {
+  setMaxAge(0)
+  setPath("/")
+  setDomain(domain)
+}
+
+class LoginCookie(token : String, domain : String) extends Cookie("player", token) {
+  setMaxAge(5 * 365 * 24 * 60 * 60)
+  setPath("/")
+  setDomain(domain)
 }

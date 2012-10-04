@@ -15,12 +15,9 @@ object Mail {
 
   val secrets = new Secrets
 
-  def apply(to : String, from : String, subject : String, message : String) = {
-    if (secrets.awsAccessKey != null)
-      new AWSMail(to, from, subject, message)
-    else
-      new LogMail(to, from, subject, message)
-  }
+  def apply(to : String, from : String, subject : String, message : String) =
+    Option(secrets.awsAccessKey).map(a => new AWSMail(to, from, subject, message)).
+      getOrElse(new LogMail(to, from, subject, message))
 }
 
 trait Mail {

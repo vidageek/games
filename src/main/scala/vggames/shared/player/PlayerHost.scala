@@ -1,16 +1,21 @@
 package vggames.shared.player
 
-import br.com.caelum.vraptor.{ Get, Resource, Result }
-import br.com.caelum.vraptor.ioc.Component
-import vggames.shared.GameConsole
 import java.security.SecureRandom
+import scala.Array.canBuildFrom
+import br.com.caelum.vraptor.{ Get, Post, Resource, Result }
+import br.com.caelum.vraptor.ioc.Component
+import br.com.caelum.vraptor.view.Results.referer
 import vggames.shared.email.Mail
+import vggames.shared.vraptor.Referer
 
 @Resource
-class PlayerHost(players : Players, session : PlayerSession, result : Result) {
+class PlayerHost(players : Players, session : PlayerSession, result : Result, referer : Referer) {
 
   @Get(Array("/"))
   def home = {}
+
+  @Get(Array("/senha"))
+  def senha = {}
 
   @Get(Array("/token/{token}"))
   def login(token : String) = {
@@ -18,19 +23,29 @@ class PlayerHost(players : Players, session : PlayerSession, result : Result) {
     result.redirectTo(this).home
   }
 
-  @Get(Array("/player"))
-  def authenticate(name : String, email : String) = {
-    val player : Player = players.findByEmail(email).getOrElse {
-      val player = Player(name, email, secureToken)
-      players += player
-      player
-    }
-    Mail(email, "games@vidageek.net", "Link para Login", """Seu link para login &eacute; 
-        <a href="http://games.vidageek.net/token/%s">http://games.vidageek.net/token/%s</a>""".format()).send
+  @Post(Array("/player"))
+  def authenticate(email : String) = {
+    val outterEmail = email
+
+    val player : Player = players.findByEmail(email).getOrElse(players += Player(outterEmail, PlayerHost.secureToken))
+
+    Mail(email, "games@vidageek.net", "Link para Login",
+      """<a href="http://games.vidageek.net/token/%s">Clique aqui para logar-se no VidaGeek Games</a>""".
+        format(player.token)).send
+
+    result.redirectTo(referer.url)
   }
 
+  @Get(Array("/logout"))
+  def logout {
+    session.logout
+    result.redirectTo(referer.url)
+  }
+}
+
+object PlayerHost {
   def secureToken : String = {
-    val bytes = new Array[Byte](120)
+    val bytes = new Array[Byte](60)
     new SecureRandom().nextBytes(bytes)
     bytes.map("%02X" format _).mkString
   }
