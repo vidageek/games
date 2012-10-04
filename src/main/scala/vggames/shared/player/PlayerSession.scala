@@ -19,7 +19,17 @@ class PlayerSession(request : HttpServletRequest, response : HttpServletResponse
     response.addCookie(new LogoutCookie("player", request.getServerName))
   }
 
+  def saveLast(lastTask : String) {
+    actualPlayer.map(_.lastTask = Option(lastTask))
+    players.updateLastTask(lastTask, actualPlayer)
+  }
+
+  def endGame = saveLast(null)
+
   def actualPlayer : Option[Player] = {
+    if (request.getAttribute("player") != null) {
+      return Some(request.getAttribute("player").asInstanceOf[Player])
+    }
     val cookie = Option(request.getCookies).getOrElse(Array()).find(_.getName == "player")
     if (!cookie.isDefined) return None
 

@@ -3,6 +3,10 @@
   src: url("Collegiate.ttf");
 }
 
+li > a.nav-link {
+	color: #CCC;
+}
+
 body {
 	padding-top: 40px;
 }

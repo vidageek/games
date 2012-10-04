@@ -44,17 +44,22 @@
 			<div class="container">
 			    <c:choose>
                     <c:when test="${empty player}">
-                        <a id="select-a-provider" class="brand pull-right" data-toggle="modal" href="#logon-provider">Login</a>
+                        <a id="select-a-provider" class="pull-right nav-link" data-toggle="modal" href="#logon-provider">Login</a>
                     </c:when>
                     <c:otherwise>
                         <div class="nav-collapse">
                             <ul class="nav">
                                 <li class="active">
-                                    <a id="logged" class="brand pull-right" href="#logado">${player.email}</a>
+                                    <a id="logged" class="pull-right nav-link" href="#logado">${player.email}</a>
                                 </li>
+                                <c:if test="${not empty player.lastTask}">
+	                                <li>
+	                                    <a class="pull-right nav-link" href="${player.lastTask}">Última Jogada</a>
+	                                </li>
+                                </c:if>
                                 <li class="divider-vertical"></li>
                                 <li>
-                                    <a id="logged" class="brand pull-right" href="<c:url  value="/logout" />">Logout</a>
+                                    <a class="pull-right nav-link" href="<c:url  value="/logout" />">Logout</a>
                                 </li>
                             </ul>
                         </div>

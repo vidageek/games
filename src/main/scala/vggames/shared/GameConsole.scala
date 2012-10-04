@@ -1,11 +1,12 @@
 package vggames.shared
 
-import br.com.caelum.vraptor.{ Result, Resource, Post, Get }
-import vggames.shared.log.Log
-import vggames.shared.log.Submission
+import br.com.caelum.vraptor.{Get, Post, Resource, Result}
+import br.com.caelum.vraptor.ioc.Component
+import vggames.shared.log.{Log, Submission}
+import vggames.shared.player.PlayerSession
 
 @Resource
-class GameConsole(result : Result, game : Game, log : Log) {
+class GameConsole(result : Result, game : Game, log : Log, session : PlayerSession) {
 
   @Get(Array("/play/{gameName}"))
   def index(gameName : String) {
@@ -36,8 +37,11 @@ class GameConsole(result : Result, game : Game, log : Log) {
     result.include("judgedTask", judgedTask)
     if (judgedTask.getOk) {
       if (game.hasNextTask(index)) {
-        result.redirectTo(this).task(gameName, game.nextTask(index))
+        val taskIndex = game.nextTask(index)
+        session.saveLast("/play/%s/task/%d".format(gameName, taskIndex))
+        result.redirectTo(this).task(gameName, taskIndex)
       } else {
+        session.endGame
         result.include("gameEnded", "end")
         result.redirectTo(this).index(gameName)
       }
