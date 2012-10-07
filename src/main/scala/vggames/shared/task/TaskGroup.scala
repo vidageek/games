@@ -4,9 +4,9 @@ import java.util.ArrayList
 import java.util.Collections
 import scala.collection.JavaConversions.asScalaIterator
 
-class TaskGroup(name : String, groupName : String, descriptions : Descriptions, tasks : Task*) extends Iterable[Task] {
+class TaskGroup(name : String, groupName : String, descriptions : Descriptions, tasks : Task*) {
 
-  override def size = tasks.size
+  def size = tasks.size
 
   def task(index : Int) = tasks(index)
 
@@ -15,4 +15,6 @@ class TaskGroup(name : String, groupName : String, descriptions : Descriptions, 
   def getDescription = descriptions.forGroup(groupName)
 
   def getName = name
+
+  def foreach = tasks.foreach _
 }
