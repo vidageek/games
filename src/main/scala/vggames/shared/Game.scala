@@ -18,9 +18,9 @@ trait Game {
 
   def getTasks : Collection[_ <: TaskWithDescription] = tasks.all
 
-  def canKeepPlaying(index : Int)(f : Int => Unit) = if (hasNextTask(index)) f(nextTask(index))
+  def advance(index : Int)(f : Int => Unit) = if (hasNextTask(index)) f(nextTask(index))
 
-  def onEnd(index : Int)(f : => Unit) = if (!hasNextTask(index)) f
+  def atEnd(index : Int)(f : => Unit) = if (!hasNextTask(index)) f
 
   private def nextTask(index : Int) : Int = index + 1
 

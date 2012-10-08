@@ -35,20 +35,22 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
     log.log(Submission(gameName, task, cleanChallenge, judgedTask))
 
     result.include("judgedTask", judgedTask)
-    if (judgedTask.getOk) {
 
-      game.canKeepPlaying(index) { nextIndex =>
+    judgedTask.success {
+
+      game.advance(index) { nextIndex =>
         session.saveLast("/play/%s/task/%d".format(gameName, nextIndex))
         result.redirectTo(this).task(gameName, nextIndex)
       }
 
-      game.onEnd(index) {
+      game.atEnd(index) {
         session.endGame
         result.include("gameEnded", "end")
         result.redirectTo(this).index(gameName)
       }
+    }
 
-    } else {
+    judgedTask.failure {
       result.include("challenge", cleanChallenge)
       result.redirectTo(this).task(gameName, index)
     }
