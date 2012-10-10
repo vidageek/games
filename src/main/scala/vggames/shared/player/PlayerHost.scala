@@ -33,6 +33,7 @@ class PlayerHost(players : Players, session : PlayerSession, result : Result, re
       """<a href="http://games.vidageek.net/token/%s">Clique aqui para logar-se no VidaGeek Games</a>""".
         format(player.token)).send
 
+    result.include("notice", "Enviamos um email para %s com o seu link de login. Basta clicar nele para se logar.".format(email))
     result.redirectTo(referer.url)
   }
 
