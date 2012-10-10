@@ -8,7 +8,7 @@ import org.scalaquery.ql.TypeMapper._
 import org.scalaquery.ql.extended.SQLiteDriver.Implicit._
 import org.scalaquery.session.Database.threadLocalSession
 
-case class Player(email : String, token : String, var lastTask : Option[String]) {
+case class Player(id : Long, email : String, token : String, var lastTask : Option[String]) {
   def getEmail : String = email
   def getLastTask : String = lastTask.getOrElse(null)
 }
@@ -30,11 +30,11 @@ class Players {
     }
   }
 
-  def +=(player : Player) : Player = {
+  def +=(p : Player) : Player = {
     Database.forURL("jdbc:sqlite:games.db", driver = "org.sqlite.JDBC").withSession {
-      Players.insert(Player.unapply(player).get)
+      Players.noId.insert((p.email, p.token, p.lastTask))
     }
-    player
+    findByEmail(p.email).get
   }
 
   def updateLastTask(lastTask : String, playerOption : Option[Player]) {
@@ -46,14 +46,16 @@ class Players {
     }
   }
 
-  def tuple2Player(t : (String, String, Option[String])) = Player(t._1, t._2, t._3)
+  def tuple2Player(t : (Long, String, String, Option[String])) = Player(t._1, t._2, t._3, t._4)
 }
 
-object Players extends ExtendedTable[(String, String, Option[String])]("players") {
+object Players extends ExtendedTable[(Long, String, String, Option[String])]("players") {
 
+  def id = column[Long]("id")
   def email = column[String]("email")
   def token = column[String]("token")
   def lastTask = column[Option[String]]("lastTask")
 
-  def * = email ~ token ~ lastTask
+  def * = id ~ email ~ token ~ lastTask
+  def noId = email ~ token ~ lastTask
 }

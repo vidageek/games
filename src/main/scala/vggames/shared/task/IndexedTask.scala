@@ -20,4 +20,6 @@ class IndexedTask(delegate : TaskWithDescription, index : Int) extends TaskWithD
 
   def getGroupName : String = delegate.getGroupName
 
+  def groupCode = delegate.groupCode
+
 }

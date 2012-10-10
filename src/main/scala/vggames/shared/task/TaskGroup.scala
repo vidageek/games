@@ -1,6 +1,6 @@
 package vggames.shared.task
 
-class TaskGroup(name : String, groupName : String, descriptions : Descriptions, tasks : Task*) {
+class TaskGroup(name : String, val groupName : String, descriptions : Descriptions, tasks : Task*) {
 
   def getDescription = descriptions.forGroup(groupName)
 

@@ -1,0 +1,5 @@
+DROP TABLE players;
+CREATE TABLE players (id INTEGER PRIMARY KEY, email VARCHAR(254) NOT NULL,token VARCHAR(254) NOT NULL, lastTask VARCHAR(254));
+CREATE UNIQUE INDEX email_idx ON players (email);  
+CREATE UNIQUE INDEX token_idx ON players (token);
+CREATE TABLE finishedGroups (player_id INTEGER, "group" VARCHAR(254) NOT NULL, FOREIGN KEY(player_id) REFERENCES players(id));

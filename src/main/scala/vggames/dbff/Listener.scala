@@ -58,7 +58,10 @@ object DB {
   def bump(name : String, version : Int) = {
     val filename = "/dbff/" + name
     println("Rodando script " + filename)
-    update(Read(filename).getLines.mkString("\n"))
+    Read(filename).getLines.foreach { line =>
+      println("Running: " + line)
+      update(line)
+    }
     update("UPDATE dbff_version SET version=" + version)
   }
 

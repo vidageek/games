@@ -20,6 +20,9 @@ trait Game {
 
   def advance(index : Int)(f : Int => Unit) = if (hasNextTask(index)) f(nextTask(index))
 
+  def atGroupEnd(index : Int)(f : => Unit) =
+    if (!hasNextTask(index) || task(index).getGroupName != task(nextTask(index)).getGroupName) f
+
   def atEnd(index : Int)(f : => Unit) = if (!hasNextTask(index)) f
 
   def nextTask(index : Int) : Int = index + 1

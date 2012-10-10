@@ -4,6 +4,7 @@ import br.com.caelum.vraptor.{ Get, Post, Resource, Result }
 import br.com.caelum.vraptor.ioc.Component
 import vggames.shared.log.{ Log, Submission }
 import vggames.shared.player.PlayerSession
+import vggames.shared.log.EndGroup
 
 @Resource
 class GameConsole(result : Result, game : Game, log : Log, session : PlayerSession) {
@@ -43,6 +44,10 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
       game.advance(index) { nextIndex =>
         session.saveLast("/play/%s/task/%d".format(gameName, nextIndex))
         result.redirectTo(this).task(gameName, nextIndex)
+      }
+
+      game.atGroupEnd(index) {
+        log.log(EndGroup(task.groupCode, session.actualPlayer))
       }
 
       game.atEnd(index) {

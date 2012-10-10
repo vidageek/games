@@ -44,7 +44,7 @@
 			<div class="container">
 			    <c:choose>
                     <c:when test="${empty player}">
-                        <a id="select-a-provider" class="pull-right nav-link" data-toggle="modal" href="#logon-provider">Login</a>
+                        <a id="select-a-provider" class="brand pull-right nav-link" data-toggle="modal" href="#logon-provider">Login</a>
                     </c:when>
                     <c:otherwise>
                         <div class="nav-collapse">
