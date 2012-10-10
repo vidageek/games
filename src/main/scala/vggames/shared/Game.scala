@@ -22,7 +22,7 @@ trait Game {
 
   def atEnd(index : Int)(f : => Unit) = if (!hasNextTask(index)) f
 
-  private def nextTask(index : Int) : Int = index + 1
+  def nextTask(index : Int) : Int = index + 1
 
-  private def hasNextTask(index : Int) : Boolean = nextTask(index) < getSize
+  def hasNextTask(index : Int) : Boolean = nextTask(index) < getSize
 }
