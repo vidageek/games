@@ -24,12 +24,12 @@
 		<h2>${game.description}</h2>
 		Voc&ecirc; pode come&ccedil;ar a jogar pelo <a href="/play/${gameName}/task/0">primeiro exerc&iacute;cio</a> ou escolher um grupo abaixo:
 		
-		<ul class="nav nav-pills nav-stacked">
+		<ul class="nav nav-pills nav-stacked groups">
 			<c:set var="a" value="" />
 			<c:forEach items="${game.tasks}" var="task">
 					<c:if test="${a != task.groupName}">
 						<c:set var="a" value="${task.groupName}" />
-						<li><a href="/play/${gameName}/task/${task.index}">${task.groupName}</a></li>
+						<li class="${finishedGroups[task.groupCode]}"><a href="/play/${gameName}/task/${task.index}">${task.groupName}</a></li>
 					</c:if>
 			</c:forEach>
 		</ul>

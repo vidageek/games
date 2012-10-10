@@ -46,6 +46,19 @@ class Players {
     }
   }
 
+  def finishGroup(p : Player, group : String) {
+    Database.forURL("jdbc:sqlite:games.db", driver = "org.sqlite.JDBC").withSession {
+      FinishedGroups.insert((p.id, group))
+    }
+  }
+
+  def finishedGroups(p : Player) = {
+    Database.forURL("jdbc:sqlite:games.db", driver = "org.sqlite.JDBC").withSession {
+      val query = for (group <- FinishedGroups if group.playerId is p.id) yield group.group
+      query.list
+    }
+  }
+
   def tuple2Player(t : (Long, String, String, Option[String])) = Player(t._1, t._2, t._3, t._4)
 }
 
@@ -58,4 +71,12 @@ object Players extends ExtendedTable[(Long, String, String, Option[String])]("pl
 
   def * = id ~ email ~ token ~ lastTask
   def noId = email ~ token ~ lastTask
+}
+
+object FinishedGroups extends ExtendedTable[(Long, String)]("finishedGroups") {
+
+  def playerId = column[Long]("player_id")
+  def group = column[String]("group")
+
+  def * = playerId ~ group
 }

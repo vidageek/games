@@ -6,6 +6,6 @@ trait TaskWithDescription extends Task {
 
   def getGroupName : String
 
-  def groupCode : String
+  def getGroupCode : String
 
 }

@@ -6,6 +6,11 @@ import scala.collection.mutable.ConcurrentMap
 import br.com.caelum.vraptor.ioc.Component
 import javax.servlet.http.{ Cookie, HttpServletResponse }
 import javax.servlet.http.HttpServletRequest
+import org.scalaquery.ql.extended.ExtendedTable
+import org.scalaquery.ql.extended.SQLiteDriver.Implicit._
+import org.scalaquery.session.Database
+import org.scalaquery.session.Database.threadLocalSession
+import scala.collection.mutable.Map
 
 @Component
 class PlayerSession(request : HttpServletRequest, response : HttpServletResponse, players : Players) {
@@ -39,6 +44,14 @@ class PlayerSession(request : HttpServletRequest, response : HttpServletResponse
 
     players.find(token)
   }
+
+  def finishGroup(group : String) = actualPlayer.map(players.finishGroup(_, group))
+
+  def finishedGroups = actualPlayer.map { p =>
+    players.finishedGroups(p).foldLeft(Map[String, String]()) { (map, group) =>
+      map += group -> "finished"
+    }
+  }.getOrElse(Map[String, String]())
 }
 
 object PlayerSession {
@@ -56,3 +69,4 @@ class LoginCookie(token : String, domain : String) extends Cookie("player", toke
   setPath("/")
   setDomain(domain)
 }
+

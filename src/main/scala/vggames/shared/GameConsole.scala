@@ -1,10 +1,11 @@
 package vggames.shared
 
+import scala.collection.JavaConversions.mutableMapAsJavaMap
+
 import br.com.caelum.vraptor.{ Get, Post, Resource, Result }
 import br.com.caelum.vraptor.ioc.Component
 import vggames.shared.log.{ Log, Submission }
 import vggames.shared.player.PlayerSession
-import vggames.shared.log.EndGroup
 
 @Resource
 class GameConsole(result : Result, game : Game, log : Log, session : PlayerSession) {
@@ -13,6 +14,7 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
   def index(gameName : String) {
     result.include("gameName", gameName)
     result.include("game", game)
+    result.include("finishedGroups", mutableMapAsJavaMap(session.finishedGroups))
   }
 
   @Get(Array("/play/{gameName}/task/{index}"))
@@ -47,7 +49,7 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
       }
 
       game.atGroupEnd(index) {
-        log.log(EndGroup(task.groupCode, session.actualPlayer))
+        session.finishGroup(task.getGroupCode)
       }
 
       game.atEnd(index) {

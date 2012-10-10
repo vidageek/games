@@ -12,5 +12,5 @@ class GroupedTask(group : TaskGroup, task : Task) extends TaskWithDescription {
 
   def getGroupName = group.getName
 
-  def groupCode = group.groupName
+  def getGroupCode = group.groupName
 }

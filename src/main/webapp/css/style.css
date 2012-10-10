@@ -35,6 +35,18 @@ code {
 .progress {
 	width: 354px;	
 }
+
+/* Groups */
+ul.groups li {
+	padding-left: 20px;
+}
+
+li.finished {
+	background-image: url("/images/check.jpg");
+	background-repeat: no-repeat;
+	background-position: 5px 5px; 
+}
+
 /*Ribbon*/
 .ribbon-holder {
   position: absolute;
