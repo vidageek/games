@@ -25,8 +25,10 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
     }
   }
 
-  @Post(Array("/play/{gameName}/task/{index}"))
-  def submit(gameName : String, index : Int, challenge : String) {
+  @Post(Array("/play/{outterGameName}/task/{outterIndex}"))
+  def submit(outterGameName : String, outterIndex : Int, challenge : String) {
+    val gameName = outterGameName
+    val index = outterIndex
     val cleanChallenge = if (challenge == null) "" else challenge
 
     val task = game.task(index)
