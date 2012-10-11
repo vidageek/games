@@ -9,7 +9,7 @@ class CreateStringTripleQuotation extends GameSpecification[RestrictedFunction0[
 
   def extendsType = "RestrictedFunction0[String]"
 
-  def getChallenge = "Crie uma string com o valor <code>Minha primeira String</code> usando <code>\"\"\"</code>"
+  def getChallenge = "Crie uma string com o valor <code>Minha segunda String</code> usando <code>\"\"\"</code>"
 
   "O seu código" should {
     " criar a string \"\"\"Minha segunda String\"\"\"" in {

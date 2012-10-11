@@ -9,7 +9,7 @@ class AnyRefToString extends GameSpecification[RestrictedFunction1[Any, String]]
 
   def extendsType = "RestrictedFunction1[Any, String]"
 
-  def getChallenge = """transforme <code>a</code> em string"""
+  def getChallenge = """Transforme <code>a</code> em string"""
 
   "O seu código" should {
     """ transformar 1 em string""" in {

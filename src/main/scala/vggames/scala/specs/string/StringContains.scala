@@ -9,7 +9,7 @@ class StringContains extends GameSpecification[RestrictedFunction1[String, Boole
 
   def extendsType = "RestrictedFunction1[String, Boolean]"
 
-  def getChallenge = """Devolva <code>true</code> se <code>a</code> contêm "ara" e <code>false</code> caso contrário"""
+  def getChallenge = """Devolva <code>true</code> se <code>a</code> contêm <code>"ara"</code> e <code>false</code> caso contrário"""
 
   "O seu código" should {
     """ devolver true para "arara" """ in {

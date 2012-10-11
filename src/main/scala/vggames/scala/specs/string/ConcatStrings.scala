@@ -9,7 +9,7 @@ class ConcatStrings extends GameSpecification[RestrictedFunction2[String, String
 
   def extendsType = "RestrictedFunction2[String, String, String]"
 
-  def getChallenge = """Concatene duas Strings a e b"""
+  def getChallenge = """Concatene duas Strings <code>a</code> e <code>b</code>"""
 
   "O seu código" should {
     """ concatenar "abc" com "def" e produzir "abcdef" """ in {

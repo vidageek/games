@@ -7,9 +7,9 @@ class ComparacaoStrings extends GameSpecification[RestrictedFunction2[String, St
 
   def runSignature = "(a:String, b:String):Boolean"
 
-  def extendsType = "RestrictedFunction1[String, String, Boolean]"
+  def extendsType = "RestrictedFunction2[String, String, Boolean]"
 
-  def getChallenge = """Devolva <code>false</code> se a string a é <strong>menor</strong> que b e <code>true</code> caso contrário"""
+  def getChallenge = """Devolva <code>false</code> se a string <code>a</code> é <strong>menor</strong> que <code>b</code> e <code>true</code> caso contrário"""
 
   "O seu código" should {
 
