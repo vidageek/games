@@ -1,28 +1,16 @@
 package vggames.scala
 
-import vggames.shared.task.Descriptions
-import vggames.shared.Game
 import vggames.scala.specs._
-import vggames.shared.task.Tasks
-import vggames.shared.task.TaskGroup
-import vggames.scala.specs.string.CreateString
-import vggames.scala.specs.string.CreateStringTripleQuotation
-import vggames.scala.specs.string.ConcatStrings
-import vggames.scala.specs.string.ConcatStringWithConstant
-import vggames.scala.specs.string.ReverseStrings
-import vggames.scala.specs.string.StringLenght
-import vggames.scala.specs.string.ComparacaoStrings
-import vggames.scala.specs.string.AnyRefToString
-import vggames.scala.specs.string.SplitStrings
-import vggames.scala.specs.string.SubStrings
-import vggames.scala.specs.string.ReplaceString
-import vggames.scala.specs.string.StringContains
-import vggames.scala.specs.string.TrimString
+import vggames.scala.specs.booleans._
+import vggames.scala.specs.string._
+import vggames.shared.Game
+import vggames.shared.task.{ Descriptions, TaskGroup, Tasks }
 
 class ScalaGame(descriptions : Descriptions) extends Game {
 
   override val tasks = new Tasks(
     addBasicMathExercises,
+    addBasicBooleanExercises,
     addStringExercises,
     addAdvancedStringExercises)
 
@@ -33,7 +21,15 @@ class ScalaGame(descriptions : Descriptions) extends Game {
       new MultiSpec(),
       new DivSpec())
 
-  def addBasicBooleanExercises = {}
+  def addBasicBooleanExercises =
+    new TaskGroup("Opera&ccedil;&otilde;es Booleanas", "basic.boolean", descriptions,
+      new True(),
+      new False(),
+      new Equals(),
+      new LessThan(),
+      new MoreThan(),
+      new LessOrEqual(),
+      new MoreOrEqual())
 
   def addStringExercises =
     new TaskGroup("Manipulando Strings", "basic.string.structure", descriptions,
