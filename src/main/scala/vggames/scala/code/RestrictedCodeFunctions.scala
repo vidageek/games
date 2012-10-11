@@ -28,6 +28,13 @@ sealed trait CodeRestrictions[+R] {
   }
 }
 
+trait RestrictedFunction0[+R] extends Function0[R] with CodeRestrictions[R] {
+  override def toString = "<restricted Function0>"
+  override def apply() : R = restrict(run)
+
+  def run() : R
+}
+
 trait RestrictedFunction1[-T1, +R] extends Function1[T1, R] with CodeRestrictions[R] {
   override def toString = "<restricted Function1>"
   override def apply(v1 : T1) : R = restrict(run(v1))

@@ -21,9 +21,3 @@ class SomaSpec extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
   }
 
 }
-
-object A {
-  def main(args : Array[String]) {
-    new SomaSpec
-  }
-}

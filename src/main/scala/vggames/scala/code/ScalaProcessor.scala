@@ -14,6 +14,7 @@ class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
 
   def processCode(code : String) : JudgedTask = {
     val eval = new Eval(None)
+    spec.submittedCode = code
     compile(code, eval)
     run(className, eval)
   }

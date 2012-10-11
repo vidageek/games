@@ -4,13 +4,14 @@ import org.specs2.mutable.Specification
 
 import com.twitter.util.Eval.CompilerException
 
-import vggames.scala.code.{CodeRestrictions, ScalaProcessor}
-import vggames.scala.tasks.judge.{CompilationFailure, ExecutionFailure}
-import vggames.shared.task.{JudgedTask, Task}
+import vggames.scala.code.{ CodeRestrictions, ScalaProcessor }
+import vggames.scala.tasks.judge.{ CompilationFailure, ExecutionFailure }
+import vggames.shared.task.{ JudgedTask, Task }
 
 trait GameSpecification[T <: CodeRestrictions[_]] extends Specification with Task {
 
   var code : T = _
+  var submittedCode : String = _
 
   def runSignature : String
 
