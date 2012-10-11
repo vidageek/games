@@ -11,6 +11,13 @@ import vggames.scala.specs.string.ConcatStrings
 import vggames.scala.specs.string.ConcatStringWithConstant
 import vggames.scala.specs.string.ReverseStrings
 import vggames.scala.specs.string.StringLenght
+import vggames.scala.specs.string.ComparacaoStrings
+import vggames.scala.specs.string.AnyRefToString
+import vggames.scala.specs.string.SplitStrings
+import vggames.scala.specs.string.SubStrings
+import vggames.scala.specs.string.ReplaceString
+import vggames.scala.specs.string.StringContains
+import vggames.scala.specs.string.TrimString
 
 class ScalaGame(descriptions : Descriptions) extends Game {
 
@@ -37,7 +44,6 @@ class ScalaGame(descriptions : Descriptions) extends Game {
       new ReverseStrings(),
       new StringLenght(),
       new ComparacaoStrings(),
-      new NumberToString(),
       new AnyRefToString())
 
   def addAdvancedStringExercises =
