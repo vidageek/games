@@ -41,12 +41,10 @@ class GameConsoleSpec extends Specification with Mockito {
     "redirect to next task if task is ok" in new GameConsoleScope {
       val judgedTask = new Ok()
       game.task(3).judge("challenge") returns judgedTask
-      game.hasNextTask(any[Int]) returns true
-      game.nextTask(any[Int]) returns 4
 
       new GameConsole(result, game, new Log, mock[PlayerSession]).submit("name", 3, "challenge")
 
-      there was one(gameConsole).task("name", 4)
+      there was one(game).advance(anyInt)(any[Int => Unit])
       there was one(result).include("judgedTask", judgedTask)
     }
   }
