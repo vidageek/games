@@ -26,6 +26,7 @@ class ScalaGame(descriptions : Descriptions) extends Game {
       new True(),
       new False(),
       new Equals(),
+      new NotEquals(),
       new LessThan(),
       new MoreThan(),
       new LessOrEqual(),
