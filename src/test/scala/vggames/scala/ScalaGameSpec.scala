@@ -10,13 +10,6 @@ import vggames.shared.task.status.Ok
 class ScalaGameSpec extends Specification {
 
   "Scala Game" should {
-    "not have a task vulnerable to evil code submission" in {
-      val game = new ScalaGame(new Descriptions("scala"))
-      (0 to (game.getSize - 1)).toList.foreach { i =>
-        val fail = game.task(i).judge("""System.setSecurityManager(null);1""")
-        fail.getReason must contain("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
-      }
-    }
 
     "have answers for all tasks" in {
       val game = new ScalaGame(new Descriptions("scala"))
