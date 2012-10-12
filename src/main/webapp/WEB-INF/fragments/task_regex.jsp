@@ -22,6 +22,7 @@
 	</div>
 	
 	<div class="span7">
+		<h2>${task.groupName}</h2>
 		${task.description}
 	</div>
 </div>

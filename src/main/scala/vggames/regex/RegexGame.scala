@@ -3,7 +3,7 @@ package vggames.regex
 import vggames.shared.Game
 import vggames.shared.task.{ Descriptions, TaskGroup, Tasks }
 
-class RegexGame(descriptions: Descriptions) extends Game {
+class RegexGame(descriptions : Descriptions) extends Game {
   override val tasks = new Tasks(
     addCharsExercises,
     addCharClassesExercises,
@@ -17,7 +17,7 @@ class RegexGame(descriptions: Descriptions) extends Game {
     addRealWorldRegexes)
 
   private def addCharsExercises =
-    new TaskGroup("Caracteres Simples", "match.chars", descriptions,
+    new TaskGroup("Reconhecimento de Letras", "match.chars", descriptions,
       new Match("a"),
       new Match("abc"),
       new Match("\\"),
@@ -51,7 +51,7 @@ class RegexGame(descriptions: Descriptions) extends Game {
       new Match(List("a", "B", "9", "$", "\t", " ")))
 
   private def addOpositeCharClassExercises =
-    new TaskGroup("Classes de Caracteres Opostas", "match.negate", descriptions,
+    new TaskGroup("Oposto de uma Classe de Caracteres", "match.negate", descriptions,
       new NegateAndMatch(List("a", "b"), List("c", "d")),
       new NegateAndMatch(List("ad", "bd", "cd"), List("dd", "ed")),
       new NegateAndMatch(List("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"), List(" ", "a")),
