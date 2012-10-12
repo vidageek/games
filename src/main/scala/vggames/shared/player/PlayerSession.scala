@@ -24,12 +24,19 @@ class PlayerSession(request : HttpServletRequest, response : HttpServletResponse
     response.addCookie(new LogoutCookie("player", request.getServerName))
   }
 
-  def saveLast(lastTask : String) {
-    actualPlayer.map(_.lastTask = Option(lastTask))
-    players.updateLastTask(lastTask, actualPlayer)
+  def update(fns : Player => Player*) {
+    actualPlayer.map { player =>
+      players.update(fns.foldLeft(player)((p, fn) => fn(p)))
+    }
   }
 
+  def saveLast(lastTask : String) =
+    update(p => { p.lastTask = Option(lastTask); p })
+
   def endGame = saveLast(null)
+
+  def addActiveTime(activeTime : Long) =
+    update(p => { p.activeTime += activeTime; p })
 
   def actualPlayer : Option[Player] = {
     if (request.getAttribute("player") != null) {
@@ -52,6 +59,7 @@ class PlayerSession(request : HttpServletRequest, response : HttpServletResponse
       map += group -> "finished"
     }
   }.getOrElse(Map[String, String]())
+
 }
 
 object PlayerSession {

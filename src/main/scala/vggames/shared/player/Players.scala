@@ -8,7 +8,7 @@ import org.scalaquery.ql.TypeMapper._
 import org.scalaquery.ql.extended.SQLiteDriver.Implicit._
 import org.scalaquery.session.Database.threadLocalSession
 
-case class Player(id : Long, email : String, token : String, var lastTask : Option[String]) {
+case class Player(id : Long, email : String, token : String, var lastTask : Option[String], var activeTime : Long = 0) {
   def getEmail : String = email
   def getLastTask : String = lastTask.getOrElse(null)
 }
@@ -32,17 +32,15 @@ class Players {
 
   def +=(p : Player) : Player = {
     Database.forURL("jdbc:sqlite:games.db", driver = "org.sqlite.JDBC").withSession {
-      Players.noId.insert((p.email, p.token, p.lastTask))
+      Players.noId.insert((p.email, p.token, p.lastTask, p.activeTime))
     }
     findByEmail(p.email).get
   }
 
-  def updateLastTask(lastTask : String, playerOption : Option[Player]) {
-    playerOption.map { p =>
-      Database.forURL("jdbc:sqlite:games.db", driver = "org.sqlite.JDBC").withSession {
-        val query = for (player <- Players if player.email is p.email) yield player.*
-        query.update(Player.unapply(p).get)
-      }
+  def update(p : Player) {
+    Database.forURL("jdbc:sqlite:games.db", driver = "org.sqlite.JDBC").withSession {
+      val query = for (player <- Players if player.email is p.email) yield player.*
+      query.update(Player.unapply(p).get)
     }
   }
 
@@ -59,18 +57,19 @@ class Players {
     }
   }
 
-  def tuple2Player(t : (Long, String, String, Option[String])) = Player(t._1, t._2, t._3, t._4)
+  def tuple2Player(t : (Long, String, String, Option[String], Long)) = Player(t._1, t._2, t._3, t._4, t._5)
 }
 
-object Players extends ExtendedTable[(Long, String, String, Option[String])]("players") {
+object Players extends ExtendedTable[(Long, String, String, Option[String], Long)]("players") {
 
   def id = column[Long]("id")
   def email = column[String]("email")
   def token = column[String]("token")
   def lastTask = column[Option[String]]("lastTask")
+  def activeTime = column[Long]("activeTime")
 
-  def * = id ~ email ~ token ~ lastTask
-  def noId = email ~ token ~ lastTask
+  def * = id ~ email ~ token ~ lastTask ~ activeTime
+  def noId = email ~ token ~ lastTask ~ activeTime
 }
 
 object FinishedGroups extends ExtendedTable[(Long, String)]("finishedGroups") {
