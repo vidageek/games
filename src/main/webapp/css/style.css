@@ -47,6 +47,13 @@ li.finished {
 	background-position: 5px 5px; 
 }
 
+/* Level */
+a#level {
+	background-color: #EEE;
+	color: #000;
+	font-size: 30px;
+}
+
 /*Ribbon*/
 .ribbon-holder {
   position: absolute;

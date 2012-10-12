@@ -49,6 +49,9 @@
                     <c:otherwise>
                         <div class="nav-collapse">
                             <ul class="nav">
+                            	<li>
+                            		<a id="level" href="#"><span>${player.level}</span></a>
+                            	</li>
                                 <li class="active">
                                     <a id="logged" class="pull-right nav-link" href="#logado">${player.email}</a>
                                 </li>
