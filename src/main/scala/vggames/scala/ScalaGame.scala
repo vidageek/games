@@ -22,7 +22,7 @@ class ScalaGame(descriptions : Descriptions) extends Game {
       new DivSpec())
 
   def addBasicBooleanExercises =
-    new TaskGroup("Opera&ccedil;&otilde;es Booleanas", "scala.boolean", descriptions,
+    new TaskGroup("Opera&ccedil;&otilde;es Booleanas", "basic.boolean", descriptions,
       new True(),
       new False(),
       new Equals(),
@@ -33,7 +33,7 @@ class ScalaGame(descriptions : Descriptions) extends Game {
       new MoreOrEqual())
 
   def addStringExercises =
-    new TaskGroup("Manipulando Strings", "scala.string.structure", descriptions,
+    new TaskGroup("Manipulando Strings", "basic.string.structure", descriptions,
       new CreateString(),
       new CreateStringTripleQuotation(),
       new ConcatStrings(),
@@ -44,7 +44,7 @@ class ScalaGame(descriptions : Descriptions) extends Game {
       new AnyRefToString())
 
   def addAdvancedStringExercises =
-    new TaskGroup("Mais manipula&ccedil;&atilde;o de Strings", "scala.string.operations", descriptions,
+    new TaskGroup("Mais manipula&ccedil;&atilde;o de Strings", "basic.string.operations", descriptions,
       new SplitStrings(),
       new SubStrings(),
       new ReplaceString(),

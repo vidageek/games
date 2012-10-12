@@ -1,7 +1,11 @@
-package vggames.regex.invariant
+package vggames.invariant
 
 import net.vidageek.invariant._
 import org.junit.Assert._
+import org.junit.Test
+import org.junit.runner.RunWith
+import net.vidageek.invariant.Invariant
+import net.vidageek.invariant.InvariantRunner
 import org.junit.Test
 import org.junit.runner.RunWith
 

@@ -49,7 +49,7 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
       }
 
       game.atGroupEnd(index) {
-        session.finishGroup(task.getGroupCode)
+        session.finishGroup(gameName + "." + task.getGroupCode)
       }
 
       game.atEnd(index) {

@@ -3,6 +3,7 @@ package vggames.shared
 import java.util.Collection
 import vggames.shared.task.TaskWithDescription
 import vggames.shared.task.Tasks
+import vggames.shared.task.IndexedTask
 
 trait Game {
 
@@ -17,6 +18,8 @@ trait Game {
   def getSize : Int = tasks.size
 
   def getTasks : Collection[_ <: TaskWithDescription] = tasks.all
+
+  def allTasks = tasks.tasks
 
   def advance(index : Int)(f : Int => Unit) = if (hasNextTask(index)) f(nextTask(index))
 

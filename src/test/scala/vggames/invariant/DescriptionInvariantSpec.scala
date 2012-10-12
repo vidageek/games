@@ -1,17 +1,16 @@
-package vggames.regex.invariant
-
-import java.util.regex.Matcher
+package vggames.invariant
 import java.util.regex.Pattern
 import net.vidageek.invariant._
 import org.junit.Assert._
-import org.junit.Test
+import org.junit.runner.RunWith
+import net.vidageek.invariant.Invariant
+import net.vidageek.invariant.InvariantRunner
 import org.junit.runner.RunWith
 
 @RunWith(classOf[InvariantRunner])
 class DescriptionInvariantTest {
   val ALLOWED_CHARS = "[\\w\\s\\Q<>&/.,();+=^:\\?[]-${}!|*\"\\E]*"
 
-  @Test
   @Invariant(affects = ".*\\.html", folder = "src/main/resources")
   def allDescriptionsMustUseHtmlEntities(data : FileData) = {
     val content = data.getContent()
@@ -19,7 +18,6 @@ class DescriptionInvariantTest {
       containsInvalidChars(content))
   }
 
-  @Test
   @Invariant(affects = ".*\\.html", folder = "src/main/resources")
   def regexMustBeProperlyWritten(data : FileData) = {
     val matcher = Pattern.compile("(?i)(regex)[^\"]").matcher(data.getContent())

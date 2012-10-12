@@ -34,7 +34,8 @@
 			<c:forEach items="${game.tasks}" var="task">
 					<c:if test="${a != task.groupName}">
 						<c:set var="a" value="${task.groupName}" />
-						<li class="${finishedGroups[task.groupCode]}"><a href="/play/${gameName}/task/${task.index}">${task.groupName}</a></li>
+						<c:set var="keyName" value="${gameName}.${task.groupCode}" />
+						<li class="${finishedGroups[keyName]}"><a href="/play/${gameName}/task/${task.index}">${task.groupName}</a></li>
 					</c:if>
 			</c:forEach>
 		</ul>
