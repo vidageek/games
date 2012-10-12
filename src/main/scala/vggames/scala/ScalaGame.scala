@@ -44,7 +44,7 @@ class ScalaGame(descriptions : Descriptions) extends Game {
       new AnyRefToString())
 
   def addAdvancedStringExercises =
-    new TaskGroup("Mais manipula&ccedil;&atilde;o de Strings", "basic.string.operations", descriptions,
+    new TaskGroup("Opera&ccedil;&otilde;es de Strings", "basic.string.operations", descriptions,
       new SplitStrings(),
       new SubStrings(),
       new ReplaceString(),
