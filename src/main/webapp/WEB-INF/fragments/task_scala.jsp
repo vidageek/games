@@ -12,7 +12,7 @@
 		
 		<form method="POST" action="/play/${gameName}/task/${task.index}">
 			<label for="challenge"><strong>${task.challenge}</strong></label>
-			<textarea class="focus span6" name="challenge" id="challenge" value="${challenge}" autocomplete="off"></textarea>
+			<textarea class="focus span6" name="challenge" id="challenge" autocomplete="off">${challenge}</textarea>
 			<input class="btn-primary" type="submit" value="Check!" />
 		</form>
 		
