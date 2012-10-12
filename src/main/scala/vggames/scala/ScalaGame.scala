@@ -39,7 +39,7 @@ class ScalaGame(descriptions : Descriptions) extends Game {
       new ConcatStrings(),
       new ConcatStringWithConstant(),
       new ReverseStrings(),
-      new StringLenght(),
+      new StringLength(),
       new ComparacaoStrings(),
       new AnyRefToString())
 

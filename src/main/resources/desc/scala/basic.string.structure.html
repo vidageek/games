@@ -1,24 +1,31 @@
-<h2>Opera&ccedil;&otilde;es Booleanas</h2>
+<h2>Manipulando Strings</h2>
 
 <p>
-Em Scala, assim como em diversas outras linguagens de programa&ccedil;&atilde;o, existem valores que significam 
-<strong>verdadeiro</strong> e <strong>falso</strong>. Em scala, eles s&atilde;o <code>true</code> e <code>false</code>
-e s&atilde;o chamados de valores booleanos.
-</p><p>
-Al&eacute;m de simplesmente utilizar esse valores, ainda &eacute; poss&iacute;vel que eles sejam o resultado de alguma express&atilde;o,
-como as usadas em matem&aacute;tica (com os operadores <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>,
-<code>==</code> e <code>!=</code>).
+Em Scala, palavras ou frase s&atilde;o representadas atrav&eacute;s do que &eacute; chamado <code>String</code>.
+
+Para se criar uma <code>String</code>, basta que voc&ecirc; escreva o texto que quiser entre duas <code>"</code>
 </p>
-Exemplo:
 <ul>
-	<li><code> 1 &lt; 2 </code> &eacute; <code>true</code> e voc&ecirc; l&ecirc; <strong>1 &eacute; menor que 2</strong></li>
-	<li><code> 3 &lt; 2 </code> &eacute; <code>false</code> e voc&ecirc; l&ecirc; <strong>3 &eacute; menor que 2</strong></li>
-	<li><code> 2 == 2 </code> &eacute; <code>true</code> e voc&ecirc; l&ecirc; <strong> 2 &eacute; igual a 2</strong></li>
-	<li><code> 3 != 3 </code> &eacute; <code>false</code> e voc&ecirc; l&ecirc; <strong> 3 n&atilde;o &eacute; igual a 3</strong></li>
-	<li><code> 2 &lt;= 2</code> &eacute; <code>true</code> e voc&ecirc; l&ecirc; <strong> 2 &eacute; menor ou igual a 2</strong></li>
-	<li><code>2 &lt;= 3 </code> &eacute; <code>true</code> e voc&ecirc; l&ecirc; <strong>2 &eacute; menor ou igual a 3</strong></li>
-	<li><code> 2 &gt; 3</code> &eacute; <code>false</code> e voc&ecirc; l&ecirc; <strong>2 &eacute; maior que 3</strong></li>
-	<li><code> 2 &gt;= 2</code> &eacute; <code>true</code> e voc&ecirc; l&ecirc; <strong>4 &eacute; maior ou igual 2</strong></li>
+	<li><code>"azul"</code> &eacute; a <code>String</code> que representa a palavra <strong>azul</strong></li>
 </ul>
 
+<p>
+Caso seu texto contenha <code>"</code>, &eacute; melhor utilizar outra forma de criar <code>String</code> em scala. Voc&ecirc;
+envolve o texto em <code>"""</code>:
+</p>
+<ul>
+	<li><code>"""gato "preto" """</code> &eacute; a <code>String</code> que representa o texto <strong>gato "preto" </strong></li>
+</ul>
+
+<p>
+&Eacute; poss&iacute;vel fazer muitas coisas com <code>Strings</code> em Scala.
+</p>
+<ul>
+<li>Voc&ecirc; pode concaten&aacute;-las: <code>"abra " + "kadabra"</code> vira a <code>String</code> <code>"abra kadabra"</code></li>
+<li>Voc&ecirc; pode invert&ecirc;-las: <code>"atrop".reverse</code> vira a <code>String</code> <code>"porta"</code></li>
+<li>Voc&ecirc; pode ver o tamanho dela: <code>"texto bem longo".length</code> &eacute; <code>15</code></li>
+<li>Voc&ecirc; pode compar&aacute;-las: <code>"abd" > "abc"</code> &eacute; <code>true</code></li>
+<li>E <code>Strings</code> s&atilde;o t&atilde;o importantes, que voc&ecirc; consegue transformar qualquer coisa em <code>String</code>:
+	<code>123.toString</code> vira a <code>String</code> <code>"123"</code></li>
+</ul>
 

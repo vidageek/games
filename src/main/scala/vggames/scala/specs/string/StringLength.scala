@@ -3,7 +3,7 @@ package vggames.scala.specs.string
 import vggames.scala.specs.GameSpecification
 import vggames.scala.code.RestrictedFunction1
 
-class StringLenght extends GameSpecification[RestrictedFunction1[String, Int]] {
+class StringLength extends GameSpecification[RestrictedFunction1[String, Int]] {
 
   def runSignature = "(a:String):Int"
 
