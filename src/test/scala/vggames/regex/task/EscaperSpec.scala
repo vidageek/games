@@ -25,8 +25,13 @@ class EscaperSpec extends Specification {
     "transform tab to tab demarcation" in {
       new Escaper().apply("\t") must_== "-Tab-"
     }
+
     "transform return to return demarcation" in {
       new Escaper().apply("\r") must_== "-Retorno-"
+    }
+
+    "transform page feed to page feed demarcation" in {
+      new Escaper().apply("\f") must_== "-Quebra-de-P&aacute;gina-"
     }
 
     "not escape a normal word" in {

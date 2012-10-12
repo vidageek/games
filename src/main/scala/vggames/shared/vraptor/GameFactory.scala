@@ -27,6 +27,6 @@ class GameFactory(cached : GameFactoryCache, descriptions : Descriptions, data :
 
 @Component
 @ApplicationScoped
-class GameFactoryCache(desc : Descriptions) {
-  val regexGame = new RegexGame(desc)
+class GameFactoryCache(cache : DescriptionsCache) {
+  val regexGame = new RegexGame(cache.get("regex"))
 }

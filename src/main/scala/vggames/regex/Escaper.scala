@@ -3,8 +3,8 @@ package vggames.regex
 import java.util.regex.Pattern
 
 class Escaper {
-  private val charsToReplace = Map[String, String]("\t" -> "-Tab-", "\b" -> "\\\\b",
-    "\n" -> "-Quebra-de-Linha-", "\r" -> "\\\\r", "\f" -> "\\\\f", "\\" -> "\\\\",
+  private val charsToReplace = Map[String, String]("\t" -> "-Tab-",
+    "\n" -> "-Quebra-de-Linha-", "\f" -> "-Quebra-de-P&aacute;gina-",
     " " -> "-Espa&ccedil;o-", "\t" -> "-Tab-", "\r" -> "-Retorno-");
 
   def applyAll(words : List[String]) : List[String] = words.map(apply)
