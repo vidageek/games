@@ -10,10 +10,11 @@
 			</div>
 		</c:if>  
 		
-		<form method="POST" action="/play/${gameName}/task/${task.index}">
+		<form class="challenge" method="POST" action="/play/${gameName}/task/${task.index}">
 			<label for="challenge"><strong>${task.challenge}</strong></label>
-			<textarea class="focus span6" name="challenge" id="challenge" autocomplete="off">${challenge}</textarea>
-			<input class="btn-primary" type="submit" value="Check!" />
+			<textarea class="focus span6" name="challenge" id="challenge" autocomplete="off">
+			${challenge}</textarea>
+			<input class="btn-primary" type="submit" value="Check! ( ctrl + Enter )" />
 		</form>
 		
 		<div class="progress">
