@@ -22,7 +22,6 @@ class GameFactory(cached : GameFactoryCache, descriptions : Descriptions, data :
         "seja necessário registrá-lo na GameFactory")
     }
   }
-
 }
 
 @Component

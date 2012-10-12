@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<header id="game">
-		<h1>${game.name} Game</h1>
+		<h1><a href="/play/${gameName}">${game.name} Game</a></h1>
 		</header>
 		
 		<c:import url="/WEB-INF/fragments/task_${gameName}.jsp" />
