@@ -7,13 +7,15 @@ import vggames.shared.Game
 import vggames.shared.task.Descriptions
 import vggames.scala.ScalaGame
 import vggames.css.CssGame
+import br.com.caelum.vraptor.ioc.Component
+import br.com.caelum.vraptor.ioc.ApplicationScoped
 
 @Component
-class GameFactory(descriptions : Descriptions, data : RequestData) extends ComponentFactory[Game] {
+class GameFactory(cached : GameFactoryCache, descriptions : Descriptions, data : RequestData) extends ComponentFactory[Game] {
 
   def getInstance : Game = {
     data.game match {
-      case "regex" => new RegexGame(descriptions)
+      case "regex" => cached regexGame
       case "scala" => new ScalaGame(descriptions)
       case "css" => new CssGame(descriptions)
       case other => throw new RuntimeException("Não foi possível criar o jogo [" + other + "]. Talvez " +
@@ -21,4 +23,10 @@ class GameFactory(descriptions : Descriptions, data : RequestData) extends Compo
     }
   }
 
+}
+
+@Component
+@ApplicationScoped
+class GameFactoryCache(desc : Descriptions) {
+  val regexGame = new RegexGame(desc)
 }

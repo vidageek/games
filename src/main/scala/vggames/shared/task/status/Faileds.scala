@@ -2,7 +2,7 @@ package vggames.shared.task.status
 
 import vggames.shared.task.JudgedTask
 
-class Faileds extends JudgedTask with Iterable[Failed] {
+class Faileds extends JudgedTask {
 
   private var faileds = List[Failed]()
 
@@ -17,9 +17,11 @@ class Faileds extends JudgedTask with Iterable[Failed] {
     }
   }
 
-  def addAll(faileds : Faileds) : Unit = faileds foreach (addOnlyJudgedFailed)
+  def addAll(faileds : Faileds) : Unit = faileds.foreach(addOnlyJudgedFailed)
 
   def judgment() : JudgedTask = if (getOk()) new Ok() else new Failed(this)
 
-  def iterator() : Iterator[Failed] = faileds.iterator
+  private def foreach = faileds.foreach _
+
+  def mkString = faileds.mkString(_ : String)
 }

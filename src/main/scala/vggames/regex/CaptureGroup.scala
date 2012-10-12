@@ -9,17 +9,13 @@ import vggames.shared.task.status.Ok
 
 class CaptureGroup(val matchingTarget : String, val captureGroupTargets : String*) extends Task {
 
-  val validations = ListBuffer[GroupValidation]()
-  addAllValidations()
-
-  def addAllValidations() : Unit = {
-    validations += new ValidationIfMatch(matchingTarget)
-    validations += new ValidationCaptureCorrectGroup(matchingTarget)
-    validations += new ValidationIfAllGroupsMatch(captureGroupTargets.toList : _*)
-  }
+  val validations = List[GroupValidation](
+    new ValidationIfMatch(matchingTarget),
+    new ValidationCaptureCorrectGroup(matchingTarget),
+    new ValidationIfAllGroupsMatch(captureGroupTargets.toList : _*))
 
   def judge(challenge : String) : JudgedTask = {
-    val matcher : Matcher = Pattern.compile(challenge).matcher(matchingTarget);
+    val matcher = Pattern.compile(challenge).matcher(matchingTarget);
     return applyAllValidations(challenge, matcher);
   }
 

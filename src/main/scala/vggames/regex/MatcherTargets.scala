@@ -9,10 +9,5 @@ class MatcherTargets(matcherTargets : List[String]) {
 
   private def scapeTarges() = escaper.applyAll(matcherTargets)
 
-  private def swapLastComma(string : String) = {
-    if (string contains ",")
-      string.reverse.replaceFirst(",", "e ").reverse
-    else
-      string
-  }
+  private def swapLastComma(string : String) = string.replaceAll(",([^,]+)$", " e$1")
 }

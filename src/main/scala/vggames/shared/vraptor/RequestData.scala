@@ -8,9 +8,6 @@ class RequestData(request : HttpServletRequest) {
 
   private val gameRegex = "/play/([^/]+)/?.*".r
 
-  val game : String = {
-    val m = gameRegex.findFirstMatchIn(request.getRequestURI)
-    if (m.isDefined) m.get.group(1) else ""
-  }
+  val game = gameRegex.findFirstMatchIn(request.getRequestURI).map(_.group(1)).getOrElse("")
 
 }
