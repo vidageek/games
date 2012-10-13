@@ -53,7 +53,7 @@
                             		<a id="level" href="#"><span>${player.level}</span></a>
                             	</li>
                                 <li class="active">
-                                    <a id="logged" class="pull-right nav-link" href="#logado">${player.email}</a>
+                                    <a id="logged" class="pull-right nav-link" href="/progress">${player.email}</a>
                                 </li>
                                 <c:if test="${not empty player.lastTask}">
 	                                <li>
@@ -77,6 +77,11 @@
 		</div>
 	</div>
 	<div class="container">
+		<c:if test="${not empty notice}">
+			<div class="alert alert-info">
+				${notice}
+			</div>
+		</c:if>
 		<decorator:body />
 	</div>
 
