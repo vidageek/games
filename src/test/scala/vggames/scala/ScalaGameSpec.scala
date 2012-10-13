@@ -9,18 +9,30 @@ import vggames.shared.task.status.Ok
 @RunWith(classOf[JUnitRunner])
 class ScalaGameSpec extends Specification {
 
+  val answers = List("a + b", "b - a", "a * b", "a / b", "true", "false",
+    "a == b", "a != b", "a < b", "a > b", "a <= b", "a >= b", "\"Minha primeira String\"",
+    "\"\"\"Minha segunda String\"\"\"", "a + b", "a + \"taz\"", "a.reverse", "a.length", "a > b",
+    "a.toString", "a.split(\" \")", "a.substring(2, 5)", "a.replace(\"aba\", \"ebe\")", "a.contains(\"ara\")",
+    "a.trim")
+
   "Scala Game" should {
+
+    "not have a task vulnerable to evil code submission" in {
+      val game = new ScalaGame(new Descriptions("scala"))
+      val answersSize = answers.foldLeft(0) { (i, answer) =>
+        val fail = game.task(i).judge("System.setSecurityManager(null);\n%s".format(answer))
+        fail.getReason must contain("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
+        i + 1
+      }
+      answersSize must_== game.getSize
+    }
 
     "have answers for all tasks" in {
       val game = new ScalaGame(new Descriptions("scala"))
-      val answersSize = List("a + b", "b - a", "a * b", "a / b", "true", "false",
-        "a == b", "a != b", "a < b", "a > b", "a <= b", "a >= b", "\"Minha primeira String\"",
-        "\"\"\"Minha segunda String\"\"\"", "a + b", "a + \"taz\"", "a.reverse", "a.length", "a > b",
-        "a.toString", "a.split(\" \")", "a.substring(2, 5)", "a.replace(\"aba\", \"ebe\")", "a.contains(\"ara\")",
-        "a.trim").foldLeft(0)((i, code) => {
-          game.task(i).judge(code) must_== Ok()
-          i + 1
-        })
+      val answersSize = answers.foldLeft(0)((i, code) => {
+        game.task(i).judge(code) must_== Ok()
+        i + 1
+      })
       answersSize must_== game.getSize
     }
   }
