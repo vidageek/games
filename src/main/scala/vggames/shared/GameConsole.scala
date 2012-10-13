@@ -37,7 +37,7 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
     val task = game.task(index)
     val judgedTask = task.judge(cleanChallenge)
 
-    log.log(Submission(gameName, task, cleanChallenge, judgedTask))
+    log.log(Submission(gameName, task, cleanChallenge, judgedTask, session.actualPlayer))
 
     result.include("judgedTask", judgedTask)
 
