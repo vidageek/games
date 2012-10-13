@@ -41,6 +41,11 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
 
     result.include("judgedTask", judgedTask)
 
+    session.whenNotLogged {
+      result.include("notice", "Notamos que voc&ecirc; n&atilde;o est&aacute; " +
+        "logado. Clique em Login logo acima para acompanhar o seu progresso.")
+    }
+
     judgedTask.success {
 
       game.advance(index) { nextIndex =>
