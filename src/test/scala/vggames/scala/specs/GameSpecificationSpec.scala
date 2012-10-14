@@ -6,6 +6,7 @@ import org.specs2.runner.JUnitRunner
 import vggames.shared.task.status.Ok
 import vggames.scala.code.RestrictedFunction2
 import org.specs2.main.ArgProperty
+import vggames.scala.code.RestrictedFunction0
 
 @RunWith(classOf[JUnitRunner])
 class GameSpecificationSpec extends Specification {
@@ -75,6 +76,13 @@ class GameSpecificationSpec extends Specification {
       fail.getReason must contain("Exceeded max compilation and run time.")
     }
   }
+
+  "multiple assert spec" should {
+    "fail if first assert fails" in {
+      val fail = new MultipleAssertSpec().judge("")
+      fail.getReason must contain("spec-fail")
+    }
+  }
 }
 
 class TestSpec(c : String) extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
@@ -88,4 +96,21 @@ class TestSpec(c : String) extends GameSpecification[RestrictedFunction2[Int, In
       "b" in { code(1, 2) must_== 3 }
       "c" in { code(2, 3) must_== 5 }
     }
+}
+
+class MultipleAssertSpec extends GameSpecification[RestrictedFunction0[Unit]] {
+
+  def runSignature = ":Unit"
+  def extendsType = "RestrictedFunction0[Unit]"
+  def getChallenge = "multiple"
+
+  def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
+
+    "a" should {
+      "b" in {
+        1 must_== 2
+        2 must_== 2
+      }
+    }
+
 }

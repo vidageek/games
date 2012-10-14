@@ -12,8 +12,10 @@ import scala.collection.mutable.ListBuffer
 import vggames.shared.task.status.Ok
 import vggames.shared.task.status.Failed
 import vggames.shared.task.status.Failed
+import org.specs2.matcher.MustThrownExpectations
+import org.specs2.execute.FailureException
 
-trait GameSpecification[T <: CodeRestrictions[_]] extends Task with MustMatchers {
+trait GameSpecification[T <: CodeRestrictions[_]] extends Task with MustMatchers with MustThrownExpectations {
 
   type Code = T
 
@@ -34,11 +36,10 @@ trait GameSpecification[T <: CodeRestrictions[_]] extends Task with MustMatchers
   implicit def addAssertion(assertionName : String)(implicit cases : TestRun) = new {
     def in(a : => MatchResult[_]) = {
       try {
-        if (a.isSuccess)
-          cases.success(assertionName)
-        else
-          cases.failure(assertionName)
+        a
+        cases.success(assertionName)
       } catch {
+        case t : FailureException => cases.failure(assertionName)
         case t => cases.exception(t.getMessage)
       }
     }
