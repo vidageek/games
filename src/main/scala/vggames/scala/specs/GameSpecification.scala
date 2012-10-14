@@ -19,6 +19,10 @@ trait GameSpecification[T <: CodeRestrictions[_]] extends Task with MustMatchers
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun = new TestRun(this.getClass.getSimpleName)) : TestRun
 
+  def runSignature : String
+
+  def extendsType : String
+
   implicit def addSpecName(name : String)(implicit cases : TestRun) = new {
     def should(loadAssertions : => Unit) = {
       cases.add(name)
@@ -39,10 +43,6 @@ trait GameSpecification[T <: CodeRestrictions[_]] extends Task with MustMatchers
       }
     }
   }
-
-  def runSignature : String
-
-  def extendsType : String
 
   override def judge(challenge : String) : JudgedTask = {
     try {

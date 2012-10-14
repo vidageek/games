@@ -11,13 +11,13 @@ import br.com.caelum.vraptor.ioc.Component
 import br.com.caelum.vraptor.ioc.ApplicationScoped
 
 @Component
-class GameFactory(cached : GameFactoryCache, descriptions : Descriptions, data : RequestData) extends ComponentFactory[Game] {
+class GameFactory(cached : GameFactoryCache, data : RequestData) extends ComponentFactory[Game] {
 
   def getInstance : Game = {
     data.game match {
       case "regex" => cached regexGame
-      case "scala" => new ScalaGame(descriptions)
-      case "css" => new CssGame(descriptions)
+      case "scala" => cached scalaGame
+      case "css" => cached cssGame
       case other => throw new RuntimeException("Não foi possível criar o jogo [" + other + "]. Talvez " +
         "seja necessário registrá-lo na GameFactory")
     }
@@ -28,4 +28,6 @@ class GameFactory(cached : GameFactoryCache, descriptions : Descriptions, data :
 @ApplicationScoped
 class GameFactoryCache(cache : DescriptionsCache) {
   val regexGame = new RegexGame(cache.get("regex"))
+  val scalaGame = new ScalaGame(cache.get("scala"))
+  val cssGame = new CssGame(cache.get("css"))
 }
