@@ -2,6 +2,7 @@ package vggames.scala.specs.string
 
 import vggames.scala.specs.GameSpecification
 import vggames.scala.code.RestrictedFunction1
+import vggames.scala.specs.TestRun
 
 class StringLength extends GameSpecification[RestrictedFunction1[String, Int]] {
 
@@ -11,18 +12,20 @@ class StringLength extends GameSpecification[RestrictedFunction1[String, Int]] {
 
   def getChallenge = """Devolva o tamanho da String <code>a</code>"""
 
-  "O seu código" should {
+  def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 
-    """ devolver 5 para a string "arara"""" in {
-      code("arara") must_== 5
-    }
+    "O seu código" should {
 
-    """ devolver 7 para a string "bolacha"""" in {
-      code("bolacha") must_== 7
-    }
+      """ devolver 5 para a string "arara"""" in {
+        code("arara") must_== 5
+      }
 
-    """ devolver 8 para a string "cachorro"""" in {
-      code("cachorro") must_== 8
+      """ devolver 7 para a string "bolacha"""" in {
+        code("bolacha") must_== 7
+      }
+
+      """ devolver 8 para a string "cachorro"""" in {
+        code("cachorro") must_== 8
+      }
     }
-  }
 }

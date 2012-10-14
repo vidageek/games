@@ -10,14 +10,16 @@ class SubSpec extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
 
   def getChallenge = "Subtraia <code>a</code> de <code>b</code>"
 
-  "O seu código" should {
-    "subtrair a de b e resultar em 1 quando a = 2 e b = 3" in {
-      code(2, 3) must_== 1
-    }
+  def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 
-    "subtrair a de b e resultar em 4 quando a = 1 e b = 5" in {
-      code(1, 5) must_== 4
+    "O seu código" should {
+      "subtrair a de b e resultar em 1 quando a = 2 e b = 3" in {
+        code(2, 3) must_== 1
+      }
+
+      "subtrair a de b e resultar em 4 quando a = 1 e b = 5" in {
+        code(1, 5) must_== 4
+      }
     }
-  }
 
 }

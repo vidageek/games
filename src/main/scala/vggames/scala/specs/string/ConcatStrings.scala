@@ -2,6 +2,7 @@ package vggames.scala.specs.string
 
 import vggames.scala.specs.GameSpecification
 import vggames.scala.code.RestrictedFunction2
+import vggames.scala.specs.TestRun
 
 class ConcatStrings extends GameSpecification[RestrictedFunction2[String, String, String]] {
 
@@ -11,13 +12,15 @@ class ConcatStrings extends GameSpecification[RestrictedFunction2[String, String
 
   def getChallenge = """Concatene duas Strings <code>a</code> e <code>b</code>"""
 
-  "O seu código" should {
-    """ concatenar "abc" com "def" e produzir "abcdef" """ in {
-      code("abc", "def") must_== "abcdef"
-    }
+  def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 
-    """ concatenar "ban" com "ana" e produzir "banana" """ in {
-      code("ban", "ana") must_== "banana"
+    "O seu código" should {
+      """ concatenar "abc" com "def" e produzir "abcdef" """ in {
+        code("abc", "def") must_== "abcdef"
+      }
+
+      """ concatenar "ban" com "ana" e produzir "banana" """ in {
+        code("ban", "ana") must_== "banana"
+      }
     }
-  }
 }

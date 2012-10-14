@@ -2,6 +2,7 @@ package vggames.scala.specs.booleans
 
 import vggames.scala.specs.GameSpecification
 import vggames.scala.code.RestrictedFunction0
+import vggames.scala.specs.TestRun
 
 class False extends GameSpecification[RestrictedFunction0[Boolean]] {
 
@@ -11,9 +12,11 @@ class False extends GameSpecification[RestrictedFunction0[Boolean]] {
 
   def getChallenge = """Devolva <code>false</code>"""
 
-  "O seu código" should {
-    """ devolver false """ in {
-      code() must beFalse
+  override def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
+
+    "O seu código" should {
+      """ devolver false """ in {
+        code() must beFalse
+      }
     }
-  }
 }

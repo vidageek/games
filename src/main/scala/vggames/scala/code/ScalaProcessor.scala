@@ -6,7 +6,6 @@ import vggames.scala.specs.GameSpecification
 import vggames.scala.tasks.judge.ExecutionFailure
 import vggames.shared.task.JudgedTask
 import vggames.scala.code.Wrappers._
-import vggames.scala.tasks.judge.GameJudger
 
 class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
   val className = "ExpressionRunner"
@@ -14,16 +13,14 @@ class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
 
   def processCode(code : String) : JudgedTask = {
     val eval = new Eval(None)
-    spec.submittedCode = code
     compile(code, eval)
-    run(className, eval)
+    run(className, eval, code)
   }
 
-  def run(className : String, eval : Eval) : JudgedTask = {
+  def run(className : String, eval : Eval, submittedCode : String) : JudgedTask = {
     val code = eval.findClass(fullName).newInstance.asInstanceOf[T]
-    spec.code = code
     try {
-      (new GameJudger(spec)).judgement
+      spec.run(code, submittedCode).judgement
     } catch {
       case t => { t.printStackTrace; new ExecutionFailure(t) }
     }

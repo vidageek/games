@@ -2,6 +2,7 @@ package vggames.scala.specs.string
 
 import vggames.scala.specs.GameSpecification
 import vggames.scala.code.RestrictedFunction1
+import vggames.scala.specs.TestRun
 
 class SubStrings extends GameSpecification[RestrictedFunction1[String, String]] {
 
@@ -11,14 +12,16 @@ class SubStrings extends GameSpecification[RestrictedFunction1[String, String]] 
 
   def getChallenge = """Devolva um pedaço da string <code>a</code> entre os caracteres <code>2</code> e <code>5</code>"""
 
-  "O seu código" should {
-    """ cortar "cachorro" e produzir "cho" """ in {
-      code("cachorro") must_== "cho"
-    }
+  def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 
-    """ cortar "elefante" e produzir "efa" """ in {
-      code("elefante") must_== "efa"
-    }
+    "O seu código" should {
+      """ cortar "cachorro" e produzir "cho" """ in {
+        code("cachorro") must_== "cho"
+      }
 
-  }
+      """ cortar "elefante" e produzir "efa" """ in {
+        code("elefante") must_== "efa"
+      }
+
+    }
 }

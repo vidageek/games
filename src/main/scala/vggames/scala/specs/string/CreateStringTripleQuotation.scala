@@ -2,6 +2,7 @@ package vggames.scala.specs.string
 
 import vggames.scala.specs.GameSpecification
 import vggames.scala.code.RestrictedFunction0
+import vggames.scala.specs.TestRun
 
 class CreateStringTripleQuotation extends GameSpecification[RestrictedFunction0[String]] {
 
@@ -11,14 +12,16 @@ class CreateStringTripleQuotation extends GameSpecification[RestrictedFunction0[
 
   def getChallenge = "Crie uma string com o valor <code>Minha segunda String</code> usando <code>\"\"\"</code>"
 
-  "O seu código" should {
-    " criar a string \"\"\"Minha segunda String\"\"\"" in {
-      code() must_== "Minha segunda String"
-    }
+  def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 
-    "utilizar seis aspas duplas" in {
-      submittedCode must contain("\"\"\"")
+    "O seu código" should {
+      " criar a string \"\"\"Minha segunda String\"\"\"" in {
+        code() must_== "Minha segunda String"
+      }
+
+      "utilizar seis aspas duplas" in {
+        submittedCode must contain("\"\"\"")
+      }
     }
-  }
 
 }

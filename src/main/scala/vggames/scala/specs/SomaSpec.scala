@@ -10,14 +10,16 @@ class SomaSpec extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
 
   def getChallenge = "Some duas vari&aacute;veis <code>a</code> e <code>b</code>"
 
-  "O seu código" should {
-    "somar a e b e resultar em 3 quando a = 1 e b = 2" in {
-      code(1, 2) must_== 3
-    }
+  def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 
-    "somar a e b e resultar em 6 quando a = 2 e b = 4" in {
-      code(2, 4) must_== 6
+    "O seu código" should {
+      "somar a e b e resultar em 3 quando a = 1 e b = 2" in {
+        code(1, 2) must_== 3
+      }
+
+      "somar a e b e resultar em 6 quando a = 2 e b = 4" in {
+        code(2, 4) must_== 6
+      }
     }
-  }
 
 }

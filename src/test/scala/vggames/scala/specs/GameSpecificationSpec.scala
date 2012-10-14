@@ -75,15 +75,17 @@ class GameSpecificationSpec extends Specification {
       fail.getReason must contain("Exceeded max compilation and run time.")
     }
   }
+}
 
-  class TestSpec(c : String) extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
-    def runSignature = "(a:Int, b:Int):Int"
-    def extendsType = "RestrictedFunction2[Int, Int, Int]"
-    def getChallenge = c
+class TestSpec(c : String) extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
+  def runSignature = "(a:Int, b:Int):Int"
+  def extendsType = "RestrictedFunction2[Int, Int, Int]"
+  def getChallenge = c
+
+  def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 
     "a" should {
       "b" in { code(1, 2) must_== 3 }
       "c" in { code(2, 3) must_== 5 }
     }
-  }
 }

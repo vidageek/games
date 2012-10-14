@@ -2,6 +2,7 @@ package vggames.scala.specs.string
 
 import vggames.scala.specs.GameSpecification
 import vggames.scala.code.RestrictedFunction1
+import vggames.scala.specs.TestRun
 
 class ConcatStringWithConstant extends GameSpecification[RestrictedFunction1[String, String]] {
 
@@ -11,13 +12,15 @@ class ConcatStringWithConstant extends GameSpecification[RestrictedFunction1[Str
 
   def getChallenge = """Concatene a string <code>a</code> com a constante <code>"taz"</code>"""
 
-  "O seu código" should {
-    """ concatenar "abc" com "taz" e produzir "abctaz" """ in {
-      code("abc") must_== "abctaz"
-    }
+  def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 
-    """ concatenar "capa" com "taz" e produzir "capataz" """ in {
-      code("capa") must_== "capataz"
+    "O seu código" should {
+      """ concatenar "abc" com "taz" e produzir "abctaz" """ in {
+        code("abc") must_== "abctaz"
+      }
+
+      """ concatenar "capa" com "taz" e produzir "capataz" """ in {
+        code("capa") must_== "capataz"
+      }
     }
-  }
 }

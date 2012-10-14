@@ -2,6 +2,7 @@ package vggames.scala.specs.string
 
 import vggames.scala.specs.GameSpecification
 import vggames.scala.code.RestrictedFunction1
+import vggames.scala.specs.TestRun
 
 class ReplaceString extends GameSpecification[RestrictedFunction1[String, String]] {
 
@@ -11,13 +12,15 @@ class ReplaceString extends GameSpecification[RestrictedFunction1[String, String
 
   def getChallenge = """Substitua as ocorrências de <code>"aba"</code> em <code>a</code> por <code>"ebe"</code> """
 
-  "O seu código" should {
-    """ mudar "abaixa" para "ebeixa" """ in {
-      code("abaixa") must_== "ebeixa"
-    }
+  def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 
-    """ não mudar "elefante" """ in {
-      code("elefante") must_== "elefante"
+    "O seu código" should {
+      """ mudar "abaixa" para "ebeixa" """ in {
+        code("abaixa") must_== "ebeixa"
+      }
+
+      """ não mudar "elefante" """ in {
+        code("elefante") must_== "elefante"
+      }
     }
-  }
 }
