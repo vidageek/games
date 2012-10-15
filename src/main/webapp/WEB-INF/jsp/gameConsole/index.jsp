@@ -10,11 +10,6 @@
 		<div class="alert">
 		  <strong>Aviso!</strong> Estamos em Beta. Caso encontre algum problema, envie um email para games@vidageek.net
 		</div>
-		<c:if test="${not empty notice}">
-			<div class="alert alert-info">
-				${notice}
-			</div>
-		</c:if>
 		<c:if test="${not empty gameEnded}">
 			<div class="alert alert-success">
 				Parabéns! Você acabou de resolver o último exercício de ${game.name}. O importante agora é continuar praticando. <br />
