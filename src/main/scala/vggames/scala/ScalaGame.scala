@@ -5,6 +5,11 @@ import vggames.scala.specs.booleans._
 import vggames.scala.specs.string._
 import vggames.shared.Game
 import vggames.shared.task.{ Descriptions, TaskGroup, Tasks }
+import vggames.scala.specs.valvar.DefineValString
+import vggames.scala.specs.valvar.DefineValInt
+import vggames.scala.specs.valvar.DefineVarString
+import vggames.scala.specs.valvar.DefineVarInt
+import vggames.scala.specs.valvar.ReassignToVar
 
 class ScalaGame(descriptions : Descriptions) extends Game {
 
@@ -12,7 +17,8 @@ class ScalaGame(descriptions : Descriptions) extends Game {
     addBasicMathExercises,
     addBasicBooleanExercises,
     addStringExercises,
-    addAdvancedStringExercises)
+    addAdvancedStringExercises,
+    addValEVarExercises)
 
   def addBasicMathExercises =
     new TaskGroup("Opera&ccedil;&otilde;es matem&aacute;ticas b&aacute;sicas", "basic.math", descriptions,
@@ -50,6 +56,14 @@ class ScalaGame(descriptions : Descriptions) extends Game {
       new ReplaceString(),
       new StringContains(),
       new TrimString())
+
+  def addValEVarExercises =
+    new TaskGroup("Vari&aacute;veis", "basic.varval", descriptions,
+      new DefineValString(),
+      new DefineValInt(),
+      new DefineVarString(),
+      new DefineVarInt(),
+      new ReassignToVar())
 
   def getDescription = "Um jogo muito legal para aprender Scala"
 

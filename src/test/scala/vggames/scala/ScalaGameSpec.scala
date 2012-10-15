@@ -13,7 +13,8 @@ class ScalaGameSpec extends Specification {
     "a == b", "a != b", "a < b", "a > b", "a <= b", "a >= b", "\"Minha primeira String\"",
     "\"\"\"Minha segunda String\"\"\"", "a + b", "a + \"taz\"", "a.reverse", "a.length", "a > b",
     "a.toString", "a.split(\" \")", "a.substring(2, 5)", "a.replace(\"aba\", \"ebe\")", "a.contains(\"ara\")",
-    "a.trim")
+    "a.trim", "val valor = \"val\"", "val numero = 123", "var valor = \"var\"", "var numero = 314",
+    "var rio = \"tietê\"\n rio = \"pinheiros\"")
 
   "Scala Game" should {
 
@@ -36,5 +37,4 @@ class ScalaGameSpec extends Specification {
       answersSize must_== game.getSize
     }
   }
-
 }
