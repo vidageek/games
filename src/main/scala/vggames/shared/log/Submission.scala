@@ -12,19 +12,18 @@ import vggames.shared.player.Player
 case class Submission(gameName : String, task : Task, challenge : String, result : JudgedTask, player:Option[Player]) extends LogItem with Database {
   def log {
     onDatabase {
-      Submissions.insert(gameName, task.getChallenge, challenge, result.getOk, new Date(new java.util.Date().getTime), player.map(_.id))
+      Submissions.insert(gameName, task.getChallenge, challenge, result.getOk, player.map(_.id))
     }
   }
 }
 
-object Submissions extends ExtendedTable[(String, String, String, Boolean, Date, Option[Long])]("submissions") {
+object Submissions extends ExtendedTable[(String, String, String, Boolean, Option[Long])]("submissions") {
 
   def game = column[String]("game")
   def task = column[String]("task")
   def challenge = column[String]("challenge")
   def passed = column[Boolean]("passed")
-  def date = column[Date]("date")
   def playerId = column[Option[Long]]("playerId")
 
-  def * = game ~ task ~ challenge ~ passed ~ date ~ playerId
+  def * = game ~ task ~ challenge ~ passed  ~ playerId
 }

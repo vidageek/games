@@ -1,0 +1,12 @@
+ALTER TABLE players RENAME TO players_bkp;
+CREATE TABLE players (id INTEGER PRIMARY KEY, email VARCHAR(254) NOT NULL,token VARCHAR(254) NOT NULL, lastTask VARCHAR(254), activeTime INTEGER DEFAULT 0, createdAt TIMESTAMP DEFAULT current_timestamp);
+INSERT INTO players (id, email, token, lastTask, activeTime) SELECT id, email, token, lastTask, activeTime FROM players_bkp;
+DROP TABLE players_bkp;
+ALTER TABLE finishedGroups RENAME TO finishedGroups_bkp;
+CREATE TABLE finishedGroups (player_id INTEGER, "group" VARCHAR(254) NOT NULL, createdAt TIMESTAMP DEFAULT current_timestamp, FOREIGN KEY(player_id) REFERENCES players(id));
+INSERT INTO finishedGroups(player_id, "group") SELECT player_id, "group" FROM finishedGroups_bkp;
+DROP TABLE finishedGroups_bkp;
+ALTER TABLE submissions RENAME TO submissions_bkp;
+CREATE TABLE submissions ("game" VARCHAR(254) NOT NULL,"task" VARCHAR(254) NOT NULL,"challenge" VARCHAR(254) NOT NULL,"passed" INTEGER NOT NULL, "createdAt" TIMESTAMP DEFAULT current_timestamp, playerId INTEGER);
+INSERT INTO submissions(game, task, challenge, passed, createdAt, playerId) SELECT game, task, challenge, passed, date, playerId FROM submissions_bkp;
+DROP TABLE submissions_bkp;
