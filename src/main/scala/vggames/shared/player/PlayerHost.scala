@@ -25,9 +25,8 @@ class PlayerHost(players : Players, session : PlayerSession, result : Result, re
 
   @Post(Array("/player"))
   def authenticate(email : String) = {
-    val outterEmail = email
 
-    val player : Player = players.findByEmail(email).getOrElse(players += Player(Long.MaxValue, outterEmail, PlayerHost.secureToken, None))
+    val player : Player = players.findByEmail(email).getOrElse(players += Player(Long.MaxValue, email, PlayerHost.secureToken, None))
 
     Mail(email, "games@vidageek.net", "Link para Login",
       """<a href="http://games.vidageek.net/token/%s">Clique aqui para logar-se no VidaGeek Games</a>""".
