@@ -1,9 +1,7 @@
 #! /bin/bash
 
-REMOTE_RUN="ssh -i ~/.ssh/games.pem ubuntu@177.71.178.115"
-
 echo "Fazendo backup do WAR"
-$REMOTE_RUN "cp ~/jetty/webapps/games.war ~/games.war.bkp"
+ssh -i ~/.ssh/games.pem ubuntu@177.71.178.115 "cp ~/jetty/webapps/games.war ~/games.war.bkp"
 
 echo "Copiando o War"
 scp -i ~/.ssh/games.pem target/scala-2.9.2/games* ubuntu@177.71.178.115:~/games.war
@@ -18,5 +16,5 @@ DEPLOY=$DEPLOY + " && echo Subindo Jetty"
 DEPLOY=$DEPLOY + " && /bin/bash ~/jetty/bin/jetty.sh start"
 DEPLOY=$DEPLOY + " && echo Deploy Concluído"
 
-$REMOTE_RUN $DEPLOY
+ssh -i ~/.ssh/games.pem ubuntu@177.71.178.115 "$DEPLOY"
 
