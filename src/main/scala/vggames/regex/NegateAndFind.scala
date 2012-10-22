@@ -13,5 +13,5 @@ class NegateAndFind(cannotMatch : MatcherTargets, mustMatch : MatcherTargets) ex
   def getChallenge =
     "Qual RegEx n&atilde;o reconhece parcialmente" + cannotMatch.asHtml + " mas reconhece " + mustMatch.asHtml + "?";
 
-  override def toString = getChallenge
+  def resource = ""
 }

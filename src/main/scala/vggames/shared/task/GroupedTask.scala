@@ -8,9 +8,9 @@ class GroupedTask(group : TaskGroup, task : Task) extends TaskWithDescription {
 
   def getDescription = group.getDescription
 
-  override def toString = task.toString
-
   def getGroupName = group.getName
 
   def getGroupCode = group.groupName
+
+  def resource = task.resource
 }

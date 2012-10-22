@@ -9,5 +9,5 @@ class Match(matchingTargets : MatcherTargets) extends Task {
 
   def getChallenge : String = "Qual RegEx reconhece " + matchingTargets.asHtml() + "?"
 
-  override def toString : String = getChallenge
+  def resource = ""
 }

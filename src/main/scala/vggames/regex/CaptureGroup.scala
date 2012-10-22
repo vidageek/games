@@ -27,7 +27,7 @@ class CaptureGroup(val matchingTarget : String, val captureGroupTargets : String
       })
   }
 
-  def getChallenge = "Qual regex d&aacute; match em " + matchingTarget.asHtml() + " e captura " + captureTarget + "?"
+  def getChallenge = "Qual regex d&aacute; match em " + matchingTarget.asHtml() + " e captura " + captureGroupTargets.asHtml() + "?"
 
-  def captureTarget : String = captureGroupTargets.asHtml()
+  def resource = ""
 }

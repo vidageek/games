@@ -9,6 +9,8 @@
 				${judgedTask.reason}
 			</div>
 		</c:if>  
+
+		<iframe src="/play/html/resource/${task.resource}" />
 		
 		<form class="challenge" method="POST" action="/play/${gameName}/task/${task.index}">
 			<label for="challenge"><strong>${task.challenge}</strong></label>

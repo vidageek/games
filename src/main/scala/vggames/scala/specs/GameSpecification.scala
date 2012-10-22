@@ -27,6 +27,8 @@ trait GameSpecification[T <: CodeRestrictions[_]] extends Task with MustMatchers
 
   def afterCode : String = ""
 
+  override def resource = ""
+
   implicit def addSpecName(name : String)(implicit cases : TestRun) = new {
     def should(loadAssertions : => Unit) = {
       cases.add(name)

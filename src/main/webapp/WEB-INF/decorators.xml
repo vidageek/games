@@ -1,5 +1,9 @@
 <decorators defaultdir="/WEB-INF/decorators">
 
+	<excludes>
+		<pattern>/play/html/resource/*</pattern>
+	</excludes>
+
     <decorator name="all" page="all.jsp">
           <pattern>/*</pattern>
     </decorator>

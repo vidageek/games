@@ -10,4 +10,5 @@ class CssTask(challenge : String) extends Task {
 
   def getChallenge = challenge
 
+  def resource = ""
 }

@@ -6,5 +6,9 @@ trait Task {
 
   def getChallenge : String
 
+  def resource : String
+
+  final def getResource = resource
+
   override def toString : String = getChallenge
 }

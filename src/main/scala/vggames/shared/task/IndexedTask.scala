@@ -12,6 +12,8 @@ class IndexedTask(delegate : TaskWithDescription, index : Int) extends TaskWithD
     } catch { case e => new Error(e) }
   }
 
+  def resource = delegate.resource
+
   def getDescription : String = delegate.getDescription
 
   def getChallenge : String = delegate.getChallenge

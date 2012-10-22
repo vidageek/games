@@ -1,8 +1,7 @@
 package vggames.html
 
-import vggames.shared.task.Task
+import vggames.shared.task.{JudgedTask, Task}
 import vggames.shared.task.status.Ok
-import vggames.shared.task.JudgedTask
 
 class HtmlTask(challenge : String) extends Task {
 
@@ -10,4 +9,5 @@ class HtmlTask(challenge : String) extends Task {
 
   def getChallenge : String = challenge
 
+  override def resource = "ble"
 }
