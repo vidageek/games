@@ -30,7 +30,7 @@ class RegexGameSpec extends Specification with Mockito {
       game.getSize must_== answers.length
 
       0 until game.getSize map { i =>
-        game.task(i).judge(answers(i)).getOk aka (
+        game.task(i).judge(answers(i)).ok aka (
           "%s task %d answer is %s".format(game.getClass().getSimpleName(), i, answers(i))) must beTrue
       }
     }

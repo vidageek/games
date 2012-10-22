@@ -2,14 +2,11 @@ package vggames.shared.task.status;
 
 import vggames.shared.task.JudgedTask
 
-case class Failed(reason : String) extends JudgedTask {
+case class Failed(message : String) extends JudgedTask {
 
-  def this(fails : Faileds) = this(fails.getReason)
+  def this(fails : Faileds) = this(fails.reason)
 
-  def getOk = false
+  def ok = false
 
-  def getReason = reason
-
-  override def toString = reason
-
+  def reason = message
 }

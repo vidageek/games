@@ -4,10 +4,10 @@ import vggames.shared.task.JudgedTask
 
 case class CompilationFailure(failure : Throwable) extends JudgedTask {
 
-  def getOk = false
+  def ok = false
 
-  def getReason = "<pre>Falha de compila&ccedil;&atilde;o: \n" + failure.getMessage + "</pre>"
+  def reason = "<pre>Falha de compila&ccedil;&atilde;o: \n" + failure.getMessage + "</pre>"
 
-  override def toString = getReason
+  override def toString = reason
 
 }

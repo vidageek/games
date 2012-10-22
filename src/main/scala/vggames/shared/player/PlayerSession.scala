@@ -59,9 +59,6 @@ class PlayerSession(request : HttpServletRequest, response : HttpServletResponse
       map += group -> "finished"
     }
   }.getOrElse(Map[String, String]())
-
-  def whenNotLogged(f : => Unit) : Unit = actualPlayer.getOrElse(f)
-
 }
 
 object PlayerSession {

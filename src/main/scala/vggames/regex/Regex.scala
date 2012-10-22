@@ -34,7 +34,7 @@ class Regex(regex : String) {
   def matchNone(cannotMatch : MatcherTargets) : Faileds = {
     val faileds = new Faileds()
     cannotMatch foreach { matchingTarget =>
-      if (doMatch(matchingTarget).getOk) {
+      if (doMatch(matchingTarget).ok) {
         faileds.addOnlyJudgedFailed(new Failed("N&atilde;o deveria fazer match com " + matchingTarget.asHtml()))
       }
     }
@@ -44,7 +44,7 @@ class Regex(regex : String) {
   def findNone(cannotMatch : MatcherTargets) : Faileds = {
     val faileds = new Faileds()
     cannotMatch foreach { matchingTarget =>
-      if (find(matchingTarget).getOk) {
+      if (find(matchingTarget).ok) {
         faileds.addOnlyJudgedFailed(new Failed("N&atilde;o deveria reconhecer parcialmente " + matchingTarget.asHtml()))
       }
     }

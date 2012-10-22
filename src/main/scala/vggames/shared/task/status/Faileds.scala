@@ -6,9 +6,9 @@ class Faileds extends JudgedTask {
 
   private var faileds = List[Failed]()
 
-  def getOk() : Boolean = faileds.isEmpty
+  def ok : Boolean = faileds.isEmpty
 
-  def getReason() : String = faileds.mkString("<br />")
+  def reason : String = faileds.mkString("<br />")
 
   def addOnlyJudgedFailed(judgedTask : JudgedTask) {
     judgedTask match {
@@ -19,7 +19,7 @@ class Faileds extends JudgedTask {
 
   def addAll(faileds : Faileds) : Unit = faileds.foreach(addOnlyJudgedFailed)
 
-  def judgment() : JudgedTask = if (getOk()) new Ok() else new Failed(this)
+  def judgment() : JudgedTask = if (ok) new Ok() else new Failed(this)
 
   private def foreach = faileds.foreach _
 

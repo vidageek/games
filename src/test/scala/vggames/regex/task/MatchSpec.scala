@@ -34,13 +34,13 @@ class MatchSpec extends Specification {
     }
 
     "match all string" in {
-      new Match("a").judge(".").getOk must beTrue
-      new Match("aaabc").judge(".+").getOk must beTrue
+      new Match("a").judge(".").ok must beTrue
+      new Match("aaabc").judge(".+").ok must beTrue
     }
 
     "not match partial string" in {
-      new Match("aa").judge(".").getOk must beFalse
-      new Match("aaab\nc").judge(".+").getOk must beFalse
+      new Match("aa").judge(".").ok must beFalse
+      new Match("aaab\nc").judge(".+").ok must beFalse
     }
   }
 }

@@ -22,7 +22,7 @@ class ScalaGameSpec extends Specification {
       val game = new ScalaGame(new Descriptions("scala"))
       val answersSize = answers.foldLeft(0) { (i, answer) =>
         val fail = game.task(i).judge("System.setSecurityManager(null);\n%s".format(answer))
-        fail.getReason must contain("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
+        fail.reason must contain("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
         i + 1
       }
       answersSize must_== game.getSize

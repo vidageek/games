@@ -4,8 +4,8 @@ import vggames.shared.task.JudgedTask
 
 case class Ok() extends JudgedTask {
 
-  def getOk = true
+  def ok = true
 
-  def getReason = "ok!"
+  def reason = "Ok!"
 
 }

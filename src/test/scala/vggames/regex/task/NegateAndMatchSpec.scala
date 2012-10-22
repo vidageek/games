@@ -16,7 +16,7 @@ class NegateAndMatchSpec extends Specification {
     "return failed when match" in {
       val judge = aNegateCharClassTask.judge("[^ef]")
       judge must beAnInstanceOf[Failed]
-      judge.getReason must_== "N&atilde;o deveria fazer match com <code>a</code><br />N&atilde;o deveria fazer match com <code>b</code>"
+      judge.reason must_== "N&atilde;o deveria fazer match com <code>a</code><br />N&atilde;o deveria fazer match com <code>b</code>"
     }
 
     "show challenge with what should match and what cannot match" in {

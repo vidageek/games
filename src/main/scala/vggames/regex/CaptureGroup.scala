@@ -21,7 +21,7 @@ class CaptureGroup(val matchingTarget : String, val captureGroupTargets : String
 
   def applyAllValidations(challenge : String, matcher : Matcher) : JudgedTask = {
     validations.foldLeft[JudgedTask](new Ok())((judge, validation) =>
-      judge.getOk match {
+      judge.ok match {
         case true => validation.judge(challenge, matcher)
         case false => judge
       })
