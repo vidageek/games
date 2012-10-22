@@ -14,13 +14,13 @@ class FailedsSpec extends Specification {
     faileds.addOnlyJudgedFailed(new Failed("[aPattern1] não dá match em [matchingTarget1]"))
 
     "show description to any faileds" in {
-      faileds.mkString("<br />") must_== faileds.reason()
+      faileds.mkString("<br />") must_== faileds.reason
     }
 
     "show description to all faileds" in {
       val testFaileds = new Faileds()
       testFaileds.addAll(faileds)
-      testFaileds.mkString("<br />") must_== testFaileds.reason()
+      testFaileds.mkString("<br />") must_== testFaileds.reason
     }
   }
 }
