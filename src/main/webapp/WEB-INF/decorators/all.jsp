@@ -79,7 +79,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
+	<div id ="main-content" class="container">
 		<c:if test="${not empty notice}">
 			<div class="alert alert-info">
 				${notice}
