@@ -42,6 +42,9 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
+				<c:if test="${not empty gameName}">
+					<a class="brand" href="/play/${gameName}">${game.name} Game</a>
+				</c:if>
 			    <c:choose>
                     <c:when test="${empty player}">
                         <a id="select-a-provider" class="brand pull-right nav-link" data-toggle="modal" href="#logon-provider">Login</a>

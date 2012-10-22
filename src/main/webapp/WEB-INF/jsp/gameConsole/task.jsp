@@ -7,11 +7,6 @@
 		<title>Exerc&iacute;cio ${task.index} do ${game.name} game</title>
 	</head>
 	<body>
-		<header id="game">
-		<h1><a href="/play/${gameName}">${game.name} Game</a></h1>
-		</header>
-		
 		<c:import url="/WEB-INF/fragments/task_${gameName}.jsp" />
-		
 	</body>
 </html>
