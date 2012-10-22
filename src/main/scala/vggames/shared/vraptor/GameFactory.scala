@@ -9,6 +9,7 @@ import vggames.scala.ScalaGame
 import vggames.css.CssGame
 import br.com.caelum.vraptor.ioc.Component
 import br.com.caelum.vraptor.ioc.ApplicationScoped
+import vggames.html.HtmlGame
 
 @Component
 class GameFactory(cached : GameFactoryCache, data : RequestData) extends ComponentFactory[Game] {
@@ -18,6 +19,7 @@ class GameFactory(cached : GameFactoryCache, data : RequestData) extends Compone
       case "regex" => cached regexGame
       case "scala" => cached scalaGame
       case "css" => cached cssGame
+      case "html" => cached htmlGame
       case other => throw new RuntimeException("Não foi possível criar o jogo [" + other + "]. Talvez " +
         "seja necessário registrá-lo na GameFactory")
     }
@@ -30,4 +32,5 @@ class GameFactoryCache(cache : DescriptionsCache) {
   val regexGame = new RegexGame(cache.get("regex"))
   val scalaGame = new ScalaGame(cache.get("scala"))
   val cssGame = new CssGame(cache.get("css"))
+  val htmlGame = new HtmlGame(cache.get("css"))
 }
