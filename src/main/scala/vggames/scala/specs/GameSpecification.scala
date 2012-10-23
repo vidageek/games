@@ -86,7 +86,7 @@ class TestRun(specName : String) {
     if (failure.isDefined) {
       val message = results.foldLeft(specName + "\n<ul><li>%s deve</li>".
         format(shouldName))(_ + _.toString) + "</ul>"
-      new Failed(message)
+      new Failed("Ops! Seu c&oacute;digo n&atilde;o fez tudo que era necess&aacute;rio. <br />" + message)
     } else {
       Ok()
     }
