@@ -32,26 +32,30 @@ class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
   }
 
   def hash(s : String) =
-    BigInt(MessageDigest.getInstance("MD5").digest(s.getBytes)).toString(16).replace("-", "")
+    BigInt(MessageDigest.getInstance("MD5").digest(s.getBytes)).toString(16).replace("-", "$")
 
   private def compile(code : String) = {
     if (code.contains("finally") || code.contains("catch") ||
       code.contains(TaskRunSecurityManager.getClass.getSimpleName.replace("$", "")))
       throw new SecurityException("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
-    val codeHash = hash(code)
-    val wrapped = wrap(className + codeHash, code, spec.extendsType, spec.runSignature, spec.afterCode)
-    Compile(_.toClass(wrapped, fullName + codeHash))
+
+    val wrapped = wrap(className, code, spec.extendsType, spec.runSignature, spec.afterCode)
+    val codeHash = hash(wrapped)
+    val toCompile = wrapped.replace(className, className + codeHash)
+    println(toCompile)
+
+    Compile(_.toClass(toCompile, fullName + codeHash))
   }
 }
 
 object Compile {
   val pool = ListBuffer[Eval]()
 
-  def compiler() = synchronized { pool.headOption.getOrElse(new Eval(None)) }
+  def compiler() = pool.headOption.getOrElse(new Eval(None))
 
-  def discard(eval : Eval) = synchronized { pool += eval }
+  def discard(eval : Eval) = pool += eval
 
-  def apply(f : Eval => Class[_]) = {
+  def apply(f : Eval => Class[_]) = synchronized {
     val eval = compiler()
     try {
       f(eval)
