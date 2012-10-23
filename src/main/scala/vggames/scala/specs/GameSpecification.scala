@@ -42,7 +42,7 @@ trait GameSpecification[T <: CodeRestrictions[_]] extends Task with MustMatchers
         cases.success(assertionName)
       } catch {
         case t : FailureException => cases.failure(assertionName)
-        case t => { t.printStackTrace; cases.exception(t.getMessage) }
+        case t => cases.exception(t.getMessage)
       }
     }
   }

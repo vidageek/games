@@ -11,6 +11,8 @@ import scala.collection.mutable.ListBuffer
 import java.io.File
 import java.security.MessageDigest
 import scala.math.BigInt
+import com.twitter.util.Eval.CompilerException
+import scala.collection.mutable.SynchronizedQueue
 
 class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
   val className = "ExpressionRunner"
@@ -27,7 +29,7 @@ class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
     try {
       spec.run(code, submittedCode).judgement
     } catch {
-      case t => { t.printStackTrace; new ExecutionFailure(t) }
+      case t => new ExecutionFailure(t)
     }
   }
 
@@ -42,6 +44,7 @@ class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
     val wrapped = wrap(className, code, spec.extendsType, spec.runSignature, spec.afterCode)
     val codeHash = hash(wrapped)
     val toCompile = wrapped.replace(className, className + codeHash)
+
     println(toCompile)
 
     Compile(_.toClass(toCompile, fullName + codeHash))
@@ -49,23 +52,41 @@ class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
 }
 
 object Compile {
-  val pool = ListBuffer[Eval]()
+  val pool = new Pool
 
-  def compiler() = pool.headOption.getOrElse(new Eval(None))
+  def compiler() = pool.pop.getOrElse(new Eval(None))
 
-  def discard(eval : Eval) = pool += eval
+  def reuse(eval : Eval) = pool += eval
 
-  def apply(f : Eval => Class[_]) = synchronized {
+  def apply(f : Eval => Class[_]) = {
     val eval = compiler()
+    var shouldReuse = true
     try {
       f(eval)
     } catch {
+      case t : CompilerException => { shouldReuse = false; throw t }
       case t => { t.printStackTrace; throw t }
-
     } finally {
-      discard(eval)
+      if (shouldReuse)
+        reuse(eval)
     }
   }
+}
+
+class Pool {
+
+  val queue = new SynchronizedQueue[Eval]
+
+  def +=(eval : Eval) = queue.enqueue(eval)
+
+  def pop : Option[Eval] = {
+    try {
+      Some(queue.dequeue)
+    } catch {
+      case t => None
+    }
+  }
+
 }
 
 class Eval(file : Option[File]) extends TwitterEval(file) {
