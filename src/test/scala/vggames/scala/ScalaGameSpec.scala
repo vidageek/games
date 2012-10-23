@@ -21,7 +21,6 @@ class ScalaGameSpec extends Specification {
     "not have a task vulnerable to evil code submission" in {
       val game = new ScalaGame(new Descriptions("scala"))
       val answersSize = answers.foldLeft(0) { (i, answer) =>
-        println("vuln: " + i)
         val fail = game.task(i).judge("System.setSecurityManager(null);\n%s".format(answer))
         fail.reason must contain("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
         i + 1
@@ -32,7 +31,6 @@ class ScalaGameSpec extends Specification {
     "have answers for all tasks" in {
       val game = new ScalaGame(new Descriptions("scala"))
       val answersSize = answers.foldLeft(0)((i, code) => {
-        println("answers: " + i)
         game.task(i).judge(code) must_== Ok()
         i + 1
       })

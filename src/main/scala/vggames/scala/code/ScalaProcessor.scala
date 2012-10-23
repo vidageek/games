@@ -45,8 +45,6 @@ class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
     val codeHash = hash(wrapped)
     val toCompile = wrapped.replace(className, className + codeHash)
 
-    println(toCompile)
-
     Compile(_.toClass(toCompile, fullName + codeHash))
   }
 }
@@ -65,7 +63,7 @@ object Compile {
       f(eval)
     } catch {
       case t : CompilerException => { shouldReuse = false; throw t }
-      case t => { t.printStackTrace; throw t }
+      case t => throw t
     } finally {
       if (shouldReuse)
         reuse(eval)
