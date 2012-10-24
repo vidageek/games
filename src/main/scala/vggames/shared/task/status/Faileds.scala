@@ -17,11 +17,9 @@ class Faileds extends JudgedTask {
     }
   }
 
-  def addAll(faileds : Faileds) : Unit = faileds.foreach(addOnlyJudgedFailed)
+  def addAll(fails : Faileds) : Unit = fails.faileds.foreach(addOnlyJudgedFailed)
 
   def judgment() : JudgedTask = if (ok) new Ok() else new Failed(this)
-
-  private def foreach = faileds.foreach _
 
   def mkString = faileds.mkString(_ : String)
 }

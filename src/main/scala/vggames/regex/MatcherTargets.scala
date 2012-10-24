@@ -5,7 +5,7 @@ class MatcherTargets(matcherTargets : List[String]) {
 
   def asHtml() : String = swapLastComma("<code>" + scapeTarges.mkString("</code>, <code>") + "</code>")
 
-  def foreach = matcherTargets.foreach _
+  def foldLeft[T](t : T) = matcherTargets.foldLeft(t) _
 
   private def scapeTarges() = escaper.applyAll(matcherTargets)
 

@@ -16,14 +16,6 @@ class Regex(regex : String) {
 
   def group(position : Int) : GroupFinder = new GroupFinder(position, pattern)
 
-  def matchAll(negateClassShouldMatch : MatcherTargets) : Faileds = {
-    val fails = new Faileds()
-    negateClassShouldMatch foreach { target =>
-      fails.addOnlyJudgedFailed(doMatch(target))
-    }
-    fails
-  }
-
   private def find(matchingTarget : String) : JudgedTask = {
     if (pattern.matcher(matchingTarget).find())
       new Ok()
@@ -32,22 +24,27 @@ class Regex(regex : String) {
   }
 
   def matchNone(cannotMatch : MatcherTargets) : Faileds = {
-    val faileds = new Faileds()
-    cannotMatch foreach { matchingTarget =>
-      if (doMatch(matchingTarget).ok) {
-        faileds.addOnlyJudgedFailed(new Failed("N&atilde;o deveria fazer match com " + matchingTarget.asHtml()))
+    cannotMatch.foldLeft(new Faileds()) { (fails, target) =>
+      if (doMatch(target).ok) {
+        fails.addOnlyJudgedFailed(new Failed("N&atilde;o deveria fazer match com " + target.asHtml()))
       }
+      fails
     }
-    faileds
   }
 
   def findNone(cannotMatch : MatcherTargets) : Faileds = {
-    val faileds = new Faileds()
-    cannotMatch foreach { matchingTarget =>
-      if (find(matchingTarget).ok) {
-        faileds.addOnlyJudgedFailed(new Failed("N&atilde;o deveria reconhecer parcialmente " + matchingTarget.asHtml()))
+    cannotMatch.foldLeft(new Faileds()) { (fails, target) =>
+      if (find(target).ok) {
+        fails.addOnlyJudgedFailed(new Failed("N&atilde;o deveria reconhecer parcialmente " + target.asHtml()))
       }
+      fails
     }
-    faileds
+  }
+
+  def matchAll(negateClassShouldMatch : MatcherTargets) : Faileds = {
+    negateClassShouldMatch.foldLeft(new Faileds()) { (fails, target) =>
+      fails.addOnlyJudgedFailed(doMatch(target))
+      fails
+    }
   }
 }
