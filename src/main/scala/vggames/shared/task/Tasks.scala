@@ -14,13 +14,10 @@ class Tasks(taskGroups : TaskGroup*) {
   def all : java.util.List[IndexedTask] = tasks.asJava
 
   private def unmodifiableIndexedTasks = {
-    val buffer = ListBuffer[IndexedTask]()
-    var i = -1
-
-    taskGroups.foreach(group =>
-      group.foreach(task =>
-        buffer += new IndexedTask(new GroupedTask(group, task), { i += 1; i })))
-
-    buffer.toList
+    taskGroups.foldLeft((0, List[IndexedTask]())) { (acc, group) =>
+      group.foldLeft(acc) { (acc, task) =>
+        (acc._1 + 1, acc._2 ++ List(new IndexedTask(new GroupedTask(group, task), acc._1)))
+      }
+    }._2
   }
 }

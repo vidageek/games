@@ -6,5 +6,5 @@ class TaskGroup(name : String, val groupName : String, descriptions : Descriptio
 
   def getName = name
 
-  def foreach = tasks.foreach _
+  def foldLeft[T](t : T) = tasks.foldLeft(t) _
 }
