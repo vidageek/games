@@ -10,7 +10,7 @@ import scala.collection.mutable.ListBuffer
 class MatcherTargetsSpec extends Specification {
   "matcher targets" should {
     "interate over matcher targets" in {
-      List("a", "b") must_== new MatcherTargets(List("a", "b")).foldLeft(List[String]())(_ ++ List(_))
+      List("a", "b") must_== new MatcherTargets(List("a", "b")).foldLeft(List[String]())(_ :+ _)
     }
 
     "build good html for 1 target" in {

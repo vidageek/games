@@ -16,7 +16,7 @@ class Tasks(taskGroups : TaskGroup*) {
   private def unmodifiableIndexedTasks = {
     taskGroups.foldLeft((0, List[IndexedTask]())) { (acc, group) =>
       group.foldLeft(acc) { (acc, task) =>
-        (acc._1 + 1, acc._2 ++ List(new IndexedTask(new GroupedTask(group, task), acc._1)))
+        (acc._1 + 1, acc._2 :+ new IndexedTask(new GroupedTask(group, task), acc._1))
       }
     }._2
   }
