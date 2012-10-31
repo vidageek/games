@@ -16,7 +16,7 @@ function verify(reference, challenge) {
 		return ["Esperava encontrar " + reference.nodeName + " mas foi encontrado " + challenge.nodeName];
 	}
 
-	if (reference.nodeName == "#text" && challenge.nodeName == "#text" && reference.data != challenge.data) {
+	if (reference.nodeName == "#text" && challenge.nodeName == "#text" && reference.data.replace(/\s+/g, "") != challenge.data.replace(/\s+/g, "")) {
 		return ["Esperava encontrar " + reference.data + " mas foi encontrado " + challenge.data];
 	}
 	
