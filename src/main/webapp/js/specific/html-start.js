@@ -3,14 +3,13 @@ var editor;
 
 $(document).ready(function(){
 	var challenge = document.getElementById("challenge")
-	if (challenge) {
-		editor = CodeMirror.fromTextArea(challenge, {
-		  lineNumbers: true,
-		  autofocus: true,
-		  matchBrackets: true,
-		  mode: "text/html"
-		});
-	}
+	editor = CodeMirror.fromTextArea(challenge, {
+	  lineNumbers: true,
+	  autofocus: true,
+	  matchBrackets: true,
+	  mode: "text/html"
+	});
+	
 	window.setInterval(function() {
 		var value = editor.getValue();
 		if (!(value == code)) {
