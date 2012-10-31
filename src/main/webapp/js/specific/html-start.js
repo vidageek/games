@@ -18,10 +18,9 @@ $(document).ready(function(){
 			var errors = verify($('#render-answer').contents().find("body")[0], challenge[0]);
 			if (errors.length > 0){
 				var errorHtml = "<ul>" + $.map(errors, function(e){return "<li>" + e + "</li>"}).join("") + "</ul>"
-				console.log(errorHtml);
-				$('#challenge-result').addClass("reason alert alert-error").html(errorHtml);
+				$('#challenge-result').removeClass("alert-success").addClass("reason alert alert-error").html(errorHtml);
 			} else {
-				$('#challenge-result').removeClass("reason alert alert-error").html("");
+				$('#challenge-result').removeClass("alert-error").addClass("alert-success").html("Ok!");
 			}
 		}
 	} ,100);
