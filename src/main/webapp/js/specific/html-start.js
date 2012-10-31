@@ -17,5 +17,5 @@ $(document).ready(function(){
 			code = value;
 			$('#render-challenge').contents().find("body").html(code);
 		}
-	} ,1000);
+	} ,100);
 });
