@@ -9,7 +9,7 @@ class HtmlGame(descriptions : Descriptions) extends Game {
 
   override val tasks = new Tasks(
     new TaskGroup("teste", "test", descriptions,
-      new HtmlTask("bla")))
+      HtmlTask("Crie um h1 com o texto \"It's alive!!!!!\"", "bla")))
 
   def getDescription = "Um jogo muito legal para aprender Html, focado em Html5"
 

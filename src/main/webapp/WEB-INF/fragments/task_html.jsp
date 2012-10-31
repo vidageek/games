@@ -4,13 +4,17 @@
 
 <div class="row">
 	<div class="span6">
+		
+		<iframe id="render-challenge" class="game-frame"></iframe>
+		
+	
 		<c:if test="${not empty judgedTask}">
 			<div id="challenge-result" class="reason alert ${judgedTask.ok ? 'alert-success' : 'alert-error'}">
 				${judgedTask.reason}
 			</div>
 		</c:if>  
 
-		<iframe src="/play/html/resource/${task.resource}" />
+		
 		
 		<form class="challenge" method="POST" action="/play/${gameName}/task/${task.index}">
 			<label for="challenge"><strong>${task.challenge}</strong></label>
@@ -25,6 +29,8 @@ ${challenge}</textarea>
 	</div>
 	
 	<div class="span6">
+		<iframe class="game-frame" src="/play/html/resource/${task.resource}"></iframe>
+	
 		<h2>${task.groupName}</h2>
 		${task.description}
 	</div>
