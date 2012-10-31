@@ -3,17 +3,17 @@ function verify(reference, challenge) {
 		return [];
 	}
 	if (!reference && challenge){
-		return ["Foi encontrada um elemento a mais: " + challenge.nodeName];
+		return ["Foi encontrada um elemento a mais: " + challenge.nodeName.toLowerCase()];
 	}
 	if (reference.nodeName == "#text" && reference.data.replace(/\s+/g, "").length == 0) {
 		return [];
 	}
 	if (reference && !challenge){
-		return ["Não foi encontrado o elemento: " + reference.nodeName]; 
+		return ["Não foi encontrado o elemento: " + reference.nodeName.toLowerCase()]; 
 	}
 
 	if (reference.nodeName != challenge.nodeName) {
-		return ["Esperava encontrar " + reference.nodeName + " mas foi encontrado " + challenge.nodeName];
+		return ["Esperava encontrar " + reference.nodeName.toLowerCase() + " mas foi encontrado " + challenge.nodeName.toLowerCase()];
 	}
 
 	if (reference.nodeName == "#text" && challenge.nodeName == "#text" && reference.data.replace(/\s+/g, "") != challenge.data.replace(/\s+/g, "")) {
