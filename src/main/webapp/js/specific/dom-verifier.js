@@ -27,7 +27,6 @@ function verifyWellFormedNess(challenge) {
 	}
 	while(stack.length > 0) {
 		errors.push("Encontrada tag não fechada " + stack.pop());
-		console.log(2);
 	}
 	return errors;
 }

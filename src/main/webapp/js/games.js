@@ -13,11 +13,22 @@ $(document).ready(function() {
 	$('#logon-provider').modal({backdrop: false, show: false})
 
 	$('form.challenge').submit(function(e){
-		$('<input>').attr({
-			type: 'hidden',
-			name: 'activeTime',
-			value: Math.floor((new Date().getTime() / 1000) - startTime)
-		}).appendTo('form.challenge');
+		if ($('form.challenge input[disabled]').length == 0) {
+			$('<input>').attr({
+				type: 'hidden',
+				name: 'activeTime',
+				value: Math.floor((new Date().getTime() / 1000) - startTime)
+			}).appendTo('form.challenge');
+		} else {
+			return false;
+		}
 	});
-
+	
+	$('body').keypress(function(event){
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if(keycode == '13' && event.ctrlKey){
+			$('form.challenge').submit();	
+			event.preventDefault();
+		}
+	});
 });
