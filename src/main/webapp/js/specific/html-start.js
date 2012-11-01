@@ -19,11 +19,12 @@ $(document).ready(function(){
 			if (errors.length > 0){
 				var errorHtml = "<ul>" + $.map(errors, function(e){return "<li>" + e + "</li>"}).join("") + "</ul>"
 				$('#challenge-result').removeClass("alert-success").addClass("reason alert alert-error").html(errorHtml);
+				$('#challenge-submit').addClass("disabled").attr("disabled", "disabled");
 			} else {
 				$('#challenge-result').removeClass("alert-error").addClass("alert-success").html("Ok!");
+				$('#challenge-submit').removeClass("disabled").removeAttr("disabled");
 			}
 		}
-		window.setTimeout(checkCode, 100);
 	}
-	window.setTimeout(checkCode ,100);
+	window.setInterval(checkCode, 100);
 });

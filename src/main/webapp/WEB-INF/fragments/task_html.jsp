@@ -13,7 +13,7 @@
 			<label for="challenge"><strong>${task.challenge}</strong></label>
 			<textarea class="focus span6" name="challenge" id="challenge" autocomplete="off">
 ${challenge}</textarea>
-			<input class="btn-primary" type="submit" value="Check!" />
+			<input id="challenge-submit" disabled class="btn btn-primary disabled" type="submit" value="Next! (ctrl + enter)" />
 		</form>
 		
 		<div class="progress">
