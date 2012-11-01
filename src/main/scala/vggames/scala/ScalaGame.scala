@@ -21,7 +21,7 @@ class ScalaGame(descriptions : Descriptions) extends Game {
     addAdvancedStringExercises)
 
   def addValEVarExercises =
-    new TaskGroup("Vari&aacute;veis", "basic.varval", descriptions,
+    new TaskGroup("Vari&aacute;veis e Valores", "basic.varval", descriptions,
       new DefineValString(),
       new DefineValInt(),
       new DefineVarString(),
