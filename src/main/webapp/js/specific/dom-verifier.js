@@ -37,14 +37,14 @@ function last(array) {
 }
 
 function verifySimilarity(reference, challenge) {
+	if (reference && reference.nodeName == "#text" && reference.data.replace(/\s+/g, "").length == 0) {
+		reference = null;
+	}
 	if (!reference && !challenge){
 		return [];
 	}
 	if (!reference && challenge){
-		return ["Foi encontrada um elemento a mais: " + challenge.nodeName.toLowerCase()];
-	}
-	if (reference.nodeName == "#text" && reference.data.replace(/\s+/g, "").length == 0) {
-		return [];
+		return ["Foi encontrado um elemento a mais: " + challenge.nodeName.toLowerCase()];
 	}
 	if (reference && !challenge){
 		return ["Não foi encontrado o elemento: " + reference.nodeName.toLowerCase()]; 
@@ -66,9 +66,12 @@ function verifySimilarity(reference, challenge) {
 	}
 	
 	var errors = [];
-	for (var i = 0; i < Math.max(referenceChildren.length, challengeChildren.length); i++) {
-		var res = verifySimilarity(childrenOrNull(referenceChildren[i]), childrenOrNull(challengeChildren, i))
-		errors = errors.concat(res);
+	for (var i = 0; i < referenceChildren.length; i++) {
+		errors = errors.concat(verifySimilarity(referenceChildren[i], childrenOrNull(challengeChildren, i)))
+	}
+	for (var i = 0; i < challengeChildren.length - referenceChildren.length; i++){
+		errors = errors.concat(null, childrenOrNull(challengeChildren, i + referenceChildren.length))
+				
 	}
 	return errors;
 }
