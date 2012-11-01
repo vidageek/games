@@ -7,7 +7,8 @@ $(document).ready(function(){
 	  lineNumbers: true,
 	  autofocus: true,
 	  matchBrackets: true,
-	  mode: "text/html"
+	  mode: "text/html",
+	  theme: "high-contrast"
 	});
 	
 	function checkCode() {
