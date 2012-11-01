@@ -14,11 +14,19 @@ import vggames.scala.specs.valvar.ReassignToVar
 class ScalaGame(descriptions : Descriptions) extends Game {
 
   override val tasks = new Tasks(
+    addValEVarExercises,
     addBasicMathExercises,
     addBasicBooleanExercises,
     addStringExercises,
-    addAdvancedStringExercises,
-    addValEVarExercises)
+    addAdvancedStringExercises)
+
+  def addValEVarExercises =
+    new TaskGroup("Vari&aacute;veis", "basic.varval", descriptions,
+      new DefineValString(),
+      new DefineValInt(),
+      new DefineVarString(),
+      new DefineVarInt(),
+      new ReassignToVar())
 
   def addBasicMathExercises =
     new TaskGroup("Opera&ccedil;&otilde;es matem&aacute;ticas b&aacute;sicas", "basic.math", descriptions,
@@ -56,14 +64,6 @@ class ScalaGame(descriptions : Descriptions) extends Game {
       new ReplaceString(),
       new StringContains(),
       new TrimString())
-
-  def addValEVarExercises =
-    new TaskGroup("Vari&aacute;veis", "basic.varval", descriptions,
-      new DefineValString(),
-      new DefineValInt(),
-      new DefineVarString(),
-      new DefineVarInt(),
-      new ReassignToVar())
 
   def getDescription = "Um jogo muito legal para aprender Scala"
 
