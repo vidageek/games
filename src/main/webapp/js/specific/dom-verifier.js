@@ -4,7 +4,7 @@ function verify(reference, challenge, challengeString) {
 
 function verifyWellFormedNess(challenge) {
 	var voidTags = /area|base|br|col|command|embed|hr|img|input|keygen|link|meta|param|source|track|wbr/i;
-	var tagPattern = /<(\/?[^ \>\/]+)/gm;
+	var tagPattern = /<(\/?[^ \>\/]+)[^>]*>/gm;
 	var stack = [];
 	var errors = [];
 	var tag = tagPattern.exec(challenge);
