@@ -13,6 +13,10 @@ import java.security.MessageDigest
 import scala.math.BigInt
 import com.twitter.util.Eval.CompilerException
 import scala.collection.mutable.SynchronizedQueue
+import akka.actor.ActorSystem
+import akka.actor.Actor
+import akka.actor.Props
+import org.apache.log4j.Logger
 
 class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
   val className = "ExpressionRunner"
@@ -69,6 +73,31 @@ object Compile {
         reuse(eval)
     }
   }
+
+  import akka.util.duration._
+
+  class Warmer extends Actor {
+
+    val log = Logger.getLogger(classOf[Warmer])
+
+    def receive = {
+      case Check => {
+        if (pool.size < 10) {
+          log.info("Warming up Eval")
+          val eval = new Eval(None)
+          eval("1 + 1")
+          pool += eval
+        }
+      }
+    }
+  }
+
+  val system = ActorSystem("Compiler")
+
+  case object Check
+
+  system.scheduler.schedule(0.milliseconds, 5.seconds, system.actorOf(Props[Warmer], "Warmer"), Check)
+
 }
 
 class Pool {
@@ -85,6 +114,7 @@ class Pool {
     }
   }
 
+  def size = queue.size
 }
 
 class Eval(file : Option[File]) extends TwitterEval(file) {
