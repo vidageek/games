@@ -15,6 +15,8 @@ import scala.collection.mutable.Map
 @Component
 class PlayerSession(request : HttpServletRequest, response : HttpServletResponse, players : Players) {
 
+  def ip : Option[String] = Option(request.getRemoteAddr)
+
   def login(player : Player) : Unit = {
     response.addCookie(new LoginCookie(player.token, request.getServerName))
     PlayerSession.activePlayers += ((player.token, player))
