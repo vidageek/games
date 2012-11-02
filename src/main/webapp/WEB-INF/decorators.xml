@@ -2,6 +2,7 @@
 
 	<excludes>
 		<pattern>/play/html/resource/*</pattern>
+		<pattern>/robots.txt</pattern>
 	</excludes>
 
     <decorator name="all" page="all.jsp">
