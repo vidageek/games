@@ -7,14 +7,9 @@ import vggames.shared.task.Descriptions
 import vggames.shared.task.status.Ok
 
 @RunWith(classOf[JUnitRunner])
-class ScalaGameSpec extends Specification {
+class ScalaGameSpec extends Specification with Answers {
 
-  val answers = List("val valor = \"val\"", "val numero = 123", "var valor = \"var\"", "var numero = 314",
-    "var rio = \"tietê\"\n rio = \"pinheiros\"", "a + b", "b - a", "a * b", "a / b", "true", "false",
-    "a == b", "a != b", "a < b", "a > b", "a <= b", "a >= b", "\"Minha primeira String\"",
-    "\"\"\"Minha segunda String\"\"\"", "a + b", "a + \"taz\"", "a.reverse", "a.length", "a > b",
-    "a.toString", "a.split(\" \")", "a.substring(2, 5)", "a.replace(\"aba\", \"ebe\")", "a.contains(\"ara\")",
-    "a.trim")
+  val answers = valvar ++ matematica ++ booleana ++ stringStructure ++ stringOperations
 
   "Scala Game" should {
 
@@ -37,4 +32,16 @@ class ScalaGameSpec extends Specification {
       answersSize must_== game.getSize
     }
   }
+}
+
+trait Answers {
+  def valvar = List("val valor = \"val\"", "val numero = 123", "var valor = \"var\"", "var numero = 314",
+    "var rio = \"tietê\"\n rio = \"pinheiros\"")
+
+  def matematica = List("a + b", "b - a", "a * b", "a / b")
+  def booleana = List("true", "false", "a == b", "a != b", "a < b", "a > b", "a <= b", "a >= b")
+  def stringStructure = List("\"Minha primeira String\"", "\"\"\"Minha segunda String\"\"\"", "a + b",
+    "a + \"taz\"", "a.reverse", "a.length", "a > b", "a.toString")
+  def stringOperations = List("a.split(\" \")", "a.substring(2, 5)", "a.replace(\"aba\", \"ebe\")",
+    "a.contains(\"ara\")", "a.trim")
 }
