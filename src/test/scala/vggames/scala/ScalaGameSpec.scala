@@ -9,12 +9,12 @@ import vggames.shared.task.status.Ok
 @RunWith(classOf[JUnitRunner])
 class ScalaGameSpec extends Specification {
 
-  val answers = List("a + b", "b - a", "a * b", "a / b", "true", "false",
+  val answers = List("val valor = \"val\"", "val numero = 123", "var valor = \"var\"", "var numero = 314",
+    "var rio = \"tietê\"\n rio = \"pinheiros\"", "a + b", "b - a", "a * b", "a / b", "true", "false",
     "a == b", "a != b", "a < b", "a > b", "a <= b", "a >= b", "\"Minha primeira String\"",
     "\"\"\"Minha segunda String\"\"\"", "a + b", "a + \"taz\"", "a.reverse", "a.length", "a > b",
     "a.toString", "a.split(\" \")", "a.substring(2, 5)", "a.replace(\"aba\", \"ebe\")", "a.contains(\"ara\")",
-    "a.trim", "val valor = \"val\"", "val numero = 123", "var valor = \"var\"", "var numero = 314",
-    "var rio = \"tietê\"\n rio = \"pinheiros\"")
+    "a.trim")
 
   "Scala Game" should {
 
