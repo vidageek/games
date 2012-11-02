@@ -34,5 +34,9 @@
 					</c:if>
 			</c:forEach>
 		</ul>
+		<h3>Outros recursos</h3>
+		<ul class="nav nav-pills nav-stacked groups">
+			<li><a href="/theory/${game.name}">Teoria</a>
+		</ul>
 	</body>
 </html>
