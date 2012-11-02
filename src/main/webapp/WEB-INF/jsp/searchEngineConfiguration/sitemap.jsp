@@ -4,14 +4,14 @@
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>/</loc>
+		<loc>http://games.vidageek.net/</loc>
 		<lastmod>${buildDate}</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.1</priority>	
 	</url>
 	<c:forEach items="${games}" var="game">
 	<url>
-		<loc>/play/${game}</loc>
+		<loc>http://games.vidageek.net/play/${game}</loc>
 		<lastmod>${buildDate}</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.5</priority>	
@@ -19,7 +19,7 @@
 	</c:forEach>
 	<c:forEach items="${games}" var="game">
 	<url>
-		<loc>/theory/${game}</loc>
+		<loc>http://games.vidageek.net/theory/${game}</loc>
 		<lastmod>${buildDate}</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>1</priority>	
