@@ -1,6 +1,6 @@
 package vggames.shared
 
-import scala.collection.JavaConversions.mutableMapAsJavaMap
+import scala.collection.JavaConverters._
 
 import br.com.caelum.vraptor.{ Get, Post, Resource, Result }
 import br.com.caelum.vraptor.ioc.Component
@@ -14,7 +14,7 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
   def index(gameName : String) {
     result.include("gameName", gameName)
     result.include("game", game)
-    result.include("finishedGroups", mutableMapAsJavaMap(session.finishedGroups))
+    result.include("finishedGroups", session.finishedGroups.asJava)
   }
 
   @Get(Array("/play/{gameName}/task/{index}"))

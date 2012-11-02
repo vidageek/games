@@ -7,11 +7,19 @@
 		<loc>/</loc>
 		<lastmod>${buildDate}</lastmod>
 		<changefreq>weekly</changefreq>
-		<priority>0.5</priority>	
+		<priority>0.1</priority>	
 	</url>
 	<c:forEach items="${games}" var="game">
 	<url>
 		<loc>/play/${game}</loc>
+		<lastmod>${buildDate}</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.5</priority>	
+	</url>
+	</c:forEach>
+	<c:forEach items="${games}" var="game">
+	<url>
+		<loc>/theory/${game}</loc>
 		<lastmod>${buildDate}</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>1</priority>	

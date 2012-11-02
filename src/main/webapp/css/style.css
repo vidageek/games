@@ -15,6 +15,15 @@ body {
 	margin-top: 30px;	
 }
 
+h2.theory {
+	margin-top: -15px;
+}
+
+a.theory-link {
+	display: block;
+	margin-bottom: 55px;
+}
+
 /*Code*/
 code {
     white-space: nowrap;
