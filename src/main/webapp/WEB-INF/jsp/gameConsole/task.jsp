@@ -5,6 +5,7 @@
 <html>
 	<head>
 		<title>Exerc&iacute;cio ${task.index} do ${game.name} game</title>
+		<meta name="robots" content="noindex" /> 
 	</head>
 	<body>
 		<c:import url="/WEB-INF/fragments/task_${gameName}.jsp" />

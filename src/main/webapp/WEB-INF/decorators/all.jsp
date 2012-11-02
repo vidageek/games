@@ -14,6 +14,7 @@
 	content="FjDxiddkSQXOHTFWCpYqrXpjj7wCoCcX1krRxTCHuq0" />
 <meta name="google-site-verification" content="igmWNUz0B_VblujqXG47m32FBgjyQ5Zc2Oq-3YzSZv8" />
 <title><decorator:title /></title>
+<decorator:head />
 <aw:css url="/css/games-packaged.css" />
 <!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
