@@ -12,4 +12,9 @@ class SearchEngineConfiguration(cfg : GamesConfiguration, result : Result) {
     result.include("inactiveGames", cfg.inactiveGames.asJava)
   }
 
+  @Get(Array("/sitemap.xml"))
+  def sitemap {
+    result.include("games", cfg.activeGames.asJava)
+    result.include("buildDate", cfg.buildDate)
+  }
 }
