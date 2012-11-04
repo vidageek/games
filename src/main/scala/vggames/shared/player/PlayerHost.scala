@@ -17,6 +17,9 @@ class PlayerHost(players : Players, session : PlayerSession, result : Result, re
   @Get(Array("/senha"))
   def senha = {}
 
+  @Get(Array("/about"))
+  def about = {}
+
   @Get(Array("/token/{token}"))
   def login(token : String) = {
     players.find(token).map(session.login)

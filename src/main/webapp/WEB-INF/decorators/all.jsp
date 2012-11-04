@@ -48,7 +48,10 @@
 				</c:if>
 			    <c:choose>
                     <c:when test="${empty player}">
-                        <a id="select-a-provider" class="brand pull-right nav-link" data-toggle="modal" href="#logon-provider">Login</a>
+                    	<ul class="nav">
+                        	<li class="active"><a id="select-a-provider" class="brand pull-right nav-link" data-toggle="modal" href="#logon-provider">Login</a></li>
+                        	<li><a href="/about">Sobre</a></li>
+                        </ul>
                     </c:when>
                     <c:otherwise>
                         <div class="nav-collapse">
@@ -64,6 +67,7 @@
 	                                    <a class="pull-right nav-link" href="${player.lastTask}">Última Jogada</a>
 	                                </li>
                                 </c:if>
+                                <li><a href="/about">Sobre</a></li>
                                 <li class="divider-vertical"></li>
                                 <li>
                                     <a class="pull-right nav-link" href="<c:url  value="/logout" />">Logout</a>

@@ -24,6 +24,12 @@ a.theory-link {
 	margin-bottom: 55px;
 }
 
+div#contributors div {
+	display: inline-block;
+	width: 120px;
+	text-align: center;
+}
+
 /*Code*/
 code {
     white-space: nowrap;
