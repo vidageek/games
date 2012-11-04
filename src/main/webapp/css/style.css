@@ -24,10 +24,18 @@ a.theory-link {
 	margin-bottom: 55px;
 }
 
-div#contributors div {
+div#contributors div, div#organizations div {
 	display: inline-block;
 	width: 120px;
 	text-align: center;
+}
+
+div#contributors div img, div#organizations div img{
+	max-width: 110px;
+}
+
+.about h1 {
+	margin: 25px;
 }
 
 /*Code*/
