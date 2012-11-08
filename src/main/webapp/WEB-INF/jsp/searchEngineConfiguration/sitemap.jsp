@@ -19,7 +19,7 @@
 	</c:forEach>
 	<c:forEach items="${games}" var="game">
 	<url>
-		<loc>http://games.vidageek.net/theory/${game}</loc>
+		<loc>http://games.vidageek.net/reference/${game}</loc>
 		<lastmod>${buildDate}</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>1</priority>	
