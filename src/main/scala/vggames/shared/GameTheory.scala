@@ -12,6 +12,11 @@ class GameTheory(data : RequestData, game : Game, result : Result, session : Pla
 
   @Get(Array("/theory/{gameName}"))
   def theory(gameName : String) = {
+    result.permanentlyRedirectTo(this).reference(gameName);
+  }
+
+  @Get(Array("/reference/{gameName}"))
+  def reference(gameName : String) = {
     result.include("gameName", gameName)
     result.include("game", game)
     result.include("finishedGroups", session.finishedGroups.asJava)

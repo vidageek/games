@@ -17,7 +17,7 @@ class RequestDataSpec extends Specification with Mockito {
       "regex" must_== new RequestData(request).game
     }
 
-    "identify which game theory was requested" in new RequestDataScope("/theory/regex") {
+    "identify which game reference was requested" in new RequestDataScope("/reference/regex") {
       "regex" must_== new RequestData(request).game
     }
 
@@ -25,7 +25,7 @@ class RequestDataSpec extends Specification with Mockito {
       "regex" must_== new RequestData(request).game
     }
 
-    "identify which game theory was requested if it ends with /" in new RequestDataScope("/theory/regex/") {
+    "identify which game reference was requested if it ends with /" in new RequestDataScope("/reference/regex/") {
       "regex" must_== new RequestData(request).game
     }
 

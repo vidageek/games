@@ -4,10 +4,10 @@
 
 <html>
 	<head>
-		<title>Teoria do ${game.name} Game</title>
+		<title>Referência do ${game.name} Game</title>
 	</head>
 	<body>
-		<h1>Teoria do ${game.name} Game</h1>
+		<h1>Referência do ${game.name} Game</h1>
 		
 		<a id="conteudo" class="theory-link"></a>
 		<h2 class="theory">Conte&uacute;do:</h2>
