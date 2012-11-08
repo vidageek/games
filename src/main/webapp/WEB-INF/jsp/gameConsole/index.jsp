@@ -36,7 +36,7 @@
 		</ul>
 		<h3>Outros recursos</h3>
 		<ul class="nav nav-pills nav-stacked groups">
-			<li><a href="/reference/${game.name}">Referência</a>
+			<li><a href="/reference/${gameName}">Referência</a>
 		</ul>
 	</body>
 </html>
