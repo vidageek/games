@@ -8,11 +8,11 @@ import br.com.caelum.vraptor.Result
 import vggames.shared.player.PlayerSession
 
 @Resource
-class GameTheory(data : RequestData, game : Game, result : Result, session : PlayerSession) {
+class GameReference(data : RequestData, game : Game, result : Result, session : PlayerSession) {
 
   @Get(Array("/theory/{gameName}"))
   def theory(gameName : String) = {
-    result.permanentlyRedirectTo(this).reference(gameName);
+    result.permanentlyRedirectTo(GameReference.this).reference(gameName);
   }
 
   @Get(Array("/reference/{gameName}"))
