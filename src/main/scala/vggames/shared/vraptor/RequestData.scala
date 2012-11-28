@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest
 @Component
 class RequestData(request : HttpServletRequest) {
 
-  private val gameRegex = "/(?:play|reference)/([^/]+)/?.*".r
+  private val gameRegex = "/(?:play|reference|theory)/([^/]+)/?.*".r
 
   val game = gameRegex.findFirstMatchIn(request.getRequestURI).map(_.group(1)).getOrElse("")
 
