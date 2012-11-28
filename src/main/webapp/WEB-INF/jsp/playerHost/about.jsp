@@ -16,6 +16,10 @@
 					<a class="btn btn-info" href="http://www.adaptideas.com.br/">AdaptIdeas</a>
 				</div>
 				<div>
+					<img src="/images/ccsl.jpeg" />
+					<a class="btn btn-info" href="http://ccsl.ime.usp.br/">CCSL</a>
+				</div>
+				<div>
 					<img src="https://secure.gravatar.com/avatar/9ce5f6b25189ecb05c5c982cc5c0ad7c.png" />
 					<a class="btn btn-info" href="http://vidageek.net/">VidaGeek.net</a>
 				</div>
