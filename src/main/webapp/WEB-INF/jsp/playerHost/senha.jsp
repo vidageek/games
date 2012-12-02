@@ -5,6 +5,7 @@
 <html>
 	<head>
 		<title>VidaGeek Games - Porquê você não precisa colocar a sua senha?</title>
+		<meta name="robots" content="noindex" />
 	</head>
 	<body>
 		<header>
