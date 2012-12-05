@@ -56,8 +56,13 @@
                     <c:otherwise>
                         <div class="nav-collapse">
                             <ul class="nav">
-                            	<li>
-                            		<a id="level" href="#"><span>${player.level}</span></a>
+                            	<li id="level">
+                            		<a href="#" style="
+                            		background: -moz-linear-gradient(left center, #8CF ${player.progress}%, #EEE ${player.progress}%);
+    								background: -webkit-gradient(linear, left top, right top, color-stop(${player.progress}%,#8CF), color-stop(${player.progress}%,#EEE));
+    								background: linear-gradient(left center, #8CF ${player.progress}%, #EEE ${player.progress}%);
+                            		">
+                            		<span>${player.level}</span></a>
                             	</li>
                                 <li class="active">
                                     <a id="logged" class="pull-right nav-link" href="/progress">${player.email}</a>

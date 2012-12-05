@@ -71,7 +71,7 @@ li.finished {
 }
 
 /* Level */
-a#level {
+#level a {
 	background-color: #EEE;
 	color: #000;
 	font-size: 30px;
