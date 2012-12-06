@@ -32,19 +32,16 @@ $(document).ready(function() {
 	});
 	
 	if($('#contributors').length > 0) {	
-		$.ajax({
-			url: "https://api.github.com/repos/vidageek/games/contributors",
-			dataType: 'json',
-			success: function(data){
+		$.getJSON("https://api.github.com/repos/vidageek/games/contributors?callback=?",
+			function(data){
 				var contributors = "";
-				$.each(data, function(i, e) {
+				$.each(data.data, function(i, e) {
 					contributors += '<div>' + 
 						'<img src="https://secure.gravatar.com/avatar/' + e.gravatar_id +'" />' +
 						'<a class="btn btn-info" href="https://github.com/'+ e.login + '">' + e.login + '</a>' +
 						'</div>'
 				});
 				$('#contributors').html(contributors);
-			}
 		});
 	}
 });
