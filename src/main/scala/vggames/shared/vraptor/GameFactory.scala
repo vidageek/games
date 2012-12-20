@@ -10,6 +10,7 @@ import vggames.css.CssGame
 import br.com.caelum.vraptor.ioc.Component
 import br.com.caelum.vraptor.ioc.ApplicationScoped
 import vggames.html.HtmlGame
+import vggames.git.GitGame
 
 @Component
 class GameFactory(cached : GameFactoryCache, data : RequestData) extends ComponentFactory[Game] {
@@ -17,6 +18,7 @@ class GameFactory(cached : GameFactoryCache, data : RequestData) extends Compone
   def getInstance : Game = {
     data.game match {
       case "regex" => cached regexGame
+      case "git" => cached gitGame
       case "scala" => cached scalaGame
       case "css" => cached cssGame
       case "html" => cached htmlGame
@@ -33,4 +35,5 @@ class GameFactoryCache(cache : DescriptionsCache) {
   val scalaGame = new ScalaGame(cache.get("scala"))
   val cssGame = new CssGame(cache.get("css"))
   val htmlGame = new HtmlGame(cache.get("css"))
+  val gitGame = new GitGame(cache.get("git"))
 }
