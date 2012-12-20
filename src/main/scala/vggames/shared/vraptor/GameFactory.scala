@@ -15,25 +15,20 @@ import vggames.git.GitGame
 @Component
 class GameFactory(cached : GameFactoryCache, data : RequestData) extends ComponentFactory[Game] {
 
-  def getInstance : Game = {
-    data.game match {
-      case "regex" => cached regexGame
-      case "git" => cached gitGame
-      case "scala" => cached scalaGame
-      case "css" => cached cssGame
-      case "html" => cached htmlGame
-      case other => throw new RuntimeException("Não foi possível criar o jogo [" + other + "]. Talvez " +
-        "seja necessário registrá-lo na GameFactory")
-    }
-  }
+  def getInstance : Game = cached(data.game).getOrElse(
+    throw new RuntimeException("Não foi possível criar o jogo [" + data.game + "]. Talvez " +
+      "seja necessário registrá-lo na GameFactory"))
 }
 
 @Component
 @ApplicationScoped
 class GameFactoryCache(cache : DescriptionsCache) {
-  val regexGame = new RegexGame(cache.get("regex"))
-  val scalaGame = new ScalaGame(cache.get("scala"))
-  val cssGame = new CssGame(cache.get("css"))
-  val htmlGame = new HtmlGame(cache.get("css"))
-  val gitGame = new GitGame(cache.get("git"))
+  private val games = Map(
+    "regex" -> new RegexGame(cache.get("regex")),
+    "scala" -> new ScalaGame(cache.get("scala")),
+    "css" -> new CssGame(cache.get("css")),
+    "html" -> new HtmlGame(cache.get("html")),
+    "git" -> new GitGame(cache.get("git")))
+
+  def apply(gameName : String) = games.get(gameName)
 }
