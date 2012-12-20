@@ -8,7 +8,15 @@ import vggames.shared.task.TaskGroup
 class GitGame(descriptions : Descriptions) extends Game {
 
   val tasks = new Tasks(
-    new TaskGroup("teste", "test", descriptions))
+    commit)
+
+  def commit = {
+    val repo = EmptyGit() ~
+      Commit("commit 1") ~
+      Commit("commit 2")
+
+    new TaskGroup("teste", "test", descriptions)
+  }
 
   def getDescription = "Um jogo muito legal para aprender Git"
 
