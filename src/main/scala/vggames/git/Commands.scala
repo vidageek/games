@@ -36,9 +36,8 @@ object Command extends RegexParsers {
 
 case class Commit(name : String) extends Command {
   def apply(repo : Git, parent : Git) : Git = {
-    if (Set("master", "stash", "origin/master").contains(repo.branch)) return repo
     val commits = repo.commits.get(repo.branch).getOrElse(List[Commit]()) :+ this
-    new Git(parent, this, repo.commits + (repo.branch -> commits), repo.branch)
+    Git(parent, this, repo.commits + (repo.branch -> commits), repo.branch)
   }
   def challenge = "Fa&ccedil;a um commit com a mensagem <code>%s</code>".format(name)
   override def toString = name
@@ -47,10 +46,11 @@ case class Commit(name : String) extends Command {
 case class Checkout(branch : String, bFlag : Boolean = false) extends Command {
   def apply(repo : Git, parent : Git) : Git = {
     if (repo.commits.keySet.contains(branch))
-      return new Git(parent, this, repo.commits, branch)
-    if (bFlag)
-      return new Git(parent, this, repo.commits + (branch -> List()), branch)
-    else repo
+      return Git(parent, this, repo.commits, branch)
+    if (bFlag) {
+      val r = repo ~ Branch(branch) ~< Checkout(branch)
+      Git(r.parent, this, r.commits, r.branch)
+    } else repo
   }
   def challenge = (if (bFlag) "Crie o branch <code>%s</code> e mude para ele"
   else "Mude para o branch <code>%s</code>").format(branch)
@@ -59,7 +59,7 @@ case class Checkout(branch : String, bFlag : Boolean = false) extends Command {
 case class Branch(name : String) extends Command {
   def apply(repo : Git, parent : Git) = {
     val commits = repo.commits.get(repo.branch).getOrElse(List[Commit]())
-    new Git(parent, this, repo.commits + (name -> commits), repo.branch)
+    Git(parent, this, repo.commits + (name -> commits), repo.branch)
   }
   def challenge = "Crie o branch <code>%s</code>".format(name)
 }

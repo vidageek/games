@@ -44,18 +44,6 @@ class GitSpec extends Specification {
       (EmptyGit() ~ Checkout("master")).branch should_== "work"
     }
 
-    "not add commit in master" in {
-      (EmptyGit() ~ Checkout("master", true) ~ Commit("commit")).commits should_== Map("work" -> List(), "master" -> List())
-    }
-
-    "not add commit in stash" in {
-      (EmptyGit() ~ Checkout("stash", true) ~ Commit("commit")).commits should_== Map("work" -> List(), "stash" -> List())
-    }
-
-    "not add commit in origin" in {
-      (EmptyGit() ~ Checkout("origin/master", true) ~ Commit("commit")).commits should_== Map("work" -> List(), "origin/master" -> List())
-    }
-
     "generate task sequence representing all repo mutations" in {
       val tasks = (EmptyGit() ~ Commit("c1") ~ Checkout("abc", true) ~ Commit("c2")).tasks
       tasks.size should_== 3
@@ -66,20 +54,18 @@ class GitSpec extends Specification {
 
       tasks(1).original.commits should_== Map("work" -> List(Commit("c1")))
       tasks(1).original.branch should_== "work"
-      tasks(1).expected.commits should_== Map("work" -> List(Commit("c1")), "abc" -> List())
+      tasks(1).expected.commits should_== Map("work" -> List(Commit("c1")), "abc" -> List(Commit("c1")))
       tasks(1).expected.branch should_== "abc"
 
-      tasks(2).original.commits should_== Map("work" -> List(Commit("c1")), "abc" -> List())
+      tasks(2).original.commits should_== Map("work" -> List(Commit("c1")), "abc" -> List(Commit("c1")))
       tasks(2).original.branch should_== "abc"
-      tasks(2).expected.commits should_== Map("work" -> List(Commit("c1")), "abc" -> List(Commit("c2")))
+      tasks(2).expected.commits should_== Map("work" -> List(Commit("c1")), "abc" -> List(Commit("c1"), Commit("c2")))
       tasks(2).expected.branch should_== "abc"
     }
 
     "not register previous command if ~< was called" in {
       (EmptyGit() ~ Branch("branch") ~< Commit("a")).commits should_== Map("work" -> List(Commit("a")), "branch" -> List())
-      println("begin")
       (EmptyGit() ~ Branch("branch") ~< Commit("a")).parent should_== EmptyGit()
-      println("end")
     }
   }
 

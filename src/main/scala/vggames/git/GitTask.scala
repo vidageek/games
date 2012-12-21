@@ -10,7 +10,7 @@ case class GitTask(original : Git, expected : Git) extends Task[Git] {
   def judge(challenge : String) : JudgedTask = {
     val command = Command(challenge)
     if (!command.isDefined) return Failed("Comando [%s] n&atilde;o foi reconhecido.".format(challenge))
-    if (command.get(original, null) == expected) Ok() else Failed("hahahahha")
+    if (original ~ command.get == expected) Ok() else Failed("hahahahha")
   }
 
   def getChallenge = expected.command.challenge
