@@ -15,11 +15,14 @@
 	</c:forEach>
 </div>
 <div class="row">
+	Branch atual: ${task.extraData.branch}
+</div>
+<div class="row">
 	<div class="span6">
 		
 		<form class="challenge" method="POST" action="/play/${gameName}/task/${task.index}">
 			<label for="challenge"><strong>${task.challenge}</strong></label>
-			<input class="focus span6" name="challenge" id="challenge" autocomplete="off">${challenge}</input>
+			<input class="focus span6" name="challenge" id="challenge" autocomplete="off" value="${challenge}"/>
 			<input id="challenge-submit" class="btn btn-primary" type="submit" value="Next! (ctrl + enter)" />
 		</form>
 		

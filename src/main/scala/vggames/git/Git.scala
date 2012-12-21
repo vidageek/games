@@ -12,6 +12,8 @@ case class Git(parent : Git, commits : Map[String, List[Commit]], branch : Strin
     (List(br("stash"), br("work")) ++ nonSpecial ++ List(br("master"), br("origin/master")) ++ nonSpecialRemotes).
       filterNot(_.commits.size == 0).asJava
 
+  def getBranch = branch
+
   def br(branch : String) = CommitList(branch, commits.get(branch).getOrElse(List()))
 
   private def nonSpecial = commits.map(t => CommitList(t._1, t._2)).
