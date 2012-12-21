@@ -1,6 +1,6 @@
 package vggames.shared.task;
 
-trait TaskWithDescription extends Task {
+trait TaskWithDescription[T] extends Task[T] {
 
   def getDescription : String
 

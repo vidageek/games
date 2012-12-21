@@ -1,6 +1,6 @@
 package vggames.shared.task;
 
-trait Task {
+trait Task[T] {
 
   def judge(challenge : String) : JudgedTask
 
@@ -11,4 +11,8 @@ trait Task {
   final def getResource = resource
 
   override def toString : String = getChallenge
+
+  def extraData : Option[T] = None
+
+  final def getExtraData : T = extraData.get
 }

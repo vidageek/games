@@ -17,6 +17,7 @@ import akka.actor.ActorSystem
 import akka.actor.Actor
 import akka.actor.Props
 import org.apache.log4j.Logger
+import vggames.shared.Hash
 
 class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
   val className = "ExpressionRunner"
@@ -37,16 +38,13 @@ class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
     }
   }
 
-  def hash(s : String) =
-    BigInt(MessageDigest.getInstance("MD5").digest(s.getBytes)).toString(16).replace("-", "$")
-
   private def compile(code : String) = {
     if (code.contains("finally") || code.contains("catch") ||
       code.contains(TaskRunSecurityManager.getClass.getSimpleName.replace("$", "")))
       throw new SecurityException("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
 
     val wrapped = wrap(className, code, spec.extendsType, spec.runSignature, spec.afterCode)
-    val codeHash = hash(wrapped)
+    val codeHash = Hash(wrapped)
     val toCompile = wrapped.replace(className, className + codeHash)
 
     Compile(_.toClass(toCompile, fullName + codeHash))

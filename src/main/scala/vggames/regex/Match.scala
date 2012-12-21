@@ -3,7 +3,7 @@ package vggames.regex
 import vggames.shared.task.JudgedTask
 import vggames.shared.task.Task
 
-class Match(matchingTargets : MatcherTargets) extends Task {
+class Match(matchingTargets : MatcherTargets) extends Task[Any] {
 
   def judge(challenge : String) : JudgedTask = new Regex(challenge).matchAll(matchingTargets).judgment();
 

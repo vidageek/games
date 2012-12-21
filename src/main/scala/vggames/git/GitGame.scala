@@ -13,9 +13,16 @@ class GitGame(descriptions : Descriptions) extends Game {
   def commit = {
     val repo = EmptyGit() ~
       Commit("commit 1") ~
-      Commit("commit 2")
+      Commit("commit 1") ~
+      Commit("commit 1") ~
+      Commit("commit 1") ~
+      Commit("commit 2") ~
+      Checkout("abc", true) ~
+      Commit("caoskm") ~
+      Commit("alskdmlas") ~
+      Commit("asdasd")
 
-    new TaskGroup("teste", "test", descriptions)
+    new TaskGroup("teste", "test", descriptions, repo.tasks : _*)
   }
 
   def getDescription = "Um jogo muito legal para aprender Git"

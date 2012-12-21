@@ -2,7 +2,7 @@ package vggames.shared.task;
 
 import vggames.shared.task.status.Error
 
-class IndexedTask(delegate : TaskWithDescription, index : Int) extends TaskWithDescription {
+class IndexedTask[T](delegate : TaskWithDescription[T], index : Int) extends TaskWithDescription[T] {
 
   def getIndex : Int = index
 
@@ -23,5 +23,7 @@ class IndexedTask(delegate : TaskWithDescription, index : Int) extends TaskWithD
   def getGroupName : String = delegate.getGroupName
 
   def getGroupCode = delegate.getGroupCode
+
+  override def extraData = delegate.extraData
 
 }

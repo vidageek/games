@@ -1,6 +1,6 @@
 package vggames.shared.task
 
-class GroupedTask(group : TaskGroup, task : Task) extends TaskWithDescription {
+class GroupedTask[T](group : TaskGroup, task : Task[T]) extends TaskWithDescription[T] {
 
   def judge(challenge : String) = task.judge(challenge)
 
@@ -13,4 +13,6 @@ class GroupedTask(group : TaskGroup, task : Task) extends TaskWithDescription {
   def getGroupCode = group.groupName
 
   def resource = task.resource
+
+  override def extraData = task.extraData
 }

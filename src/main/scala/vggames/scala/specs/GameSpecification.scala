@@ -15,7 +15,7 @@ import vggames.shared.task.status.Failed
 import org.specs2.matcher.MustThrownExpectations
 import org.specs2.execute.FailureException
 
-trait GameSpecification[T <: CodeRestrictions[_]] extends Task with MustMatchers with MustThrownExpectations {
+trait GameSpecification[T <: CodeRestrictions[_]] extends Task[Any] with MustMatchers with MustThrownExpectations {
 
   type Code = T
 

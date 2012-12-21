@@ -13,11 +13,11 @@ trait Game {
 
   def getName : String
 
-  def task(index : Int) : TaskWithDescription = tasks.at(index)
+  def task(index : Int) : TaskWithDescription[_] = tasks.at(index)
 
   def getSize : Int = tasks.size
 
-  def getTasks : Collection[_ <: TaskWithDescription] = tasks.all
+  def getTasks : Collection[_ <: TaskWithDescription[_]] = tasks.all
 
   def allTasks = tasks.tasks
 

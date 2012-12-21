@@ -9,7 +9,7 @@ import vggames.shared.task.{ JudgedTask, Task }
 import vggames.shared.Database
 import vggames.shared.player.Player
 
-case class Submission(gameName : String, task : Task, challenge : String, result : JudgedTask, player:Option[Player], ip : Option[String]) extends LogItem with Database {
+case class Submission(gameName : String, task : Task[_], challenge : String, result : JudgedTask, player:Option[Player], ip : Option[String]) extends LogItem with Database {
   def log {
     onDatabase {
       Submissions.insert(gameName, task.getChallenge, challenge, result.ok, player.map(_.id), ip)

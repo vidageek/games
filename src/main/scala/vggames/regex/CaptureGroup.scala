@@ -7,7 +7,7 @@ import scala.collection.mutable.ListBuffer
 import vggames.shared.task.{ JudgedTask, Task }
 import vggames.shared.task.status.Ok
 
-class CaptureGroup(val matchingTarget : String, val captureGroupTargets : String*) extends Task {
+class CaptureGroup(val matchingTarget : String, val captureGroupTargets : String*) extends Task[Any] {
 
   val validations = List[GroupValidation](
     new ValidationIfMatch(matchingTarget),

@@ -4,7 +4,7 @@ import java.util.Scanner
 import vggames.shared.task.{ Task, JudgedTask }
 import scala.io.Source
 
-class MassNegateAndMatch(challenge : String, matcher : NegateAndMatch) extends Task {
+class MassNegateAndMatch(challenge : String, matcher : NegateAndMatch) extends Task[Any] {
   def judge(challenge : String) : JudgedTask = matcher.judge(challenge)
   def getChallenge = challenge
   def resource = ""
