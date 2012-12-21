@@ -8,22 +8,22 @@ trait Command {
 
 object Command extends RegexParsers {
 
-  def command : Parser[Command] = "git" ~> (commit | branch | checkout)
+  private def command : Parser[Command] = "git" ~> (commit | branch | checkout)
 
-  def commit = "commit" ~ "-m" ~ "\"" ~> "[^\"]*".r <~ "\"" ^^ {
+  private def commit = "commit" ~ "-m" ~ "\"" ~> "[^\"]*".r <~ "\"" ^^ {
     case message => Commit(message)
   }
 
-  def branch = "branch" ~> id ^^ {
+  private def branch = "branch" ~> id ^^ {
     case branch => Branch(branch)
   }
 
-  def checkout = "checkout" ~> opt("-b") ~ id ^^ {
+  private def checkout = "checkout" ~> opt("-b") ~ id ^^ {
     case None ~ branch => Checkout(branch)
     case Some(_) ~ branch => Checkout(branch, true)
   }
 
-  def id = "\\w+".r
+  private def id = "\\w+".r
 
   def apply(challenge : String) : Option[Command] = {
     parseAll(command, challenge) match {
