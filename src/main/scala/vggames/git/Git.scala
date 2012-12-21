@@ -40,27 +40,3 @@ case class CommitList(branch : String, commits : List[Commit]) {
 object EmptyGit {
   def apply() = new Git(null, Map(), "work")
 }
-
-trait Command {
-  def apply(repo : Git) : Git
-}
-
-case class Commit(name : String) extends Command {
-  def apply(repo : Git) : Git = {
-    if (Set("master", "stash", "origin/master").contains(repo.branch)) return repo
-    val commits = repo.commits.get(repo.branch).getOrElse(List[Commit]()) :+ this
-    new Git(repo, repo.commits + (repo.branch -> commits), repo.branch)
-  }
-  override def toString = name
-}
-
-case class Checkout(branch : String, bFlag : Boolean = false) extends Command {
-  def apply(repo : Git) = if (repo.commits.keySet.contains(branch) || bFlag) new Git(repo, repo.commits, branch) else repo
-}
-
-case class Branch(name : String) extends Command {
-  def apply(repo : Git) = {
-    val commits = repo.commits.get(repo.branch).getOrElse(List[Commit]())
-    new Git(repo, repo.commits + (name -> commits), repo.branch)
-  }
-}
