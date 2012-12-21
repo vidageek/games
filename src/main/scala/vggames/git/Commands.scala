@@ -28,7 +28,7 @@ object Command extends RegexParsers {
   def apply(challenge : String) : Option[Command] = {
     parseAll(command, challenge) match {
       case Success(command, _) => Some(command)
-      case a => { println(a); None }
+      case a => None
     }
   }
 }
