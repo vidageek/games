@@ -19,7 +19,11 @@
 </div>
 <div class="row">
 	<div class="span6">
-		
+		<c:if test="${not empty judgedTask}">
+			<div id="challenge-result" class="reason alert ${judgedTask.ok ? 'alert-success' : 'alert-error'}">
+				${judgedTask.reason}
+			</div>
+		</c:if>		
 		<form class="challenge" method="POST" action="/play/${gameName}/task/${task.index}">
 			<label for="challenge"><strong>${task.challenge}</strong></label>
 			<input class="focus span6" name="challenge" id="challenge" autocomplete="off" value="${challenge}"/>
