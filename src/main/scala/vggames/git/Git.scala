@@ -4,9 +4,11 @@ import scala.collection.JavaConverters._
 import vggames.shared.task.Task
 import java.util.{ List => JUList }
 
-case class Git(parent : Git, commits : Map[String, List[Commit]], branch : String) {
+case class Git(parent : Git, command : Command, commits : Map[String, List[Commit]], branch : String) {
 
-  def ~(command : Command) = command(this)
+  def ~(command : Command) = command(this, this)
+
+  def ~<(command : Command) = command(this, parent)
 
   def getCommits : JUList[CommitList] = findCommits.asJava
 
@@ -43,5 +45,5 @@ case class CommitList(branch : String, commits : List[Commit]) {
 }
 
 object EmptyGit {
-  def apply() = new Git(null, Map("work" -> List()), "work")
+  def apply() = new Git(null, null, Map("work" -> List()), "work")
 }

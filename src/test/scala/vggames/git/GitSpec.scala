@@ -22,6 +22,11 @@ class GitSpec extends Specification {
       (EmptyGit() ~ Branch("asdrubal")).branch should_== "work"
     }
 
+    "create branch with commits from parent branch" in {
+      (EmptyGit() ~ Commit("c1") ~ Branch("asdrubal")).commits should_==
+        Map("asdrubal" -> List(Commit("c1")), "work" -> List(Commit("c1")))
+    }
+
     "should keep branch if already exists" in {
       (EmptyGit() ~ Commit("asdf") ~ Branch("work")).commits should_== Map("work" -> List(Commit("asdf")))
 
@@ -69,6 +74,13 @@ class GitSpec extends Specification {
       tasks(2).expected.commits should_== Map("work" -> List(Commit("c1")), "abc" -> List(Commit("c2")))
       tasks(2).expected.branch should_== "abc"
     }
+
+    "not register previous command if ~< was called" in {
+      (EmptyGit() ~ Branch("branch") ~< Commit("a")).commits should_== Map("work" -> List(Commit("a")), "branch" -> List())
+      println("begin")
+      (EmptyGit() ~ Branch("branch") ~< Commit("a")).parent should_== EmptyGit()
+      println("end")
+    }
   }
 
   "git commits" should {
@@ -78,17 +90,17 @@ class GitSpec extends Specification {
     }
 
     "be ordered from closer to programmer" in {
-      Git(null, Map("stash" -> List(), "work" -> List(), "master" -> List(), "origin/master" -> List()), "work").findCommits should_==
+      Git(null, null, Map("stash" -> List(), "work" -> List(), "master" -> List(), "origin/master" -> List()), "work").findCommits should_==
         List(CommitList("stash", List()), CommitList("work", List()), CommitList("master", List()), CommitList("origin/master", List()))
     }
 
     "keep other local branches between work and master" in {
-      Git(null, Map("abc" -> List(), "work" -> List(), "master" -> List()), "work").findCommits should_==
+      Git(null, null, Map("abc" -> List(), "work" -> List(), "master" -> List()), "work").findCommits should_==
         List(CommitList("work", List()), CommitList("abc", List()), CommitList("master", List()))
     }
 
     "keep other remote branches after origin/master" in {
-      Git(null, Map("origin/master" -> List(), "origin/stable" -> List()), "origin/stable").findCommits should_==
+      Git(null, null, Map("origin/master" -> List(), "origin/stable" -> List()), "origin/stable").findCommits should_==
         List(CommitList("origin/master", List()), CommitList("origin/stable", List()))
     }
   }

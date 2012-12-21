@@ -13,14 +13,16 @@ class GitGame(descriptions : Descriptions) extends Game {
   def commit = {
     val repo = EmptyGit() ~
       Commit("commit 1") ~
-      Commit("commit 1") ~
-      Commit("commit 1") ~
-      Commit("commit 1") ~
       Commit("commit 2") ~
-      Checkout("abc", true) ~
-      Commit("caoskm") ~
-      Commit("alskdmlas") ~
-      Commit("asdasd")
+      Commit("commit 3") ~
+      Branch("abc") ~
+      Commit("commit 4") ~
+      Commit("commit 5") ~
+      Checkout("abc") ~
+      Commit("caracas") ~
+      Commit("papagaio") ~
+      Checkout("asdrubal", true)
+    Commit("asdasd")
 
     new TaskGroup("teste", "test", descriptions, repo.tasks : _*)
   }
