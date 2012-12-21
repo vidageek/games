@@ -43,7 +43,13 @@ case class Commit(name : String) extends Command {
 }
 
 case class Checkout(branch : String, bFlag : Boolean = false) extends Command {
-  def apply(repo : Git) = if (repo.commits.keySet.contains(branch) || bFlag) new Git(repo, repo.commits, branch) else repo
+  def apply(repo : Git) : Git = {
+    if (repo.commits.keySet.contains(branch))
+      return new Git(repo, repo.commits, branch)
+    if (bFlag)
+      return new Git(repo, repo.commits + (branch -> List()), branch)
+    else repo
+  }
 }
 
 case class Branch(name : String) extends Command {

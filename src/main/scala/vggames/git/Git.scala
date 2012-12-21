@@ -8,19 +8,22 @@ case class Git(parent : Git, commits : Map[String, List[Commit]], branch : Strin
 
   def ~(command : Command) = command(this)
 
-  def getCommits : JUList[CommitList] =
-    (List(br("stash"), br("work")) ++ nonSpecial ++ List(br("master"), br("origin/master")) ++ nonSpecialRemotes).
-      filterNot(_.commits.size == 0).asJava
+  def getCommits : JUList[CommitList] = findCommits.asJava
+
+  def findCommits : List[CommitList] = (List(br("stash"), br("work")) ++ nonSpecial ++
+    List(br("master"), br("origin/master")) ++ nonSpecialRemotes).flatten
 
   def getBranch = branch
 
-  def br(branch : String) = CommitList(branch, commits.get(branch).getOrElse(List()))
+  def br(branch : String) = commits.get(branch).map(CommitList(branch, _))
 
   private def nonSpecial = commits.map(t => CommitList(t._1, t._2)).
-    filterNot(e => Set("stash", "work", "master").contains(e.branch) || e.branch.contains("/"))
+    filterNot(e => Set("stash", "work", "master").contains(e.branch) || e.branch.contains("/")).
+    map(Option(_))
 
   private def nonSpecialRemotes = commits.map(t => CommitList(t._1, t._2)).
-    filter(e => e.branch.contains("/") && e.branch != "origin/master")
+    filter(e => e.branch.contains("/") && e.branch != "origin/master").
+    map(Option(_))
 
   def tasks : List[GitTask] = {
     val gits = allGits(this).reverse
@@ -40,5 +43,5 @@ case class CommitList(branch : String, commits : List[Commit]) {
 }
 
 object EmptyGit {
-  def apply() = new Git(null, Map(), "work")
+  def apply() = new Git(null, Map("work" -> List()), "work")
 }
