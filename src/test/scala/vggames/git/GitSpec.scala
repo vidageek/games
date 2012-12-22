@@ -69,7 +69,7 @@ class GitSpec extends Specification {
     }
   }
 
-  "git commits" should {
+  "commits" should {
     "present all created branches (even if empty)" in {
       (EmptyGit() ~ Branch("abc")).findCommits should_== List(CommitList("work", List()), CommitList("abc", List()))
       (EmptyGit() ~ Checkout("abc", true)).findCommits should_== List(CommitList("work", List()), CommitList("abc", List()))
@@ -89,5 +89,39 @@ class GitSpec extends Specification {
       Git(null, null, Map("origin/master" -> List(), "origin/stable" -> List()), "origin/stable").findCommits should_==
         List(CommitList("origin/master", List()), CommitList("origin/stable", List()))
     }
+  }
+
+  "diff" should {
+    "return empty list if no diferences are found" in {
+      EmptyGit().diff(EmptyGit()) should_== List()
+    }
+
+    "return empty list if parent is different" in {
+      EmptyGit().diff(Git(EmptyGit(), null, Map("work" -> List()), "work")) should_== List()
+    }
+
+    "return empty list if last command is different" in {
+      EmptyGit().diff(Git(null, Branch("a"), Map("work" -> List()), "work")) should_== List()
+    }
+
+    "return actual branch differences" in {
+      Git(null, null, Map(), "work").diff(Git(null, null, Map(), "work2")) should_==
+        List("Deveria mudar para o branch <code>work2</code>. Est&aacute; em <code>work</code>")
+    }
+
+    "return branch list differences" in {
+      Git(null, null, Map("work" -> List(), "asdrubal" -> List()), "work").
+        diff(Git(null, null, Map("work2" -> List(), "asdrubal2" -> List()), "work")) should_==
+        List("Deveria criar o branch <code>work2</code>.", "Deveria criar o branch <code>asdrubal2</code>.",
+          "N&atilde;o deveria criar o branch <code>work</code>.", "N&atilde;o deveria criar o branch <code>asdrubal</code>.")
+    }
+
+    "return differences in commit lists" in {
+      Git(null, null, Map("work" -> List(Commit("1")), "asdrubal" -> List(Commit("3"))), "work").
+        diff(Git(null, null, Map("work" -> List(Commit("2")), "asdrubal" -> List(Commit("4"))), "work")) should_==
+        List("Commit <code>0</code> do branch <code>work</code> deveria ser <code>2</code>.",
+          "Commit <code>0</code> do branch <code>asdrubal</code> deveria ser <code>4</code>.")
+    }
+
   }
 }

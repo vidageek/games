@@ -3,6 +3,7 @@ package vggames.git
 import scala.collection.JavaConverters._
 import vggames.shared.task.Task
 import java.util.{ List => JUList }
+import scala.collection.mutable.ListBuffer
 
 case class Git(parent : Git, command : Command, commits : Map[String, List[Commit]], branch : String) {
 
@@ -35,6 +36,31 @@ case class Git(parent : Git, command : Command, commits : Map[String, List[Commi
   private def allGits(repo : Git) : List[Git] = {
     if (repo == null) List()
     else repo :: allGits(repo.parent)
+  }
+
+  def diff(expected : Git) : List[String] = {
+    val buffer = ListBuffer[String]()
+    if (branch != expected.branch)
+      buffer += "Deveria mudar para o branch <code>%s</code>. Est&aacute; em <code>%s</code>".format(expected.branch, branch)
+
+    expected.commits.keySet.diff(commits.keySet).foreach { branch =>
+      buffer += "Deveria criar o branch <code>%s</code>.".format(branch)
+    }
+
+    commits.keySet.diff(expected.commits.keySet).foreach { branch =>
+      buffer += "N&atilde;o deveria criar o branch <code>%s</code>.".format(branch)
+    }
+
+    expected.commits.keySet.intersect(commits.keySet).foreach { branch =>
+      expected.commits(branch).zip(commits(branch)).foldLeft(0) { (i, commit) =>
+        if (commit._1 != commit._2)
+          buffer += "Commit <code>%s</code> do branch <code>%s</code> deveria ser <code>%s</code>, mas foi <code>%s</code>".
+            format(i, branch, commit._1, commit._2)
+        i + 1
+      }
+    }
+
+    buffer.toList
   }
 
 }
