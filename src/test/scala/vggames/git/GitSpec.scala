@@ -119,8 +119,8 @@ class GitSpec extends Specification {
     "return differences in commit lists" in {
       Git(null, null, Map("work" -> List(Commit("1")), "asdrubal" -> List(Commit("3"))), "work").
         diff(Git(null, null, Map("work" -> List(Commit("2")), "asdrubal" -> List(Commit("4"))), "work")) should_==
-        List("Commit <code>0</code> do branch <code>work</code> deveria ser <code>2</code>.",
-          "Commit <code>0</code> do branch <code>asdrubal</code> deveria ser <code>4</code>.")
+        List("Commit <code>0</code> do branch <code>work</code> deveria ser <code>2</code>, mas foi <code>1</code>",
+          "Commit <code>0</code> do branch <code>asdrubal</code> deveria ser <code>4</code>, mas foi <code>3</code>")
     }
 
   }
