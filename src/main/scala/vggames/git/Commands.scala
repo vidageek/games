@@ -63,3 +63,13 @@ case class Branch(name : String) extends Command {
   }
   def challenge = "Crie o branch <code>%s</code>".format(name)
 }
+
+case class Init(repo : String) extends Command {
+
+  def apply(repo : Git, parent : Git) = {
+
+  }
+
+  def challenge = ""
+
+}
