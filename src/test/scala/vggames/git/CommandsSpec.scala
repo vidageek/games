@@ -19,6 +19,12 @@ class CommandsSpec extends Specification {
     }
   }
 
+  "init command" should {
+    "produce a meaningfull challenge" in {
+      Init("asdrubal").challenge should_== "Crie o reposit&oacute;rio <code>asdrubal</code>"
+    }
+  }
+
   "checkout command" should {
     "produce a meaningfull challenge" in {
       Checkout("asdrubal").challenge should_== "Mude para o branch <code>asdrubal</code>"

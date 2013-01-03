@@ -5,7 +5,7 @@ import vggames.shared.task.Task
 import java.util.{ List => JUList }
 import scala.collection.mutable.ListBuffer
 
-case class Git(parent : Git, command : Command, commits : Map[String, List[Commit]], branch : String) {
+case class Git(repo : String, parent : Git, command : Command, commits : Map[String, List[Commit]], branch : String) {
 
   def ~(command : Command) = command(this, this)
 
@@ -17,6 +17,7 @@ case class Git(parent : Git, command : Command, commits : Map[String, List[Commi
     List(br("master"), br("origin/master")) ++ nonSpecialRemotes).flatten
 
   def getBranch = branch
+  def getRepo = repo
 
   def br(branch : String) = commits.get(branch).map(CommitList(branch, _))
 
@@ -40,6 +41,9 @@ case class Git(parent : Git, command : Command, commits : Map[String, List[Commi
 
   def diff(expected : Git) : List[String] = {
     val buffer = ListBuffer[String]()
+    if (repo != expected.repo)
+      buffer += "Deveria ter criado o reposit&oacute;rio <code>%s</code>. Foi criado o <code>%s</code>".format(expected.repo, repo)
+
     if (branch != expected.branch)
       buffer += "Deveria mudar para o branch <code>%s</code>. Est&aacute; em <code>%s</code>".format(expected.branch, branch)
 
@@ -71,5 +75,9 @@ case class CommitList(branch : String, commits : List[Commit]) {
 }
 
 object EmptyGit {
-  def apply() = new Git(null, null, Map("work" -> List()), "work")
+  def apply() = new Git("", null, null, Map(), "")
+}
+
+object WorkGit {
+  def apply() = new Git("repositorio", null, null, Map("work" -> List(), "master" -> List()), "work")
 }

@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <div class="row">
+	Reposit&oacute;rio: ${task.extraData.repo} <br />
 	<c:forEach items="${task.extraData.commits}" var="c">
 	<div class="span3">
 		${c.branch}:
@@ -15,7 +16,7 @@
 	</c:forEach>
 </div>
 <div class="row">
-	Branch atual: ${task.extraData.branch}
+	Branch atual: ${task.extraData.branch} 
 </div>
 <div class="row">
 	<div class="span6">
