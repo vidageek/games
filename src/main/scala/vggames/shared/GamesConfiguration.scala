@@ -13,6 +13,6 @@ class GamesConfiguration {
 
   def activeGames = List("regex")
 
-  def inactiveGames = List("scala", "css", "html", "sql")
+  def inactiveGames = List("scala", "css", "html", "sql", "git")
 
 }
