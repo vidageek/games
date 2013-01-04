@@ -3,7 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <div class="row">
-	Reposit&oacute;rio: ${task.extraData.repo} <br />
+	<c:if test="${not empty task.extraData.repo}">
+		Reposit&oacute;rio: ${task.extraData.repo} <br />
+	</c:if>
 	<c:forEach items="${task.extraData.commits}" var="c">
 	<div class="span3">
 		${c.branch}:
@@ -16,7 +18,9 @@
 	</c:forEach>
 </div>
 <div class="row">
+	<c:if test="${not empty task.extraData.branch}">
 	Branch atual: ${task.extraData.branch} 
+	</c:if>
 </div>
 <div class="row">
 	<div class="span6">
@@ -27,7 +31,7 @@
 		</c:if>		
 		<form class="challenge" method="POST" action="/play/${gameName}/task/${task.index}">
 			<label for="challenge"><strong>${task.challenge}</strong></label>
-			<input class="focus span6" name="challenge" id="challenge" autocomplete="off" value="${challenge}"/>
+			<input class="focus span5" name="challenge" id="challenge" autocomplete="off" value="${challenge}"/>
 			<input id="challenge-submit" class="btn btn-primary" type="submit" value="Next! (ctrl + enter)" />
 		</form>
 		

@@ -12,7 +12,7 @@ class GitGame(descriptions : Descriptions) extends Game {
 
   def init = {
     val tasks = (EmptyGit() ~ Init("repositorio")).tasks ++ (EmptyGit() ~ Init("repo2")).tasks
-    new TaskGroup("teste", "test", descriptions, tasks : _*)
+    new TaskGroup("Criar um reposit&oacute;rio", "git.init", descriptions, tasks : _*)
   }
 
   def getDescription = "Um jogo muito legal para aprender Git"
