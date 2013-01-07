@@ -19,6 +19,8 @@ class GitGameSpec extends Specification with Mockito {
     "git add arquivos",
     "git add arquivo1.txt",
     "git add arq2",
+    "git add .",
+    "git add arquivo1.txt",
     "git add .")
 
   "git game" should {

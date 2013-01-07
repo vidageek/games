@@ -22,7 +22,8 @@ class GitGame(descriptions : Descriptions) extends Game {
       (EmptyGit() ~< ModifiedFile("arquivos/arq") ~< ModifiedFile("arquivos/arq2") ~ Add("arquivos")).tasks ++
       (EmptyGit() ~< UntrackedFile("arquivo1.txt") ~< UntrackedFile("arquivo2.txt") ~ Add("arquivo1.txt")).tasks ++
       (EmptyGit() ~< ModifiedFile("arq1") ~< ModifiedFile("arq2") ~ Add("arq2")).tasks ++
-      (EmptyGit() ~< UntrackedFile("arquivo1.txt") ~< ModifiedFile("arquivo2.txt") ~ Add(".")).tasks
+      (EmptyGit() ~< UntrackedFile("arquivo1.txt") ~< ModifiedFile("arquivo2.txt") ~ Add(".")).tasks ++
+      (EmptyGit() ~< UntrackedFile("arquivo1.txt") ~< ModifiedFile("arquivo2.txt") ~ Add("arquivo1.txt") ~ Add(".")).tasks
 
     new TaskGroup("Adicionando arquivos", "git.add", descriptions, tasks : _*)
   }
