@@ -55,9 +55,18 @@ class GitSpec extends Specification {
       (EmptyGit() ~ CandidateFile("a") ~ Commit("a")).files should_== Map("untracked" -> List(), "modified" -> List(), "candidate" -> List())
     }
 
-    "remove all untracked and modified files" in {
+    "remove all commit candidate and modified files if -a is present" in {
+      (EmptyGit() ~ ModifiedFile("b") ~ CandidateFile("a") ~ Commit("a", true)).files should_== Map("untracked" -> List(), "modified" -> List(), "candidate" -> List())
+    }
+
+    "not remove all untracked and modified files" in {
       (EmptyGit() ~ UntrackedFile("a") ~ ModifiedFile("b") ~ Commit("a")).files should_==
         Map("untracked" -> List(GitFile("a")), "modified" -> List(GitFile("b")), "candidate" -> List())
+    }
+
+    "not remove untracked files when -a is present" in {
+      (EmptyGit() ~ UntrackedFile("a") ~ Commit("a", true)).files should_==
+        Map("untracked" -> List(GitFile("a")), "modified" -> List(), "candidate" -> List())
     }
   }
 

@@ -19,8 +19,18 @@ object Command extends RegexParsers {
     case path => Add(path)
   }
 
-  private def commit = "commit" ~ "-m" ~ "\"" ~> "[^\"]*".r <~ "\"" ^^ {
+  private def commit = "commit" ~> (aFlagMessage | messageAFlag | message)
+
+  private def message = "-m" ~ "\"" ~> "[^\"]*".r <~ "\"" ^^ {
     case message => Commit(message)
+  }
+
+  private def aFlagMessage = "-a" ~ "-m" ~ "\"" ~> "[^\"]*".r <~ "\"" ^^ {
+    case message => Commit(message, true)
+  }
+
+  private def messageAFlag = "-m" ~ "\"" ~> "[^\"]*".r <~ "\"" ~ "-a" ^^ {
+    case message => Commit(message, true)
   }
 
   private def branch = "branch" ~> id ^^ {
@@ -42,13 +52,17 @@ object Command extends RegexParsers {
   }
 }
 
-case class Commit(name : String) extends Command {
+case class Commit(name : String, aFlag : Boolean = false) extends Command {
   def apply(repo : Git, parent : Git) : Git = {
     val r = if (repo.branch == "") { repo ~ Checkout("master", true) } else repo
     val newCommits = r.commits.get(r.branch).getOrElse(List[Commit]()) :+ this
-    r.copy(parent, this)(commits = r.commits + (r.branch -> newCommits), files = r.files + ("candidate" -> List()))
+    val newFiles = if (aFlag) r.files + ("candidate" -> List()) + ("modified" -> List()) else r.files + ("candidate" -> List())
+    r.copy(parent, this)(commits = r.commits + (r.branch -> newCommits), files = newFiles)
   }
-  def challenge = "Fa&ccedil;a um commit com a mensagem <code>%s</code>".format(name)
+  def challenge = if (aFlag)
+    "Fa&ccedil;a um commit com a mensagem <code>%s</code> que tamb&eacute;m inclua os arquivos <strong>modified</strong>".format(name)
+  else "Fa&ccedil;a um commit com a mensagem <code>%s</code>".format(name)
+
   override def toString = name
 }
 

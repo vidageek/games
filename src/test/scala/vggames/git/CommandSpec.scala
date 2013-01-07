@@ -17,6 +17,14 @@ class CommandSpec extends Specification {
       Command("""git commit -m "mensagem" """) should_== Some(Commit("mensagem"))
     }
 
+    "understand commit syntax with -a flag" in {
+      Command("""git commit -a -m "mensagem" """) should_== Some(Commit("mensagem", true))
+    }
+
+    "understand commit syntax with -a flag even if it comes after the message" in {
+      Command("""git commit -m "mensagem" -a""") should_== Some(Commit("mensagem", true))
+    }
+
     "understand checkout syntax" in {
       Command("""git checkout master """) should_== Some(Checkout("master"))
     }

@@ -21,7 +21,23 @@ class GitGameSpec extends Specification with Mockito {
     "git add arq2",
     "git add .",
     "git add arquivo1.txt",
-    "git add .")
+    "git add .",
+    """git commit -m "meu primeiro commit"""",
+    """git add arquivo.txt""",
+    """git commit -m "commit de um arquivo untracked"""",
+    """git add .""",
+    """git commit -m "commit de um arquivo untracked e um modified"""",
+    """git commit -a -m "commit de um arquivo modified sem usar git add"""",
+    """git add arquivo.txt""",
+    """git commit -m "commit apenas do arquivo.txt"""",
+    """git commit -a -m "commit do arquivo2.txt sem usar add"""",
+    """git add arquivo2.txt""",
+    """git commit -m "commit apenas do arquivo2.txt"""",
+    """git add pasta""",
+    """git commit -m "commit dos arquivos da pasta 'pasta'"""",
+    """git add arquivo.txt""",
+    """git commit -m "commit do arquivo.txt"""",
+    """git commit -m "commit dos arquivos que faltam" -a""")
 
   "git game" should {
     "have answers for all games" in {

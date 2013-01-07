@@ -11,6 +11,11 @@ class CommandsSpec extends Specification {
     "produce a meaningfull challenge" in {
       Commit("commit legal").challenge should_== "Fa&ccedil;a um commit com a mensagem <code>commit legal</code>"
     }
+
+    "produce a meaningfull challenge for flag -a" in {
+      Commit("commit legal", true).challenge should_==
+        "Fa&ccedil;a um commit com a mensagem <code>commit legal</code> que tamb&eacute;m inclua os arquivos <strong>modified</strong>"
+    }
   }
 
   "branch command" should {

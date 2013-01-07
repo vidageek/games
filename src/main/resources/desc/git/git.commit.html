@@ -1,0 +1,23 @@
+<p>
+Agora que voc&ecirc; j&aacute; sabe como selecionar as modifica&ccedil;&otilde;es que quer incluir em um pacote de 
+modifica&ccedil;&otilde;es (um commit), chegou a hora de aprender como gerar esse pacote.
+</p>
+<p>
+O comando utilizado para criar um commit em git &eacute; <code>git commit</code>. Com esse comando, todos os arquivos que
+estiverem marcados como <strong>Commit candidate</strong> ser&atilde;o inclu&iacute;dos no commit.
+</p>
+<p>
+Se voc&ecirc; tamb&eacute;m quiser incluir os arquivos que est&atilde;o marcados como <strong>modified</strong>, voc&ecirc; 
+pode incluir a flag <code>-a</code>
+</p>
+<p>
+Uma coisa muito importante de qualquer commit &eacute; uma mensagem que explique o que significa aquele commit. <br>
+Para isso, voc&ecirc; pode passar a op&ccedil;&atilde;o <code>-m "mensagem de commit"</code>. Caso voc&ecirc; n&atilde;o passe, 
+o git vai abrir um editor de texto para que voc&ecirc; digite a mensagem.
+</p>
+Exemplo:
+<ul>
+	<li><strong>git commit -m "commit"</strong> cria um commit com todos os <strong>Commit candidate</strong> e a mensagem <strong>commit</strong></li>
+	<li><strong>git commit -a -m "segundo commit"</strong> cria um commit com os arquivos marcados como <strong>Commit candidate</strong>
+	e os <strong>modified</strong> e junta com a mensagem <strong>segundo commit</strong></li>
+</ul>
