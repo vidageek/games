@@ -35,4 +35,18 @@ class CommandsSpec extends Specification {
     }
   }
 
+  "add command" should {
+    "produce meaningfull challenge" in {
+      Add("a").challenge should_== "Adicione o arquivo <code>a</code> &agrave; lista de commit candidate"
+    }
+
+    "produce meaningfull challenge for folders" in {
+      Add("a", true).challenge should_== "Adicione todos os arquivos da pasta <code>a</code> &agrave; lista de commit candidate"
+    }
+
+    "produce meaningfull challenge for folders" in {
+      Add(".").challenge should_== "Adicione todos os arquivos da pasta atual &agrave; lista de commit candidate"
+    }
+  }
+
 }

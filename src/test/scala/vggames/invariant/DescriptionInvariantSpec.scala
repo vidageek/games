@@ -9,7 +9,7 @@ import org.junit.runner.RunWith
 
 @RunWith(classOf[InvariantRunner])
 class DescriptionInvariantTest {
-  val ALLOWED_CHARS = "[\\w\\s\\Q<>&/.,();+=^:\\?[]-${}!|*\"\\E]*"
+  val ALLOWED_CHARS = "[\\w\\s\\Q<>&/.,();+=^:\\?[]-${}!|*\"'\\E]*"
 
   @Invariant(affects = ".*\\.html", folder = "src/main/resources")
   def allDescriptionsMustUseHtmlEntities(data : FileData) = {

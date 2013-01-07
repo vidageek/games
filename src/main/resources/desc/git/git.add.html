@@ -1,0 +1,24 @@
+<p>
+Do ponto do vista do Git, existem quatro estados no qual um determinado arquivo pode estar.
+<ul>
+	<li><strong>Commited:</strong> O arquivo est&aacute; sob controle de vers&atilde;o e n&atilde;o apresenta nenhuma modifica&ccedil;&atilde;o.</li>
+	<li><strong>Commit candidate:</strong> Caso voc&ecirc; crie um conjunto de modifica&ccedil;&otilde;es (commit), esses ser&atilde;o os arquivos inclu&iacute;dos.</li>
+	<li><strong>Modified:</strong>Arquivos que foram modificados.</li>
+	<li><strong>Untracked:</strong>Arquivos novos, que ainda n&atilde;o est&atilde;o no controle de vers&atilde;o.</li>
+</ul> 
+</p>
+<p>
+Para mudar um arquivo de <strong>untracked</strong> ou <strong>modified</strong> para <strong>Commit candidate</strong>,
+voc&ecirc; usa o comando <code>git add CAMINHO</code>.
+</p>
+<p>
+O <code>git add</code> &eacute; inteligente, ent&atilde;o se voc&ecirc; passar um caminho parcial para ele, ele muda o estado de todos
+os arquivos que contiverem esse caminho parcial.
+</p>
+Exemplo:
+<ul>
+	<li><code>git add .</code> mudaria o estado de todos os arquivos a partir do diret&otilde;rio atual.</li>
+	<li><code>git add arquivo.txt</code> mudaria o estado do arquivo <strong>arquivo.txt</strong></li>
+	<li><code>git add pasta</code> mudaria o estado do arquivo <strong>pasta/arq1.txt</strong> e do <strong>pasta/arq2.txt</strong>,
+	mas n&atilde;o mudaria do <strong>outra_pasta/arq1.txt</strong> </li>
+</ul>

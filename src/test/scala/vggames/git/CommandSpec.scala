@@ -28,6 +28,16 @@ class CommandSpec extends Specification {
     "understand branch syntax" in {
       Command("""git branch asdrubal """) should_== Some(Branch("asdrubal"))
     }
+
+    "understand init syntax" in {
+      Command("""git init asdrubal """) should_== Some(Init("asdrubal"))
+    }
+
+    "understand add syntax" in {
+      Command("""git add asdrubal""") should_== Some(Add("asdrubal"))
+      Command("""git add a.txt""") should_== Some(Add("a.txt"))
+      Command("""git add .""") should_== Some(Add("."))
+    }
   }
 
 }

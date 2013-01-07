@@ -10,7 +10,16 @@ import org.specs2.runner.JUnitRunner
 class GitGameSpec extends Specification with Mockito {
 
   val descriptions = mock[Descriptions]
-  val answers = Vector("git init repositorio", "git init repo2")
+  val answers = Vector(
+    "git init repositorio",
+    "git init repo2",
+    "git add arquivo.txt",
+    "git add pasta",
+    "git add arquivo",
+    "git add arquivos",
+    "git add arquivo1.txt",
+    "git add arq2",
+    "git add .")
 
   "git game" should {
     "have answers for all games" in {

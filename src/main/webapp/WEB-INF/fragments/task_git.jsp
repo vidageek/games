@@ -23,6 +23,32 @@
 	</c:if>
 </div>
 <div class="row">
+	<c:if test="${not empty task.extraData.files['candidate']}">
+		Commit Candidates:
+		<ul>
+		<c:forEach items="${task.extraData.files['candidate']}" var="file">
+			<li>${file}</li>
+		</c:forEach>
+		</ul>
+	</c:if>
+	<c:if test="${not empty task.extraData.files['modified']}">
+		Modified:
+		<ul>
+		<c:forEach items="${task.extraData.files['modified']}" var="file">
+			<li>${file}</li>
+		</c:forEach>
+		</ul>
+	</c:if>
+	<c:if test="${not empty task.extraData.files['untracked']}">
+		Untracked:
+		<ul>
+		<c:forEach items="${task.extraData.files['untracked']}" var="file">
+			<li>${file}</li>
+		</c:forEach>
+		</ul>
+	</c:if>
+</div>
+<div class="row">
 	<div class="span6">
 		<c:if test="${not empty judgedTask}">
 			<div id="challenge-result" class="reason alert ${judgedTask.ok ? 'alert-success' : 'alert-error'}">
