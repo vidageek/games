@@ -46,7 +46,11 @@ class GitGame(descriptions : Descriptions) extends Game {
   }
 
   def checkout = {
-    val tasks = (EmptyGit() ~ Branch("work") ~ Branch("feature")).tasks
+    val tasks = (EmptyGit() ~ Branch("work") ~ Checkout("work")).tasks ++
+      (EmptyGit() ~ Checkout("work", true) ~ Checkout("outraFeature", true)).tasks ++
+      (EmptyGit() ~ Commit("commit no master") ~ Branch("work") ~ Commit("outro commit no master") ~ Checkout("work")
+        ~ Commit("commit no work") ~ Checkout("outro", true) ~ Commit("commit no branch outro") ~ Checkout("work") ~
+        Commit("mais um commit no work")).tasks
     new TaskGroup("Mudar de branch ativo", "git.checkout", descriptions, tasks : _*)
   }
 
