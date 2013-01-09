@@ -13,11 +13,11 @@ class Descriptions(game : String) {
   def forGroup(groupName : String) : String = {
     descriptions.get(groupName).getOrElse {
       val desc = Option(classOf[Descriptions].getResourceAsStream("/desc/" + game + "/" + groupName + ".html")).
-        map(new Scanner(_).useDelimiter("$$").next).map(Markdown(_)).getOrElse("No description for group " + groupName)
+        map(new Scanner(_).useDelimiter("$$").next).map(new Markdown()(_)).getOrElse("No description for group " + groupName)
       descriptions.put(groupName, desc)
       desc
     }
   }
 }
 
-object Markdown extends Transformer
+class Markdown extends Transformer

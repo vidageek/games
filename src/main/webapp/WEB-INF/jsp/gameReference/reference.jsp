@@ -29,7 +29,7 @@
 					<c:set var="keyName" value="${gameName}.${task.groupCode}" />
 					<a id="${task.groupCode}" class="theory-link"></a>
 					<div>
-						<h1><a href="#${task.groupCode}">${task.groupName}</a></h2>
+						<h1><a href="#${task.groupCode}">${task.groupName}</a></h1>
 						${task.description}
 						<a class="btn" href="#conteudo">Topo</a>
 						<a class="btn btn-info" href="/play/${gameName}/task/${task.index}">Jogar!</a>
