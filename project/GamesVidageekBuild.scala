@@ -52,6 +52,7 @@ object GamesVidageekBuild extends Build {
       "org.scalaquery" % "scalaquery_2.9.0-1" % "0.9.5",
       "org.xerial" % "sqlite-jdbc" % "3.7.2",
       "com.amazonaws" % "aws-java-sdk" % "1.3.20",
+      "eu.henkelmann" %% "actuarius" % "0.2.4",
       "org.specs2" %% "specs2" % "1.12.1",
       
       "org.mockito" % "mockito-core" % "1.9.0" % "test",
