@@ -7,8 +7,7 @@ import vggames.shared.task.TaskGroup
 
 class GitGame(descriptions : Descriptions) extends Game {
 
-  val tasks = new Tasks(
-    init, add, commit)
+  val tasks = new Tasks(init, add, commit, branch, checkout)
 
   def init = {
     val tasks = (EmptyGit() ~ Init("repositorio")).tasks ++ (EmptyGit() ~ Init("repo2")).tasks
@@ -25,7 +24,7 @@ class GitGame(descriptions : Descriptions) extends Game {
       (EmptyGit() ~< UntrackedFile("arquivo1.txt") ~< ModifiedFile("arquivo2.txt") ~ Add(".")).tasks ++
       (EmptyGit() ~< UntrackedFile("arquivo1.txt") ~< ModifiedFile("arquivo2.txt") ~ Add("arquivo1.txt") ~ Add(".")).tasks
 
-    new TaskGroup("Adicionando arquivos", "git.add", descriptions, tasks : _*)
+    new TaskGroup("Adicionar arquivos", "git.add", descriptions, tasks : _*)
   }
 
   def commit = {
@@ -38,7 +37,17 @@ class GitGame(descriptions : Descriptions) extends Game {
         ModifiedFile("outraPasta/arquivo5.txt") ~< ModifiedFile("outraPasta/arquivo6.txt") ~ Add("arquivo2.txt") ~ Commit("commit apenas do arquivo2.txt") ~
         Add("pasta") ~ Commit("commit dos arquivos da pasta 'pasta'") ~ Add("arquivo.txt") ~ Commit("commit do arquivo.txt") ~ Commit("commit dos arquivos que faltam", true)).tasks
 
-    new TaskGroup("Empacotando modifica&ccedil;&otilde;es (Commit)", "git.commit", descriptions, tasks : _*)
+    new TaskGroup("Fazer Commits", "git.commit", descriptions, tasks : _*)
+  }
+
+  def branch = {
+    val tasks = (EmptyGit() ~ Branch("work") ~ Branch("feature")).tasks
+    new TaskGroup("Criar Branches", "git.branch", descriptions, tasks : _*)
+  }
+
+  def checkout = {
+    val tasks = (EmptyGit() ~ Branch("work") ~ Branch("feature")).tasks
+    new TaskGroup("Mudar de branch ativo", "git.checkout", descriptions, tasks : _*)
   }
 
   def getDescription = "Um jogo muito legal para aprender Git"
