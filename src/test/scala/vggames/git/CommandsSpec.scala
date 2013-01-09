@@ -22,6 +22,14 @@ class CommandsSpec extends Specification {
     "produce a meaningfull challenge" in {
       Branch("asdrubal").challenge should_== "Crie o branch <code>asdrubal</code>"
     }
+
+    "produce a meaningfull challenge for delete" in {
+      DeleteBranch("asdrubal").challenge should_== "Apague o branch <code>asdrubal</code>"
+    }
+
+    "produce a meaningfull challenge for move" in {
+      MoveBranch("work", "asdrubal").challenge should_== "Renomeie o branch <code>work</code> para <code>asdrubal</code>"
+    }
   }
 
   "init command" should {

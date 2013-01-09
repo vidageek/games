@@ -37,6 +37,14 @@ class CommandSpec extends Specification {
       Command("""git branch asdrubal """) should_== Some(Branch("asdrubal"))
     }
 
+    "understand branch syntax for delete" in {
+      Command("""git branch -D asdrubal """) should_== Some(DeleteBranch("asdrubal"))
+    }
+
+    "understand branch syntax for move" in {
+      Command("""git branch -m work asdrubal""") should_== Some(MoveBranch("work", "asdrubal"))
+    }
+
     "understand init syntax" in {
       Command("""git init asdrubal """) should_== Some(Init("asdrubal"))
     }

@@ -41,7 +41,8 @@ class GitGame(descriptions : Descriptions) extends Game {
   }
 
   def branch = {
-    val tasks = (EmptyGit() ~ Branch("work") ~ Branch("feature")).tasks
+    val tasks = (EmptyGit() ~ Branch("work") ~ Branch("feature") ~ DeleteBranch("work") ~ Branch("master")
+      ~ MoveBranch("master", "outroBranch") ~ DeleteBranch("outroBranch") ~ Branch("master")).tasks
     new TaskGroup("Criar Branches", "git.branch", descriptions, tasks : _*)
   }
 

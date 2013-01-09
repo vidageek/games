@@ -33,8 +33,15 @@ object Command extends RegexParsers {
     case message => Commit(message, true)
   }
 
-  private def branch = "branch" ~> id ^^ {
-    case branch => Branch(branch)
+  private def branch = "branch" ~> (branchCreateDelete | branchMove)
+
+  private def branchCreateDelete = opt("-D") ~ id ^^ {
+    case None ~ branch => Branch(branch)
+    case Some(_) ~ branch => DeleteBranch(branch)
+  }
+
+  private def branchMove = "-m" ~> id ~ id ^^ {
+    case from ~ to => MoveBranch(from, to)
   }
 
   private def checkout = "checkout" ~> opt("-b") ~ id ^^ {
@@ -85,6 +92,21 @@ case class Branch(name : String) extends Command {
     repo.copy(parent, this)(commits = repo.commits + (name -> commits))
   }
   def challenge = "Crie o branch <code>%s</code>".format(name)
+}
+
+case class DeleteBranch(name : String) extends Command {
+  def apply(repo : Git, parent : Git) = {
+    repo.copy(parent, this)(commits = repo.commits - name)
+  }
+  def challenge = "Apague o branch <code>%s</code>".format(name)
+}
+
+case class MoveBranch(from : String, to : String) extends Command {
+  def apply(repo : Git, parent : Git) = {
+    val commitList = repo.commits(from)
+    repo.copy(parent, this)(commits = repo.commits - from + (to -> commitList))
+  }
+  def challenge = "Renomeie o branch <code>%s</code> para <code>%s</code>".format(from, to)
 }
 
 case class Init(repo : String) extends Command {

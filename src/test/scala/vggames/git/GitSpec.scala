@@ -76,6 +76,22 @@ class GitSpec extends Specification {
       (EmptyGit() ~ Branch("asdrubal")).branch should_== ""
     }
 
+    "delete branch" in {
+      (EmptyGit() ~ Branch("asdrubal") ~ DeleteBranch("asdrubal")).commits should_== Map()
+    }
+
+    "delete branch but keep others" in {
+      (EmptyGit() ~ Branch("work") ~ Branch("asdrubal") ~ DeleteBranch("asdrubal")).commits should_== Map("work" -> List())
+    }
+
+    "move branch" in {
+      (EmptyGit() ~ Branch("work") ~ MoveBranch("work", "asdrubal")).commits should_== Map("asdrubal" -> List())
+    }
+
+    "move branch but keep others" in {
+      (EmptyGit() ~ Branch("other") ~ Branch("work") ~ MoveBranch("work", "asdrubal")).commits should_== Map("asdrubal" -> List(), "other" -> List())
+    }
+
     "create branch with commits from parent branch" in {
       (EmptyGit() ~ Commit("c1") ~ Branch("asdrubal")).commits should_==
         Map("asdrubal" -> List(Commit("c1")), "master" -> List(Commit("c1")))
