@@ -10,15 +10,17 @@ import vggames.scala.specs.valvar.DefineValInt
 import vggames.scala.specs.valvar.DefineVarString
 import vggames.scala.specs.valvar.DefineVarInt
 import vggames.scala.specs.valvar.ReassignToVar
+import vggames.scala.specs.ifelse.If
 
-class ScalaGame(descriptions : Descriptions) extends Game {
+class ScalaGame(descriptions: Descriptions) extends Game {
 
   override val tasks = new Tasks(
     addValEVarExercises,
     addBasicMathExercises,
     addBasicBooleanExercises,
     addStringExercises,
-    addAdvancedStringExercises)
+    addAdvancedStringExercises,
+    addConditionalExercises)
 
   def addValEVarExercises =
     new TaskGroup("Vari&aacute;veis e Valores", "basic.varval", descriptions,
@@ -64,6 +66,10 @@ class ScalaGame(descriptions : Descriptions) extends Game {
       new ReplaceString(),
       new StringContains(),
       new TrimString())
+
+  def addConditionalExercises =
+    new TaskGroup("Opera&ccedil;&otilde;es condicionais", "basic.conditionals", descriptions,
+      new If())
 
   def getDescription = "Um jogo muito legal para aprender Scala"
 
