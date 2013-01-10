@@ -196,6 +196,23 @@ class GitSpec extends Specification {
         Map("master" -> List(Commit("a"), Commit("b")), "work" -> List(Commit("a"), Commit("c"), Commit("b"), Commit("Merge branch master")))
     }
   }
+  
+  "git rebase" should {
+    "rebase commits from other branch into actual branch" in {
+      (EmptyGit() ~ Branch("work") ~ Commit("a") ~ Checkout("work") ~ Rebase("master")).commits should_==
+          Map("master" -> List(Commit("a")), "work" -> List(Commit("a")))
+    }
+    
+    "rebase commits (above the base) from other branch into actual branch" in {
+      (EmptyGit() ~ Commit("a") ~ Branch("work") ~ Commit("b") ~ Checkout("work") ~ Rebase("master")).commits should_==
+          Map("master" -> List(Commit("a"), Commit("b")), "work" -> List(Commit("a"), Commit("b")))
+    }
+    
+    "apply commit over actual branch if actual branch has more commits than base" in {
+      (EmptyGit() ~ Commit("a") ~ Branch("work") ~ Commit("b") ~ Checkout("work") ~ Commit("c") ~ Rebase("master")).commits should_==
+          Map("master" -> List(Commit("a"), Commit("b")), "work" -> List(Commit("a"), Commit("b"), Commit("c")))
+    }
+  }
 
   "git" should {
 

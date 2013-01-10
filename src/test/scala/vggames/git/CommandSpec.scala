@@ -58,6 +58,10 @@ class CommandSpec extends Specification {
     "understand merge syntax" in {
       Command("""git merge asdrubal""") should_== Some(Merge("asdrubal"))
     }
+
+    "understand rebase syntax" in {
+      Command("""git rebase asdrubal""") should_== Some(Rebase("asdrubal"))
+    }
   }
 
 }

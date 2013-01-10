@@ -9,7 +9,7 @@ trait Command {
 
 object Command extends RegexParsers {
 
-  private def command : Parser[Command] = "git" ~> (init | add | commit | branch | checkout | merge)
+  private def command : Parser[Command] = "git" ~> (init | add | commit | branch | checkout | merge | rebase)
 
   private def init = "init" ~> id ^^ {
     case repo => Init(repo)
@@ -51,6 +51,10 @@ object Command extends RegexParsers {
 
   private def merge = "merge" ~> id ^^ {
     case branch => Merge(branch)
+  }
+
+  private def rebase = "rebase" ~> id ^^ {
+    case branch => Rebase(branch)
   }
 
   private def id = "\\w+".r
@@ -133,6 +137,21 @@ case class Merge(branch : String) extends Command {
   }
 
   def challenge = "Faça o merge dos commits do branch <code>%s</code> no branch atual.".format(branch)
+}
+
+case class Rebase(branch : String) extends Command {
+
+  def apply(repo : Git, parent : Git) = {
+    val branchCommits = repo.commits(repo.branch)
+    val otherCommits = repo.commits(branch)
+    val base = branchCommits.zip(otherCommits).filter { case (a, b) => a.name == b.name }.map(_._1)
+
+    val commits = otherCommits ++ branchCommits.slice(base.size, branchCommits.size)
+
+    repo.copy(parent, this)(commits = repo.commits + (repo.branch -> commits))
+  }
+
+  def challenge = "Faça o rebase dos commits do branch <code>%s</code> no branch atual.".format(branch)
 }
 
 abstract class AddFile(path : String, kind : String) extends Command {

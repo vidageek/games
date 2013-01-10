@@ -84,6 +84,20 @@ class GitGameSpec extends Specification with Mockito {
     """git commit -m "commit no work"""",
     """git merge outro""",
     """git commit -m "commit depois do commit de merge"""",
-    """git checkout outro""")
+    """git checkout outro""",
+    """git checkout -b work""",
+    """git branch outro""",
+    """git commit -m "primeiro commit"""",
+    """git checkout outro""",
+    """git rebase work""",
+    """git commit -m "commit no branch outro"""",
+    """git checkout work""",
+    """git commit -m "commit no work"""",
+    """git rebase outro""",
+    """git commit -m "mais um commit"""",
+    """git commit -m "mais outro commit"""",
+    """git checkout outro""",
+    """git rebase work""",
+    """git checkout work""")
 
 }

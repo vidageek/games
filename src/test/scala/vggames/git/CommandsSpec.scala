@@ -68,4 +68,10 @@ class CommandsSpec extends Specification {
     }
   }
 
+  "rebase command" should {
+    "produce a meaningfull challenge" in {
+      Rebase("asdrubal").challenge should_== "Faça o rebase dos commits do branch <code>asdrubal</code> no branch atual."
+    }
+  }
+
 }
