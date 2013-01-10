@@ -1,0 +1,32 @@
+div.git {
+	min-height: 150px;
+}
+
+span.branch {
+	color: #0088cc;
+	font-weight: bold;
+}
+
+.branch {
+	margin-bottom: 20px;
+}
+
+.git .active {
+	color: red;
+	font-weight: bold;
+}
+
+.files-stage {
+	color: #BB0;
+	font-weight: bold;
+}
+
+.files-modified {
+	color: #0B0;
+	font-weight: bold;
+}
+
+.files-untracked {
+	color: #00B;
+	font-weight: bold;
+}

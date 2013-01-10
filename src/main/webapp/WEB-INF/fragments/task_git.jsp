@@ -2,13 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<div class="git">
+
+<c:if test="${not empty task.extraData.repo}">
+	Reposit&oacute;rio: ${task.extraData.repo} <br />
+</c:if>
+
 <div class="row">
-	<c:if test="${not empty task.extraData.repo}">
-		Reposit&oacute;rio: ${task.extraData.repo} <br />
-	</c:if>
 	<c:forEach items="${task.extraData.commits}" var="c">
-	<div class="span3">
-		${c.branch}:
+	<div class="span3 branch branch-${c.branch}">
+		<span class="branch">${c.branch}</span>${task.extraData.branch == c.branch ? ' <span class="active">(ativo)</span>' : ''}
 		<ul>
 			<c:forEach items="${c.commits}" var="commit">
 				<li>${commit}</li>
@@ -17,36 +20,40 @@
 	</div>
 	</c:forEach>
 </div>
+
 <div class="row">
-	<c:if test="${not empty task.extraData.branch}">
-	Branch atual: ${task.extraData.branch} 
-	</c:if>
+	<div class="span4">
+		<c:if test="${not empty task.extraData.files['candidate']}">
+			Changes to be commited:
+			<ul class="files-stage">
+			<c:forEach items="${task.extraData.files['candidate']}" var="file">
+				<li>${file}</li>
+			</c:forEach>
+			</ul>
+		</c:if>
+	</div>
+	<div class="span4">
+		<c:if test="${not empty task.extraData.files['modified']}">
+			Modified:
+			<ul class="files-modified">
+			<c:forEach items="${task.extraData.files['modified']}" var="file">
+				<li>${file}</li>
+			</c:forEach>
+			</ul>
+		</c:if>
+	</div>
+	<div class="span4">
+		<c:if test="${not empty task.extraData.files['untracked']}">
+			Untracked:
+			<ul class="files-untracked">
+			<c:forEach items="${task.extraData.files['untracked']}" var="file">
+				<li>${file}</li>
+			</c:forEach>
+			</ul>
+		</c:if>
+	</div>
 </div>
-<div class="row">
-	<c:if test="${not empty task.extraData.files['candidate']}">
-		Commit Candidates:
-		<ul>
-		<c:forEach items="${task.extraData.files['candidate']}" var="file">
-			<li>${file}</li>
-		</c:forEach>
-		</ul>
-	</c:if>
-	<c:if test="${not empty task.extraData.files['modified']}">
-		Modified:
-		<ul>
-		<c:forEach items="${task.extraData.files['modified']}" var="file">
-			<li>${file}</li>
-		</c:forEach>
-		</ul>
-	</c:if>
-	<c:if test="${not empty task.extraData.files['untracked']}">
-		Untracked:
-		<ul>
-		<c:forEach items="${task.extraData.files['untracked']}" var="file">
-			<li>${file}</li>
-		</c:forEach>
-		</ul>
-	</c:if>
+
 </div>
 <div class="row">
 	<div class="span6">
