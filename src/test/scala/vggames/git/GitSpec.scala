@@ -180,6 +180,23 @@ class GitSpec extends Specification {
     }
   }
 
+  "git merge" should {
+    "merge commits from other branch into actual branch" in {
+      (EmptyGit() ~ Branch("work") ~ Commit("a") ~ Checkout("work") ~ Merge("master")).commits should_==
+        Map("master" -> List(Commit("a")), "work" -> List(Commit("a")))
+    }
+
+    "merge commits (above the base) from other branch into actual branch" in {
+      (EmptyGit() ~ Commit("a") ~ Branch("work") ~ Commit("b") ~ Checkout("work") ~ Merge("master")).commits should_==
+        Map("master" -> List(Commit("a"), Commit("b")), "work" -> List(Commit("a"), Commit("b")))
+    }
+
+    "add merge commit if actual branch has more commits than base" in {
+      (EmptyGit() ~ Commit("a") ~ Branch("work") ~ Commit("b") ~ Checkout("work") ~ Commit("c") ~ Merge("master")).commits should_==
+        Map("master" -> List(Commit("a"), Commit("b")), "work" -> List(Commit("a"), Commit("c"), Commit("b"), Commit("Merge branch master")))
+    }
+  }
+
   "git" should {
 
     "generate task sequence representing all repo mutations" in {

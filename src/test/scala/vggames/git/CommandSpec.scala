@@ -54,6 +54,10 @@ class CommandSpec extends Specification {
       Command("""git add a.txt""") should_== Some(Add("a.txt"))
       Command("""git add .""") should_== Some(Add("."))
     }
+
+    "understand merge syntax" in {
+      Command("""git merge asdrubal""") should_== Some(Merge("asdrubal"))
+    }
   }
 
 }

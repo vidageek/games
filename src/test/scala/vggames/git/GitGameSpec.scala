@@ -17,6 +17,8 @@ class GitGameSpec extends Specification with Mockito {
 
       answers.size must_== game.getSize
 
+      println(game.getSize)
+
       0 until game.getSize foreach { i =>
         game.task(i).judge(answers(i)).ok aka (
           "%s task %d answer is %s".format(game.getClass().getSimpleName(), i, answers(i))) must beTrue
@@ -71,6 +73,17 @@ class GitGameSpec extends Specification with Mockito {
     """git checkout -b outro""",
     """git commit -m "commit no branch outro"""",
     """git checkout work""",
-    """git commit -m "mais um commit no work"""")
+    """git commit -m "mais um commit no work"""",
+    """git checkout -b work""",
+    """git branch outro""",
+    """git commit -m "primeiro commit"""",
+    """git checkout outro""",
+    """git merge work""",
+    """git commit -m "commit no branch outro"""",
+    """git checkout work""",
+    """git commit -m "commit no work"""",
+    """git merge outro""",
+    """git commit -m "commit depois do commit de merge"""",
+    """git checkout outro""")
 
 }

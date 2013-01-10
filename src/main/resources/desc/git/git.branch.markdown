@@ -7,8 +7,8 @@ commit sem estar em nenhum branch (como é o caso de um repositório recém cria
 Quando usamos Git, quase todas as operações são feitas dentro de um branch. Um branch nada mais é 
 que uma lista de commits. Você pode criar, apagar e renomear branches.
 
-Para criar você usa o comando `git branch NOME\_DO\_BRANCH`. Para apagar `git branch -D NOME\_DO\_BRANCH`. 
-E para renomear você usa `git branch -m NOME\_ANTIGO NOME\_NOVO`. 
+Para criar você usa o comando `git branch NOME_DO_BRANCH`. Para apagar `git branch -D NOME_DO_BRANCH`. 
+E para renomear você usa `git branch -m NOME_ANTIGO NOME_NOVO`. 
 
 Exemplo:
 

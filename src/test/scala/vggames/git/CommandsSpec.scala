@@ -62,4 +62,10 @@ class CommandsSpec extends Specification {
     }
   }
 
+  "merge command" should {
+    "produce a meaningfull challenge" in {
+      Merge("asdrubal").challenge should_== "Faça o merge dos commits do branch <code>asdrubal</code> no branch atual."
+    }
+  }
+
 }
