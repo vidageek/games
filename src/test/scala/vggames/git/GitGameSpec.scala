@@ -98,6 +98,10 @@ class GitGameSpec extends Specification with Mockito {
     """git commit -m "mais outro commit"""",
     """git checkout outro""",
     """git rebase work""",
-    """git checkout work""")
+    """git checkout work""",
+    """git pull origin master""",
+    """git commit -m "commit no master"""",
+    """git pull origin master""",
+    """git commit -m "commit acima da mensagem de merge"""")
 
 }

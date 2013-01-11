@@ -71,8 +71,8 @@ class GitGame(descriptions : Descriptions) extends Game {
 
   def pull = {
     val tasks = (MasterGit() ~< Checkout("origin/master") ~< Commit("commit feito por outra pessoa") ~< Checkout("master")
-      ~ Pull("origin", "master") ~ Commit("commit no master") ~< Checkout("origin/master") ~< Commit("mais um commit em origin") ~< Checkout("master")
-      ~ Pull("origin", "master") ~ Commit("commit acima da mensagem de merge")).tasks
+      ~ Pull("origin", "master") ~ Commit("commit no master") ~< Checkout("origin/master") ~< Commit("mais um commit em origin")
+      ~< Checkout("master") ~ Pull("origin", "master") ~ Commit("commit acima da mensagem de merge")).tasks
     new TaskGroup("Pegar commits de branches remotos (Pull)", "git.pull", descriptions, tasks : _*)
   }
 
