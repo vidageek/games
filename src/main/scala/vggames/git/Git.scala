@@ -106,3 +106,8 @@ object WorkGit {
   def apply() = new Git("repositorio", null, null, Map("work" -> List(), "master" -> List()), "work",
     Map("untracked" -> List(), "modified" -> List(), "candidate" -> List()))
 }
+
+object MasterGit {
+  def apply() = new Git("repositorio", null, null, Map("origin/master" -> List(), "master" -> List()), "master",
+    Map("untracked" -> List(), "modified" -> List(), "candidate" -> List()))
+}

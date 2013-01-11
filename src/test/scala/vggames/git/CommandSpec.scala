@@ -62,6 +62,10 @@ class CommandSpec extends Specification {
     "understand rebase syntax" in {
       Command("""git rebase asdrubal""") should_== Some(Rebase("asdrubal"))
     }
+
+    "understand pull syntax" in {
+      Command("""git pull origin master""") should_== Some(Pull("origin", "master"))
+    }
   }
 
 }

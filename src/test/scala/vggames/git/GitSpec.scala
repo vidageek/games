@@ -35,6 +35,20 @@ class GitSpec extends Specification {
     }
   }
 
+  "master git" should {
+    "have master as active branch" in {
+      MasterGit().branch must_== "master"
+    }
+
+    "have branch master and origin/master" in {
+      MasterGit().commits must_== Map("origin/master" -> List(), "master" -> List())
+    }
+
+    "have repository repositorio" in {
+      MasterGit().repo must_== "repositorio"
+    }
+  }
+
   "git commit" should {
 
     "create branch master if there is no active branch" in {
@@ -196,22 +210,39 @@ class GitSpec extends Specification {
         Map("master" -> List(Commit("a"), Commit("b")), "work" -> List(Commit("a"), Commit("c"), Commit("b"), Commit("Merge branch master")))
     }
   }
-  
+
   "git rebase" should {
     "rebase commits from other branch into actual branch" in {
       (EmptyGit() ~ Branch("work") ~ Commit("a") ~ Checkout("work") ~ Rebase("master")).commits should_==
-          Map("master" -> List(Commit("a")), "work" -> List(Commit("a")))
+        Map("master" -> List(Commit("a")), "work" -> List(Commit("a")))
     }
-    
+
     "rebase commits (above the base) from other branch into actual branch" in {
       (EmptyGit() ~ Commit("a") ~ Branch("work") ~ Commit("b") ~ Checkout("work") ~ Rebase("master")).commits should_==
-          Map("master" -> List(Commit("a"), Commit("b")), "work" -> List(Commit("a"), Commit("b")))
+        Map("master" -> List(Commit("a"), Commit("b")), "work" -> List(Commit("a"), Commit("b")))
     }
-    
+
     "apply commit over actual branch if actual branch has more commits than base" in {
       (EmptyGit() ~ Commit("a") ~ Branch("work") ~ Commit("b") ~ Checkout("work") ~ Commit("c") ~ Rebase("master")).commits should_==
-          Map("master" -> List(Commit("a"), Commit("b")), "work" -> List(Commit("a"), Commit("b"), Commit("c")))
+        Map("master" -> List(Commit("a"), Commit("b")), "work" -> List(Commit("a"), Commit("b"), Commit("c")))
     }
+  }
+
+  "git pull" should {
+    "bring commits from remote branch" in {
+      (EmptyGit() ~ Branch("master") ~ Checkout("origin/master", true) ~ Commit("a") ~ Checkout("master") ~ Pull("origin", "master")).commits should_==
+        Map("master" -> List(Commit("a")), "origin/master" -> List(Commit("a")))
+    }
+
+    "add merge commit if there are commits over base at local branch" in {
+      (EmptyGit() ~ Branch("origin/master") ~ Commit("b") ~ Checkout("origin/master") ~ Commit("a") ~ Checkout("master") ~ Pull("origin", "master")).commits should_==
+        Map("master" -> List(Commit("b"), Commit("a"), Commit("Merge branch origin/master")), "origin/master" -> List(Commit("a")))
+    }
+
+    "generate single task" in {
+      (EmptyGit() ~< Branch("origin/master") ~< Checkout("master", true) ~ Pull("origin", "master")).tasks.size should_== 1
+    }
+
   }
 
   "git" should {
@@ -240,7 +271,12 @@ class GitSpec extends Specification {
       tasks.size should_== 1
       tasks(0).original.files should_== Map("untracked" -> List(), "modified" -> List(GitFile("abc")), "candidate" -> List())
       tasks(0).expected.files should_== Map("untracked" -> List(), "modified" -> List(), "candidate" -> List(GitFile("abc")))
+    }
 
+    "generate tasks keeping state (but skiping parent) even if ~< was called last" in {
+      val tasks = (EmptyGit() ~ Commit("commit no master") ~< Checkout("master")).tasks
+      tasks.size should_== 1
+      tasks(0).expected.command should_== Commit("commit no master")
     }
   }
 

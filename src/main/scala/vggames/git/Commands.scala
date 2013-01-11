@@ -9,7 +9,7 @@ trait Command {
 
 object Command extends RegexParsers {
 
-  private def command : Parser[Command] = "git" ~> (init | add | commit | branch | checkout | merge | rebase)
+  private def command : Parser[Command] = "git" ~> (init | add | commit | branch | checkout | merge | rebase | pull)
 
   private def init = "init" ~> id ^^ {
     case repo => Init(repo)
@@ -57,6 +57,10 @@ object Command extends RegexParsers {
     case branch => Rebase(branch)
   }
 
+  private def pull = "pull" ~> id ~ id ^^ {
+    case remote ~ branch => Pull(remote, branch)
+  }
+
   private def id = "\\w+".r
 
   def apply(challenge : String) : Option[Command] = {
@@ -87,7 +91,7 @@ case class Checkout(branch : String, bFlag : Boolean = false) extends Command {
       return repo.copy(parent, this)(branch = branch)
     if (bFlag) {
       val r = repo ~ Branch(branch) ~ Checkout(branch)
-      r.copy(parent, this)(branch = r.branch)
+      r.copy(parent, this)()
     } else repo
   }
   def challenge = (if (bFlag) "Crie o branch <code>%s</code> e mude para ele"
@@ -122,6 +126,13 @@ case class Init(repo : String) extends Command {
   def apply(repo : Git, parent : Git) = repo.copy(parent, this)(repo = this.repo)
 
   def challenge = "Crie o reposit&oacute;rio <code>%s</code>".format(repo)
+}
+
+case class Pull(remote : String, branch : String) extends Command {
+
+  def apply(repo : Git, parent : Git) = (repo ~ Merge(remote + "/" + branch)).copy(parent, this)()
+
+  def challenge = "Faça pull dos commits de <code>%s/%s</code> para o seu branch atual.".format(remote, branch)
 }
 
 case class Merge(branch : String) extends Command {

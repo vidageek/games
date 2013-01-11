@@ -4,9 +4,6 @@
 
 <div class="git">
 
-<c:if test="${not empty task.extraData.repo}">
-	Reposit&oacute;rio: ${task.extraData.repo} <br />
-</c:if>
 
 <div class="row">
 	<c:forEach items="${task.extraData.commits}" var="c">

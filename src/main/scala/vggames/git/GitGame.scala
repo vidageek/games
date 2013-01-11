@@ -7,7 +7,7 @@ import vggames.shared.task.TaskGroup
 
 class GitGame(descriptions : Descriptions) extends Game {
 
-  val tasks = new Tasks(init, add, commit, branch, checkout, merge, rebase)
+  val tasks = new Tasks(init, add, commit, branch, checkout, merge, rebase, pull)
 
   def init = {
     val tasks = (EmptyGit() ~ Init("repositorio")).tasks ++ (EmptyGit() ~ Init("repo2")).tasks
@@ -67,6 +67,13 @@ class GitGame(descriptions : Descriptions) extends Game {
       ~ Rebase("work") ~ Commit("commit no branch outro") ~ Checkout("work") ~ Commit("commit no work") ~ Rebase("outro")
       ~ Commit("mais um commit") ~ Commit("mais outro commit") ~ Checkout("outro") ~ Rebase("work") ~ Checkout("work")).tasks
     new TaskGroup("Rebase de branches", "git.rebase", descriptions, tasks : _*)
+  }
+
+  def pull = {
+    val tasks = (MasterGit() ~< Checkout("origin/master") ~< Commit("commit feito por outra pessoa") ~< Checkout("master")
+      ~ Pull("origin", "master") ~ Commit("commit no master") ~< Checkout("origin/master") ~< Commit("mais um commit em origin") ~< Checkout("master")
+      ~ Pull("origin", "master") ~ Commit("commit acima da mensagem de merge")).tasks
+    new TaskGroup("Pegar commits de branches remotos (Pull)", "git.pull", descriptions, tasks : _*)
   }
 
   def getDescription = "Um jogo muito legal para aprender Git"

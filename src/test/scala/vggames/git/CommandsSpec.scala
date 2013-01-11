@@ -74,4 +74,10 @@ class CommandsSpec extends Specification {
     }
   }
 
+  "pull command" should {
+    "produce a meaningfull challenge" in {
+      Pull("origin", "master").challenge should_== "Faça pull dos commits de <code>origin/master</code> para o seu branch atual."
+    }
+  }
+
 }
