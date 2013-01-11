@@ -5,20 +5,20 @@ import vggames.shared.task.Task
 import java.util.{ List => JUList }
 import scala.collection.mutable.ListBuffer
 
-case class Git(repo : String, parent : Git, command : Command, commits : Map[String, List[Commit]], branch : String, files : Map[String, List[GitFile]]) {
+case class Git(shouldBeTask : Boolean, repo : String, parent : Git, command : Command, commits : Map[String, List[Commit]], branch : String, files : Map[String, List[GitFile]]) {
 
   def ~(command : Command) = followedBy(command)
 
   def ~<(command : Command) = followedByWithoutTask(command)
 
-  def followedBy(command : Command) = command(this, this)
-  def followedByWithoutTask(command : Command) = command(this, parent)
+  def followedBy(command : Command) = command(this, true)
+  def followedByWithoutTask(command : Command) = command(this, false)
 
   val getCommits : JUList[CommitList] = findCommits.asJava
   val getFiles = files.map { case (k, v) => k -> v.asJava }.asJava
 
-  def copy(parent : Git, command : Command)(repo : String = this.repo, commits : Map[String, List[Commit]] = this.commits, branch : String = this.branch, files : Map[String, List[GitFile]] = this.files) =
-    Git(repo, parent, command, commits, branch, files)
+  def copy(parent : Git, command : Command, shouldBeTask : Boolean)(repo : String = this.repo, commits : Map[String, List[Commit]] = this.commits, branch : String = this.branch, files : Map[String, List[GitFile]] = this.files) =
+    Git(shouldBeTask, repo, parent, command, commits, branch, files)
 
   def findCommits : List[CommitList] = (List(br("stash"), br("work")) ++ nonSpecial ++
     List(br("master"), br("origin/master")) ++ nonSpecialRemotes).flatten
@@ -36,9 +36,15 @@ case class Git(repo : String, parent : Git, command : Command, commits : Map[Str
     filter(e => e.branch.contains("/") && e.branch != "origin/master").
     map(Option(_))
 
-  val tasks : List[GitTask] = {
+  lazy val tasks : List[GitTask] = {
     val gits = allGits(this).reverse
-    gits.zip(gits.tail).map(t => GitTask(t._1, t._2))
+
+    gits.tail.foldLeft((gits.head, List[GitTask]())) {
+      case ((previous, tasks), git) => {
+        if (git.shouldBeTask) (git, tasks :+ GitTask(previous, git))
+        else (git, tasks)
+      }
+    }._2
   }
 
   private def allGits(repo : Git) : List[Git] = {
@@ -99,15 +105,15 @@ case class CommitList(branch : String, commits : List[Commit]) {
 }
 
 object EmptyGit {
-  def apply() = new Git("", null, null, Map(), "", Map("untracked" -> List(), "modified" -> List(), "candidate" -> List()))
+  def apply() = new Git(false, "", null, null, Map(), "", Map("untracked" -> List(), "modified" -> List(), "candidate" -> List()))
 }
 
 object WorkGit {
-  def apply() = new Git("repositorio", null, null, Map("work" -> List(), "master" -> List()), "work",
+  def apply() = new Git(false, "repositorio", null, null, Map("work" -> List(), "master" -> List()), "work",
     Map("untracked" -> List(), "modified" -> List(), "candidate" -> List()))
 }
 
 object MasterGit {
-  def apply() = new Git("repositorio", null, null, Map("origin/master" -> List(), "master" -> List()), "master",
+  def apply() = new Git(false, "repositorio", null, null, Map("origin/master" -> List(), "master" -> List()), "master",
     Map("untracked" -> List(), "modified" -> List(), "candidate" -> List()))
 }

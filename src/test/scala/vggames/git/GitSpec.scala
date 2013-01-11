@@ -238,11 +238,6 @@ class GitSpec extends Specification {
       (EmptyGit() ~ Branch("origin/master") ~ Commit("b") ~ Checkout("origin/master") ~ Commit("a") ~ Checkout("master") ~ Pull("origin", "master")).commits should_==
         Map("master" -> List(Commit("b"), Commit("a"), Commit("Merge branch origin/master")), "origin/master" -> List(Commit("a")))
     }
-
-    "generate single task" in {
-      (EmptyGit() ~< Branch("origin/master") ~< Checkout("master", true) ~ Pull("origin", "master")).tasks.size should_== 1
-    }
-
   }
 
   "git" should {
@@ -287,17 +282,17 @@ class GitSpec extends Specification {
     }
 
     "be ordered from closer to programmer" in {
-      Git("repo", null, null, Map("stash" -> List(), "work" -> List(), "master" -> List(), "origin/master" -> List()), "work", Map()).findCommits should_==
+      Git(false, "repo", null, null, Map("stash" -> List(), "work" -> List(), "master" -> List(), "origin/master" -> List()), "work", Map()).findCommits should_==
         List(CommitList("stash", List()), CommitList("work", List()), CommitList("master", List()), CommitList("origin/master", List()))
     }
 
     "keep other local branches between work and master" in {
-      Git("repo", null, null, Map("abc" -> List(), "work" -> List(), "master" -> List()), "work", Map()).findCommits should_==
+      Git(false, "repo", null, null, Map("abc" -> List(), "work" -> List(), "master" -> List()), "work", Map()).findCommits should_==
         List(CommitList("work", List()), CommitList("abc", List()), CommitList("master", List()))
     }
 
     "keep other remote branches after origin/master" in {
-      Git("repo", null, null, Map("origin/master" -> List(), "origin/stable" -> List()), "origin/stable", Map()).findCommits should_==
+      Git(false, "repo", null, null, Map("origin/master" -> List(), "origin/stable" -> List()), "origin/stable", Map()).findCommits should_==
         List(CommitList("origin/master", List()), CommitList("origin/stable", List()))
     }
   }
@@ -308,40 +303,40 @@ class GitSpec extends Specification {
     }
 
     "return empty list if parent is different" in {
-      EmptyGit().diff(Git("", EmptyGit(), null, Map(), "", Map())) should_== List()
+      EmptyGit().diff(Git(false,"", EmptyGit(), null, Map(), "", Map())) should_== List()
     }
 
     "return empty list if last command is different" in {
-      EmptyGit().diff(Git("", null, Branch("a"), Map(), "", Map())) should_== List()
+      EmptyGit().diff(Git(false, "", null, Branch("a"), Map(), "", Map())) should_== List()
     }
 
     "return actual branch differences" in {
-      Git("repo", null, null, Map(), "work", Map()).diff(Git("repo", null, null, Map(), "work2", Map())) should_==
+      Git(false, "repo", null, null, Map(), "work", Map()).diff(Git(false, "repo", null, null, Map(), "work2", Map())) should_==
         List("Deveria mudar para o branch <code>work2</code>. Est&aacute; em <code>work</code>")
     }
 
     "return repo name differences" in {
-      Git("repo", null, null, Map(), "work", Map()).diff(Git("repositorio", null, null, Map(), "work", Map())) should_==
+      Git(false, "repo", null, null, Map(), "work", Map()).diff(Git(false, "repositorio", null, null, Map(), "work", Map())) should_==
         List("Deveria ter criado o reposit&oacute;rio <code>repositorio</code>. Foi criado o <code>repo</code>")
     }
 
     "return branch list differences" in {
-      Git("repo", null, null, Map("work" -> List(), "asdrubal" -> List()), "work", Map()).
-        diff(Git("repo", null, null, Map("work2" -> List(), "asdrubal2" -> List()), "work", Map())) should_==
+      Git(false, "repo", null, null, Map("work" -> List(), "asdrubal" -> List()), "work", Map()).
+        diff(Git(false, "repo", null, null, Map("work2" -> List(), "asdrubal2" -> List()), "work", Map())) should_==
         List("Deveria criar o branch <code>work2</code>.", "Deveria criar o branch <code>asdrubal2</code>.",
           "N&atilde;o deveria criar o branch <code>work</code>.", "N&atilde;o deveria criar o branch <code>asdrubal</code>.")
     }
 
     "return differences in commit lists" in {
-      Git("repo", null, null, Map("work" -> List(Commit("1")), "asdrubal" -> List(Commit("3"))), "work", Map()).
-        diff(Git("repo", null, null, Map("work" -> List(Commit("2")), "asdrubal" -> List(Commit("4"))), "work", Map())) should_==
+      Git(false, "repo", null, null, Map("work" -> List(Commit("1")), "asdrubal" -> List(Commit("3"))), "work", Map()).
+        diff(Git(false, "repo", null, null, Map("work" -> List(Commit("2")), "asdrubal" -> List(Commit("4"))), "work", Map())) should_==
         List("Commit <code>0</code> do branch <code>work</code> deveria ser <code>2</code>, mas foi <code>1</code>",
           "Commit <code>0</code> do branch <code>asdrubal</code> deveria ser <code>4</code>, mas foi <code>3</code>")
     }
 
     "return differences in file lists" in {
-      Git("repo", null, null, Map(), "work", Map("untracked" -> List(GitFile("a")), "modified" -> List(GitFile("b")), "candidate" -> List())).
-        diff(Git("repo", null, null, Map(), "work", Map("untracked" -> List(), "modified" -> List(), "candidate" -> List(GitFile("a"), GitFile("b"), GitFile("z"))))) should_==
+      Git(false, "repo", null, null, Map(), "work", Map("untracked" -> List(GitFile("a")), "modified" -> List(GitFile("b")), "candidate" -> List())).
+        diff(Git(false, "repo", null, null, Map(), "work", Map("untracked" -> List(), "modified" -> List(), "candidate" -> List(GitFile("a"), GitFile("b"), GitFile("z"))))) should_==
         List("Arquivo <code>a</code> deveria estar marcado como candidate.",
           "Arquivo <code>b</code> deveria estar marcado como candidate.",
           "Arquivo <code>z</code> deveria exister como candidate.")

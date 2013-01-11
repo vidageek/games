@@ -3,7 +3,7 @@ package vggames.git
 import scala.util.parsing.combinator.RegexParsers
 
 trait Command {
-  def apply(repo : Git, parent : Git) : Git
+  def apply(repo : Git, shouldBeTask : Boolean) : Git
   def challenge : String
 }
 
@@ -72,11 +72,11 @@ object Command extends RegexParsers {
 }
 
 case class Commit(name : String, aFlag : Boolean = false) extends Command {
-  def apply(repo : Git, parent : Git) : Git = {
+  def apply(repo : Git, shouldBeTask : Boolean) : Git = {
     val r = if (repo.branch == "") { repo ~ Checkout("master", true) } else repo
     val newCommits = r.commits.get(r.branch).getOrElse(List[Commit]()) :+ this
     val newFiles = if (aFlag) r.files + ("candidate" -> List()) + ("modified" -> List()) else r.files + ("candidate" -> List())
-    r.copy(parent, this)(commits = r.commits + (r.branch -> newCommits), files = newFiles)
+    r.copy(repo, this, shouldBeTask)(commits = r.commits + (r.branch -> newCommits), files = newFiles)
   }
   def challenge = if (aFlag)
     "Fa&ccedil;a um commit com a mensagem <code>%s</code> que tamb&eacute;m inclua os arquivos <strong>modified</strong>".format(name)
@@ -86,12 +86,12 @@ case class Commit(name : String, aFlag : Boolean = false) extends Command {
 }
 
 case class Checkout(branch : String, bFlag : Boolean = false) extends Command {
-  def apply(repo : Git, parent : Git) : Git = {
+  def apply(repo : Git, shouldBeTask : Boolean) : Git = {
     if (repo.commits.keySet.contains(branch))
-      return repo.copy(parent, this)(branch = branch)
+      return repo.copy(repo, this, shouldBeTask)(branch = branch)
     if (bFlag) {
       val r = repo ~ Branch(branch) ~ Checkout(branch)
-      r.copy(parent, this)()
+      r.copy(repo, this, shouldBeTask)()
     } else repo
   }
   def challenge = (if (bFlag) "Crie o branch <code>%s</code> e mude para ele"
@@ -99,52 +99,52 @@ case class Checkout(branch : String, bFlag : Boolean = false) extends Command {
 }
 
 case class Branch(name : String) extends Command {
-  def apply(repo : Git, parent : Git) = {
+  def apply(repo : Git, shouldBeTask : Boolean) = {
     val commits = repo.commits.get(repo.branch).getOrElse(List[Commit]())
-    repo.copy(parent, this)(commits = repo.commits + (name -> commits))
+    repo.copy(repo, this, shouldBeTask)(commits = repo.commits + (name -> commits))
   }
   def challenge = "Crie o branch <code>%s</code>".format(name)
 }
 
 case class DeleteBranch(name : String) extends Command {
-  def apply(repo : Git, parent : Git) = {
-    repo.copy(parent, this)(commits = repo.commits - name)
+  def apply(repo : Git, shouldBeTask : Boolean) = {
+    repo.copy(repo, this, shouldBeTask)(commits = repo.commits - name)
   }
   def challenge = "Apague o branch <code>%s</code>".format(name)
 }
 
 case class MoveBranch(from : String, to : String) extends Command {
-  def apply(repo : Git, parent : Git) = {
+  def apply(repo : Git, shouldBeTask : Boolean) = {
     val commitList = repo.commits(from)
-    repo.copy(parent, this)(commits = repo.commits - from + (to -> commitList))
+    repo.copy(repo, this, shouldBeTask)(commits = repo.commits - from + (to -> commitList))
   }
   def challenge = "Renomeie o branch <code>%s</code> para <code>%s</code>".format(from, to)
 }
 
 case class Init(repo : String) extends Command {
 
-  def apply(repo : Git, parent : Git) = repo.copy(parent, this)(repo = this.repo)
+  def apply(repo : Git, shouldBeTask : Boolean) = repo.copy(repo, this, shouldBeTask)(repo = this.repo)
 
   def challenge = "Crie o reposit&oacute;rio <code>%s</code>".format(repo)
 }
 
 case class Pull(remote : String, branch : String) extends Command {
 
-  def apply(repo : Git, parent : Git) = (repo ~ Merge(remote + "/" + branch)).copy(parent, this)()
+  def apply(repo : Git, shouldBeTask : Boolean) = (repo ~ Merge(remote + "/" + branch)).copy(repo, this, shouldBeTask)()
 
   def challenge = "Faça pull dos commits de <code>%s/%s</code> para o seu branch atual.".format(remote, branch)
 }
 
 case class Merge(branch : String) extends Command {
 
-  def apply(repo : Git, parent : Git) = {
+  def apply(repo : Git, shouldBeTask : Boolean) = {
     val branchCommits = repo.commits(repo.branch)
     val otherCommits = repo.commits(branch)
     val base = branchCommits.zip(otherCommits).filter { case (a, b) => a.name == b.name }.map(_._1)
     val commits = branchCommits ++ otherCommits.slice(base.size, otherCommits.size)
     val newCommits = if (branchCommits.size == base.size) commits else commits :+ Commit("Merge branch %s".format(branch))
 
-    repo.copy(parent, this)(commits = repo.commits + (repo.branch -> newCommits))
+    repo.copy(repo, this, shouldBeTask)(commits = repo.commits + (repo.branch -> newCommits))
   }
 
   def challenge = "Faça o merge dos commits do branch <code>%s</code> no branch atual.".format(branch)
@@ -152,23 +152,23 @@ case class Merge(branch : String) extends Command {
 
 case class Rebase(branch : String) extends Command {
 
-  def apply(repo : Git, parent : Git) = {
+  def apply(repo : Git, shouldBeTask : Boolean) = {
     val branchCommits = repo.commits(repo.branch)
     val otherCommits = repo.commits(branch)
     val base = branchCommits.zip(otherCommits).filter { case (a, b) => a.name == b.name }.map(_._1)
 
     val commits = otherCommits ++ branchCommits.slice(base.size, branchCommits.size)
 
-    repo.copy(parent, this)(commits = repo.commits + (repo.branch -> commits))
+    repo.copy(repo, this, shouldBeTask)(commits = repo.commits + (repo.branch -> commits))
   }
 
   def challenge = "Faça o rebase dos commits do branch <code>%s</code> no branch atual.".format(branch)
 }
 
 abstract class AddFile(path : String, kind : String) extends Command {
-  def apply(repo : Git, parent : Git) = {
+  def apply(repo : Git, shouldBeTask : Boolean) = {
     val files : List[GitFile] = (repo.files(kind) :+ GitFile(path)).sortWith(_.path < _.path)
-    repo.copy(parent, this)(files = repo.files + (kind -> files))
+    repo.copy(repo, this, shouldBeTask)(files = repo.files + (kind -> files))
   }
   def challenge = throw new RuntimeException("este comando não gera desafios")
 }
@@ -178,12 +178,12 @@ case class ModifiedFile(path : String) extends AddFile(path, "modified")
 case class CandidateFile(path : String) extends AddFile(path, "candidate")
 
 case class Add(path : String, folder : Boolean = false) extends Command {
-  def apply(repo : Git, parent : Git) = {
+  def apply(repo : Git, shouldBeTask : Boolean) = {
     val startPath = if (path == ".") "" else path
     val untracked = repo.files("untracked").filterNot(_.path.startsWith(startPath))
     val modified = repo.files("modified").filterNot(_.path.startsWith(startPath))
     val candidate = repo.files("candidate") ++ repo.files("untracked").filter(_.path.startsWith(startPath)) ++ repo.files("modified").filter(_.path.startsWith(startPath))
-    repo.copy(parent, this)(files = Map("untracked" -> untracked, "modified" -> modified, "candidate" -> candidate.sortWith(_.path < _.path)))
+    repo.copy(repo, this, shouldBeTask)(files = Map("untracked" -> untracked, "modified" -> modified, "candidate" -> candidate.sortWith(_.path < _.path)))
   }
 
   def challenge : String = {
