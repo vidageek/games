@@ -112,5 +112,22 @@ class GitGameSpec extends Specification with Mockito {
     """git pull origin master""",
     """git commit -m "commit no master"""",
     """git pull origin master""",
-    """git commit -m "commit acima da mensagem de merge"""")
+    """git commit -m "commit acima da mensagem de merge"""",
+    """git checkout -b work""",
+    """git add arquivo""",
+    """git commit -m "corrigidos problemas no arquivo"""",
+    """git add outroArquivo""",
+    """git commit -m "adicionado outroArquivo"""",
+    """git checkout master""",
+    """git merge work""",
+    """git push origin master""",
+    """git checkout work""",
+    """git commit -m "mais um commit"""",
+    """git checkout master""",
+    """git pull origin master""",
+    """git checkout work""",
+    """git rebase master""",
+    """git checkout master""",
+    """git merge work""",
+    """git push origin master""")
 }
