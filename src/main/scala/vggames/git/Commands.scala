@@ -9,7 +9,7 @@ trait Command {
 
 object Command extends RegexParsers {
 
-  private def command : Parser[Command] = "git" ~> (init | add | commit | branch | checkout | merge | rebase | pull)
+  private def command : Parser[Command] = "git" ~> (init | add | commit | branch | checkout | merge | rebase | push | pull)
 
   private def init = "init" ~> id ^^ {
     case repo => Init(repo)
@@ -55,6 +55,10 @@ object Command extends RegexParsers {
 
   private def rebase = "rebase" ~> id ^^ {
     case branch => Rebase(branch)
+  }
+
+  private def push = "push" ~> id ~ id ^^ {
+    case remote ~ branch => Push(remote, branch)
   }
 
   private def pull = "pull" ~> id ~ id ^^ {
@@ -135,6 +139,18 @@ case class Pull(remote : String, branch : String) extends Command {
   def challenge = "Faça pull dos commits de <code>%s/%s</code> para o seu branch atual.".format(remote, branch)
 }
 
+case class Push(remote : String, branch : String) extends Command {
+
+  def apply(repo : Git, shouldBeTask : Boolean) = {
+    val remoteBranch = remote + "/" + branch
+    val r = repo ~ Checkout(remoteBranch) ~ Merge(repo.branch) ~ Checkout(repo.branch)
+    if (r.commits(remoteBranch).last == Commit("Merge branch %s".format(repo.branch))) repo
+    else r.copy(repo, this, shouldBeTask)()
+  }
+
+  def challenge = "Envie os commits do seu branch atual para <code>%s/%s</code>." format (remote, branch)
+}
+
 case class Merge(branch : String) extends Command {
 
   def apply(repo : Git, shouldBeTask : Boolean) = {
@@ -191,4 +207,12 @@ case class Add(path : String, folder : Boolean = false) extends Command {
     if (folder) return "Adicione todos os arquivos da pasta <code>%s</code> &agrave; lista de commit candidate".format(path)
     "Adicione o arquivo <code>%s</code> &agrave; lista de commit candidate".format(path)
   }
+}
+
+case class CommitAt(message : String, branch : String) extends Command {
+  def apply(repo : Git, shouldBeTask : Boolean) = {
+    val commits = repo.commits(branch) :+ Commit(message)
+    repo.copy(repo, this, shouldBeTask)(commits = repo.commits + (branch -> commits))
+  }
+  def challenge = throw new RuntimeException("este comando não gera desafios")
 }

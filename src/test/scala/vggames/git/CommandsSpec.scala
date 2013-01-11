@@ -80,4 +80,10 @@ class CommandsSpec extends Specification {
     }
   }
 
+  "push command" should {
+    "produce a meaningfull challenge" in {
+      Push("origin", "master").challenge should_== "Envie os commits do seu branch atual para <code>origin/master</code>."
+    }
+  }
+
 }

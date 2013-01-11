@@ -159,6 +159,16 @@ class GitSpec extends Specification {
     }
   }
 
+  "CommitAt" should {
+    "add commit to specific branch" in {
+      (EmptyGit() ~ Branch("master") ~ CommitAt("a", "master")).commits should_== Map("master" -> List(Commit("a")))
+    }
+    
+    "not change branch" in {
+      (EmptyGit() ~ Branch("master") ~ CommitAt("a", "master")).branch should_== ""
+    }
+  }
+
   "git add" should {
 
     "not add file if it doesn't match path" in {
@@ -240,6 +250,18 @@ class GitSpec extends Specification {
     }
   }
 
+  "git push" should {
+    "send commits to remote branch" in {
+      (EmptyGit() ~ Branch("origin/master") ~ Commit("a") ~ Checkout("master") ~ Push("origin", "master")).commits should_==
+        Map("master" -> List(Commit("a")), "origin/master" -> List(Commit("a")))
+    }
+
+    "reject push if bases are different" in {
+      (EmptyGit() ~ Branch("origin/master") ~ Commit("b") ~ Checkout("origin/master") ~ Commit("a") ~ Checkout("master") ~ Push("origin", "master")).commits should_==
+        Map("master" -> List(Commit("b")), "origin/master" -> List(Commit("a")))
+    }
+  }
+
   "git" should {
 
     "generate task sequence representing all repo mutations" in {
@@ -303,7 +325,7 @@ class GitSpec extends Specification {
     }
 
     "return empty list if parent is different" in {
-      EmptyGit().diff(Git(false,"", EmptyGit(), null, Map(), "", Map())) should_== List()
+      EmptyGit().diff(Git(false, "", EmptyGit(), null, Map(), "", Map())) should_== List()
     }
 
     "return empty list if last command is different" in {

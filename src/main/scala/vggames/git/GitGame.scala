@@ -7,7 +7,7 @@ import vggames.shared.task.TaskGroup
 
 class GitGame(descriptions : Descriptions) extends Game {
 
-  val tasks = new Tasks(init, add, commit, branch, checkout, merge, rebase, pull)
+  val tasks = new Tasks(init, add, commit, branch, checkout, merge, rebase, push, pull)
 
   def init = {
     val tasks = (EmptyGit() ~ Init("repositorio")).tasks ++ (EmptyGit() ~ Init("repo2")).tasks
@@ -69,10 +69,18 @@ class GitGame(descriptions : Descriptions) extends Game {
     new TaskGroup("Rebase de branches", "git.rebase", descriptions, tasks : _*)
   }
 
+  def push = {
+    val tasks = (MasterGit() ~ Commit("commit no master") ~ Push("origin", "master") ~ Commit("um commit")
+      ~ Commit("dois commits") ~ Push("origin", "master")).tasks ++
+      (WorkGit() ~< Branch("origin/master") ~ Commit("commit no work") ~ Checkout("master") ~ Merge("work")
+        ~ Push("origin", "master") ~ Checkout("work")).tasks
+    new TaskGroup("Enviar commits para branches remotos (Push)", "git.push", descriptions, tasks : _*)
+  }
+
   def pull = {
-    val tasks = (MasterGit() ~< Checkout("origin/master") ~< Commit("commit feito por outra pessoa") ~< Checkout("master")
-      ~ Pull("origin", "master") ~ Commit("commit no master") ~< Checkout("origin/master") ~< Commit("mais um commit em origin")
-      ~< Checkout("master") ~ Pull("origin", "master") ~ Commit("commit acima da mensagem de merge")).tasks
+    val tasks = (MasterGit() ~< CommitAt("commit feito por outra pessoa", "origin/master")
+      ~ Pull("origin", "master") ~ Commit("commit no master") ~< CommitAt("mais um commit em origin", "origin/master")
+      ~ Pull("origin", "master") ~ Commit("commit acima da mensagem de merge")).tasks
     new TaskGroup("Pegar commits de branches remotos (Pull)", "git.pull", descriptions, tasks : _*)
   }
 

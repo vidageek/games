@@ -66,6 +66,10 @@ class CommandSpec extends Specification {
     "understand pull syntax" in {
       Command("""git pull origin master""") should_== Some(Pull("origin", "master"))
     }
+
+    "understand push syntax" in {
+      Command("""git push origin master""") should_== Some(Push("origin", "master"))
+    }
   }
 
 }
