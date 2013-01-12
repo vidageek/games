@@ -113,7 +113,8 @@ class RegexGame(descriptions : Descriptions) extends Game {
       MassNegateAndMatch("real/dates", "Qual RegEx &eacute; capaz de reconhecer datas como 1/1/1970?"),
       MassNegateAndMatch("real/ipV4", "Qual RegEx &eacute; capaz de reconhecer IPs?"))
 
-  def getDescription = "Um jogo muito legal para aprender RegEx"
+  def getDescription = "Expressão Regular é uma excelente forma de encontrar padrões em textos, mas a sua sintaxe é um pouco obscura. " +
+    "Com esses exercícios você conseguirá não apenas entender como RegEx funciona, mas será capaz de utilizá-la."
 
   def getName = "RegEx"
 }

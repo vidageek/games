@@ -20,8 +20,8 @@
 				<a target="_blank" href="http://twitter.com/share?text=Acabei%20de%20terminar%20o%20${game.name}%20Game.%20Quer%20aprender%20${game.name}%20tamb%C3%A9m%3F&url=http://games.vidageek.net/play/${gameName}">Twitter</a>
 			</div>
 		</c:if>  
-		<h1>${game.name}</h1>
-		<h2>${game.description}</h2>
+		<h1>${game.name} Game</h1>
+		<p>${game.description}</p>
 		Voc&ecirc; pode come&ccedil;ar a jogar pelo <a href="/play/${gameName}/task/0">primeiro exerc&iacute;cio</a> ou escolher um grupo abaixo:
 		
 		<ul class="nav nav-pills nav-stacked groups">

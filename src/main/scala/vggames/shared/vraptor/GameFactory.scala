@@ -23,7 +23,7 @@ class GameFactory(cached : GameFactoryCache, data : RequestData) extends Compone
 @Component
 @ApplicationScoped
 class GameFactoryCache(cache : DescriptionsCache) {
-  private val games = Map(
+  val games = Map(
     "regex" -> new RegexGame(cache.get("regex")),
     "scala" -> new ScalaGame(cache.get("scala")),
     "css" -> new CssGame(cache.get("css")),
@@ -31,4 +31,5 @@ class GameFactoryCache(cache : DescriptionsCache) {
     "git" -> new GitGame(cache.get("git")))
 
   def apply(gameName : String) = games.get(gameName)
+
 }

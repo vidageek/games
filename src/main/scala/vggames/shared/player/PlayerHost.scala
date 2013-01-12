@@ -1,18 +1,23 @@
 package vggames.shared.player
 
 import java.security.SecureRandom
-import scala.Array.canBuildFrom
 import br.com.caelum.vraptor.{ Get, Post, Resource, Result }
 import br.com.caelum.vraptor.ioc.Component
 import br.com.caelum.vraptor.view.Results.referer
 import vggames.shared.email.Mail
 import vggames.shared.vraptor.Referer
+import vggames.shared.GamesConfiguration
+import vggames.shared.vraptor.GameFactoryCache
+import scala.collection.JavaConverters._
 
 @Resource
-class PlayerHost(players : Players, session : PlayerSession, result : Result, referer : Referer) {
+class PlayerHost(players : Players, session : PlayerSession, result : Result, referer : Referer, cfg : GamesConfiguration, games : GameFactoryCache) {
 
   @Get(Array("/"))
-  def home = {}
+  def home = {
+    result.include("cfg", cfg)
+    result.include("games", games.games.asJava)
+  }
 
   @Get(Array("/senha"))
   def senha = {}
