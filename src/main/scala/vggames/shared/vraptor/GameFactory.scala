@@ -10,6 +10,7 @@ import br.com.caelum.vraptor.ioc.Component
 import br.com.caelum.vraptor.ioc.ApplicationScoped
 import vggames.html.HtmlGame
 import vggames.git.GitGame
+import vggames.fake.FakeGame
 
 @Component
 class GameFactory(cached : GameFactoryCache, data : RequestData) extends ComponentFactory[Game] {
@@ -27,7 +28,8 @@ class GameFactoryCache(cache : DescriptionsCache) {
     "scala" -> new ScalaGame(cache.get("scala")),
     "css" -> new CssGame(cache.get("css")),
     "html" -> new HtmlGame(cache.get("html")),
-    "git" -> new GitGame(cache.get("git")))
+    "git" -> new GitGame(cache.get("git")),
+    "fake" -> new FakeGame(cache.get("fake")))
 
   def apply(gameName : String) = games.get(gameName)
 }
