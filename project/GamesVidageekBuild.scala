@@ -39,7 +39,6 @@ object GamesVidageekBuild extends Build {
       "log4j" % "log4j" % "1.2.16",
       "org.apache.velocity" % "velocity" % "1.7",
       "javax.servlet" % "jstl" % "1.2",
-      "opensymphony" % "sitemesh" % "2.4.2",
       "com.google.inject" % "guice" % "3.0-rc2",
       "com.google.inject.extensions" % "guice-multibindings" % "3.0-rc2",
       "javax.servlet" % "servlet-api" % "2.5" % "provided",
@@ -54,11 +53,12 @@ object GamesVidageekBuild extends Build {
       "com.amazonaws" % "aws-java-sdk" % "1.3.20",
       "eu.henkelmann" %% "actuarius" % "0.2.4",
       "org.specs2" %% "specs2" % "1.12.1",
-      
       "org.mockito" % "mockito-core" % "1.9.0" % "test",
       "junit" % "junit" % "4.10" % "test",
-      "com.novocode" % "junit-interface" % "0.8" % "test",
       "com.typesafe.akka" % "akka-testkit" % "2.0.2" % "test"
+    ).map(_.withSources) ++ Seq(
+      "opensymphony" % "sitemesh" % "2.4.2",
+      "com.novocode" % "junit-interface" % "0.8" % "test"
     ),
     classDirectory in Compile <<= webappDir {
       _ / "WEB-INF" / "classes"
