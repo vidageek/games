@@ -6,11 +6,7 @@ import vggames.scala.specs.GameSpecification
 import vggames.scala.tasks.judge.ExecutionFailure
 import vggames.shared.task.JudgedTask
 import vggames.scala.code.Wrappers._
-import scala.collection.mutable.Queue
-import scala.collection.mutable.ListBuffer
 import java.io.File
-import java.security.MessageDigest
-import scala.math.BigInt
 import com.twitter.util.Eval.CompilerException
 import scala.collection.mutable.SynchronizedQueue
 import akka.actor.ActorSystem
