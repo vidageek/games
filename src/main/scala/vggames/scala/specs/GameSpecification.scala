@@ -1,11 +1,9 @@
 package vggames.scala.specs
 
-import org.specs2.mutable.Specification
 import com.twitter.util.Eval.CompilerException
 import vggames.scala.code.{ CodeRestrictions, ScalaProcessor }
 import vggames.scala.tasks.judge.{ CompilationFailure, ExecutionFailure }
 import vggames.shared.task.{ JudgedTask, Task }
-import org.specs2.matcher.ShouldMatchers
 import org.specs2.matcher.MustMatchers
 import org.specs2.matcher.MatchResult
 import scala.collection.mutable.ListBuffer
@@ -16,7 +14,6 @@ import org.specs2.matcher.MustThrownExpectations
 import org.specs2.execute.FailureException
 
 trait GameSpecification[T <: CodeRestrictions[_]] extends Task[Any] with MustMatchers with MustThrownExpectations {
-
   type Code = T
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun = new TestRun(this.getClass.getSimpleName)) : TestRun
@@ -60,7 +57,6 @@ trait GameSpecification[T <: CodeRestrictions[_]] extends Task[Any] with MustMat
 }
 
 class TestRun(specName : String) {
-
   var shouldName : String = _
 
   var exception : Failed = _
@@ -86,8 +82,8 @@ class TestRun(specName : String) {
       }
     }
     if (failure.isDefined) {
-      val message = results.foldLeft(specName + "\n<ul><li>%s deve</li>".
-        format(shouldName))(_ + _.toString) + "</ul>"
+      val message = results.foldLeft(
+        specName + "\n<ul><li>%s deve</li>".format(shouldName))(_ + _.toString) + "</ul>"
       new Failed("Ops! Seu c&oacute;digo n&atilde;o fez tudo que era necess&aacute;rio. <br />" + message)
     } else {
       Ok()
