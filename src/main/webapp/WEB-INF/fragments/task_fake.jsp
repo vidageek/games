@@ -12,7 +12,7 @@
 		</c:if>		
 		<form class="challenge" method="POST" action="/play/${gameName}/task/${task.index}">
 			<label for="challenge"><strong>${task.challenge}</strong></label>
-			<input type="hidden" class="focus span5" name="challenge" id="challenge" autocomplete="off" value="blablabla"/>
+			<input class="focus span5" name="challenge" id="challenge" autocomplete="off" value="blablabla"/>
 			<input id="challenge-submit" class="btn btn-primary" type="submit" value="Next! (ctrl + enter)" />
 		</form>
 		
