@@ -7,30 +7,33 @@ import vggames.scala.tasks.judge.ExecutionFailure
 
 class ScalaProcessorActor extends Actor with ActorLogging {
   private[this] val runningThreads = new HashMap[Int, CodeThread[_]]
-  
+
   def receive = {
-    case Run(code) => 
+    case Run(code) =>
       val ct = new CodeThread(sender, code)
       runningThreads += ct.hashCode -> ct
       ct.start
-      context.system.scheduler.scheduleOnce(3 seconds) {
+      context.system.scheduler.scheduleOnce(2 seconds) {
         self ! CodeRunTimeout(ct.hashCode)
       }
-      
+
     case CodeRunTimeout(hash) =>
       val ct = runningThreads(hash)
-      if (ct.isAlive) ct.interrupt
+      if (ct.isAlive) ct.stop
       runningThreads -= hash
-      
+
     case msg => log.warning("received unknown message: {}", msg)
   }
-  
+
   case class CodeThread[V](replyTo: ActorRef, code: () => V) extends Thread {
     override def run() {
       try {
         replyTo ! code()
       } catch {
-        case e: InterruptedException => replyTo ! ExecutionFailure(new IllegalStateException("Exceeded max compilation and run time."))
+        case e: ThreadDeath =>
+          replyTo ! ExecutionFailure(new IllegalStateException("Exceeded max compilation and run time."))
+          throw e     // read Thread.stop javadoc to understand why this is necessary
+
         case e => replyTo ! ExecutionFailure(e)
       }
     }

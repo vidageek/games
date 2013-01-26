@@ -72,7 +72,7 @@ class GameSpecificationSpec extends Specification {
     }
 
     "timeout and fail for infinite loops" in {
-      val fail = new TestSpec("while").judge("""while(true){Thread.sleep(500)};1""")
+      val fail = new TestSpec("while").judge("""while(true){};1""")
       fail.reason must contain("Exceeded max compilation and run time.")
     }
   }
@@ -91,7 +91,6 @@ class TestSpec(c : String) extends GameSpecification[RestrictedFunction2[Int, In
   def getChallenge = c
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
-
     "a" should {
       "b" in { code(1, 2) must_== 3 }
       "c" in { code(2, 3) must_== 5 }
@@ -99,18 +98,15 @@ class TestSpec(c : String) extends GameSpecification[RestrictedFunction2[Int, In
 }
 
 class MultipleAssertSpec extends GameSpecification[RestrictedFunction0[Unit]] {
-
   def runSignature = ":Unit"
   def extendsType = "RestrictedFunction0[Unit]"
   def getChallenge = "multiple"
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
-
     "a" should {
       "b" in {
         1 must_== 2
         2 must_== 2
       }
     }
-
 }
