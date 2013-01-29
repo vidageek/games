@@ -36,21 +36,14 @@ case class Git(shouldBeTask : Boolean, repo : String, parent : Git, command : Co
   filter(e => e.branch.contains("/") && e.branch != "origin/master").
   map(Option(_))
 
-  lazy val tasks : List[GitTask] = {
-    val gits = allGits(this).reverse
+  lazy val tasks: List[GitTask] =
+    allGits(this).reverse.foldLeft(List[GitTask]()) { (taskList, git) =>
+      if (git.shouldBeTask) taskList :+ GitTask(git.parent, git)
+      else taskList
+    }
 
-    gits.tail.foldLeft((gits.head, List[GitTask]())) {
-      case ((previous, tasks), git) => {
-          if (git.shouldBeTask) (git, tasks :+ GitTask(previous, git))
-          else (git, tasks)
-        }
-    }._2
-  }
-
-  private def allGits(repo : Git) : List[Git] = {
-    if (repo == null) List()
-    else repo :: allGits(repo.parent)
-  }
+  private def allGits(repo : Git) : List[Git] =
+    if (repo == null) List() else repo :: allGits(repo.parent)
 
   def diff(expected : Git) : List[String] = {
     val buffer = ListBuffer[String]()
