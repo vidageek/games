@@ -1,10 +1,8 @@
 package vggames.shared
 
+import br.com.caelum.vraptor.{Get, Post, Resource, Result}
 import scala.collection.JavaConverters._
-
-import br.com.caelum.vraptor.{ Get, Post, Resource, Result }
-import br.com.caelum.vraptor.ioc.Component
-import vggames.shared.log.{ Log, Submission }
+import vggames.shared.log.{Log, Submission}
 import vggames.shared.player.PlayerSession
 
 @Resource

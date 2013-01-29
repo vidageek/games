@@ -1,12 +1,9 @@
 package vggames.shared
 
 import java.util.Collection
-import vggames.shared.task.TaskWithDescription
-import vggames.shared.task.Tasks
-import vggames.shared.task.IndexedTask
+import vggames.shared.task.{TaskWithDescription, Tasks}
 
 trait Game {
-
   val tasks : Tasks
 
   def getDescription : String

@@ -4,7 +4,6 @@ import br.com.caelum.vraptor.ioc.Component
 import br.com.caelum.vraptor.ioc.ComponentFactory
 import vggames.regex.RegexGame
 import vggames.shared.Game
-import vggames.shared.task.Descriptions
 import vggames.scala.ScalaGame
 import vggames.css.CssGame
 import br.com.caelum.vraptor.ioc.Component
@@ -31,5 +30,4 @@ class GameFactoryCache(cache : DescriptionsCache) {
     "git" -> new GitGame(cache.get("git")))
 
   def apply(gameName : String) = games.get(gameName)
-
 }
