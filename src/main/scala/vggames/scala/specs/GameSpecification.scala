@@ -22,6 +22,8 @@ trait GameSpecification[T <: CodeRestrictions[_]] extends Task[Any] with MustMat
 
   def extendsType : String
 
+  def beforeCode : String = ""
+
   def afterCode : String = ""
 
   override def resource = ""

@@ -5,16 +5,17 @@ import vggames.scala.specs.GameSpecification
 import vggames.scala.specs.TestRun
 import vggames.scala.code.RestrictedFunction1
 
-class If extends GameSpecification[RestrictedFunction1[Int, String]] {
+class If extends GameSpecification[RestrictedFunction1[Int, Any]] {
 
-  def runSignature = "(numero:Int):String"
+  def runSignature = "(numero:Int):Any"
 
-  def extendsType = "RestrictedFunction1[Int, String]"
+  def extendsType = "RestrictedFunction1[Int, Any]"
 
+  override def beforeCode = "val sinal = "
+    
   override def afterCode = "sinal"
 
-  def getChallenge = """Defina a variável <code>sinal</code> com o valor "positivo". Depois,
-    atribua a <code>sinal</code> o valor "negativo" se a constante numero for menor do que 0"""
+  def getChallenge = """Devolva o valor "negativo" se a constante numero for menor do que 0"""
 
   override def run(code: Code, submittedCode: String)(implicit cases: TestRun) =
 
@@ -23,12 +24,12 @@ class If extends GameSpecification[RestrictedFunction1[Int, String]] {
         submittedCode.contains("if") must beTrue
       }
 
-      """ atribuir o valor negativo para a variável sinal se numero for menor do que 0 """ in {
+      """ deve devolver "negativo" se numero for menor do que 0 """ in {
         code(-1) must_== "negativo"
       }
 
-      """ manter o valor positivo para a variável sinal se numero for maior que 0 """ in {
-        code(0) must_== "positivo"
+      """ não deve devolver nada se numero for maior que 0 """ in {
+        code(0) must_== ()
       }
     }
 }
