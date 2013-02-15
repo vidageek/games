@@ -1,9 +1,8 @@
 package vggames.scala.specs.ifelse
 
-import vggames.scala.code.RestrictedFunction2
+import vggames.scala.code.RestrictedFunction1
 import vggames.scala.specs.GameSpecification
 import vggames.scala.specs.TestRun
-import vggames.scala.code.RestrictedFunction1
 
 class If extends GameSpecification[RestrictedFunction1[Int, Any]] {
 
@@ -15,7 +14,8 @@ class If extends GameSpecification[RestrictedFunction1[Int, Any]] {
     
   override def afterCode = "sinal"
 
-  def getChallenge = """Devolva o valor "negativo" se a constante numero for menor do que 0"""
+  def getChallenge = """Devolva <code>"negativo"</code> se a constante <code>numero</code> 
+    for menor do que 0"""
 
   override def run(code: Code, submittedCode: String)(implicit cases: TestRun) =
 

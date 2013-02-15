@@ -68,7 +68,7 @@ class ScalaGame(descriptions: Descriptions) extends Game {
       new TrimString())
 
   def addConditionalExercises =
-    new TaskGroup("Opera&ccedil;&otilde;es condicionais", "basic.conditionals", descriptions,
+    new TaskGroup("Estruturas condicionais", "basic.conditionals", descriptions,
       new If())
 
   def getDescription = "Um jogo muito legal para aprender Scala"
