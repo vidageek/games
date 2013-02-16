@@ -4,7 +4,6 @@ Usamos estruturas condicionais quando queremos executar código apenas em determ
 <pre>if(condição) {
   // código a ser executado
 }</pre>
-<p>
 
 Onde a condição é um valor booleano. Exemplo: 
 
