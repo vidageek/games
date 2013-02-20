@@ -2,15 +2,11 @@ package vggames.scala
 
 import vggames.scala.specs._
 import vggames.scala.specs.booleans._
+import vggames.scala.specs.ifelse._
 import vggames.scala.specs.string._
+import vggames.scala.specs.valvar._
 import vggames.shared.Game
 import vggames.shared.task.{ Descriptions, TaskGroup, Tasks }
-import vggames.scala.specs.valvar.DefineValString
-import vggames.scala.specs.valvar.DefineValInt
-import vggames.scala.specs.valvar.DefineVarString
-import vggames.scala.specs.valvar.DefineVarInt
-import vggames.scala.specs.valvar.ReassignToVar
-import vggames.scala.specs.ifelse.If
 
 class ScalaGame(descriptions: Descriptions) extends Game {
 
@@ -69,7 +65,8 @@ class ScalaGame(descriptions: Descriptions) extends Game {
 
   def addConditionalExercises =
     new TaskGroup("Estruturas condicionais", "basic.conditionals", descriptions,
-      new If())
+      new If(),
+      new IfElse())
 
   def getDescription = "Um jogo muito legal para aprender Scala"
 
