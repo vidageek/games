@@ -15,3 +15,4 @@ class HtmlTask(challenge : String, resourceName : String) extends Task[Any] {
 object HtmlTask {
   def apply(challenge : String, resource : String) = new HtmlTask(challenge, resource)
 }
+
