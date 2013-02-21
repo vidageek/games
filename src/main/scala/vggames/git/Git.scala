@@ -1,11 +1,11 @@
 package vggames.git
 
 import scala.collection.JavaConverters._
-import java.util.{List => JUList}
+import java.util.{ List => JUList }
 import scala.collection.mutable.ListBuffer
 
 case class Git(shouldBeTask : Boolean, repo : String, parent : Git, command : Command, commits : Map[String, List[Commit]],
-               branch : String, files : Map[String, List[GitFile]]) {
+  branch : String, files : Map[String, List[GitFile]]) {
 
   def ~(command : Command) = followedBy(command)
 
@@ -21,7 +21,7 @@ case class Git(shouldBeTask : Boolean, repo : String, parent : Git, command : Co
     Git(shouldBeTask, repo, parent, command, commits, branch, files)
 
   def findCommits : List[CommitList] = (List(br("stash"), br("work")) ++ nonSpecial ++
-                                        List(br("master"), br("origin/master")) ++ nonSpecialRemotes).flatten
+    List(br("master"), br("origin/master")) ++ nonSpecialRemotes).flatten
 
   def getBranch = branch
   def getRepo = repo
@@ -29,14 +29,14 @@ case class Git(shouldBeTask : Boolean, repo : String, parent : Git, command : Co
   def br(branch : String) = commits.get(branch).map(CommitList(branch, _))
 
   private def nonSpecial = commits.map(t => CommitList(t._1, t._2)).
-  filterNot(e => Set("stash", "work", "master").contains(e.branch) || e.branch.contains("/")).
-  map(Option(_))
+    filterNot(e => Set("stash", "work", "master").contains(e.branch) || e.branch.contains("/")).
+    map(Option(_))
 
   private def nonSpecialRemotes = commits.map(t => CommitList(t._1, t._2)).
-  filter(e => e.branch.contains("/") && e.branch != "origin/master").
-  map(Option(_))
+    filter(e => e.branch.contains("/") && e.branch != "origin/master").
+    map(Option(_))
 
-  lazy val tasks: List[GitTask] =
+  lazy val tasks : List[GitTask] =
     allGits(this).reverse.foldLeft(List[GitTask]()) { (taskList, git) =>
       if (git.shouldBeTask) taskList :+ GitTask(git.parent, git)
       else taskList
@@ -65,7 +65,7 @@ case class Git(shouldBeTask : Boolean, repo : String, parent : Git, command : Co
       expected.commits(branch).zip(commits(branch)).foldLeft(0) { (i, commit) =>
         if (commit._1 != commit._2)
           buffer += "Commit <code>%s</code> do branch <code>%s</code> deveria ser <code>%s</code>, mas foi <code>%s</code>".
-        format(i, branch, commit._1, commit._2)
+            format(i, branch, commit._1, commit._2)
         i + 1
       }
     }
@@ -73,12 +73,12 @@ case class Git(shouldBeTask : Boolean, repo : String, parent : Git, command : Co
     val allFiles = files.flatMap { case (kind, file) => file }.toSet
     reverse(expected.files).diff(reversedFiles).foreach {
       case (file, kind) => {
-          if (allFiles.contains(file)) {
-            buffer += "Arquivo <code>%s</code> deveria estar marcado como %s.".format(file, kind)
-          } else {
-            buffer += "Arquivo <code>%s</code> deveria exister como %s.".format(file, kind)
-          }
+        if (allFiles.contains(file)) {
+          buffer += "Arquivo <code>%s</code> deveria estar marcado como %s.".format(file, kind)
+        } else {
+          buffer += "Arquivo <code>%s</code> deveria exister como %s.".format(file, kind)
         }
+      }
     }
 
     buffer.toList
@@ -103,10 +103,10 @@ object EmptyGit {
 
 object WorkGit {
   def apply() = new Git(false, "repositorio", null, null, Map("work" -> List(), "master" -> List()), "work",
-                        Map("untracked" -> List(), "modified" -> List(), "candidate" -> List()))
+    Map("untracked" -> List(), "modified" -> List(), "candidate" -> List()))
 }
 
 object MasterGit {
   def apply() = new Git(false, "repositorio", null, null, Map("origin/master" -> List(), "master" -> List()), "master",
-                        Map("untracked" -> List(), "modified" -> List(), "candidate" -> List()))
+    Map("untracked" -> List(), "modified" -> List(), "candidate" -> List()))
 }
