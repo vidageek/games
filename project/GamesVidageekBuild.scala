@@ -56,7 +56,10 @@ object GamesVidageekBuild extends Build {
       "org.mockito" % "mockito-core" % "1.9.0" % "test",
       "junit" % "junit" % "4.10" % "test",
       "com.typesafe.akka" % "akka-testkit" % "2.0.2" % "test"
-    ).map(_.withSources) ++ Seq(
+    ).map{ dep =>
+      if (List("log4j", "javax.servlet").contains(dep.organization)) dep
+      else dep.withSources
+    } ++ Seq(
       "opensymphony" % "sitemesh" % "2.4.2",
       "com.novocode" % "junit-interface" % "0.8" % "test"
     ),
