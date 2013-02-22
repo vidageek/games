@@ -2,7 +2,7 @@
 
 PEM="/private/vidageek/games.pem"
 
-if [ $1 == "manual" ]; then
+if [ "$1" == "manual" ]; then
 	PEM="~/.ssh/games.pem"
 fi
 
