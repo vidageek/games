@@ -3,7 +3,7 @@
 PEM="/private/vidageek/games.pem"
 
 if [ "$1" == "manual" ]; then
-	PEM="~/.ssh/games.pem"
+	PEM=~/.ssh/games.pem
 fi
 
 DEPLOY="echo Parando Jetty"
