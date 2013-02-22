@@ -44,5 +44,8 @@ trait Answers {
     "a + \"taz\"", "a.reverse", "a.length", "a > b", "a.toString")
   def stringOperations = List("a.split(\" \")", "a.substring(2, 5)", "a.replace(\"aba\", \"ebe\")",
     "a.contains(\"ara\")", "a.trim")
-  def ifelse = List("""var sinal = "positivo";if (numero < 0) sinal = "negativo";""")
+  def ifelse = List("""if (numero < 0) "negativo"""",
+    """if (numero < 0) "negativo" else "positivo"""",
+    """if (numero < 0) "negativo" else if (numero > 0) "positivo"""",
+    """if (numero < 0) "negativo" else if (numero > 0) "positivo" else "neutro"""")
 }
