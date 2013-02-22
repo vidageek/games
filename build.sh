@@ -29,5 +29,9 @@ if [ $BUILD -ne 0 ]; then
        exit $BUILD;
 fi;
 
+echo "Fazendo backup do WAR"
+ssh -i /private/vidageek/games.pem ubuntu@177.71.178.115 "cp ~/jetty/webapps/games.war ~/games.war.bkp"
+
+echo "Copiando o War para servidor remoto"
 scp -i /private/vidageek/games.pem target/scala-2.9.2/games* ubuntu@177.71.178.115:~/games.war
 
