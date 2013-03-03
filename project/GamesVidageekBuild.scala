@@ -21,7 +21,8 @@ object GamesVidageekBuild extends Build {
     name := "games",
     version := "0.1-SNAPSHOT",
     scalaVersion := "2.10.0",
-    scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-unchecked", "-g:vars")
+    scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-unchecked", "-g:vars", "-feature", 
+        "-language:_")
   )
 
   lazy val coreWebSettings = webSettings ++ inConfig(Runtime)(webappSettings0) ++ Seq(

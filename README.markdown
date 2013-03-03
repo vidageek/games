@@ -16,6 +16,8 @@
 * clone o projeto git@github.com:vidageek/games.git
 * execute `sbt eclipse` dentro da pasta do projeto
 * importe o projeto no eclipse
+* Acrescente `-language:_` em Propriedades do Projeto > Scala Compiler > Additional command line parameters. Isso desabilita
+os feature warnings de Scala (Não vamos restringir o uso de nenhuma feature).
 
 
 [1]: http://scala-ide.org/download/milestone.html#scala_ide_21_milestone_3
