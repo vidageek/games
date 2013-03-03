@@ -9,7 +9,7 @@ class IndexedTask[T](delegate : TaskWithDescription[T], index : Int) extends Tas
   def judge(challenge : String) : JudgedTask = {
     try {
       delegate.judge(challenge)
-    } catch { case e => new Error(e) }
+    } catch { case e : Throwable => new Error(e) }
   }
 
   def resource = delegate.resource

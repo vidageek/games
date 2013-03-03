@@ -15,7 +15,7 @@ class DescriptionsFactory(data : RequestData, cache : DescriptionsCache) extends
 @ApplicationScoped
 class DescriptionsCache {
 
-  private val map = JavaConversions.asScalaConcurrentMap(new ConcurrentHashMap[String, Descriptions])
+  private val map = JavaConversions.mapAsScalaConcurrentMap(new ConcurrentHashMap[String, Descriptions])
 
   def put(key : String, desc : Descriptions) = {
     map.putIfAbsent(key, desc)

@@ -8,7 +8,7 @@ import eu.henkelmann.actuarius.Transformer
 
 class Descriptions(game : String) {
 
-  private val descriptions = JavaConversions.asScalaConcurrentMap(new ConcurrentHashMap[String, String])
+  private val descriptions = JavaConversions.mapAsScalaConcurrentMap(new ConcurrentHashMap[String, String])
 
   def forGroup(groupName : String) : String = {
     descriptions.get(groupName).getOrElse {

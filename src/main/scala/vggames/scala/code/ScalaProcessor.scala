@@ -30,7 +30,7 @@ class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
     try {
       spec.run(code, submittedCode).judgement
     } catch {
-      case t => new ExecutionFailure(t)
+      case t : Throwable => new ExecutionFailure(t)
     }
   }
 
@@ -61,7 +61,7 @@ object Compile {
       f(eval)
     } catch {
       case t : CompilerException => { shouldReuse = false; throw t }
-      case t => throw t
+      case t : Throwable => throw t
     } finally {
       if (shouldReuse)
         reuse(eval)
@@ -104,7 +104,7 @@ class Pool {
     try {
       Some(queue.dequeue)
     } catch {
-      case t => None
+      case t : Throwable => None
     }
   }
 
@@ -130,7 +130,7 @@ object TaskRunSecurityManager extends SecurityManager {
 }
 
 object Wrappers {
-  def wrap(className : String, code : String, spec: GameSpecification[_]) = {
+  def wrap(className : String, code : String, spec : GameSpecification[_]) = {
     "package scalagameunsafe\n" +
       "import vggames.scala.code._\n" +
       "class " + className + " extends " + spec.extendsType + " {\n" +

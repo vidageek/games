@@ -1,6 +1,6 @@
 package vggames.scala.actors
 
-import akka.actor.{Actor, ActorLogging, ActorRef}
+import akka.actor.{ Actor, ActorLogging, ActorRef }
 import akka.util.duration._
 import scala.collection.mutable.HashMap
 import vggames.scala.tasks.judge.ExecutionFailure
@@ -25,16 +25,16 @@ class ScalaProcessorActor extends Actor with ActorLogging {
     case msg => log.warning("received unknown message: {}", msg)
   }
 
-  case class CodeThread[V](replyTo: ActorRef, code: () => V) extends Thread {
+  case class CodeThread[V](replyTo : ActorRef, code : () => V) extends Thread {
     override def run() {
       try {
         replyTo ! code()
       } catch {
-        case e: ThreadDeath =>
+        case e : ThreadDeath =>
           replyTo ! ExecutionFailure(new IllegalStateException("Exceeded max compilation and run time."))
-          throw e     // read Thread.stop javadoc to understand why this is necessary
+          throw e // read Thread.stop javadoc to understand why this is necessary
 
-        case e => replyTo ! ExecutionFailure(e)
+        case e : Throwable => replyTo ! ExecutionFailure(e)
       }
     }
   }

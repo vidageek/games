@@ -1,8 +1,7 @@
 package vggames.shared.player
 
 import java.util.concurrent.ConcurrentHashMap
-import scala.collection.JavaConversions.asScalaConcurrentMap
-import scala.collection.mutable.ConcurrentMap
+import scala.collection.JavaConversions.mapAsScalaConcurrentMap
 import br.com.caelum.vraptor.ioc.Component
 import javax.servlet.http.{ Cookie, HttpServletResponse }
 import javax.servlet.http.HttpServletRequest
@@ -63,7 +62,7 @@ class PlayerSession(request : HttpServletRequest, response : HttpServletResponse
 }
 
 object PlayerSession {
-  val activePlayers : ConcurrentMap[String, Player] = asScalaConcurrentMap(new ConcurrentHashMap[String, Player]())
+  val activePlayers = mapAsScalaConcurrentMap(new ConcurrentHashMap[String, Player]())
 }
 
 class LogoutCookie(token : String, domain : String) extends Cookie("player", token) {
