@@ -34,7 +34,7 @@ class ScalaProcessorActor extends Actor with ActorLogging {
           replyTo ! ExecutionFailure(new IllegalStateException("Exceeded max compilation and run time."))
           throw e // read Thread.stop javadoc to understand why this is necessary
 
-        case e : Throwable => replyTo ! ExecutionFailure(e)
+        case e : Exception => replyTo ! ExecutionFailure(e)
       }
     }
   }

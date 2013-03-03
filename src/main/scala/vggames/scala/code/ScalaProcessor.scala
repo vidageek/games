@@ -30,7 +30,7 @@ class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
     try {
       spec.run(code, submittedCode).judgement
     } catch {
-      case t : Throwable => new ExecutionFailure(t)
+      case t : Exception => new ExecutionFailure(t)
     }
   }
 
@@ -61,7 +61,7 @@ object Compile {
       f(eval)
     } catch {
       case t : CompilerException => { shouldReuse = false; throw t }
-      case t : Throwable => throw t
+      case t : Exception => throw t
     } finally {
       if (shouldReuse)
         reuse(eval)
@@ -104,7 +104,7 @@ class Pool {
     try {
       Some(queue.dequeue)
     } catch {
-      case t : Throwable => None
+      case t : Exception => None
     }
   }
 

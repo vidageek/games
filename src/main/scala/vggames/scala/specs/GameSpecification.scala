@@ -43,7 +43,7 @@ trait GameSpecification[T <: CodeRestrictions[_]] extends Task[Any] with MustMat
         cases.success(assertionName)
       } catch {
         case t : FailureException => cases.failure(assertionName)
-        case t : Throwable => cases.exception(t.getMessage)
+        case t : Exception => cases.exception(t.getMessage)
       }
     }
   }
@@ -53,7 +53,7 @@ trait GameSpecification[T <: CodeRestrictions[_]] extends Task[Any] with MustMat
       new ScalaProcessor(this).processCode(challenge)
     } catch {
       case e : CompilerException => CompilationFailure(e)
-      case e : Throwable => ExecutionFailure(e)
+      case e : Exception => ExecutionFailure(e)
     }
   }
 }
