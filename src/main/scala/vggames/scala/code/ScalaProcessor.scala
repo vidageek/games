@@ -1,19 +1,18 @@
 package vggames.scala.code
 
-import com.twitter.util.{ Eval => TwitterEval }
 import java.security.Permission
 import vggames.scala.specs.GameSpecification
 import vggames.scala.tasks.judge.ExecutionFailure
 import vggames.shared.task.JudgedTask
 import vggames.scala.code.Wrappers._
 import java.io.File
-import com.twitter.util.Eval.CompilerException
 import scala.collection.mutable.SynchronizedQueue
 import akka.actor.ActorSystem
 import akka.actor.Actor
 import akka.actor.Props
 import org.apache.log4j.Logger
 import vggames.shared.Hash
+import scala.tools.reflect.ToolBoxError
 
 class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
   val className = "ExpressionRunner"
@@ -43,14 +42,14 @@ class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
     val codeHash = Hash(wrapped)
     val toCompile = wrapped.replace(className, className + codeHash)
 
-    Compile(_.toClass(toCompile, fullName + codeHash))
+    Compile(_.toClass(toCompile))
   }
 }
 
 object Compile {
   val pool = new Pool
 
-  def compiler() = pool.pop.getOrElse(new Eval(None))
+  def compiler() = pool.pop.getOrElse(new Eval())
 
   def reuse(eval : Eval) = pool += eval
 
@@ -60,7 +59,7 @@ object Compile {
     try {
       f(eval)
     } catch {
-      case t : CompilerException => { shouldReuse = false; throw t }
+      case t : ToolBoxError => { shouldReuse = false; throw t }
       case t : Exception => throw t
     } finally {
       if (shouldReuse)
@@ -78,7 +77,7 @@ object Compile {
       case Check => {
         if (pool.size < 10) {
           log.info("Warming up Eval")
-          val eval = new Eval(None)
+          val eval = new Eval()
           eval("1 + 1")
           pool += eval
         }
@@ -112,11 +111,19 @@ class Pool {
   def size = queue.size
 }
 
-class Eval(file : Option[File]) extends TwitterEval(file) {
+class Eval() {
+  import scala.reflect.runtime._
+  import scala.tools.reflect.ToolBox
 
-  def toClass(code : String, name : String) = {
-    compile(code)
-    findClass(name)
+  val cm = universe.runtimeMirror(getClass.getClassLoader)
+  val tb = cm.mkToolBox()
+
+  def apply(code : String) = {
+    tb.eval(tb.parse(code))
+  }
+
+  def toClass(code : String) = {
+    apply(code).asInstanceOf[Class[_]]
   }
 }
 
@@ -132,14 +139,14 @@ object TaskRunSecurityManager extends SecurityManager {
 
 object Wrappers {
   def wrap(className : String, code : String, spec : GameSpecification[_]) = {
-    "package scalagameunsafe\n" +
-      "import vggames.scala.code._\n" +
+    "import vggames.scala.code._\n" +
       "class " + className + " extends " + spec.extendsType + " {\n" +
       "  def run" + spec.runSignature + " = {\n" +
       spec.beforeCode + "\n" +
       code + "\n" +
       spec.afterCode + "\n" +
       "  }\n" +
-      "}\n"
+      " } \n" +
+      s"scala.reflect.classTag[$className].runtimeClass"
   }
 }

@@ -1,6 +1,5 @@
 package vggames.scala.specs
 
-import com.twitter.util.Eval.CompilerException
 import vggames.scala.code.{ CodeRestrictions, ScalaProcessor }
 import vggames.scala.tasks.judge.{ CompilationFailure, ExecutionFailure }
 import vggames.shared.task.{ JudgedTask, Task }
@@ -12,6 +11,7 @@ import vggames.shared.task.status.Failed
 import vggames.shared.task.status.Failed
 import org.specs2.matcher.MustThrownExpectations
 import org.specs2.execute.FailureException
+import scala.tools.reflect.ToolBoxError
 
 trait GameSpecification[T <: CodeRestrictions[_]] extends Task[Any] with MustMatchers with MustThrownExpectations {
   type Code = T
@@ -52,7 +52,7 @@ trait GameSpecification[T <: CodeRestrictions[_]] extends Task[Any] with MustMat
     try {
       new ScalaProcessor(this).processCode(challenge)
     } catch {
-      case e : CompilerException => CompilationFailure(e)
+      case e : ToolBoxError => CompilationFailure(e)
       case e : Exception => ExecutionFailure(e)
     }
   }

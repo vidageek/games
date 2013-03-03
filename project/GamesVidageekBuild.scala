@@ -48,8 +48,9 @@ object GamesVidageekBuild extends Build {
         ExclusionRule(organization = "org.springframework")
       ),
       "com.typesafe.akka" %% "akka-actor" % "2.1.1",
-      "com.twitter" % "util-eval" % "5.2.0",
       "com.typesafe.slick" %% "slick" % "1.0.0",
+      "org.scala-lang" % "scala-reflect" % "2.10.0",
+      "org.scala-lang" % "scala-compiler" % "2.10.0",
       "org.xerial" % "sqlite-jdbc" % "3.7.2",
       "com.amazonaws" % "aws-java-sdk" % "1.3.20",
       "eu.henkelmann" % "actuarius_2.10.0" % "0.2.5",
