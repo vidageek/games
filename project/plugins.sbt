@@ -1,14 +1,13 @@
 
-addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.0.0")
+scalaVersion := "2.9.2"
+
+addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.1.1")
 
 resolvers += "remeniuk repo" at "http://remeniuk.github.com/maven"
 
-libraryDependencies <+= sbtVersion(v => v match {
-	case "0.11.0" => "com.github.siasia" %% "xsbt-web-plugin" % "0.11.0-0.2.8"
-	case "0.11.1" => "com.github.siasia" %% "xsbt-web-plugin" % "0.11.1-0.2.10"
-	case "0.11.2" => "com.github.siasia" %% "xsbt-web-plugin" % "0.11.2-0.2.11"
-	case "0.11.3" => "com.github.siasia" %% "xsbt-web-plugin" % "0.11.3-0.2.11.1"
-})
+libraryDependencies <+= sbtVersion {  
+	case x if (x.startsWith("0.12")) => "com.github.siasia" %% "xsbt-web-plugin" % "0.12.0-0.2.11.1"
+}
 
-libraryDependencies += "org.netbeans" %% "sbt-netbeans-plugin" % "0.1.4"
+// libraryDependencies += "org.netbeans" %% "sbt-netbeans-plugin" % "0.1.4"
 

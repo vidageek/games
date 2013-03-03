@@ -12,7 +12,7 @@ import PluginKeys._
 object GamesVidageekBuild extends Build {
 
   lazy val root = Project(
-    "VidaGeek games",
+    "VidaGeekGames",
     file(".")
   ) settings(coreSettings ++ tasks ++ coreWebSettings: _*)
 
@@ -20,7 +20,7 @@ object GamesVidageekBuild extends Build {
     organization := "net.vidageek",
     name := "games",
     version := "0.1-SNAPSHOT",
-    scalaVersion := "2.9.2",
+    scalaVersion := "2.10.0",
     scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-unchecked", "-g:vars")
   )
 
@@ -48,11 +48,11 @@ object GamesVidageekBuild extends Build {
       ),
       "com.typesafe.akka" % "akka-actor" % "2.0.2",
       "com.twitter" % "util-eval" % "5.2.0",
-      "org.scalaquery" % "scalaquery_2.9.0-1" % "0.9.5",
+      "com.typesafe.slick" %% "slick" % "1.0.0",
       "org.xerial" % "sqlite-jdbc" % "3.7.2",
       "com.amazonaws" % "aws-java-sdk" % "1.3.20",
-      "eu.henkelmann" %% "actuarius" % "0.2.4",
-      "org.specs2" %% "specs2" % "1.12.1",
+      "eu.henkelmann" % "actuarius_2.10.0" % "0.2.5",
+      "org.specs2" %% "specs2" % "1.14",
       "org.mockito" % "mockito-core" % "1.9.0" % "test",
       "junit" % "junit" % "4.10" % "test",
       "com.typesafe.akka" % "akka-testkit" % "2.0.2" % "test"
