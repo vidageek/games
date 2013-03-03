@@ -1,5 +1,6 @@
 #! /bin/bash
 
+SBT_JAR=/opt/local/share/sbt/sbt-launch.jar
 SBT_JAR=/opt/sbt/sbt-launch-0.12.2.jar
 
 SBT="java -XX:PermSize=372m -Dsbt.log.noformat=true -jar $SBT_JAR"
