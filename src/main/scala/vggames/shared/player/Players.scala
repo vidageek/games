@@ -1,12 +1,9 @@
 package vggames.shared.player
 
-import org.scalaquery.ql.extended.ExtendedTable
 import br.com.caelum.vraptor.ioc.Component
-import org.scalaquery.ql._
-import org.scalaquery.ql.TypeMapper._
-import org.scalaquery.ql.extended.SQLiteDriver.Implicit._
+import scala.slick.driver.SQLiteDriver.simple._
+import scala.slick.session.Database.threadLocalSession
 import vggames.shared.Database
-import org.scalaquery.session.Database.threadLocalSession
 
 case class Player(id : Long, email : String, token : String, var lastTask : Option[String], var activeTime : Long = 0) {
   def getEmail : String = email
@@ -62,7 +59,7 @@ class Players extends Database {
   def tuple2Player(t : (Long, String, String, Option[String], Long)) = Player(t._1, t._2, t._3, t._4, t._5)
 }
 
-object Players extends ExtendedTable[(Long, String, String, Option[String], Long)]("players") {
+object Players extends Table[(Long, String, String, Option[String], Long)]("players") {
 
   def id = column[Long]("id")
   def email = column[String]("email")
@@ -74,7 +71,7 @@ object Players extends ExtendedTable[(Long, String, String, Option[String], Long
   def noId = email ~ token ~ lastTask ~ activeTime
 }
 
-object FinishedGroups extends ExtendedTable[(Long, String)]("finishedGroups") {
+object FinishedGroups extends Table[(Long, String)]("finishedGroups") {
 
   def playerId = column[Long]("player_id")
   def group = column[String]("group")

@@ -6,10 +6,9 @@ import scala.collection.mutable.ConcurrentMap
 import br.com.caelum.vraptor.ioc.Component
 import javax.servlet.http.{ Cookie, HttpServletResponse }
 import javax.servlet.http.HttpServletRequest
-import org.scalaquery.ql.extended.ExtendedTable
-import org.scalaquery.ql.extended.SQLiteDriver.Implicit._
-import org.scalaquery.session.Database
-import org.scalaquery.session.Database.threadLocalSession
+import scala.slick.driver.SQLiteDriver.simple._
+import scala.slick.session.Database
+import scala.slick.session.Database.threadLocalSession
 import scala.collection.mutable.Map
 
 @Component

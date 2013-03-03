@@ -4,10 +4,9 @@ import javax.servlet.ServletContextListener
 import javax.servlet.ServletContextEvent
 import java.util.Enumeration
 import scala.io.Source
-import org.scalaquery.ql.extended.ExtendedTable
-import org.scalaquery.ql.extended.SQLiteDriver.Implicit._
-import org.scalaquery.session.Database
-import org.scalaquery.session.Database.threadLocalSession
+import scala.slick.driver.SQLiteDriver.simple._
+import scala.slick.session.Database
+import scala.slick.session.Database.threadLocalSession
 import java.sql.DriverManager
 import java.sql.ResultSet
 import java.sql.PreparedStatement

@@ -1,10 +1,8 @@
 package vggames.shared.log
 
 import java.sql.Date
-import org.scalaquery.ql.TypeMapper.{ BooleanTypeMapper, DateTypeMapper, StringTypeMapper }
-import org.scalaquery.ql.extended.ExtendedTable
-import org.scalaquery.ql.extended.SQLiteDriver.Implicit.columnBaseToInsertInvoker
-import org.scalaquery.session.Database.threadLocalSession
+import scala.slick.driver.SQLiteDriver.simple._
+import scala.slick.session.Database.threadLocalSession
 import vggames.shared.task.{ JudgedTask, Task }
 import vggames.shared.Database
 import vggames.shared.player.Player
@@ -17,7 +15,7 @@ case class Submission(gameName : String, task : Task[_], challenge : String, res
   }
 }
 
-object Submissions extends ExtendedTable[(String, String, String, Boolean, Option[Long], Option[String])]("submissions") {
+object Submissions extends Table[(String, String, String, Boolean, Option[Long], Option[String])]("submissions") {
 
   def game = column[String]("game")
   def task = column[String]("task")

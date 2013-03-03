@@ -1,7 +1,7 @@
 package vggames.shared
 
-import org.scalaquery.session.{ Database => SQDB }
-import org.scalaquery.session.Database.threadLocalSession
+import scala.slick.session.{ Database => SQDB }
+import scala.slick.session.Database.threadLocalSession
 
 trait Database {
 
