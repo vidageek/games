@@ -1,7 +1,7 @@
 package vggames.scala.actors
 
 import akka.actor.{ Actor, ActorLogging, ActorRef }
-import akka.util.duration._
+import scala.concurrent.duration._
 import scala.collection.mutable.HashMap
 import vggames.scala.tasks.judge.ExecutionFailure
 
@@ -13,6 +13,7 @@ class ScalaProcessorActor extends Actor with ActorLogging {
       val ct = new CodeThread(sender, code)
       runningThreads += ct.hashCode -> ct
       ct.start
+      import context.dispatcher
       context.system.scheduler.scheduleOnce(2 seconds) {
         self ! CodeRunTimeout(ct.hashCode)
       }

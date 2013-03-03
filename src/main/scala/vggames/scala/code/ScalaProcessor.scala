@@ -68,7 +68,7 @@ object Compile {
     }
   }
 
-  import akka.util.duration._
+  import scala.concurrent.duration._
 
   class Warmer extends Actor {
 
@@ -90,6 +90,7 @@ object Compile {
 
   case object Check
 
+  import system.dispatcher
   system.scheduler.schedule(0.milliseconds, 5.seconds, system.actorOf(Props[Warmer], "Warmer"), Check)
 
 }

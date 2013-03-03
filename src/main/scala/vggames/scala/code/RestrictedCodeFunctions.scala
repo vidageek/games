@@ -1,8 +1,8 @@
 package vggames.scala.code
 
-import akka.dispatch.Await
+import scala.concurrent.Await
 import akka.pattern.ask
-import akka.util.duration._
+import scala.concurrent.duration._
 import akka.util.Timeout
 import vggames.scala.actors._
 import vggames.scala.tasks.judge.ExecutionFailure

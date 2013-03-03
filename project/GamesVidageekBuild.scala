@@ -47,7 +47,7 @@ object GamesVidageekBuild extends Build {
       "br.com.caelum" % "vraptor" % "3.4.1" excludeAll (
         ExclusionRule(organization = "org.springframework")
       ),
-      "com.typesafe.akka" % "akka-actor" % "2.0.2",
+      "com.typesafe.akka" %% "akka-actor" % "2.1.1",
       "com.twitter" % "util-eval" % "5.2.0",
       "com.typesafe.slick" %% "slick" % "1.0.0",
       "org.xerial" % "sqlite-jdbc" % "3.7.2",
@@ -56,7 +56,7 @@ object GamesVidageekBuild extends Build {
       "org.specs2" %% "specs2" % "1.14",
       "org.mockito" % "mockito-core" % "1.9.0" % "test",
       "junit" % "junit" % "4.10" % "test",
-      "com.typesafe.akka" % "akka-testkit" % "2.0.2" % "test"
+      "com.typesafe.akka" %% "akka-testkit" % "2.1.1" % "test"
     ).map{ dep =>
       if (List("log4j", "javax.servlet").contains(dep.organization)) dep
       else dep.withSources
