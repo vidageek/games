@@ -37,6 +37,7 @@ div#contributors div, div#organizations div {
 	display: inline-block;
 	width: 120px;
 	text-align: center;
+	margin-bottom: 30px;
 }
 
 div#contributors div img, div#organizations div img{
