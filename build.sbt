@@ -3,6 +3,5 @@ resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/release
 
 resolvers += "twitter-repo" at "http://maven.twttr.com/"
 
-// seq(netbeans.NetbeansTasks.netbeansSettings:_*)
-
 EclipseKeys.withSource := true
+
