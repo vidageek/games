@@ -7,11 +7,17 @@ import vggames.shared.task.TaskGroup
 
 class MetaGame (descriptions : Descriptions) extends Game {
   override val tasks = new Tasks(
-      firstTask
+      firstTaskGroup,
+      secondTaskGroup
     )
   
-  private def firstTask = new TaskGroup("Primeira Tarefa","meta.first",descriptions,
-      new MetaTask("Digite o nome do seu jogo"));
+  private def firstTaskGroup = new TaskGroup("Primeira Grupo de Tarefas","meta.first",descriptions,
+      new MetaTask("Digite o nome do seu jogo"),
+      new MetaTask("Digite o nome de um outro jogo"));
+ 
+    private def secondTaskGroup = new TaskGroup("Segundo Grupo de Tarefas","meta.second",descriptions,
+      new MetaTask("Digite o nome do seu jogo"),
+      new MetaTask("Digite o nome de um outro jogo"));
   
   
   
