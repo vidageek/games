@@ -30,7 +30,7 @@ class AWSMail(to : String, from : String, subject : String, message : String) ex
   def send = {
     val list = new ArrayList[String]
     list.add(to)
-    val req = new SendEmailRequest(from, new Destination(list), new Message(new Content(subject), new Body(new Content(message))))
+    val req = new SendEmailRequest(from, new Destination(list), new Message(new Content(subject), new Body().withHtml(new Content(message))))
     val credentials = new BasicAWSCredentials(secrets.awsAccessKey, secrets.awsSecretKey)
     val answer = new AmazonSimpleEmailServiceClient(credentials).sendEmail(req)
   }
