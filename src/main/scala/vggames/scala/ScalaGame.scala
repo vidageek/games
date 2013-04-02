@@ -7,8 +7,10 @@ import vggames.scala.specs.string._
 import vggames.scala.specs.valvar._
 import vggames.shared.Game
 import vggames.shared.task.{ Descriptions, TaskGroup, Tasks }
+import vggames.scala.specs.functions.BasicFunction
+import vggames.scala.specs.functions.BasicFunction
 
-class ScalaGame(descriptions: Descriptions) extends Game {
+class ScalaGame(descriptions : Descriptions) extends Game {
 
   override val tasks = new Tasks(
     addValEVarExercises,
@@ -16,7 +18,8 @@ class ScalaGame(descriptions: Descriptions) extends Game {
     addBasicBooleanExercises,
     addStringExercises,
     addAdvancedStringExercises,
-    addConditionalExercises)
+    addConditionalExercises,
+    addFunctionExercises)
 
   def addValEVarExercises =
     new TaskGroup("Vari&aacute;veis e Valores", "basic.varval", descriptions,
@@ -62,6 +65,10 @@ class ScalaGame(descriptions: Descriptions) extends Game {
       new ReplaceString(),
       new StringContains(),
       new TrimString())
+
+  def addFunctionExercises =
+    new TaskGroup("Fun&ccedil;&otilde;es ", "basic.function", descriptions,
+      new BasicFunction())
 
   def addConditionalExercises =
     new TaskGroup("Estruturas condicionais", "basic.conditionals", descriptions,

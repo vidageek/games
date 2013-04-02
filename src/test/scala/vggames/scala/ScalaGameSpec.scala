@@ -9,7 +9,7 @@ import vggames.shared.task.status.Ok
 @RunWith(classOf[JUnitRunner])
 class ScalaGameSpec extends Specification with Answers {
 
-  val answers = valvar ++ matematica ++ booleana ++ stringStructure ++ stringOperations ++ ifelse
+  val answers = valvar ++ matematica ++ booleana ++ stringStructure ++ stringOperations ++ ifelse ++ function
 
   "Scala Game" should {
 
@@ -48,4 +48,5 @@ trait Answers {
     """if (numero < 0) "negativo" else "positivo"""",
     """if (numero < 0) "negativo" else if (numero > 0) "positivo"""",
     """if (numero < 0) "negativo" else if (numero > 0) "positivo" else "neutro"""")
+  def function = List("""(x: Int) => { x+1 }""")
 }
