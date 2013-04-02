@@ -11,6 +11,7 @@ import br.com.caelum.vraptor.ioc.ApplicationScoped
 import vggames.html.HtmlGame
 import vggames.git.GitGame
 import vggames.meta.MetaGame
+import vggames.math.MathGame
 
 @Component
 class GameFactory(cached : GameFactoryCache, data : RequestData) extends ComponentFactory[Game] {
@@ -29,7 +30,8 @@ class GameFactoryCache(cache : DescriptionsCache) {
     "css" -> new CssGame(cache.get("css")),
     "html" -> new HtmlGame(cache.get("html")),
     "git" -> new GitGame(cache.get("git")),
-    "meta" -> new MetaGame(cache.get("meta")))
+    "meta" -> new MetaGame(cache.get("meta")),
+    "math" -> new MathGame(cache.get("math")))
 
   def apply(gameName : String) = games.get(gameName)
 }
