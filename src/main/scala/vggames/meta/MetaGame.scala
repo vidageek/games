@@ -11,7 +11,7 @@ class MetaGame (descriptions : Descriptions) extends Game {
       secondTaskGroup
     )
   
-  private def firstTaskGroup = new TaskGroup("Primeira Grupo de Tarefas","meta.first",descriptions,
+  private def firstTaskGroup = new TaskGroup("Primeiro Grupo de Tarefas","meta.first",descriptions,
       new MetaTask("Digite o nome do seu jogo"),
       new MetaTask("Digite o nome de um outro jogo"));
  
