@@ -11,16 +11,11 @@
             </div>
         </c:if>  
         
-        <form class="challenge" method="POST" action="/play/${gameName}/task/${task.index}">
-            <label for="challenge"><strong>${task.challenge}${task.groupName}</strong></label>
-            <input class="focus span4" name="challenge" id="challenge" value="${challenge}" autocomplete="off"/>
+        <form id="oi" class="challenge" method="POST" action="/play/${gameName}/task/${task.index}">
+            <label for="challenge"><strong>${task.challenge}</strong></label>>
             <input class="btn-primary" type="submit" value="Check!" />
         </form>    
 
-        
-         <c:if test="${task.groupName == 'Primeiro Grupo de Tarefas'}">
-            Soh aparece no primeiro grupo de tarefas
-        </c:if>  
         
         <div class="progress">
             <div class="bar" style="width: ${(task.index/game.size)*100}%;"></div>
