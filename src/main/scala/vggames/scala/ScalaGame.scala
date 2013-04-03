@@ -9,6 +9,8 @@ import vggames.shared.Game
 import vggames.shared.task.{ Descriptions, TaskGroup, Tasks }
 import vggames.scala.specs.functions.BasicFunction
 import vggames.scala.specs.functions.BasicFunction
+import vggames.scala.specs.options.SomeValue
+import vggames.scala.specs.options.NoneValue
 
 class ScalaGame(descriptions : Descriptions) extends Game {
 
@@ -19,7 +21,8 @@ class ScalaGame(descriptions : Descriptions) extends Game {
     addStringExercises,
     addAdvancedStringExercises,
     addConditionalExercises,
-    addFunctionExercises)
+    addFunctionExercises,
+    addOptionExercises)
 
   def addValEVarExercises =
     new TaskGroup("Vari&aacute;veis e Valores", "basic.varval", descriptions,
@@ -76,7 +79,12 @@ class ScalaGame(descriptions : Descriptions) extends Game {
       new IfElse(),
       new DoubleIf(),
       new DoubleIfElse())
-
+  
+  def addOptionExercises = 
+  	new TaskGroup("Tipos 'Option'", "basic.options", descriptions,
+      new SomeValue(),
+      new NoneValue())
+  
   def getDescription = "Um jogo muito legal para aprender Scala"
 
   def getName = "Scala"
