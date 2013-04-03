@@ -14,8 +14,13 @@ class BasicFunction extends GameSpecification[RestrictedFunction0[Int => Int]] {
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 
-    "O seu código" should {
+    "O seu codigo" should {
 
+      """ incluir uma soma""" in {
+        val soma = """\s*[A-Za-z0-9-]\s*\+\s*[A-Za-z0-9-]\s*""".r
+        soma.findFirstIn(submittedCode).isDefined must beTrue
+      }
+    
       """ incrementar o valor """ in {
         code()(1) must_== 2
         code()(2) must_== 3
