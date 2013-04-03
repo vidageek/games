@@ -5,6 +5,7 @@ import vggames.scala.specs.booleans._
 import vggames.scala.specs.ifelse._
 import vggames.scala.specs.string._
 import vggames.scala.specs.valvar._
+import vggames.scala.specs.whileloop._
 import vggames.shared.Game
 import vggames.shared.task.{ Descriptions, TaskGroup, Tasks }
 import vggames.scala.specs.functions.BasicFunction
@@ -19,7 +20,8 @@ class ScalaGame(descriptions : Descriptions) extends Game {
     addStringExercises,
     addAdvancedStringExercises,
     addConditionalExercises,
-    addFunctionExercises)
+    addFunctionExercises,
+    addWhileExercises)
 
   def addValEVarExercises =
     new TaskGroup("Vari&aacute;veis e Valores", "basic.varval", descriptions,
@@ -77,8 +79,11 @@ class ScalaGame(descriptions : Descriptions) extends Game {
       new DoubleIf(),
       new DoubleIfElse())
 
+  def addWhileExercises =
+    new TaskGroup("Estruturas de repeti&ccedil;&atilde;o while", "loop.while", descriptions,
+      new SomaArray())
+
   def getDescription = "Um jogo muito legal para aprender Scala"
 
   def getName = "Scala"
-
 }
