@@ -9,7 +9,8 @@ import vggames.shared.Game
 import vggames.shared.task.{ Descriptions, TaskGroup, Tasks }
 import vggames.scala.specs.functions.BasicFunction
 import vggames.scala.specs.functions.BasicFunction
-import vggames.scala.specs.options.OptionValues
+import vggames.scala.specs.options.SomeValue
+import vggames.scala.specs.options.NoneValue
 
 class ScalaGame(descriptions : Descriptions) extends Game {
 
@@ -81,7 +82,8 @@ class ScalaGame(descriptions : Descriptions) extends Game {
   
   def addOptionExercises = 
   	new TaskGroup("Tipos 'Option'", "basic.options", descriptions,
-      new OptionValues())
+      new SomeValue(),
+      new NoneValue())
   
   def getDescription = "Um jogo muito legal para aprender Scala"
 
