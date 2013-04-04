@@ -1,4 +1,6 @@
-package vggames.math
+Exemplo tirado da classe [MathGameSpec.scala][1]
+
+<pre>package vggames.math
 
 import org.specs2.mock.Mockito
 import org.specs2.mutable.Specification
@@ -25,3 +27,7 @@ class MathGameSpec extends Specification with Mockito {
     }
   }
 }
+</pre>
+
+
+[1]:https://github.com/vidageek/games/blob/master/src/test/scala/vggames/math/MathGameSpec.scala
