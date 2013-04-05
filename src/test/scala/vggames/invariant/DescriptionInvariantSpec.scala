@@ -24,7 +24,9 @@ class DescriptionInvariantTest {
 
   @Invariant(affects = ".*\\.markdown", folder = "src/main/resources/desc")
   def mustNotHtmlTags(data : FileData) = {
-    val matcher = Pattern.compile("<[^>]{0,10}>").matcher(data.getContent())
-    assertFalse("Found use of html tag on markdown file", matcher.find())
+    if (!"match.back.markdown".equals(data.getName())) {
+      val matcher = Pattern.compile("<[a-z]+").matcher(data.getContent())
+      assertFalse("Found use of html tag on markdown file", matcher.find())
+    }
   }
 }
