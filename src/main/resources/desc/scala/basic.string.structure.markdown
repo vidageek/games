@@ -1,29 +1,20 @@
-<p>
-Em Scala, palavras ou frase s&atilde;o representadas atrav&eacute;s do que &eacute; chamado <code>String</code>.
+Em Scala, palavras ou frase são representadas através do que é chamado `String`.
 
-Para se criar uma <code>String</code>, basta que voc&ecirc; escreva o texto que quiser entre duas <code>"</code>
-</p>
-<ul>
-	<li><code>"azul"</code> &eacute; a <code>String</code> que representa a palavra <strong>azul</strong></li>
-</ul>
+Para se criar uma `String`, basta que você escreva o texto que quiser entre duas `"`.
+	
+* `"azul"` é a `String` que representa a palavra **azul**
 
-<p>
-Caso seu texto contenha <code>"</code>, &eacute; melhor utilizar outra forma de criar <code>String</code> em scala. Voc&ecirc;
-envolve o texto em <code>"""</code>:
-</p>
-<ul>
-	<li><code>"""gato "preto" """</code> &eacute; a <code>String</code> que representa o texto <strong>gato "preto" </strong></li>
-</ul>
+Caso seu texto contenha `"`, é melhor utilizar outra forma de criar `String` em scala. Você
+envolve o texto em `"""`:
 
-<p>
-&Eacute; poss&iacute;vel fazer muitas coisas com <code>Strings</code> em Scala.
-</p>
-<ul>
-<li>Voc&ecirc; pode concaten&aacute;-las: <code>"abra " + "kadabra"</code> vira a <code>String</code> <code>"abra kadabra"</code></li>
-<li>Voc&ecirc; pode invert&ecirc;-las: <code>"atrop".reverse</code> vira a <code>String</code> <code>"porta"</code></li>
-<li>Voc&ecirc; pode ver o tamanho dela: <code>"texto bem longo".length</code> &eacute; <code>15</code></li>
-<li>Voc&ecirc; pode compar&aacute;-las: <code>"abd" > "abc"</code> &eacute; <code>true</code></li>
-<li>E <code>Strings</code> s&atilde;o t&atilde;o importantes, que voc&ecirc; consegue transformar qualquer coisa em <code>String</code>:
-	<code>123.toString</code> vira a <code>String</code> <code>"123"</code></li>
-</ul>
+* `"""gato "preto" """` é a `String` que representa o texto **gato "preto"**
+
+É possível fazer muitas coisas com `Strings` em Scala.
+
+
+* Você pode concatená-las: `"abra " + "kadabra"` vira a `String` `"abra kadabra"`
+* Você pode invertê-las: `"atrop".reverse` vira a `String` `"porta"`
+* Você pode ver o tamanho dela: `"texto bem longo".length` é `15`
+* Você pode compará-las: `"abd" > "abc"` é `true`
+* E `Strings` são tão importantes, que você consegue transformar qualquer coisa em `String`: `123.toString` vira a `String` `"123"`
 
