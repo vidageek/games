@@ -1,18 +1,14 @@
-<p>Existem alguns casos em que queremos, dentro de uma RegEx, reconhecer um trecho previamente capturado.</p>
+Existem alguns casos em que queremos, dentro de uma RegEx, reconhecer um trecho previamente capturado.
 
-<p>Um exemplo cl&aacute;ssico &eacute; encontrar o conte&uacute;do entre duas tags</p>
+Um exemplo clássico é encontrar o conteúdo entre duas tags
 
-<p>Para isso, podemos usar <strong>back references</strong>, ou seja, refer&ecirc;ncias &agrave; algo previamente capturado.</p>
+Para isso, podemos usar **back references**, ou seja, referências à algo previamente capturado.
 
-<p>Para utilizar uma <strong>back reference</strong>, utilizamos o caractere <code>\</code> seguido pelo n&uacute;mero
-do grupo de captura que queremos referenciar. Vale lembrar que o grupo <code>0</code> &eacute; tudo que a RegEx encontrou. 
-Ent&atilde;o s&oacute; faz sentido come&ccedil;armos a referenciar a partir do <code>1</code>.</p>
+Para utilizar uma **back reference**, utilizamos o caractere `\` seguido pelo número
+do grupo de captura que queremos referenciar. Vale lembrar que o grupo `0` é tudo que a RegEx encontrou. 
+Então só faz sentido começarmos a referenciar a partir do `1`.
 
 Exemplo:
-<ul>
-	<li>A RegEx <code>(a)\1</code> <strong>reconhece</strong> o padr&atilde;o <code>aa</code></li>
-	<li>A RegEx <code>&lt;([^&gt;]+)&gt;[^&lt;]+&lt;/\1&gt;</code> <strong>reconhece</strong> o padr&atilde;o 
-		<code>&lt;b&gt;abc&lt;/b&gt;</code>, mas <strong>n&atilde;o reconhece</strong> o padr&atilde;o <code>&lt;b&gt;abc&lt;/i&gt;</code></li>
-	<li>A RegEx <code>(b+)\1</code> <strong>reconhece</strong> todas as sequ&ecirc;ncias de <code>b</code> que tenham um 
-	n&uacute;mero de caracteres pares (como <code>bb</code>, <code>bbbb</code>, etc)</li>
-</ul>
+* A RegEx `(a)\1` **reconhece** o padrão `aa`
+* A RegEx `<([^>]+)>[^<]+</\1>` **reconhece** o padrão `<b>abc</b>`, mas **não reconhece** o padrão `<b>abc</i>`
+* A RegEx `(b+)\1` **reconhece** todas as sequências de `b` que tenham um número de caracteres pares (como `bb`, `bbbb`, etc)
