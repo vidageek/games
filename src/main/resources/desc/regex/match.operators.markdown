@@ -1,29 +1,20 @@
-<p>
-Dificilmente voc&ecirc; encontrar&aacute; uma RegEx que n&atilde;o utiliza algum operador de repeti&ccedil;&atilde;o. A id&eacute;ia principal desses
-operadores &eacute; permitir que voc&ecirc; defina um padr&atilde;o espec&iacute;fico que voc&ecirc; espera que ocorra um determinado n&uacute;mero
+Dificilmente você encontrará uma RegEx que não utiliza algum operador de repetição. A idéia principal desses
+operadores é permitir que você defina um padrão específico que você espera que ocorra um determinado número
 de vezes.
-</p>
-<p>
-Os operadores de repeti&ccedil;&atilde;o s&atilde;o:
-<ul>
-	<li><code>?</code> determina que o que vier imediatamente antes dele deve aparecer 0 ou 1 vez na express&atilde;o.</li>
-	<li><code>*</code> determina que o que vier imediatamente antes dele deve aparecer 0 ou mais vezes na express&atilde;o.</li>
-	<li><code>+</code> determina que o que vier imediatamente antes dele deve aparecer 1 ou mais vezes na express&atilde;o.</li>
-	<li><code>{n}</code> determina que o que vier imediatamente antes dele deve aparecer exatamente <code>n</code> vezes na express&atilde;o.</li>
-	<li><code>{n,}</code> determina que o que vier imediatamente antes dele deve aparecer <code>n</code> ou mais vezes na express&atilde;o.</li>
-	<li><code>{n, m}</code> determina que o que vier imediatamente antes dele deve aparecer no m&iacute;nimo <code>n</code> e no m&aacute;ximo <code>m</code> vezes na express&atilde;o.</li>
-</ul>
-</p>
-<p>
-Um fato importante &eacute; que o que vem antes de um operador de repeti&ccedil;&atilde;o n&atilde;o precisa ser apenas 1 caractere. Pode ser uma classe
+
+Os operadores de repetição são:
+* `?` determina que o que vier imediatamente antes dele deve aparecer 0 ou 1 vez na expressão.
+* `*` determina que o que vier imediatamente antes dele deve aparecer 0 ou mais vezes na expressão.
+* `+` determina que o que vier imediatamente antes dele deve aparecer 1 ou mais vezes na expressão.
+* `{n}` determina que o que vier imediatamente antes dele deve aparecer exatamente `n` vezes na expressão.
+* `{n,}` determina que o que vier imediatamente antes dele deve aparecer `n` ou mais vezes na expressão.
+* `{n, m}` determina que o que vier imediatamente antes dele deve aparecer no mínimo `n` e no máximo `m` vezes na expressão.
+
+Um fato importante é que o que vem antes de um operador de repetição não precisa ser apenas 1 caractere. Pode ser uma classe
 de caracteres ou qualquer outra forma de agrupamento.
-</p>
-<p>
+
 Exemplos:
-<ul>
-	<li>A RegEx <code>a?</code> reconhece o padr&atilde;o <code>-Vazio-</code> e <code>a</code>
-	<li>A RegEx <code>[a-c]+</code> reconhece os padr&otilde;es <code>a</code>, <code>ab</code>, <code>ac</code>, <code>abc</code> e v&aacute;rios outros, mas n&atilde;o reconhece <code>-Vazio-</code> e <code>d</code>
-	<li>A RegEx <code>[abn]{6}</code> reconhece <code>banana</code>, mas n&atilde;o reconhece <code>banan</code>
-	<li>A RegEx <code>.*</code> reconhece os padr&otilde;es <code>-Vazio-</code>, <code>estrela</code>, <code>cama</code> e infinitos outros.
-</ul> 
- </p>
+* A RegEx `a?` reconhece o padrão `-Vazio-` e `a`
+* A RegEx `[a-c]+` reconhece os padrões `a`, `ab`, `ac`, `abc` e vários outros, mas não reconhece `-Vazio-` e `d`
+* A RegEx `[abn]{6}` reconhece `banana`, mas não reconhece `banan`
+* A RegEx `.*` reconhece os padrões `-Vazio-`, `estrela`, `cama` e infinitos outros.
