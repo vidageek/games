@@ -1,8 +1,9 @@
-<p>
-Agora que voc&ecirc; j&aacute; sabe bastante sobre RegEx, o que falta &eacute; praticar.
-</p><p>
-Estes s&atilde;o exerc&iacute;cios bem mais dif&iacute;ceis que os anteriores. 
-</p><p>
-Caso fique preso em algum exerc&iacute;cio, d&ecirc; uma olhada nas 
-<a href="/play/regex">explica&ccedil;&otilde;es dos exerc&iacute;cios anteriores</a>.
-</p>
+
+Agora que você já sabe bastante sobre RegEx, o que falta é praticar.
+
+Estes são exercícios bem mais difíceis que os anteriores. 
+
+Caso fique preso em algum exercício, dê uma olhada nas 
+[explicações dos exercícios anteriores][1].
+
+[1]: http://games.vidageek.net/play/regex
