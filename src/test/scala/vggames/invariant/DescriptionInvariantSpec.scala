@@ -21,4 +21,10 @@ class DescriptionInvariantTest {
     val matcher = Pattern.compile("&[^;]{0,10};").matcher(data.getContent())
     assertFalse("Found use of html entity on markdown file", matcher.find())
   }
+
+  @Invariant(affects = ".*\\.markdown", folder = "src/main/resources/desc")
+  def mustNotHtmlTags(data : FileData) = {
+    val matcher = Pattern.compile("<[^>]{0,10}>").matcher(data.getContent())
+    assertFalse("Found use of html tag on markdown file", matcher.find())
+  }
 }
