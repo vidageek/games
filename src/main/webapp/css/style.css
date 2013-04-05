@@ -54,6 +54,11 @@ code {
 	padding: 0px 4px;	
 }
 
+pre code {
+	white-space: pre-wrap;
+	padding: 0px;
+}
+
 /*Header*/
 #game {
 	margin: 30px 0px 20px 0px;
