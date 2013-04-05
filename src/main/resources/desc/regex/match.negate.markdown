@@ -1,30 +1,19 @@
-<p>
-Um recurso muito poderoso de classes de caracteres &eacute; a possibilidade de definir classes 
-que n&atilde;o contenham determinados caracteres.
-</p>
-<p>
-Para fazer isso, voc&ecirc; acrescenta um <code>^</code> logo ap&oacute;s o <code>[</code> que marca o 
-come&ccedil;o da classe de caracteres.
-</p>
+Um recurso muito poderoso de classes de caracteres é a possibilidade de definir classes 
+que não contenham determinados caracteres.
+
+Para fazer isso, você acrescenta um `^` logo após o `[` que marca o 
+começo da classe de caracteres.
 
 Exemplo:
-<ul>
-	<li>A RegEx <code>[^a]</code> reconhece qualquer caractere, exceto <code>a</code>.</li>
-	<li>A RegEx <code>[^b-d]</code> reconhece qualquer caractere, exceto <code>b</code>, <code>c</code> e <code>d</code>.</li>
-	<li>A RegEx <code>[^\d]</code> reconhece qualquer caractere, exceto <code>0</code>, <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>, <code>6</code>, <code>7</code>, <code>8</code> e <code>9</code>.</li>   
-</ul>
+* A RegEx `[^a]` reconhece qualquer caractere, exceto `a`.
+* A RegEx `[^b-d]` reconhece qualquer caractere, exceto `b`, `c` e `d`.
+* A RegEx `[^\d]` reconhece qualquer caractere, exceto `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8` e `9`.   
 
-<p>
-Tamb&eacute;m existem classes de caracteres opostas pr&eacute;-definidas:
-<ul>
-	<li>A classe <code>\D</code> &eacute; o oposto de <code>\d</code>, ou seja, equivalente &agrave; <code>[^0-9]</code></li>
-	<li>A class <code>\S</code> &eacute; o oposto de <code>\s</code>, ou seja, equivalente &agrave; <code>[^ \t\n\x0B\f\r]</code></li>
-	<li>A classe <code>\W</code> &eacute; o oposto de <code>\w</code>, ou seja, equivalente &agrave; <code>[^a-zA-Z_0-9]</code></li>
-</ul>
-</p>
+Também existem classes de caracteres opostas pré-definidas:
+* A classe `\D` é o oposto de `\d`, ou seja, equivalente à `[^0-9]`
+* A class `\S` é o oposto de `\s`, ou seja, equivalente à `[^ \t\n\x0B\f\r]`
+* A classe `\W` é o oposto de `\w`, ou seja, equivalente à `[^a-zA-Z_0-9]`
 
 Exemplo:
-<ul>
-	<li>A RegEx <code>\D</code> reconhece qualquer caractere que n&atilde;o seja <code>0</code>, <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>, <code>6</code>, <code>7</code>, <code>8</code> e <code>9</code>.</li>
-</ul>	
+* A RegEx `\D` reconhece qualquer caractere que não seja `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8` e `9`.
 	
