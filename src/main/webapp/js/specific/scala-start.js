@@ -9,4 +9,5 @@ $(document).ready(function(){
 		  mode: "text/x-scala"
 		});
 	}
+	prettyPrint();
 });

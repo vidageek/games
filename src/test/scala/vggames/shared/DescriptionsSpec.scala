@@ -27,5 +27,9 @@ class DescriptionsSpec extends Specification {
     "compile markdown syntax" in {
       new Descriptions("asdrubal").forGroup("markdown") must_== "<h1>abc</h1>\n<p>cde</p>\n"
     }
+
+    "add prettyprint class to code elements inside pre" in {
+      new Descriptions("asdrubal").forGroup("code") must contain("""<pre><code class="prettyprint">""")
+    }
   }
 }

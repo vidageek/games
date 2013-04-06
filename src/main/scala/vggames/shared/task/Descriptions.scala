@@ -20,4 +20,9 @@ class Descriptions(game : String) {
   }
 }
 
-class Markdown extends Transformer
+class Markdown extends Transformer {
+
+  override def apply(source : String) =
+    super.apply(source).replaceAll("<pre><code>", """<pre><code class="prettyprint">""")
+
+}
