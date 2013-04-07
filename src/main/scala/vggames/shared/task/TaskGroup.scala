@@ -4,7 +4,7 @@ class TaskGroup(name : String, val groupName : String, descriptions : Descriptio
 
   def getDescription = descriptions.forGroup(groupName)
 
-  def getName = name
+  lazy val getName = Markdown(name).replaceAll("</?p>", "").replaceAll("\n", "")
 
   def foldLeft[T](t : T) = tasks.foldLeft(t) _
 }
