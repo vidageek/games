@@ -26,7 +26,7 @@ class ScalaGame(descriptions : Descriptions) extends Game {
     addListExercises)
 
   def addValEVarExercises =
-    new TaskGroup("Vari&aacute;veis e Valores", "basic.varval", descriptions,
+    new TaskGroup("Variáveis e Valores", "basic.varval", descriptions,
       new DefineValString(),
       new DefineValInt(),
       new DefineVarString(),
@@ -34,14 +34,14 @@ class ScalaGame(descriptions : Descriptions) extends Game {
       new ReassignToVar())
 
   def addBasicMathExercises =
-    new TaskGroup("Opera&ccedil;&otilde;es matem&aacute;ticas b&aacute;sicas", "basic.math", descriptions,
+    new TaskGroup("Operações matemáticas básicas", "basic.math", descriptions,
       new SomaSpec(),
       new SubSpec(),
       new MultiSpec(),
       new DivSpec())
 
   def addBasicBooleanExercises =
-    new TaskGroup("Opera&ccedil;&otilde;es Booleanas", "basic.boolean", descriptions,
+    new TaskGroup("Operações Booleanas", "basic.boolean", descriptions,
       new True(),
       new False(),
       new Equals(),
@@ -63,7 +63,7 @@ class ScalaGame(descriptions : Descriptions) extends Game {
       new AnyRefToString())
 
   def addAdvancedStringExercises =
-    new TaskGroup("Opera&ccedil;&otilde;es de Strings", "basic.string.operations", descriptions,
+    new TaskGroup("Operações de Strings", "basic.string.operations", descriptions,
       new SplitStrings(),
       new SubStrings(),
       new ReplaceString(),
@@ -71,7 +71,7 @@ class ScalaGame(descriptions : Descriptions) extends Game {
       new TrimString())
 
   def addFunctionExercises =
-    new TaskGroup("Fun&ccedil;&otilde;es ", "basic.function", descriptions,
+    new TaskGroup("Funções ", "basic.function", descriptions,
       new BasicFunction())
 
   def addConditionalExercises =
@@ -82,15 +82,15 @@ class ScalaGame(descriptions : Descriptions) extends Game {
       new DoubleIfElse())
 
   def addWhileExercises =
-    new TaskGroup("Estruturas de repeti&ccedil;&atilde;o while", "loop.while", descriptions,
+    new TaskGroup("Estruturas de repetição while", "loop.while", descriptions,
       new SomaArray())
 
-  def addListExercises = 
+  def addListExercises =
     new TaskGroup("Manipulando Listas", "basic.list.operations", descriptions,
-        new IntList(),
-        new StringList(),
-        new FilterList())
-  
+      new IntList(),
+      new StringList(),
+      new FilterList())
+
   def getDescription = "Um jogo muito legal para aprender Scala"
 
   def getName = "Scala"

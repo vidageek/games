@@ -64,12 +64,12 @@ class RegexGame(descriptions : Descriptions) extends Game {
       new NegateAndMatch(List("ap", "Bp", "9p"), List("$p", "#p")))
 
   private def addPipeOperator =
-    new TaskGroup("M&uacute;ltiplos Padr&otilde;es", "match.pipe", descriptions,
+    new TaskGroup("Múltiplos Padrões", "match.pipe", descriptions,
       new NegateAndMatch(List("ab", "ba"), List("a", "b")),
       new NegateAndMatch(List("ba", "baa"), List("aa", "bb", "ab")))
 
   private def addOperatorsExercises =
-    new TaskGroup("Operadores de Repeti&ccedil;&atilde;o", "match.operators", descriptions,
+    new TaskGroup("Operadores de Repetição", "match.operators", descriptions,
       new NegateAndMatch("b", List("", "a")),
       new NegateAndMatch("aa", List("", "a", "b")),
       new NegateAndMatch(List("", "aaaaaaaaab"), List("a", "aa", "aaaaaaaaa")),
