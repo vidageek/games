@@ -4,15 +4,22 @@
 
 # Como preparar o Ambiente
 
-* Instale uma versão recente do [Scala IDE para Scala 2.10][1]
-* Instale o [sbt 0.12.2][2]
-* clone o projeto git@github.com:vidageek/games.git
-* execute `sbt eclipse` dentro da pasta do projeto
-* importe o projeto no eclipse
-* Acrescente `-language:_` em Propriedades do Projeto > Scala Compiler > Additional command line parameters. Isso desabilita
+* Instale o [sbt 0.12.2][1]
+* Clone o projeto git@github.com:vidageek/games.git
+* Se for utilizar o Eclipse:
+  * Instale uma versão recente do [Scala IDE para Scala 2.10][2]
+  * Execute `sbt eclipse` dentro da pasta do projeto
+  * Importe o projeto no Eclipse
+  * Acrescente `-language:_` em Propriedades do Projeto > Scala Compiler > Additional command line parameters. Isso desabilita
 os feature warnings de Scala (Não vamos restringir o uso de nenhuma feature).
+* Se for utilizar o NetBeans:
+  * Instale o plugin [nbscala][3]
+  * Instale o plugin [nbsbt][4] (que também é mencionado na documentação do *nbscala*)
+  * Abra o projeto no NetBeans
+  * [Aqui tem um video ilustrando esses passos][5]
 
-# Para Executar Local
+
+# Para Executar Localmente
 ## Rodar SBT
     Basta entrar pelo console no diretório do projeto:
     $ sbt
@@ -21,5 +28,8 @@ os feature warnings de Scala (Não vamos restringir o uso de nenhuma feature).
     $ > container:start
 
 
-[1]: http://scala-ide.org/download/milestone.html#scala_ide_21_milestone_3
-[2]: http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html
+[1]: http://scala-sbt.org/release/docs/Getting-Started/Setup.html
+[2]: http://scala-ide.org/download/current.html
+[3]: https://github.com/dcaoyuan/nbscala
+[4]: https://github.com/dcaoyuan/nbsbt
+[5]: https://www.youtube.com/watch?v=aDKBF9H9rSY
