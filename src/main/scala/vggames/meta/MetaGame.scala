@@ -11,7 +11,8 @@ class MetaGame (descriptions : Descriptions) extends Game {
       secondTaskGroup,
       registerFactoryGroup,
       createJSPGroup,
-      test
+      test,
+      testp2
     )
 
 
@@ -32,8 +33,12 @@ class MetaGame (descriptions : Descriptions) extends Game {
 	new MetaTask("Modifique o template mostrado na descrição para seu jogo"))
   
   private def test = new TaskGroup("Criação de testes para um novo game", "meta.test", descriptions,
-      new MetaTask("Seguindo o exemplo dos testes existentes para o MathGame crie uma classe de teste para seu jogo.")
+      new MetaTask("Seguindo o exemplo dos testes existentes para o MathGame.scala crie uma classe de teste para seu jogo.")
       )
+    private def testp2 = new TaskGroup("Segunda parte da criação de testes para um novo game", "meta.testp2", descriptions,
+      new MetaTask("Seguindo o exemplo dos testes existentes para o MathTask.scala crie uma classe de teste para seu jogo.")
+      )
+  
   
   def getDescription(): String = { null }
  
