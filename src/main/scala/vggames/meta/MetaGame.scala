@@ -16,9 +16,12 @@ class MetaGame (descriptions : Descriptions) extends Game {
     new MetaTask("Digite o nome do seu jogo"),
     new MetaTask("Digite o nome de um outro jogo"));
 
-  private def secondTaskGroup = new TaskGroup("Segundo Grupo de Tarefas", "meta.second", descriptions,
-    new MetaTask("Digite o nome do seu jogo"),
-    new MetaTask("Digite o nome de um outro jogo"));
+  private def secondTaskGroup = new TaskGroup("Criando a classe do seu jogo", "meta.second", descriptions,
+    new MetaTask("Crie uma classe chamada MathGame que estende a classe Game"),
+    new MetaTask("Inclua o nome MathGame no método getName"),
+    new MetaTask("Inclua a descrição do jogo no método getDescription"),
+    new MetaTask("Inclua o método soma na val tasks")
+  );
   
   private def test = new TaskGroup("Criação de testes para um novo game", "meta.test", descriptions,
       new MetaTask("Seguindo o exemplo dos testes existentes para o MathGame crie uma classe de teste para seu jogo.")

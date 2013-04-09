@@ -12,7 +12,7 @@
         </c:if>  
         
         <form id="oi" class="challenge" method="POST" action="/play/${gameName}/task/${task.index}">
-            <label for="challenge"><strong>${task.challenge}</strong></label>>
+            <label for="challenge"><strong>${task.challenge}</strong></label>
             <input class="btn-primary" type="submit" value="Check!" />
         </form>    
 
