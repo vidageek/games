@@ -1,5 +1,6 @@
-As páginas web mostradas pelo vidageek.games são baseadas num arquivo .jsp, o seguinte é um 
-exemplo de um arquivo jsp, o qual tem que estar ubicado no endereço ./src/main/resources/webapp/WEB-INF/fragments
+As páginas web mostradas pelo vidageek.games são baseadas num arquivo .jsp. 
+
+O seguinte é um exemplo de um arquivo jsp, o qual tem que estar ubicado no endereço ./src/main/resources/webapp/WEB-INF/fragments
 
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	    pageEncoding="UTF-8"%>
