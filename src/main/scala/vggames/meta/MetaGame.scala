@@ -8,7 +8,9 @@ import vggames.shared.task.TaskGroup
 class MetaGame (descriptions : Descriptions) extends Game {
   override val tasks = new Tasks(
       configTaskGroup,
-      secondTaskGroup,
+      mathgameTaskGroup,
+      mathtaskTaskGroup,
+      markdownTaskGroup,
       registerFactoryGroup,
       createJSPGroup,
       test,
@@ -17,15 +19,24 @@ class MetaGame (descriptions : Descriptions) extends Game {
 
 
   private def configTaskGroup = new TaskGroup("Configurando o ambiente", "meta.config", descriptions,
-    new MetaTask("Siga os passos ao lado para configurar o ambiente"),
-    new MetaTask("Digite o nome de um outro jogo"));
+    new MetaTask("Siga os passos ao lado para configurar o ambiente"));
 
-  private def secondTaskGroup = new TaskGroup("Criando a classe do seu jogo", "meta.second", descriptions,
+  private def mathgameTaskGroup = new TaskGroup("Criando a classe do seu jogo", "meta.mathgame", descriptions,
     new MetaTask("Crie uma classe chamada MathGame que estende a classe Game"),
-    new MetaTask("Inclua o nome MathGame no método getName"),
-    new MetaTask("Inclua a descrição do jogo no método getDescription"),
-    new MetaTask("Inclua o método soma na val tasks")
+    new MetaTask("Inclua o nome Math no método getName, este será o nome de exibição do jogo"),
+    new MetaTask("Inclua uma descrição para seu jogo no método getDescription()"),
+    new MetaTask("Crie um método chamado sum que será um novo TaskGroup e responsável por agrupar diferentes tarefas sobre uma mesma referência"),
+    new MetaTask("Inclua o método sum em val tasks, isso fará com que esse grupo de tarefas seja apresentado ao usuário"),
+    new MetaTask("Crie novas Taks dentro de sum, cada Task será uma nova tarefa")
   );
+  
+  private def mathtaskTaskGroup = new TaskGroup("Criando a classe que julga as respostas de uma tarefa", "meta.mathtask", descriptions,
+      new MetaTask("Crie uma nova classe chamada MathTask que será responsável por julgar a entrada do usuário")
+      );
+  
+  private def markdownTaskGroup = new TaskGroup("Referências", "meta.markdown", descriptions,
+      new MetaTask("Criando um arquivo de referências."));
+  
   
   private def registerFactoryGroup = new TaskGroup("Registro do jogo na classe factory", "meta.register", descriptions,   
     new MetaTask("Procurar a classe GameFactory.scala"),

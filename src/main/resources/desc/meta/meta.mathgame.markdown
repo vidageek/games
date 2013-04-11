@@ -3,16 +3,28 @@
 Para criar um jogo no VidaGeek Games é necessário criar uma classe herdeira da classe `Game`.
 Essa será a classe principal do jogo. Ela conterá a descrição do jogo e o nome do jogo assim como os grupos de tarefas.
 
-	class NomeDoJogo(descriptions : Descriptions) extends Game {
-	
-	  override val tasks = new Tasks(
-	    grupo1,
-	    grupo2)
-	
-	  def getDescription() : String = { "Essa é a descrição do jogo." }
-	
-	  def getName() : String = { "NomeDoJogo" }
-	}
+<pre>package vggames.math
+
+import vggames.shared.Game
+import vggames.shared.task.Descriptions
+import vggames.shared.task.Tasks
+import vggames.shared.task.TaskGroup
+
+class MathGame(descriptions : Descriptions) extends Game {
+  override val tasks = new Tasks(
+    sum
+    )
+
+  private def sum = new TaskGroup("Soma", "math.sum", descriptions,
+    new MathTask(2, 3, "+"),
+    new MathTask(4, 5, "+")
+    )
+
+  def getDescription(): String = { "Jogo onde você aprenderá a somar, subtrair e multiplicar!" }
+
+  def getName() : String = { "Math" }
+
+}</pre>
 
 A trait Game contém as características comuns a todos os jogos. O valor `val tasks` 
 contém os métodos que representam os grupos de tarefas (TaskGroup).

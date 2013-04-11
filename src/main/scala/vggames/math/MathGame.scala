@@ -29,7 +29,7 @@ class MathGame(descriptions : Descriptions) extends Game {
     new MathTask(1, 0, "*"),
     new MathTask(11, 11, "*"))
 
-  def getDescription() : String = { null }
+  def getDescription() : String = { "Jogo onde você aprenderá a somar, subtrair e multiplicar!" }
 
   def getName() : String = { "Math" }
 
