@@ -14,7 +14,11 @@ class HtmlGame(descriptions : Descriptions) extends Game {
 
  
   private def basicStructures = new TaskGroup("Estruturas básicas no html", "html.basic", descriptions,
-    new HtmlTask("Crie um parágrafo com o texto: 'Hello world!'", "basic")
+    new HtmlTask("Crie um parágrafo com o texto: 'Hello world!'", "basic"),
+    new HtmlTask("Crie um título (h1) com o texto 'título'","basic_h1"),
+    new HtmlTask("Crie um sub-título (h2) com o texto 'título 2'","basic_h2"),
+    new HtmlTask("Crie um sub-título (h3) com o texto 'título 3'","basic_h3")
+  
   );
   
   def getDescription = "Um jogo muito legal para aprender Html, focado em Html5"
