@@ -10,7 +10,8 @@ class HtmlGame(descriptions : Descriptions) extends Game {
   override val tasks = new Tasks(
     new TaskGroup("teste", "test", descriptions,
       HtmlTask("Crie um h1 com o texto \"It's alive!!!!!\"", "bla")),
-      basicStructures)
+      basicStructures,
+      images)
 
  
   private def basicStructures = new TaskGroup("Estruturas básicas no html", "html.basic", descriptions,
@@ -19,6 +20,11 @@ class HtmlGame(descriptions : Descriptions) extends Game {
     new HtmlTask("Crie um sub-título (h2) com o texto 'título 2'","basic_h2"),
     new HtmlTask("Crie um sub-título (h3) com o texto 'título 3'","basic_h3")
   
+  );
+  
+  
+  private def images = new TaskGroup("Imagens em html", "html.images",descriptions,
+      new HtmlTask("Teste","image_1")
   );
   
   def getDescription = "Um jogo muito legal para aprender Html, focado em Html5"
