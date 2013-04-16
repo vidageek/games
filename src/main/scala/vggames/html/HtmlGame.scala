@@ -24,7 +24,8 @@ class HtmlGame(descriptions : Descriptions) extends Game {
   
   
   private def images = new TaskGroup("Imagens em html", "html.images",descriptions,
-      new HtmlTask("Teste","image_1")
+      new HtmlTask("Inclua uma imagem do endereço 'http://www.vidageek.net/images/logo.png' " +
+      		"com uma altura de 100 pixels e 'logo' como texto alternativo","image_1")
   );
   
   def getDescription = "Um jogo muito legal para aprender Html, focado em Html5"
