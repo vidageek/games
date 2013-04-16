@@ -11,7 +11,8 @@ class HtmlGame(descriptions : Descriptions) extends Game {
     new TaskGroup("teste", "test", descriptions,
       HtmlTask("Crie um h1 com o texto \"It's alive!!!!!\"", "bla")),
       basicStructures,
-      images)
+      images,
+      lists)
 
  
   private def basicStructures = new TaskGroup("Estruturas básicas no html", "html.basic", descriptions,
@@ -31,6 +32,9 @@ class HtmlGame(descriptions : Descriptions) extends Game {
       		"com altura de 100 pixels, largura 200 pixels e 'logo' como texto alternativo","image_3")
   	
   );
+  
+  private def lists = new TaskGroup("Listas em html", "html.lists",descriptions,
+      new HtmlTask("Crie uma lista não ordenada com os elementos: Carro, Moto e Barco", "list_1"));
   
   
   def getDescription = "Um jogo muito legal para aprender Html, focado em Html5"
