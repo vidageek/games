@@ -11,6 +11,7 @@ class HtmlGame(descriptions : Descriptions) extends Game {
     new TaskGroup("teste", "test", descriptions,
       HtmlTask("Crie um h1 com o texto \"It's alive!!!!!\"", "bla")),
       basicStructures,
+      paragraphs,
       images,
       lists,
       links)
@@ -40,10 +41,16 @@ class HtmlGame(descriptions : Descriptions) extends Game {
   
   private def links = new TaskGroup("Links em html", "html.link",descriptions,
       new HtmlTask("Crie um link para o Google","link_1"),
-      new HtmlTask("Crie um título usando <pre><h1></pre> chamado \"Home\" que seja também um link para a página \"http://home.com\"","link_2"),
+      new HtmlTask("Crie um título usando (h1) chamado \"Home\" que seja também um link para a página \"http://home.com\"","link_2"),
       new HtmlTask("Crie um link \"Vai\" que leva a outro local da página chamado Indice. O nome do identificador deve ser indice","link_3")
   );
 
+  private def paragraphs=new TaskGroup("Parágrafos e texto em html","html.paragraphs",descriptions,
+	  new HtmlTask("Crie um parágrafo com \"Oi mundo\" como conteudo.", "paragraph_1"),
+    new HtmlTask("Crie um parágrafo com \"Oi mundo\", mas com \"Oi\" em negrito.", "paragraph_2")
+  
+  );
+  
   def getDescription = "Um jogo muito legal para aprender Html, focado em Html5"
 
   def getName = "Html"
