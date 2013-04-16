@@ -34,7 +34,9 @@ class HtmlGame(descriptions : Descriptions) extends Game {
   );
   
   private def lists = new TaskGroup("Listas em html", "html.lists",descriptions,
-      new HtmlTask("Crie uma lista não ordenada com os elementos: Carro, Moto e Barco", "list_1"));
+      new HtmlTask("Crie uma lista não ordenada com os elementos: Carro, Moto e Barco", "list_1"),
+      new HtmlTask("Crie uma lista ordenada com os elementos: Abacaxi, Uva e Banana", "list_2"),
+      new HtmlTask("Crie uma lista de definições com os elementos Grama e Sol e suas respectivas cores Verde e Amarelo", "list_3"));
   
   private def links = new TaskGroup("Links em html", "html.link",descriptions,
       new HtmlTask("Crie um link para o Google","link_1"),
