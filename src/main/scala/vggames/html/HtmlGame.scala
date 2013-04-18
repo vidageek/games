@@ -51,7 +51,9 @@ class HtmlGame(descriptions : Descriptions) extends Game {
   	new HtmlTask("Escreva o texto \"texto em itálico\" com a palavra \"itálico\" em itálico","paragraph_3"),
   	new HtmlTask("Escreva o texto \"texto grande\" com a palavra \"grande\" usango a tag big","paragraph_4"),  	
   	new HtmlTask("Escreva o texto \"texto pequeno\" com a palavra \"pequeno\" usando a tag small","paragraph_5"),
-  	new HtmlTask("Escreva o texto com o formato mostrado no exemplo da direita","paragraph_6")
+  	new HtmlTask("Escreva o texto com o formato mostrado no exemplo da direita","paragraph_6"),
+  	new HtmlTask("Escreva o código \"System.out.println(\"Hello world!\")\" usando a tag code" ,"paragraph_7"),
+  	new HtmlTask("Escreva o texto mostrado no exemplo da direita usando a tag pre","paragraph_8") 	
   );
   
   def getDescription = "Um jogo muito legal para aprender Html, focado em Html5"

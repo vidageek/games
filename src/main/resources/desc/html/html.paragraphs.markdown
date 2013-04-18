@@ -33,3 +33,12 @@ Assim, por exemplo:
 	
 resulta em:
 texto <big>grande</big> e <small>pequeno</small>
+
+Podemos usar a tag <b><code\></b> para incluir texto em formato de código de programas.
+
+Por exemplo:
+
+<code> public class Games </code>
+
+Também podemos usar a tag <b><pre\></b> para incluir texto literal, o que pode ser usado para mostrar as tags html.
+  
