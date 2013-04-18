@@ -12,9 +12,11 @@ class HtmlGame(descriptions : Descriptions) extends Game {
       HtmlTask("Crie um h1 com o texto \"It's alive!!!!!\"", "bla")),
       basicStructures,
       paragraphs,
+      links,
       images,
       lists,
-      links)
+      tables
+      )
 
  
   private def basicStructures = new TaskGroup("Estruturas básicas no html", "html.basic", descriptions,
@@ -39,7 +41,7 @@ class HtmlGame(descriptions : Descriptions) extends Game {
       new HtmlTask("Crie uma lista ordenada com os elementos: Abacaxi, Uva e Banana", "list_2"),
       new HtmlTask("Crie uma lista de definições com os elementos Grama e Sol e suas respectivas cores Verde e Amarelo", "list_3"));
   
-  private def links = new TaskGroup("Links em html", "html.link",descriptions,
+  private def links = new TaskGroup("Links em html", "html.links",descriptions,
       new HtmlTask("Crie um link para o Google","link_1"),
       new HtmlTask("Crie um título usando (h1) chamado \"Home\" que seja também um link para a página \"http://home.com\"","link_2"),
       new HtmlTask("Crie um link \"Vai\" que leva a outro local da página chamado Indice. O nome do identificador deve ser indice","link_3")
@@ -54,6 +56,12 @@ class HtmlGame(descriptions : Descriptions) extends Game {
   	new HtmlTask("Escreva o texto com o formato mostrado no exemplo da direita","paragraph_6"),
   	new HtmlTask("Escreva o código \"System.out.println(\"Hello world!\")\" usando a tag code" ,"paragraph_7"),
   	new HtmlTask("Escreva o texto mostrado no exemplo da direita usando a tag pre","paragraph_8") 	
+  );
+  
+  private def tables = new TaskGroup("Tabelas em html","html.tables",descriptions,
+	  new HtmlTask("Crie uma tabela com borda, de 2 linhas e 2 colunas, com os núneros de 1 a 4.", "table_1"),
+	  new HtmlTask("Crie uma tabela de 2 linhas e 2 colunas, mesclando as duas primeiras células e com o conteúdo em negrito conforme o exemplo", "table_2"),
+  	  new HtmlTask("Crie uma tabela de 2 linhas e 2 colunas, mesclando a primeira coluna e com o conteúdo em negrito conforme o exemplo", "table_3")
   );
   
   def getDescription = "Um jogo muito legal para aprender Html, focado em Html5"
