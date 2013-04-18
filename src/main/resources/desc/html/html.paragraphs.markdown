@@ -16,3 +16,20 @@ Dessa forma
 resulta em:
 
 <b>Negrito</b> legal
+
+Para escrever o texto em itálico, são utilizadas as tags <b><i\></b> e <b></i\></b>
+Assim:
+
+	texto <i>itálico</i>
+	
+resulta em:
+texto <i>itálico</i>
+
+<h3>Tamanho do texto</h3>
+É possível escrever texto em diferentes tamanhos usando as tags <b><big\></b> e <b><small\></b>.
+
+Assim, por exemplo:
+	texto <big>grande</big> e <small>pequeno</small>
+	
+resulta em:
+texto <big>grande</big> e <small>pequeno</small>
