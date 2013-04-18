@@ -1,5 +1,5 @@
-Tabelas em HTML são formadas através das tags <table\></table\>. No entanto, ao contrário de outros elementos,
-em tabelas é preciso definir os níveis inferiores, utilizando as tags <tr\></tr\> para linhas e <td\></td\> 
+Tabelas em HTML são formadas através das tags <b><table\></table\></b>. No entanto, ao contrário de outros elementos,
+em tabelas é preciso definir os níveis inferiores, utilizando as tags <b><tr\></tr\></b> para linhas e <b><td\></td\></b> 
 para as células dentro dessa linha, conforme o exemplo abaixo:
 
 	<table border=1>

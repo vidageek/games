@@ -15,7 +15,8 @@ class HtmlGame(descriptions : Descriptions) extends Game {
       links,
       images,
       lists,
-      tables
+      tables,
+      divs
       )
 
  
@@ -62,6 +63,10 @@ class HtmlGame(descriptions : Descriptions) extends Game {
 	  new HtmlTask("Crie uma tabela com borda, de 2 linhas e 2 colunas, com os núneros de 1 a 4.", "table_1"),
 	  new HtmlTask("Crie uma tabela de 2 linhas e 2 colunas, mesclando as duas primeiras células e com o conteúdo em negrito conforme o exemplo", "table_2"),
   	  new HtmlTask("Crie uma tabela de 2 linhas e 2 colunas, mesclando a primeira coluna e com o conteúdo em negrito conforme o exemplo", "table_3")
+  );
+  
+  private def divs = new TaskGroup("Divs em html","html.divs",descriptions,
+	  new HtmlTask("Crie uma div", "div_1")
   );
   
   def getDescription = "Um jogo muito legal para aprender Html, focado em Html5"
