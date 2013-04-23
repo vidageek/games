@@ -71,7 +71,9 @@ class HtmlGame(descriptions : Descriptions) extends Game {
   );
 
   private def structures =new TaskGroup("Estruturas do arquivo","html.structures",descriptions,
-    new HtmlTask("Escreva toda a estrutura de um arquivo html com o título \"Página html\" e conteudo \"Oi mundo\"","structure_1")  
+    new HtmlTask("Escreva toda a estrutura de um arquivo html com o título \"Página html\" e conteúdo \"Oi mundo\"","structure_1"),
+    new HtmlTask("Escreva a estrutura de um arquivo html com o título \"Minha página\" contendo o texto \"Conteúdo da minha página\" em negrito","structure_2"),
+    new HtmlTask("Escreva a estrutura de um arquivo html com o título \"Página com link\" contendo um link para a página do Google \"www.google.com\"","structure_3")
   );
   
   def getDescription = "Um jogo muito legal para aprender Html, focado em Html5"
