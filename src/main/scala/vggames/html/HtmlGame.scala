@@ -21,7 +21,7 @@ class HtmlGame(descriptions : Descriptions) extends Game {
       )
 
  
-  private def basicStructures = new TaskGroup("Exercícios básicos no html", "html.basic", descriptions,
+  private def basicStructures = new TaskGroup("Exercícios básicos", "html.basic", descriptions,
     new HtmlTask("Crie um parágrafo com o texto: 'Hello world!'", "basic"),
     new HtmlTask("Crie um título (h1) com o texto 'título'","basic_h1"),
     new HtmlTask("Crie um sub-título (h2) com o texto 'título 2'","basic_h2"),
@@ -29,7 +29,7 @@ class HtmlGame(descriptions : Descriptions) extends Game {
   );
   
   
-  private def images = new TaskGroup("Imagens em html", "html.images",descriptions,
+  private def images = new TaskGroup("Imagens", "html.images",descriptions,
       new HtmlTask("Inclua uma imagem do endereço 'http://www.vidageek.net/images/logo.png' alt='logo'","image_1"),
       new HtmlTask("Inclua uma imagem do endereço 'http://www.vidageek.net/images/logo.png' " +
       		"com uma altura de 100 pixels e 'logo' como texto alternativo","image_2"),
@@ -38,12 +38,12 @@ class HtmlGame(descriptions : Descriptions) extends Game {
   	
   );
   
-  private def lists = new TaskGroup("Listas em html", "html.lists",descriptions,
+  private def lists = new TaskGroup("Listas", "html.lists",descriptions,
       new HtmlTask("Crie uma lista não ordenada com os elementos: Carro, Moto e Barco", "list_1"),
       new HtmlTask("Crie uma lista ordenada com os elementos: Abacaxi, Uva e Banana", "list_2"),
       new HtmlTask("Crie uma lista de definições com os elementos Grama e Sol e suas respectivas cores Verde e Amarelo", "list_3"));
   
-  private def links = new TaskGroup("Links em html", "html.links",descriptions,
+  private def links = new TaskGroup("Links", "html.links",descriptions,
       new HtmlTask("Crie um link para o Google","link_1"),
       new HtmlTask("Crie um título usando (h1) chamado \"Home\" que seja também um link para a página \"http://home.com\"","link_2"),
       new HtmlTask("Crie um link \"Vai\" que leva a outro local da página chamado Indice. O nome do identificador deve ser indice","link_3")
@@ -60,17 +60,17 @@ class HtmlGame(descriptions : Descriptions) extends Game {
   	new HtmlTask("Escreva o texto mostrado no exemplo da direita usando a tag pre","paragraph_8") 	
   );
   
-  private def tables = new TaskGroup("Tabelas em html","html.tables",descriptions,
+  private def tables = new TaskGroup("Tabelas","html.tables",descriptions,
 	  new HtmlTask("Crie uma tabela com borda, de 2 linhas e 2 colunas, com os núneros de 1 a 4.", "table_1"),
 	  new HtmlTask("Crie uma tabela de 2 linhas e 2 colunas, mesclando as duas primeiras células e com o conteúdo em negrito conforme o exemplo", "table_2"),
   	  new HtmlTask("Crie uma tabela de 2 linhas e 2 colunas, mesclando a primeira coluna e com o conteúdo em negrito conforme o exemplo", "table_3")
   );
   
-  private def divs = new TaskGroup("Divs em html","html.divs",descriptions,
+  private def divs = new TaskGroup("Divs","html.divs",descriptions,
 	  new HtmlTask("Crie uma div", "div_1")
   );
 
-  private def structures =new TaskGroup("Estruturas do arquivo html","html.structures",descriptions,
+  private def structures =new TaskGroup("Estruturas do arquivo","html.structures",descriptions,
     new HtmlTask("Escreva toda a estrutura de um arquivo html com o título \"Página html\" e conteudo \"Oi mundo\"","structure_1")  
   );
   
