@@ -58,6 +58,7 @@ trait Answers {
   def function = List("""(x: Int) => { x+1 }""")
   
   def whileloop = List(
+    "var soma = 0; var i = 0; while(i <= 100) {soma += i; i += 1}",
     "var soma = 0; var i = 0; while(i < arr.size) {soma += arr(i); i += 1}",
     "var menor = arr(0); var i = 1; while(i < arr.size) {if (arr(i) < menor) menor = arr(i); i += 1}",
     "var maior = arr(0); var i = 1; while(i < arr.size) {if (arr(i) > maior) maior = arr(i); i += 1}"

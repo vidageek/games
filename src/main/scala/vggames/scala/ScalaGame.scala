@@ -83,6 +83,7 @@ class ScalaGame(descriptions : Descriptions) extends Game {
 
   def addWhileExercises =
     new TaskGroup("Estruturas de repetição while", "loop.while", descriptions,
+      new SomaFaixaValores(),
       new SomaArray(),
       new MenorValorArray(),
       new MaiorValorArray())
