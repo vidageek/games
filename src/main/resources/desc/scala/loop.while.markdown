@@ -11,7 +11,7 @@ A forma geral do while é
 }</pre>
 
 No lugar de `EXPRESSAO BOOLEANA` se insere uma expressão Scala que avalia
-para um valor do tipo `Boolean`. Um exemplo é uma comparacao de valores, como
+para um valor do tipo `Boolean`. Um exemplo é uma comparação de valores, como
 `i < tamanho_maximo` ou `i == 0`. Essa expressão será avaliada a cada execução
 do loop. O loop para de executar quando essa expressão avalia para `false`.
 
