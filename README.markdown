@@ -1,6 +1,12 @@
 # VidaGeek Games
 ## Uma forma mais simples de aprender
 
+# Licenças
+
+Todo o código fonte de nossa autoria (arquivos `.scala`, `.sh`, `.sbt` e outros) estão licensiados sob [GPLv3][7].
+
+O conteúdo das explicações dos exercícios (encontrado em `src/main/resources/desc`) está licensiado sob [CC-BY][8].
+
 
 # Como preparar o Ambiente
 
@@ -34,3 +40,5 @@ os feature warnings de Scala (Não vamos restringir o uso de nenhuma feature).
 [4]: https://github.com/dcaoyuan/nbscala
 [5]: https://github.com/dcaoyuan/nbsbt
 [6]: https://www.youtube.com/watch?v=aDKBF9H9rSY
+[7]: https://github.com/vidageek/games/blob/master/LICENSE
+[8]: https://creativecommons.org/licenses/by/3.0/deed.pt_BR
