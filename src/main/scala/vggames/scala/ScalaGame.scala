@@ -11,10 +11,14 @@ import vggames.shared.Game
 import vggames.shared.task.{ Descriptions, TaskGroup, Tasks }
 import vggames.scala.specs.functions.BasicFunction
 import vggames.scala.specs.functions.BasicFunction
+import vggames.scala.specs.literal.SumTwoNumbers
+import vggames.scala.specs.literal.RepresentString
+import vggames.scala.specs.literal.MultiplyTwoNumbers
 
 class ScalaGame(descriptions : Descriptions) extends Game {
 
   override val tasks = new Tasks(
+    addLiteralOperations,
     addValEVarExercises,
     addBasicMathExercises,
     addBasicBooleanExercises,
@@ -24,6 +28,12 @@ class ScalaGame(descriptions : Descriptions) extends Game {
     addFunctionExercises,
     addWhileExercises,
     addListExercises)
+
+  def addLiteralOperations =
+    new TaskGroup("Bem vindo à Scala", "basic.value", descriptions,
+      new SumTwoNumbers(),
+      new MultiplyTwoNumbers(),
+      new RepresentString())
 
   def addValEVarExercises =
     new TaskGroup("Variáveis e Valores", "basic.varval", descriptions,
