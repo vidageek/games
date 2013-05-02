@@ -103,5 +103,6 @@ object GamesVidageekBuild extends Build {
     assets foreach(asset => gzipPrinter.print(new Scanner(asset).useDelimiter("$$").next))
     gzipPrinter.close()
     gzipOut.close()
-  }
+  }  
+  
 }
