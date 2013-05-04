@@ -20,8 +20,8 @@ else "espere mais um pouco antes de começar a beber!"</pre>
 Por fim, outro recurso à nossa disposição é a possibilidade de encadear diversos `if`s -
 algo que normalmente referenciamos como `else if`.
 
-Imagine que rolamos um dado, se sair 1 ou 2 retornamos `perdeu`, se sair 3 ou 4 retornamos
-`empatou` e no caso de 5 ou 6, `ganhou`. A estrutura condicional abaixo teria exatamente
+Imagine que rolamos um dado, se sair 1 ou 2 retornamos `"perdeu"`, se sair 3 ou 4 retornamos
+`"empatou"` e no caso de 5 ou 6, `"ganhou"`. A estrutura condicional abaixo teria exatamente
 esse resultado:
 
 <pre>if(dado == 1 || dado == 2) "perdeu"
