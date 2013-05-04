@@ -24,7 +24,11 @@ Obs. Ser&aacute; necess&aacute;rio declarar a vari&aacute;vel <code>maior</code>
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
     "O seu código" should {
-      """ encontrar o maior valor do array """ in {
+      "utilizar while para percorrer o array" in {
+        submittedCode.contains("while") must beTrue
+      }
+      
+      "encontrar o maior valor do array" in {
         code() must_== 3
       }
     }  

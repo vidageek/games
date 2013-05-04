@@ -23,6 +23,10 @@ Obs. Ser&aacute; necess&aacute;rio declarar a vari&aacute;vel <code>soma</code>.
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
     "O seu código" should {
+      "utilizar while para percorrer todos os n&uacute;meros" in {
+        submittedCode.contains("while") must beTrue
+      }
+      
       "somar todos os valores entre 1 e 100" in {
         code() must_== 5050
       }
