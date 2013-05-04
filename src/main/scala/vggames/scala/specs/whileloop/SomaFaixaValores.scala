@@ -23,7 +23,7 @@ Obs. Ser&aacute; necess&aacute;rio declarar a vari&aacute;vel <code>soma</code>.
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
     "O seu código" should {
-      "somar valores entre 1 e 100" in {
+      "somar todos os valores entre 1 e 100" in {
         code() must_== 5050
       }
     }  
