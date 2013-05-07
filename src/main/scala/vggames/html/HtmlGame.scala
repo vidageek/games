@@ -8,8 +8,6 @@ import vggames.shared.task.TaskGroup
 class HtmlGame(descriptions : Descriptions) extends Game {
 
   override val tasks = new Tasks(
-    new TaskGroup("teste", "test", descriptions,
-      HtmlTask("Crie um h1 com o texto \"It's alive!!!!!\"", "bla")),
       basicStructures,
       structures,
       paragraphs,
