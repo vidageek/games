@@ -15,5 +15,6 @@ o arquivo html é separado em dois grupos, um cabeçalho e o corpo.
 O cabeçalho ficam dentro da tag <b><head\></b> e contém as informações do título, das bibliotecas, 
 estilos e demais recursos, incluindo
 o título da página, que fica dentro da tag <b><title\>Título</title\></b>.
+
 O conteúdo que será mostrado na página fica dentro da tag <b><body\></b>, dentro do corpo
 podem ser incluidas as diversas tags de formatação de texto.
