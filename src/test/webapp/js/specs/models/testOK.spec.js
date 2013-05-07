@@ -1,5 +1,5 @@
-define(['models/task', 'jquery'],
-    function(Task, $) {
+define(['jquery'],
+    function($) {
 		describe('Hello world', function() {
 		        it('says hello', function() {
 		                expect(helloWorld()).toEqual("Hello world!");
