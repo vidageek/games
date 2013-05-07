@@ -1,7 +1,7 @@
 
 
 Um texto em HTML é composto por tags. Tags são estruturas de palavras-chave, cercadas
-pelos caracteres <b><></b>, sendo que o final dela é a mesma tag com o caractere <b>/</b>.
+pelos caracteres <b><></b>, sendo que o final dela é a mesma tag com o caractere "<b>/</b>".
 
 	<h1>Isto é um título em HTML</h1>
 
