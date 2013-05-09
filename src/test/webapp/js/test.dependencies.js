@@ -1,2 +1,2 @@
-EnvJasmine.loadGlobal(EnvJasmine.libDir + "/require/require-2.0.6.js");
-EnvJasmine.loadGlobal(EnvJasmine.testDir + "/require.conf.js");
+EnvJasmine.loadGlobal(EnvJasmine.libDir + "jquery-1.9.1.min.js");
+EnvJasmine.loadGlobal(EnvJasmine.libDir + "../games.js");
