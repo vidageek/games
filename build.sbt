@@ -15,9 +15,5 @@ jasmineTestDir <+= sourceDirectory { src => src / "test" / "webapp" / "js" }
 
 jasmineConfFile <+= sourceDirectory { src => src / "test" / "webapp" / "js" / "test.dependencies.js" }
 
-jasmineRequireJsFile <+= sourceDirectory { src => src / "main" / "webapp" / "js" / "lib" / "require" / "require-2.0.6.js" }
-
-jasmineRequireConfFile <+= sourceDirectory { src => src / "test" / "webapp" / "js" / "require.conf.js" }
-
 (test in Test) <<= (test in Test) dependsOn (jasmine)
 
