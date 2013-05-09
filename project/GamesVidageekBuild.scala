@@ -8,6 +8,7 @@ import WebPlugin._
 import WebappPlugin._
 import IO._
 import PluginKeys._
+import org._
 
 object GamesVidageekBuild extends Build {
 
@@ -55,6 +56,7 @@ object GamesVidageekBuild extends Build {
       "com.amazonaws" % "aws-java-sdk" % "1.3.20",
       "eu.henkelmann" % "actuarius_2.10.0" % "0.2.5",
       "org.specs2" %% "specs2" % "1.14",
+      "org.seleniumhq.selenium" % "selenium-firefox-driver" % "2.32.0" % "test",
       "org.mockito" % "mockito-core" % "1.9.0" % "test",
       "junit" % "junit" % "4.10" % "test",
       "com.typesafe.akka" %% "akka-testkit" % "2.1.1" % "test"
