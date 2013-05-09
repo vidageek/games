@@ -5,7 +5,10 @@ Assim
 	<p align="right">texto</p> 
 dá como resultado:
 
-<p align="right">texto</p>
+<table border="5" align="right"><tr><td>
+<p >texto</p>
+</td></tr></table>
+<br/>
 
 <h2>Formatação</h2>
 
@@ -15,7 +18,9 @@ Dessa forma
 	
 resulta em:
 
+<table border="5"><tr><td>
 <b>Negrito</b> legal
+</td></tr></table>
 
 Para escrever o texto em itálico, são utilizadas as tags <b><i\></b> e <b></i\></b>
 Assim:
@@ -23,30 +28,6 @@ Assim:
 	texto <i>itálico</i>
 	
 resulta em:
+<table border="5"><tr><td>
 texto <i>itálico</i>
-
-<h3>Tamanho do texto</h3>
-É possível escrever texto em diferentes tamanhos usando as tags <b><big\></b> e <b><small\></b>.
-
-Assim, por exemplo:
-	texto <big>grande</big> e <small>pequeno</small>
-	
-resulta em:
-texto <big>grande</big> e <small>pequeno</small>
-
-Podemos usar a tag <b><code\></b> para incluir texto em formato de código de programas.
-
-Por exemplo:
-	<code> public class Games </code>
-Gera:
-<code> public class Games </code>
-
-Também podemos usar a tag <b><pre\></b> para incluir texto com um formato predefinido.
-
-Por exemplo:
-	<pre>O pre mantém os     espaços em branco
-	e quebras de linha</pre>
-
-resulta em:
-<pre>O pre mantém os     espaços em branco
-e quebras de linha</pre>
+</td></tr></table>

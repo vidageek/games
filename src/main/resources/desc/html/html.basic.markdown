@@ -8,26 +8,24 @@ pelos caracteres <b><></b>, sendo que o final dela é a mesma tag com o caracter
 As tags exercem certas instruções, como transformar um texto em negrito ou 
 destacar um título para uma página.
 
-Assim, por exemplo, para definir um parágrafo é utilizada a tag <b><p\></b>. Os títulos podem ser
+Por exemplo, para definir um parágrafo é utilizada a tag <b><p\></b>. Títulos podem ser
 definidos com tags de <b><h1\></b> a <b><h6\></b>, sendo 1 o maior e 6 o menor. Frases curtas também 
 podem ser inseridas através da tag <b><span\></b>.
 
-Por exemplo, o texto HTML abaixo
+Observe o exemplo abaixo e seu resultado na página:
 
 	<h1> Título de um artigo </h1>
 	<h3> Um subtítulo definido por H3 </h3>
 	
-	<p>Aqui segue um parágrafo sobre um assunto do artigo. 
-	Caso seja necessário fazer alguma alteracão 
-	de formato no meio do texto, é possível utilizar a tag 
-	<span>span</span> para fazer isso.</p>
-	
-Irá resultar a seguinte mensagem:
-<br/>
+	<p>Caso seja necessário incluir formatação no meio 
+	do texto, é possível utilizar a tag 
+	<span>span</span> para isso.</p>
 
+<table border="5"><tr><td>
 <h1> Título de um artigo </h1>
 <h3> Um subtítulo definido por H3 </h3>
 
-<p>Aqui segue um parágrafo sobre um assunto do artigo. Caso seja necessário
-fazer alguma alteracão  de formato no meio do texto, é possível utilizar a tag 
-<span>span</span> para fazer isso.</p>
+<p>Caso seja necessário incluir formatação 
+no meio do texto, é possível utilizar a tag 
+<span>span</span> para isso.</p>
+</td></tr></table>
