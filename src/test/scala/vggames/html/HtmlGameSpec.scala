@@ -124,8 +124,8 @@ class HtmlGameSpec extends Specification with WebBrowser {
     "format 6" in // TODO: Arrumar esse teste quando não houver mais bugs no verificador
     {
       task("html", 14)
-      solve("<pre>Esse texto    contém 4 espaços\ne uma quebra de linha</pre>")
-      verifyOk must beTrue
+      solve("<pre>Esse texto    contém 4 espaços e uma quebra de linha</pre>")
+      verifyOk must beTrue // Alterar!
     }
     
     "link 1" in 
