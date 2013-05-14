@@ -8,11 +8,11 @@ import vggames.shared.task.TaskGroup
 class HtmlGame(descriptions : Descriptions) extends Game {
 
   override val tasks = new Tasks(
-    new TaskGroup("teste", "test", descriptions,
-      HtmlTask("Crie um h1 com o texto \"It's alive!!!!!\"", "bla")),
       basicStructures,
       structures,
       paragraphs,
+      formats,
+      formats2,
       links,
       images,
       lists,
@@ -49,15 +49,21 @@ class HtmlGame(descriptions : Descriptions) extends Game {
       new HtmlTask("Crie um link \"Vai\" que leva a outro local da página chamado Indice. O nome do identificador deve ser indice","link_3")
   );
 
-  private def paragraphs=new TaskGroup("Parágrafos e formatação de texto","html.paragraphs",descriptions,
+  private def paragraphs=new TaskGroup("Parágrafos","html.paragraphs",descriptions,
 	  new HtmlTask("Crie um parágrafo com \"Oi mundo\" como conteúdo.", "paragraph_1"),
-    new HtmlTask("Crie um parágrafo com \"Oi mundo\", mas com \"Oi\" em negrito.", "paragraph_2"),
-  	new HtmlTask("Escreva o texto \"texto em itálico\" com a palavra \"itálico\" em itálico","paragraph_3"),
-  	new HtmlTask("Escreva o texto \"texto grande\" com a palavra \"grande\" usango a tag big","paragraph_4"),  	
-  	new HtmlTask("Escreva o texto \"texto pequeno\" com a palavra \"pequeno\" usando a tag small","paragraph_5"),
-  	new HtmlTask("Escreva o texto com o formato mostrado no exemplo da direita","paragraph_6"),
-  	new HtmlTask("Escreva o código \"System.out.println(\"Hello world!\")\" usando a tag code" ,"paragraph_7"),
-  	new HtmlTask("Escreva o texto mostrado no exemplo da direita usando a tag pre","paragraph_8") 	
+	  new HtmlTask("Crie um parágrafo com \"Oi mundo\", mas com \"Oi\" em negrito.", "paragraph_2")
+  );
+  
+private def formats=new TaskGroup("Formatação de texto","html.formats",descriptions,
+  	new HtmlTask("Escreva o texto \"texto em itálico\" com a palavra \"itálico\" em itálico","format_1"),
+  	new HtmlTask("Escreva o texto \"texto grande\" com a palavra \"grande\" usango a tag big","format_2"),  	
+  	new HtmlTask("Escreva o texto \"texto pequeno\" com a palavra \"pequeno\" usando a tag small","format_3")
+  );
+
+private def formats2=new TaskGroup("Formatação de texto 2","html.formats2",descriptions,
+  	new HtmlTask("Escreva o texto com o formato mostrado no exemplo da direita","format_4"),
+  	new HtmlTask("Escreva o código \"System.out.println(\"Hello world!\")\" usando a tag code" ,"format_5"),
+  	new HtmlTask("Escreva o texto mostrado no exemplo da direita usando a tag pre","format_6") 	
   );
   
   private def tables = new TaskGroup("Tabelas","html.tables",descriptions,

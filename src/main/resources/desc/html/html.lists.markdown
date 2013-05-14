@@ -13,7 +13,8 @@ Para adicionar elementos à lista utilizar a tag <b> <li\> </li\> </b>
 <li> Elemento 2 </li>
 </ul>
 
-As <b>listas ordenadas</b> são definidas com <b><ol\> </ol\></b>
+As <b>listas ordenadas</b> são definidas com <b><ol\> </ol\></b>, nesse tipo de listas são adicionados
+enumeradores a cada um dos ítems.
 	<ol>
 		<li> Elemento 1 </li>
 		<li> Elemento 2 </li>
