@@ -3,5 +3,3 @@
 		                expect(helloWorld()).toEqual("Hello world!");
 		        });
 		});
-		
-		

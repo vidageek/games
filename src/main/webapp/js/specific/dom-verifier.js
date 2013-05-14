@@ -10,7 +10,7 @@ function verifyWellFormedNess(challenge) {
 	var tag = tagPattern.exec(challenge);
 	while (tag) {
 		tag = tag[1]
-		if (tag.charAt(0) == "/") {
+		if (tag.charAt(0) == "/") {	
 			var top = last(stack);
 			if (top == tag.substring(1)){
 				stack.pop();

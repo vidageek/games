@@ -14,7 +14,7 @@ $(document).ready(function() {
 
 	$('.focus').focus();
 	
-	$('#logon-provider').modal({backdrop: false, show: false})
+	$('#logon-provider').modal({backdrop: false, show: false})	
 
 	$('form.challenge').submit(function(e){
 		if ($('form.challenge input[disabled]').length == 0) {
