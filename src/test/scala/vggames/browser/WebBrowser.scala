@@ -17,6 +17,7 @@ trait WebBrowser {
   	def solve(response: String) : Unit = {
   		var js = driver.asInstanceOf[JavascriptExecutor];
     	js.executeScript("""editor.setValue('""" + response + """');""")
+    	Thread.sleep(4000);
     }
 
     def verifyOk : Boolean = 
