@@ -1,4 +1,9 @@
 startTime = new Date().getTime() / 1000
+
+function helloWorld(){
+	return "Hello world!";
+}
+
 $(document).ready(function() {
 	if (!($.browser.webkit || $.browser.mozilla)) {
 		$('#main-content').prepend('<div class="alert alert-danger">Parece que o seu browser não é suportado ' +
