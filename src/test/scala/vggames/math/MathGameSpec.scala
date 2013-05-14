@@ -8,7 +8,7 @@ import vggames.shared.task.Descriptions
 import vggames.browser.WebBrowser
 
 @RunWith(classOf[JUnitRunner])
-class MathGameSpec extends Specification with Mockito with WebBrowser{
+class MathGameSpec extends Specification with Mockito{
   val descriptions = mock[Descriptions]
   val answers = List(5, 9, 1, 36, -1, 3, 1, 12, 6, 20, 0, 121).map(_.toString )
 

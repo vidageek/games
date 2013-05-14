@@ -9,18 +9,19 @@ import org.openqa.selenium.JavascriptExecutor
 
 trait WebBrowser {
 
-  	var driver = new FirefoxDriver
-  	var baseUrl = "http://localhost:8080";
-	
-	def task(game: String, numberTask: Int) {driver.get(baseUrl + "/play/"+ game + "/task/" + numberTask);}
-  
-  	def solve(response: String) : Unit = {
-  		var js = driver.asInstanceOf[JavascriptExecutor];
-    	js.executeScript("""editor.setValue('""" + response + """');""")
-    	Thread.sleep(4000);
-    }
+  var driver = new FirefoxDriver
+  var baseUrl = "http://localhost:8080";
 
-    def verifyOk : Boolean = 
-		driver.findElement(By.cssSelector("BODY")).getText().contains("Ok!") || 
-		driver.findElement(By.cssSelector("BODY")).getText().contains("Compartilhe a sua conquista")
+  def task(game: String, numberTask: Int) { driver.get(baseUrl + "/play/" + game + "/task/" + numberTask); }
+
+  def solve(response: String): Unit = {
+    var js = driver.asInstanceOf[JavascriptExecutor];
+    js.executeScript("""editor.setValue('""" + response + """');""")
+  }
+
+  def verifyOk: Boolean = {
+    Thread.sleep(200);
+    driver.findElement(By.cssSelector("BODY")).getText().contains("Ok!") ||
+    driver.findElement(By.cssSelector("BODY")).getText().contains("Compartilhe a sua conquista")
+  }
 }
