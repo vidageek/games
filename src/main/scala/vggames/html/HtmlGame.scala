@@ -15,7 +15,9 @@ class HtmlGame(descriptions : Descriptions) extends Game {
       formats2,
       links,
       images,
-      lists,
+      unorderedLists,
+      orderedlists,
+      definitionlists,
       tables,
       divs
       )
@@ -38,9 +40,14 @@ class HtmlGame(descriptions : Descriptions) extends Game {
   	
   );
   
-  private def lists = new TaskGroup("Listas", "html.lists",descriptions,
-      new HtmlTask("Crie uma lista não ordenada com os elementos: Carro, Moto e Barco", "list_1"),
-      new HtmlTask("Crie uma lista ordenada com os elementos: Abacaxi, Uva e Banana", "list_2"),
+  private def unorderedLists = new TaskGroup("Listas não ordenadas", "html.unorderedlists",descriptions,
+      new HtmlTask("Crie uma lista não ordenada com os elementos: Carro, Moto e Barco", "list_1")
+      )
+  
+  private def orderedlists = new TaskGroup("Listas ordenadas", "html.orderedlists",descriptions,
+      new HtmlTask("Crie uma lista ordenada com os elementos: Abacaxi, Uva e Banana", "list_2"))
+  
+  private def definitionlists = new TaskGroup("Listas de definições", "html.definitionlists",descriptions,
       new HtmlTask("Crie uma lista de definições com os elementos Grama e Sol e suas respectivas cores Verde e Amarelo", "list_3"));
   
   private def links = new TaskGroup("Links", "html.links",descriptions,

@@ -1,0 +1,11 @@
+As <b>listas ordenadas</b> são definidas com <b><ol\> </ol\></b>, nesse tipo de listas são adicionados
+enumeradores a cada um dos ítems.
+	<ol>
+		<li> Elemento 1 </li>
+		<li> Elemento 2 </li>
+	</ol>
+
+<ol>
+<li> Elemento 1 </li>
+<li> Elemento 2 </li>
+</ol>
