@@ -215,7 +215,7 @@ class HtmlGameSpec extends Specification with WebBrowser {
     "div 1" in 
     {
       task("html", 27)
-      solve("""<div style="color:red"><span>Minha querida div</span></div>""")
+      solve("""<div><span>Minha querida div</span></div>""")
       verifyOk must beTrue
     }
   }
