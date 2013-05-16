@@ -1,4 +1,5 @@
 function verify(reference, challenge, challengeString) {
+		
 	return verifySimilarity(reference, challenge).concat(verifyWellFormedNess(challengeString));
 }
 
