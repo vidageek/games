@@ -4,13 +4,14 @@ function verify(reference, challenge, challengeString) {
 }
 
 function verifyWellFormedNess(challenge) {
-	var voidTags = /area|base|br|col|command|embed|hr|img|input|keygen|link|meta|param|source|track|wbr/i;
+	var voidTags = /!DOCTYPE|area|base|br|col|command|embed|hr|img|input|keygen|link|meta|param|source|track|wbr/i;
 	var tagPattern = /<(\/?[^ \>\/]+)[^>]*>/gm;
 	var stack = [];
 	var errors = [];
 	var tag = tagPattern.exec(challenge);
 	while (tag) {
-		tag = tag[1]
+		tag = tag[1];
+		
 		if (tag.charAt(0) == "/") {	
 			var top = last(stack);
 			if (top == tag.substring(1)){
@@ -50,7 +51,10 @@ function verifySimilarity(reference, challenge) {
 		return ["Não foi encontrado o elemento: " + reference.nodeName.toLowerCase()]; 
 	}
 
-	if (reference.nodeName != challenge.nodeName) {
+	if (reference.nodeName.toLowerCase() != challenge.nodeName.toLowerCase()) {
+		console.log(reference.nodeName);
+		console.log(challenge.nodeName);
+		
 		return ["Esperava encontrar " + reference.nodeName.toLowerCase() + " mas foi encontrado " + challenge.nodeName.toLowerCase()];
 	}
 	
