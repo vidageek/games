@@ -15,4 +15,21 @@ describe('Dom verifier', function() {
 		expect(callVerify(text, spacedText)).toEqual([]);
 	});
 
+	it('parameters in tags', function(){
+		expect(callVerify("<a href='asdf'>link</a>","<a href='asdf'>link</a>")).toEqual([]);
+	});
+	it('comparing image tags', function(){
+		expect(callVerify("<img alt='asdf' src='link'/>","<img alt='asdf' src='link'/>")).toEqual([]);
+	});
+	
+	it('error in tags', function(){
+		expect(callVerify("<a href='link1'>link</a>","<a href='link2'>link</a>")).not.toEqual([]);
+	});
+	it('comparing image tags with error', function(){
+		expect(callVerify("<img alt='asdf' src='linkx'/>","<img alt='asdf' src='link'/>")).not.toEqual([]);
+	});
+	it('tag without parammeter', function(){
+		expect(callVerify("<a href='www.google.com'>Google</a>","<a>Google</a>")).not.toEqual([]);
+	});
+	
 });
