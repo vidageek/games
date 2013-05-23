@@ -26,8 +26,12 @@ describe('Dom verifier', function() {
 	it('error in tags', function(){
 		expect(callVerify("<a href='link1'>link</a>","<a href='link2'>link</a>")).not.toEqual([]);
 	});
+	it('paragraph exercise test', function(){
+		expect(callVerify("<p>Oi mundo</p>","<p>Oi mundo</p>")).toEqual([]);
+	});
+
 	it('Doctype', function(){
-		expect(callVerify("<!DOCTYPE html><html><head><title></title></head><body></body></html>","<!DOCTYPE html><html><head><title></title></head><body></body></html>"))toEqual([]);
+		expect(callVerify("<!DOCTYPE html><html><head><title></title></head><body></body></html>","<!DOCTYPE html><html><head><title></title></head><body></body></html>")).toEqual([]);
 	});
 	it('comparing image tags with error', function(){
 		expect(callVerify("<img alt='asdf' src='linkx'/>","<img alt='asdf' src='link'/>")).not.toEqual([]);

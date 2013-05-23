@@ -10,7 +10,7 @@ import org.openqa.selenium.By
 import org.openqa.selenium.JavascriptExecutor
 import vggames.browser.WebBrowser
 
-@RunWith(classOf[JUnitRunner])
+//@RunWith(classOf[JUnitRunner])
 class HtmlGameSpec extends Specification with WebBrowser {
 
   sequential
