@@ -11,17 +11,24 @@ $(document).ready(function(){
 	  theme: "high-contrast"
 	});
 	
+	function xml2string(node) {
+   		if (typeof(XMLSerializer) !== 'undefined') {
+      		var serializer = new XMLSerializer();
+     	 	return serializer.serializeToString(node);
+   		} else if (node.xml) {
+      		return node.xml;
+   		}
+	}
+	
+	
 	function checkCode() {
 		var value = editor.getValue();
 		if (!(value == code)) {
 			code = value;
 			
-			var xmlString = code;
-			var parser = new DOMParser();
-			var challenge = parser.parseFromString(xmlString, "text/xml");
-			$('#render-challenge')[0].html = challenge; 
+			$('#render-challenge').contents().find("html").html(code); 
 			
-			var errors = verify($('#render-answer').contents()[0], challenge, code);
+			var errors = verify(xml2string($('#render-answer').contents()[0]), code);
 			if (errors.length > 0){
 				var errorHtml = "<ul>" + $.map(errors, function(e){return "<li>" + e + "</li>"}).join("") + "</ul>"
 				$('#challenge-result').removeClass("alert-success").addClass("reason alert alert-error").html(errorHtml);

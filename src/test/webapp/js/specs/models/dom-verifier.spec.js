@@ -30,8 +30,18 @@ describe('Dom verifier', function() {
 		expect(callVerify("<p>Oi mundo</p>","<p>Oi mundo</p>")).toEqual([]);
 	});
 
+	it('html structure', function(){
+		expect(callVerify("<html><head><title></title></head><body>Oi</body></html>","<html><head><title></title></head><body>Oi</body></html>")).toEqual([]);
+	});
+	it('html structure', function(){
+		expect(callVerify("<html><head><title></title></head><body></body></html>","Oi")).not.toEqual([]);
+	});
+
 	it('Doctype', function(){
 		expect(callVerify("<!DOCTYPE html><html><head><title></title></head><body></body></html>","<!DOCTYPE html><html><head><title></title></head><body></body></html>")).toEqual([]);
+	});
+	it('Doctype is missing in user answer and judge said OK', function(){
+		expect(callVerify("<!DOCTYPE html><html><head><title></title></head><body></body></html>","<html><head><title></title></head><body></body></html>")).not.toEqual([]);
 	});
 	it('comparing image tags with error', function(){
 		expect(callVerify("<img alt='asdf' src='linkx'/>","<img alt='asdf' src='link'/>")).not.toEqual([]);

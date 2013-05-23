@@ -1,4 +1,21 @@
-function verify(reference, challenge, challengeString) {
+function verify(referenceString, challengeString) {
+    referenceString = referenceString.replace(/>\s*</g,'><');
+    challengeString = challengeString.replace(/>\s*</g,'><');
+    
+    
+    var doctypesRef = /^<!DOCTYPE .*>/.exec(referenceString);
+    var doctypesChal = /^<!DOCTYPE .*>/.exec(challengeString);
+    		
+    if (doctypesRef && doctypesRef.length > 0 && (!doctypesChal || doctypesChal.length == 0 || doctypesChal[0] != doctypesRef[0])) {
+        return ["Falta declaração de " + doctypesRef[0] + " no início"];
+    }
+    
+    referenceString = referenceString.replace(/^<!DOCTYPE .*>/, "");
+    challengeString = challengeString.replace(/^<!DOCTYPE .*>/, "");
+    
+	var parser = new DOMParser();
+	var reference = parser.parseFromString(referenceString, "text/xml");
+	var challenge = parser.parseFromString(challengeString, "text/xml");
 		
 	return verifySimilarity(reference, challenge).concat(verifyWellFormedNess(challengeString));
 }
