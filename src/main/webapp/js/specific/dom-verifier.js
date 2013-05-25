@@ -1,6 +1,9 @@
 function verify(referenceString, challengeString) {
-    referenceString = referenceString.replace(/>\s*</g,'><');
-    challengeString = challengeString.replace(/>\s*</g,'><');
+    referenceString = referenceString.replace(/(<\/[^>]*>)\s*(<\/)/g,'$1$2');
+    referenceString = referenceString.replace(/(>)\s*(<[^\/])/g,'$1$2');
+
+    challengeString = challengeString.replace(/(<\/[^>]*>)\s*(<\/)/g,'$1$2');
+    challengeString = challengeString.replace(/(>)\s*(<[^\/])/g,'$1$2');
     
     
     var doctypesRef = /^<!DOCTYPE .*>/.exec(referenceString);
@@ -68,10 +71,7 @@ function verifySimilarity(reference, challenge) {
 		return ["Não foi encontrado o elemento: " + reference.nodeName.toLowerCase()]; 
 	}
 
-	if (reference.nodeName.toLowerCase() != challenge.nodeName.toLowerCase()) {
-		console.log(reference.nodeName);
-		console.log(challenge.nodeName);
-		
+	if (reference.nodeName.toLowerCase() != challenge.nodeName.toLowerCase()) {		
 		return ["Esperava encontrar " + reference.nodeName.toLowerCase() + " mas foi encontrado " + challenge.nodeName.toLowerCase()];
 	}
 	
@@ -111,7 +111,7 @@ function verifySimilarity(reference, challenge) {
 	}
 	
 
-	if (reference.nodeName == "#text" && challenge.nodeName == "#text" && reference.data.replace(/\s+/g, "") != challenge.data.replace(/\s+/g, "")) {
+	if (reference.nodeName == "#text" && challenge.nodeName == "#text" && reference.data != challenge.data) {
 		return ["Esperava encontrar " + reference.data + " mas foi encontrado " + challenge.data];
 	}
 	
