@@ -13,11 +13,19 @@ function verify(referenceString, challengeString) {
     referenceString = referenceString.replace(/^<!DOCTYPE .*>/, "");
     challengeString = challengeString.replace(/^<!DOCTYPE .*>/, "");
     
+	var wellFormedNessErrors = verifyWellFormedNess(challengeString);
+	if (wellFormedNessErrors.length > 0) {
+		return wellFormedNessErrors;
+	}
+    
 	var parser = new DOMParser();
 	var reference = parser.parseFromString(referenceString, "text/xml");
 	var challenge = parser.parseFromString(challengeString, "text/xml");
-		
-	return verifySimilarity(reference, challenge).concat(verifyWellFormedNess(challengeString));
+	
+
+	console.log(challenge);
+
+	return verifySimilarity(reference, challenge);
 }
 
 function verifyWellFormedNess(challenge) {
@@ -55,6 +63,11 @@ function last(array) {
 }
 
 function verifySimilarity(reference, challenge) {
+	
+	if (challenge && challenge.nodeName == 'parsererror') {
+		return [];
+	}
+	
 	if (reference && reference.nodeName == "#text" && reference.data.replace(/\s+/g, "").length == 0) {
 		reference = null;
 	}
@@ -67,6 +80,8 @@ function verifySimilarity(reference, challenge) {
 	if (reference && !challenge){
 		return ["Não foi encontrado o elemento: " + reference.nodeName.toLowerCase()]; 
 	}
+	
+	
 
 	if (reference.nodeName.toLowerCase() != challenge.nodeName.toLowerCase()) {		
 		return ["Esperava encontrar " + reference.nodeName.toLowerCase() + " mas foi encontrado " + challenge.nodeName.toLowerCase()];
@@ -120,11 +135,18 @@ function verifySimilarity(reference, challenge) {
 	}
 	
 	var errors = [];
+	var skippedParserErrors = 0;
 	for (var i = 0; i < referenceChildren.length; i++) {
-		errors = errors.concat(verifySimilarity(referenceChildren[i], childrenOrNull(challengeChildren, i)))
+		if (childrenOrNull(challengeChildren, i) && childrenOrNull(challengeChildren, i).nodeName == 'parsererror') {
+			skippedParserErrors += 1; 
+		}
+		errors = errors.concat(verifySimilarity(referenceChildren[i], childrenOrNull(challengeChildren, i + skippedParserErrors)));
 	}
 	for (var i = 0; i < challengeChildren.length - referenceChildren.length; i++){
-		errors = errors.concat(null, childrenOrNull(challengeChildren, i + referenceChildren.length))
+		if (childrenOrNull(challengeChildren, i + referenceChildren.length) && childrenOrNull(challengeChildren, i + referenceChildren.length).nodeName == 'parsererror') {
+			skippedParserErrors += 1;
+		}
+		errors = errors.concat(verifySimilarity(childrenOrNull(challengeChildren, i + skippedParserErrors + referenceChildren.length)));
 	}
 	return errors;
 }
