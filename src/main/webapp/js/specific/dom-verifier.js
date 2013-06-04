@@ -1,10 +1,7 @@
 function verify(referenceString, challengeString) {
-    referenceString = referenceString.replace(/(<\/[^>]*>)\s*(<\/)/g,'$1$2');
-    referenceString = referenceString.replace(/(>)\s*(<[^\/])/g,'$1$2');
 
-    challengeString = challengeString.replace(/(<\/[^>]*>)\s*(<\/)/g,'$1$2');
-    challengeString = challengeString.replace(/(>)\s*(<[^\/])/g,'$1$2');
-    
+	referenceString = referenceString.replace(/>\s*</g,'><');
+	challengeString = challengeString.replace(/>\s*</g,'><');    
     
     var doctypesRef = /^<!DOCTYPE .*>/.exec(referenceString);
     var doctypesChal = /^<!DOCTYPE .*>/.exec(challengeString);
