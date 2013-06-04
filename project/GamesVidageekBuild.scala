@@ -48,7 +48,7 @@ object GamesVidageekBuild extends Build {
       "br.com.caelum" % "vraptor" % "3.4.1" excludeAll (
         ExclusionRule(organization = "org.springframework")
       ),
-      "com.typesafe.akka" %% "akka-actor" % "2.1.1",
+      "com.typesafe.akka" %% "akka-actor" % "2.1.4",
       "com.typesafe.slick" %% "slick" % "1.0.0",
       "org.scala-lang" % "scala-reflect" % "2.10.0",
       "org.scala-lang" % "scala-compiler" % "2.10.0",
