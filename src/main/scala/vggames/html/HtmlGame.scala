@@ -19,7 +19,9 @@ class HtmlGame(descriptions : Descriptions) extends Game {
       orderedlists,
       definitionlists,
       tables,
-      divs
+      divs,
+      svgs,
+      datalists
       )
 
  
@@ -57,8 +59,8 @@ class HtmlGame(descriptions : Descriptions) extends Game {
   );
 
   private def paragraphs=new TaskGroup("Parágrafos","html.paragraphs",descriptions,
-	  new HtmlTask("Crie um parágrafo com \"Oi mundo\" como conteúdo.", "paragraph_1"),
-	  new HtmlTask("Crie um parágrafo com \"Oi mundo\", mas com \"Oi\" em negrito.", "paragraph_2")
+	  new HtmlTask("Crie um parágrafo com \"Oi mundo\" como conteúdo", "paragraph_1"),
+	  new HtmlTask("Crie um parágrafo com \"Oi mundo\", mas com \"Oi\" em negrito", "paragraph_2")
   );
   
 private def formats=new TaskGroup("Formatação de texto","html.formats",descriptions,
@@ -74,7 +76,7 @@ private def formats2=new TaskGroup("Formatação de texto 2","html.formats2",des
   );
   
   private def tables = new TaskGroup("Tabelas","html.tables",descriptions,
-	  new HtmlTask("Crie uma tabela com borda, de 2 linhas e 2 colunas, com os núneros de 1 a 4.", "table_1"),
+	  new HtmlTask("Crie uma tabela com borda, de 2 linhas e 2 colunas, com os núneros de 1 a 4", "table_1"),
 	  new HtmlTask("Crie uma tabela de 2 linhas e 2 colunas, mesclando as duas primeiras células e com o conteúdo em negrito conforme o exemplo", "table_2"),
   	  new HtmlTask("Crie uma tabela de 2 linhas e 2 colunas, mesclando a primeira coluna e com o conteúdo em negrito conforme o exemplo", "table_3")
   );
@@ -87,7 +89,17 @@ private def formats2=new TaskGroup("Formatação de texto 2","html.formats2",des
     new HtmlTask("Escreva toda a estrutura de um arquivo html com o título \"Página html\" e conteúdo \"Oi mundo\"","structure_1"),
     new HtmlTask("Escreva a estrutura de um arquivo html com o título \"Minha página\" contendo o texto \"Conteúdo da minha página\" em negrito","structure_2"),
     new HtmlTask("Escreva a estrutura de um arquivo html com o título \"Página com link\" contendo um link para a página do Google \"www.google.com\"","structure_3"),
-    new HtmlTask("Declare um documento HTML5 usando a tag DOCTYPE, conforme o exemplo ao lado.","structure_4")
+    new HtmlTask("Declare um documento HTML5 usando a tag DOCTYPE, conforme o exemplo ao lado","structure_4")
+  );
+  
+  private def svgs =new TaskGroup("SVG","html.svg",descriptions,
+    new HtmlTask("Desenhe um círculo com interior azul, na posição (50,50) e raio 50","svg_1"),
+    new HtmlTask("Desenhe um retângulo cinza na posição (50,50) de largura 40 e altura 20","svg_2"),
+    new HtmlTask("Desenhe um círculo com interior branco, na posição (40,40), raio 10 e contorno preto de 3 pixels","svg_3")
+  );
+  
+  private def datalists =new TaskGroup("Datalist","html.datalist",descriptions,
+    new HtmlTask("Crie um campo input com um datalist tendo as opções carro, moto e barco","datalist_1")
   );
   
   def getDescription = "Um jogo muito legal para aprender Html, focado em Html5"

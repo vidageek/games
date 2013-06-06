@@ -21,7 +21,7 @@ function verify(referenceString, challengeString) {
 }
 
 function verifyWellFormedNess(challenge) {
-	var voidTags = /!DOCTYPE|area|base|br|col|command|embed|hr|img|input|keygen|link|meta|param|source|track|wbr/i;
+	var voidTags = /!DOCTYPE|area|base|br|circle|col|command|embed|hr|img|input|keygen|link|meta|option|param|rect|source|track|wbr/i;
 	var tagPattern = /<(\/?[^ \>\/]+)[^>]*>/gm;
 	var stack = [];
 	var errors = [];
@@ -53,8 +53,11 @@ function verifyWellFormedNess(challenge) {
 function last(array) {
 	return array[array.length -1];
 }
-
+	
 function verifySimilarity(reference, challenge) {
+	if (challenge && challenge.nodeName == 'parsererror'){
+		return [];
+	}
 	if (reference && reference.nodeName == "#text" && reference.data.replace(/\s+/g, "").length == 0) {
 		reference = null;
 	}
@@ -68,7 +71,7 @@ function verifySimilarity(reference, challenge) {
 		return ["Não foi encontrado o elemento: " + reference.nodeName.toLowerCase()]; 
 	}
 
-	if (reference.nodeName.toLowerCase() != challenge.nodeName.toLowerCase()) {		
+	if (reference.nodeName.toLowerCase() != challenge.nodeName.toLowerCase()) {	
 		return ["Esperava encontrar " + reference.nodeName.toLowerCase() + " mas foi encontrado " + challenge.nodeName.toLowerCase()];
 	}
 	
@@ -121,10 +124,10 @@ function verifySimilarity(reference, challenge) {
 	
 	var errors = [];
 	for (var i = 0; i < referenceChildren.length; i++) {
-		errors = errors.concat(verifySimilarity(referenceChildren[i], childrenOrNull(challengeChildren, i)))
+		errors = errors.concat(verifySimilarity(referenceChildren[i], childrenOrNull(challengeChildren, i)));
 	}
 	for (var i = 0; i < challengeChildren.length - referenceChildren.length; i++){
-		errors = errors.concat(null, childrenOrNull(challengeChildren, i + referenceChildren.length))
+		errors = errors.concat(verifySimilarity(childrenOrNull(challengeChildren, i + referenceChildren.length)));
 	}
 	return errors;
 }
