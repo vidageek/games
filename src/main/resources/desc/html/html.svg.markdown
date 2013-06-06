@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Para criar desenhos e imagens com HTML5, pode-se usar a tag SVG.
 Dentro dessa tag, são colocadas outras tags referentes a elementos gráficos
 como círculos, retângulos, triângulos, linhas, polígonos, etc. 
@@ -24,3 +25,6 @@ e <b>height</b> para demarcar largura e altura, respectivamente.
 Em ambos os casos, usa-se os atributos <b>fill</b> para preencher com cores sólidas, 
 <b>stroke</b> para definir a cor do contorno da figura e <b>stroke-width</b> para a 
 largura do contorno.
+=======
+A tag SVG (Scalable Vector Graphics) é uma nova forma que HTML5 possuí para gerar e exibir gráficos vetorias.
+>>>>>>> 8ab83ca487ca7df3154dacc283c64be0c52e29ab
