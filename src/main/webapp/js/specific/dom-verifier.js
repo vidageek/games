@@ -150,7 +150,7 @@ function verifySimilarity(reference, challenge) {
 		if (childrenOrNull(challengeChildren, i + referenceChildren.length) && childrenOrNull(challengeChildren, i + referenceChildren.length).nodeName == 'parsererror') {
 			skippedParserErrors += 1;
 		}
-		errors = errors.concat(verifySimilarity(childrenOrNull(challengeChildren, i + skippedParserErrors + referenceChildren.length)));
+		errors = errors.concat(verifySimilarity(null,childrenOrNull(challengeChildren, i + skippedParserErrors + referenceChildren.length)));
 	}
 	return errors;
 }
