@@ -22,11 +22,15 @@ $(document).ready(function(){
 
 	function checkCode() {
 		var value = editor.getValue();
+		
+		
 
 		if (!(value == code)) {
 			code = value;
 			
 			$('#render-challenge').contents().find("html").html(code); 
+			console.log(value);
+			console.log(reference);
 			
 			var errors = verify(reference, code);
 			if (errors.length > 0){

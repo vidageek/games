@@ -143,12 +143,14 @@ function verifySimilarity(reference, challenge) {
 	for (var i = 0; i < referenceChildren.length; i++) {
 		if (childrenOrNull(challengeChildren, i) && childrenOrNull(challengeChildren, i).nodeName == 'parsererror') {
 			skippedParserErrors += 1; 
+			return ["Erro sintático"];
 		}
 		errors = errors.concat(verifySimilarity(referenceChildren[i], childrenOrNull(challengeChildren, i + skippedParserErrors)));
 	}
 	for (var i = 0; i < challengeChildren.length - referenceChildren.length; i++){
 		if (childrenOrNull(challengeChildren, i + referenceChildren.length) && childrenOrNull(challengeChildren, i + referenceChildren.length).nodeName == 'parsererror') {
 			skippedParserErrors += 1;
+			return ["Erro sintático"];
 		}
 		errors = errors.concat(verifySimilarity(null,childrenOrNull(challengeChildren, i + skippedParserErrors + referenceChildren.length)));
 	}
