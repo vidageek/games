@@ -15,6 +15,7 @@ class HtmlGame(descriptions : Descriptions) extends Game {
       formats2,
       links,
       images,
+      multimedia,
       unorderedLists,
       orderedlists,
       definitionlists,
@@ -40,6 +41,11 @@ class HtmlGame(descriptions : Descriptions) extends Game {
       new HtmlTask("Inclua uma imagem do endereço 'http://www.vidageek.net/images/logo.png' " +
       		"com altura de 100 pixels, largura 200 pixels e 'logo' como texto alternativo","image_3")
   	
+  );
+  
+  private def multimedia = new TaskGroup("Multimídia", "html.multimedia",descriptions,
+      new HtmlTask("Insira o vídeo com o seguinte endereço: <br/><b>\"http://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.ogv\"</b><br/> com o tipo mp4.","multi_1"),
+      new HtmlTask("Insira o audio com o seguinte endereço: <br/><b>\"http://www.w3schools.com/html/horse.ogg\"</b><br/> com o tipo ogg.","multi_2")
   );
   
   private def unorderedLists = new TaskGroup("Listas não ordenadas", "html.unorderedlists",descriptions,
