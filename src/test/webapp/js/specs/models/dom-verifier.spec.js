@@ -19,6 +19,7 @@ describe('Dom verifier', function() {
 	it('parameters in tags', function(){
 		expect(callVerify("<a href='asdf'>link</a>","<a href='asdf'>link</a>")).toEqual([]);
 	});
+	
 	it('comparing image tags', function(){
 		expect(callVerify("<img alt='asdf' src='link'/>","<img alt='asdf' src='link'/>")).toEqual([]);
 	});
@@ -26,6 +27,7 @@ describe('Dom verifier', function() {
 	it('error in tags', function(){
 		expect(callVerify("<a href='link1'>link</a>","<a href='link2'>link</a>")).not.toEqual([]);
 	});
+	
 	it('paragraph exercise test', function(){
 		expect(callVerify("<p>Oi mundo</p>","<p>Oi mundo</p>")).toEqual([]);
 	});
@@ -33,6 +35,7 @@ describe('Dom verifier', function() {
 	it('html structure', function(){
 		expect(callVerify("<html><head><title></title></head><body>Oi</body></html>","<html><head><title></title></head><body>Oi</body></html>")).toEqual([]);
 	});
+	
 	it('html structure', function(){
 		expect(callVerify("<html><head><title></title></head><body></body></html>","Oi")).not.toEqual([]);
 	});
@@ -40,14 +43,49 @@ describe('Dom verifier', function() {
 	it('Doctype', function(){
 		expect(callVerify("<!DOCTYPE html><html><head><title></title></head><body></body></html>","<!DOCTYPE html><html><head><title></title></head><body></body></html>")).toEqual([]);
 	});
+	
 	it('Doctype is missing in user answer and judge said OK', function(){
 		expect(callVerify("<!DOCTYPE html><html><head><title></title></head><body></body></html>","<html><head><title></title></head><body></body></html>")).not.toEqual([]);
 	});
+	
 	it('comparing image tags with error', function(){
 		expect(callVerify("<img alt='asdf' src='linkx'/>","<img alt='asdf' src='link'/>")).not.toEqual([]);
 	});
+	
 	it('tag without parammeter', function(){
 		expect(callVerify("<a href='www.google.com'>Google</a>","<a>Google</a>")).not.toEqual([]);
+	});
+	
+	it('paragraph exercise test html5 tag does not need to be closed', function(){
+		expect(callVerify("<p>Oi mundo","<p>Oi mundo</p>")).toEqual([]);
+	});
+	
+	it('paragraph exercise test html5 tag does not need to be closed 2', function(){
+		expect(callVerify("<p>Oi mundo","<p>Oi mundo")).toEqual([]);
+	});
+	
+	it('html5 head and body not closed', function(){
+		expect(callVerify("<!DOCTYPE html><html><head><title></title><body></html>","<!DOCTYPE html><html><head><title></title></head><body></body></html>")).toEqual([]);
+	});
+	
+	it('no slash closing tag', function(){
+		expect(callVerify("<img alt='asdf' src='link>","<img alt='asdf' src='link/>")).toEqual([]);
+	});
+	
+	it('several slashes closing tag 1', function(){
+		expect(callVerify("<img alt='asdf' src='link////>","<img alt='asdf' src='link>")).not.toEqual([]);
+	});
+	
+	it('several slashes closing tag 2', function(){
+		expect(callVerify("<img alt='asdf' src='link////>","<img alt='asdf' src='link>/")).not.toEqual([]);
+	});
+	
+	it('list exercise with newlines and spaces',function() {
+		expect(callVerify("<ul>\n<li> Elemento 1 </li>         \n<li> Elemento 2 </li>\n</ul>","<ul>\n<li> Elemento 1 </li>\n<li> Elemento 2 </li>\n</ul>")).toEqual([]);
+	});
+	
+	it('list exercise with newlines',function() {
+		expect(callVerify("<ul>\n<li> Elemento 1 </li>\n<li> Elemento 2 </li>\n</ul>","<ul>\n<li> Elemento 1 </li><li> Elemento 2 </li>\n</ul>")).toEqual([]);
 	});
 	
 });
