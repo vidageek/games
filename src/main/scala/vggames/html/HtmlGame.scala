@@ -11,7 +11,7 @@ class HtmlGame(descriptions : Descriptions) extends Game {
       basicStructures,
       structures,
       paragraphs,
-      formats,
+      formats1,
       formats2,
       links,
       images,
@@ -20,6 +20,10 @@ class HtmlGame(descriptions : Descriptions) extends Game {
       orderedlists,
       definitionlists,
       tables,
+      forms1,
+      forms2,
+      forms3,
+      forms4,
       divs,
       svgs,
       datalists
@@ -70,7 +74,7 @@ class HtmlGame(descriptions : Descriptions) extends Game {
 	  new HtmlTask("Crie um parágrafo com \"Oi mundo\", mas com \"Oi\" em negrito", "paragraph_2")
   );
   
-private def formats=new TaskGroup("Formatação de texto","html.formats",descriptions,
+private def formats1=new TaskGroup("Formatação de texto","html.formats",descriptions,
   	new HtmlTask("Escreva o texto \"texto em itálico\" com a palavra \"itálico\" em itálico","format_1"),
   	new HtmlTask("Escreva o texto \"texto grande\" com a palavra \"grande\" usango a tag big","format_2"),  	
   	new HtmlTask("Escreva o texto \"texto pequeno\" com a palavra \"pequeno\" usando a tag small","format_3")
@@ -90,6 +94,23 @@ private def formats2=new TaskGroup("Formatação de texto 2","html.formats2",des
   
   private def divs = new TaskGroup("Divs","html.divs",descriptions,
 	  new HtmlTask("Crie uma div", "div_1")
+  );
+  
+  private def forms1=new TaskGroup("Formulários 1","html.forms1",descriptions,
+      new HtmlTask("Crie um formulário com uma caixa da texto","form_1")
+  );
+  
+  
+  private def forms2=new TaskGroup("Formulários 2 - Controles","html.forms2",descriptions,
+      new HtmlTask("Crie um formulário com uma caixa da texto","form_1")
+  );
+  
+  private def forms3=new TaskGroup("Formulários 3 - Controles","html.forms3",descriptions,
+      new HtmlTask("Crie um formulário com uma caixa da texto","form_1")
+  );
+  
+  private def forms4=new TaskGroup("Formulários 4 - Controles","html.forms4",descriptions,
+      new HtmlTask("Crie um formulário com uma caixa da texto","form_1")
   );
 
   private def structures =new TaskGroup("Estruturas do arquivo","html.structures",descriptions,
