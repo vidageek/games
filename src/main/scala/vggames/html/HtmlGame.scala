@@ -39,8 +39,9 @@ class HtmlGame(descriptions : Descriptions) extends Game {
       new HtmlTask("Inclua uma imagem do endereço 'http://www.vidageek.net/images/logo.png' " +
       		"com uma altura de 100 pixels e 'logo' como texto alternativo","image_2"),
       new HtmlTask("Inclua uma imagem do endereço 'http://www.vidageek.net/images/logo.png' " +
-      		"com altura de 100 pixels, largura 200 pixels e 'logo' como texto alternativo","image_3")
-  	
+      		"com altura de 100 pixels, largura 200 pixels e 'logo' como texto alternativo","image_3"),
+      new HtmlTask("Inclua uma imagem do endereço 'http://www.vidageek.net/images/logo.png' " +
+          "com a legenda 'Logo do VidaGeek Games'.","image_4")
   );
   
   private def multimedia = new TaskGroup("Multimídia", "html.multimedia",descriptions,
