@@ -1,31 +1,18 @@
 
 
 Um texto em HTML é composto por tags. Tags são estruturas de palavras-chave, cercadas
-pelos caracteres <b><></b>, sendo que o final dela é a mesma tag com o caractere "<b>/</b>".
+pelos caracteres <b><</b> e <b>></b>, que contém instruções para a renderização de páginas. 
+Em geral, tags tem uma marca de início, e podem ter uma ao final.
 
-	<h1>Isto é um título em HTML</h1>
+	<h1>Isto é um título em HTML5</h1>
+
+Tags que não precisam de fechamento em geral são encerradas com o caractere <b>/</b>
+ao final da própria tag.
+
+	<h1>Isto é um título <br /> com uma quebra de linha</h1>
+	
+<h1>Isto é um título <br /> com uma quebra de linha</h1>
 
 As tags exercem certas instruções, como transformar um texto em negrito ou 
-destacar um título para uma página.
-
-Por exemplo, para definir um parágrafo é utilizada a tag <b><p\></b>. Títulos podem ser
-definidos com tags de <b><h1\></b> a <b><h6\></b>, sendo 1 o maior e 6 o menor. Frases curtas também 
-podem ser inseridas através da tag <b><span\></b>.
-
-Observe o exemplo abaixo e seu resultado na página:
-
-	<h1> Título de um artigo </h1>
-	<h3> Um subtítulo definido por H3 </h3>
-	
-	<p>Caso seja necessário incluir formatação no meio 
-	do texto, é possível utilizar a tag 
-	<span>span</span> para isso.</p>
-
-<table border="5"><tr><td>
-<h1> Título de um artigo </h1>
-<h3> Um subtítulo definido por H3 </h3>
-
-<p>Caso seja necessário incluir formatação 
-no meio do texto, é possível utilizar a tag 
-<span>span</span> para isso.</p>
-</td></tr></table>
+destacar um título para uma página. Por exemplo, para definir um parágrafo é utilizada 
+a tag <b><p\></b>. 
