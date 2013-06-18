@@ -16,21 +16,14 @@ function verify(referenceString, challengeString) {
     referenceString = referenceString.replace(/^<!DOCTYPE .*>/, "");
     challengeString = challengeString.replace(/^<!DOCTYPE .*>/, "");
     
-    
 	var wellFormedNessErrors = verifyWellFormedNess(challengeString);
 	if (wellFormedNessErrors.length > 0) {
 		return wellFormedNessErrors;
 	}
 	
-	console.log ("asdfasd"+referenceString);
-	
 	var tagPattern = /<(!DOCTYPE|area|base|br|circle|col|command|embed|hr|img|input|keygen|link|meta|option|param|rect|source|track|wbr)([^>]*[^\/>])>/gm;
 	referenceString = referenceString.replace(tagPattern,"<$1$2/>");
 	challengeString = challengeString.replace(tagPattern,"<$1$2/>");
-	
-	//referenceString = referenceString.replace(/[\/]+>/,">");
-	//challengeString = challengeString.replace(/[\/]+>/,">");
-	console.log ("sdf"+referenceString);
 	
 	var parser = new DOMParser();
 	var reference = parser.parseFromString(referenceString, "text/xml");
@@ -63,15 +56,9 @@ function verifyWellFormedNess(challenge) {
 				stack.push(tag);			
 			}
 		}
-		// challenge = challenge.substring(challenge);
-		console.log(tagCompleta);
-		if(tagCompleta.length > 3)
-		{
-			console.log(tagCompleta);
-			if(tagCompleta[tagCompleta.length-3] == '/' && tagCompleta[tagCompleta.length-2]== '/' && tagCompleta[tagCompleta.length-1]== '>')
-			{
-				errors.push( "Erro sintatico, excesso de barras!");
-			}
+		
+		if(tagCompleta.match(/\/\/>$/) != null) {
+			errors.push( "Erro sintatico, excesso de barras!");
 		}
 		
 		tag = tagPattern.exec(challenge);
