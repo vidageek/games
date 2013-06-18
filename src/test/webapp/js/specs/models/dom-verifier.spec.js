@@ -13,16 +13,13 @@ describe(
 						"<p>Hellooooooo world!</p>")).not.toEqual([]);
 			});
 
-			// THIS test must to work
-			// it('checks the line breaks in answers', function() {
-			//
-			// text = "<table
-			// border='1'><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr></table>";
-			// spacedText = "<table
-			// border='1'>\n<tr>\n<td>1</td>\n<td>2</td>\n</tr>\n<tr>\n<td>3</td>\n<td>4</td>\n</tr>\n</table>\n";
-			//		
-			// expect(callVerify(text, spacedText)).toEqual([]);
-			// });
+			 it('checks the line breaks in answers', function() {
+			
+			 text = "<table border='1'><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr></table>";
+			 spacedText = "<table border='1'>\n<tr>\n<td>1</td>\n<td>2</td>\n</tr>\n<tr>\n<td>3</td>\n<td>4</td>\n</tr>\n</table>\n";
+					
+			 expect(callVerify(text, spacedText)).toEqual([]);
+			 });
 
 			it('parameters in tags', function() {
 				expect(
@@ -116,24 +113,24 @@ describe(
 								.toEqual([]);
 					});
 
-			it('no slash closing tag', function() {
+			it('puts no slash closing tag', function() {
 				expect(
-						callVerify("<img alt='asdf' src='link>",
-								"<img alt='asdf' src='link/>")).toEqual([]);
+						callVerify("<img alt='asdf' src='link'>",
+								"<img alt='asdf' src='link'/>")).toEqual([]);
 			});
 
-			it('several slashes closing tag 1', function() {
-				expect(callVerify("<img alt='asdf' src='link////>",
-						"<img alt='asdf' src='link>")).not.toEqual([]);
+			it('puts several slashes closing tag 1', function() {
+				expect(callVerify("<img alt='asdf' src='link'/>",
+						"<img alt='asdf' src='link' ////>")).not.toEqual([]);
 			});
 
-			it('several slashes closing tag 2', function() {
-				expect(callVerify("<img alt='asdf' src='link////>",
-						"<img alt='asdf' src='link>/")).not.toEqual([]);
+			it('puts several slashes closing tag 2', function() {
+				expect(callVerify("<img alt='asdf' src='link'>",
+						"<img alt='asdf' src='link'/////>")).not.toEqual([]);
 			});
 
 			it(
-					'list exercise with newlines and spaces',
+					'lists exercise with newlines and spaces',
 					function() {
 						expect(
 								callVerify(
@@ -143,7 +140,7 @@ describe(
 					});
 
 			it(
-					'list exercise with newlines',
+					'lists exercise with newlines',
 					function() {
 						expect(
 								callVerify(

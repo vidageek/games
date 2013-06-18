@@ -1,3 +1,6 @@
+
+var voidTags = /!DOCTYPE|area|base|br|circle|col|command|embed|hr|img|input|keygen|link|meta|option|param|rect|source|track|wbr/i;
+
 function verify(referenceString, challengeString) {
 
 	referenceString = referenceString.replace(/>\s*</g,'><');
@@ -13,30 +16,41 @@ function verify(referenceString, challengeString) {
     referenceString = referenceString.replace(/^<!DOCTYPE .*>/, "");
     challengeString = challengeString.replace(/^<!DOCTYPE .*>/, "");
     
+    
 	var wellFormedNessErrors = verifyWellFormedNess(challengeString);
 	if (wellFormedNessErrors.length > 0) {
 		return wellFormedNessErrors;
 	}
-    
+	
+	console.log ("asdfasd"+referenceString);
+	
+	var tagPattern = /<(!DOCTYPE|area|base|br|circle|col|command|embed|hr|img|input|keygen|link|meta|option|param|rect|source|track|wbr)([^>]*[^\/>])>/gm;
+	referenceString = referenceString.replace(tagPattern,"<$1$2/>");
+	challengeString = challengeString.replace(tagPattern,"<$1$2/>");
+	
+	//referenceString = referenceString.replace(/[\/]+>/,">");
+	//challengeString = challengeString.replace(/[\/]+>/,">");
+	console.log ("sdf"+referenceString);
+	
 	var parser = new DOMParser();
 	var reference = parser.parseFromString(referenceString, "text/xml");
 	var challenge = parser.parseFromString(challengeString, "text/xml");
-
-	console.log(reference);
-	console.log(challenge);
-
+	
 	return verifySimilarity(reference, challenge);
 }
 
+
 function verifyWellFormedNess(challenge) {
-	var voidTags = /!DOCTYPE|area|base|br|circle|col|command|embed|hr|img|input|keygen|link|meta|option|param|rect|source|track|wbr/i;
 	var tagPattern = /<(\/?[^ \>\/]+)[^>]*>/gm;
 	var stack = [];
 	var errors = [];
 	var tag = tagPattern.exec(challenge);
+	var tagCompleta;
+	
 	while (tag) {
+		tagCompleta = tag[0];
 		tag = tag[1];
-
+		
 		if (tag.charAt(0) == "/") {	
 			var top = last(stack);
 			if (top == tag.substring(1)){
@@ -50,7 +64,19 @@ function verifyWellFormedNess(challenge) {
 			}
 		}
 		// challenge = challenge.substring(challenge);
+		console.log(tagCompleta);
+		if(tagCompleta.length > 3)
+		{
+			console.log(tagCompleta);
+			if(tagCompleta[tagCompleta.length-3] == '/' && tagCompleta[tagCompleta.length-2]== '/' && tagCompleta[tagCompleta.length-1]== '>')
+			{
+				errors.push( "Erro sintatico, excesso de barras!");
+			}
+		}
+		
 		tag = tagPattern.exec(challenge);
+	    
+
 	}
 	while(stack.length > 0) {
 		errors.push("Encontrada tag não fechada " + stack.pop());
