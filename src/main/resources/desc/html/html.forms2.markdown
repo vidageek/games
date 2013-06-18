@@ -1,5 +1,6 @@
-Para definir um controle usamos a tag <b>input</b>, que possui os atributos <b>type</b>, que indica o tipo de 
-controle; <b>name</b>, que é o nome do controle ou do grupo ao qual pertence o controle; <b>value</b>, que é o valor do item. 
+Para definir um controle usamos a tag <b>input</b>, que possui os atributos: <b>type</b>, que indica o tipo de 
+controle; <b>name</b>, que é o nome do controle ou do grupo ao qual pertence o controle; <b>value</b>, que é o 
+valor do item. 
 
 	
 <h3>Caixas de texto</h3>

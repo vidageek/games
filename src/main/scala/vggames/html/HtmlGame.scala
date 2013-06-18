@@ -87,7 +87,7 @@ private def formats2=new TaskGroup("Formatação de texto 2","html.formats2",des
   );
   
   private def tables = new TaskGroup("Tabelas","html.tables",descriptions,
-	  new HtmlTask("Crie uma tabela com borda, de 2 linhas e 2 colunas, com os núneros de 1 a 4", "table_1"),
+	  new HtmlTask("Crie uma tabela com borda, de 2 linhas e 2 colunas, com os números de 1 a 4", "table_1"),
 	  new HtmlTask("Crie uma tabela de 2 linhas e 2 colunas, mesclando as duas primeiras células e com o conteúdo em negrito conforme o exemplo", "table_2"),
   	  new HtmlTask("Crie uma tabela de 2 linhas e 2 colunas, mesclando a primeira coluna e com o conteúdo em negrito conforme o exemplo", "table_3")
   );
@@ -97,7 +97,7 @@ private def formats2=new TaskGroup("Formatação de texto 2","html.formats2",des
   );
   
   private def forms1=new TaskGroup("Formulários 1","html.forms1",descriptions,
-      new HtmlTask("Crie um formulário com uma caixa da texto","form_1")
+      new HtmlTask("Crie uma estrutura de um formulário com o atributo \"action\" apontando para a página \"resultado.php\" e enviando pelo método \"get\"","form_1")
   );
   
   
