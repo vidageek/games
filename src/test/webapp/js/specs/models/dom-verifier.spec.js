@@ -90,29 +90,6 @@ describe(
 						"<a>Google</a>")).not.toEqual([]);
 			});
 
-			it('paragraph exercise test html5 tag does not need to be closed',
-					function() {
-						expect(callVerify("<p>Oi mundo", "<p>Oi mundo</p>"))
-								.toEqual([]);
-					});
-
-			it(
-					'paragraph exercise test html5 tag does not need to be closed 2',
-					function() {
-						expect(callVerify("<p>Oi mundo", "<p>Oi mundo"))
-								.toEqual([]);
-					});
-
-			it(
-					'html5 head and body not closed',
-					function() {
-						expect(
-								callVerify(
-										"<!DOCTYPE html><html><head><title></title><body></html>",
-										"<!DOCTYPE html><html><head><title></title></head><body></body></html>"))
-								.toEqual([]);
-					});
-
 			it('puts no slash closing tag', function() {
 				expect(
 						callVerify("<img alt='asdf' src='link'>",
