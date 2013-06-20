@@ -88,16 +88,22 @@ class HtmlGame(descriptions: Descriptions) extends Game {
     new HtmlTask("Crie uma div", "div_1"));
 
   private def forms1 = new TaskGroup("Formulários I", "html.forms1", descriptions,
-    new HtmlTask("Crie um formulário com uma caixa da texto", "form_1"));
+    new HtmlTask("Crie um formulário que envia os resultados para \"resultado.php\" usando o método \"get\"", "form_1"));
 
   private def forms2 = new TaskGroup("Formulários II - Controles", "html.forms2", descriptions,
-    new HtmlTask("Crie um formulário com uma caixa da texto", "form_1"));
+    new HtmlTask("Crie um formulário com o texto \"Texto: \" seguido por uma caixa de texto", "form_2"),
+    new HtmlTask("Crie um formulário com o texto \"Senha: \" seguido por uma caixa de senha", "form_3"),
+    new HtmlTask("Crie um formulário com o texto \"Texto: \" seguido por uma caixa de texto com o conteúdo \"Texto!\"", "form_4"));
 
   private def forms3 = new TaskGroup("Formulários III - Controles", "html.forms3", descriptions,
-    new HtmlTask("Crie um formulário com uma caixa da texto", "form_1"));
+    new HtmlTask("Crie um formulário com dois checkbox, o primeiro seguido por \"Entrada 1\" e em outro paragrafo um segundo checkbox seguido por \"Entrada 2\"", "form_5"),
+    new HtmlTask("Crie um formulário com dois radio-buttons, o primeiro seguido pelo texto \"Entrada 1\" e em outro paragrafo um segundo radio-button seguido por \"Entrada 2\". Ambos pertencendo ao grupo \"grupo\"", "form_6"));
 
   private def forms4 = new TaskGroup("Formulários IV - Controles", "html.forms4", descriptions,
-    new HtmlTask("Crie um formulário com uma caixa da texto", "form_1"));
+    new HtmlTask("Crie um formulário com um botão com o texto \"Botão\"", "form_7"),
+    new HtmlTask("Crie um formulário com um botão de submissão com o texto \"Submissão\"", "form_8"),
+      new HtmlTask("Crie um formulário com uma caixa de texto antecedida pelo texto \"Usuário:\", na linha seguinte, uma caixa de senha antecedida pelo texto \"Senha:\". Na seguinte linha dois botões: um com o texto \"Login\" e outro com o texto \"Cancelar\"", "form_9")
+  );
 
   private def structures = new TaskGroup("Estruturas do arquivo", "html.structures", descriptions,
     new HtmlTask("Escreva toda a estrutura de um arquivo html com o título \"Página html\" e conteúdo \"Oi mundo\"", "structure_1"),
