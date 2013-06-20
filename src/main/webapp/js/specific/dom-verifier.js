@@ -21,17 +21,67 @@ function verify(referenceString, challengeString) {
 		return wellFormedNessErrors;
 	}
 	
-	var tagPattern = /<(!DOCTYPE|area|base|br|circle|col|command|embed|hr|img|input|keygen|link|meta|option|param|rect|source|track|wbr)([^\/>]*[^\/>]?)>/gm;
-	referenceString = referenceString.replace(tagPattern,"<$1$2 />");
-	console.log(challengeString);
-	challengeString = challengeString.replace(tagPattern,"<$1$2 />");
-	console.log(challengeString);
+	var tagRegexString = "(!DOCTYPE|area|base|br|circle|col|command|embed|hr|img|input|keygen|link|meta|option|param|rect|source|track|wbr)";
+	
+	
+	var tagPattern = new RegExp("<" + tagRegexString + "([^>]*[^\\/>])>", "gm");
+	referenceString = referenceString.replace(tagPattern,"<$1$2/>");
+	challengeString = challengeString.replace(tagPattern,"<$1$2/>");
+	
+	tagPattern = new RegExp("<" + tagRegexString + ">", "gm");
+	referenceString = referenceString.replace(tagPattern,"<$1 />");
+	challengeString = challengeString.replace(tagPattern,"<$1 />");
+	
+	//DESCOMENTAR E RESOLVER TESTES: challengeString = putQuotesAttributes(challengeString);
 	
 	var parser = new DOMParser();
 	var reference = parser.parseFromString(referenceString, "text/xml");
 	var challenge = parser.parseFromString(challengeString, "text/xml");
 	
 	return verifySimilarity(reference, challenge);
+}
+
+function putQuotesAttributes(htmlCode) {
+	var tagPattern = /(<(\/?[^ \>\/]+)([^>]*)>)|([^<]+)/gm;
+	var stack = [];
+	var errors = [];
+	var tag = tagPattern.exec(htmlCode);
+	var tagCompleta;
+	var attPattern = / ([A-z\-\_]+)\=(([^ \"\']+)|(\"[^\"]+\")|(\'[^\']+\'))/gm;
+	var result = "";
+	
+	while (tag) {
+		tagName = tag[2];
+	    rest = tag[3];
+	    
+	    if (tag[0].match(/^[^<]+$/)) {
+	        result += tag[0];
+	        tag = tagPattern.exec(htmlCode);
+	        continue;
+	    }
+	    
+	    var att = attPattern.exec(rest);
+	    
+	    result += '<' + tagName;
+	     
+	    while (att) {
+	        
+	        attName = att[1];
+	        attValue = att[2];
+	        
+	        attValue = attValue.replace(/^(\"|\')/,'');
+	        attValue = attValue.replace(/(\"|\')$/,'');
+	        result += ' ' + attName + '=\'' + attValue + '\'';
+	           
+	        att = attPattern.exec(rest);
+	    }
+	    
+	    result +=  '/>'; 	    
+		
+		tag = tagPattern.exec(htmlCode);
+	}
+	
+	return result;
 }
 
 
