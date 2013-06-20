@@ -62,7 +62,7 @@ class HtmlGame(descriptions: Descriptions) extends Game {
     new HtmlTask("Crie uma lista de definições com os elementos Grama e Sol e suas respectivas cores Verde e Amarelo", "list_3"));
 
   private def links = new TaskGroup("Links", "html.links", descriptions,
-    new HtmlTask("Crie um link para o Google", "link_1"),
+    new HtmlTask("Crie um link para \"www.google.com\"", "link_1"),
     new HtmlTask("Crie um título usando (h1) chamado \"Home\" que seja também um link para a página \"http://home.com\"", "link_2"),
     new HtmlTask("Crie um link \"Vai\" que leva a outro local da página chamado Indice. O nome do identificador deve ser indice", "link_3"));
 
