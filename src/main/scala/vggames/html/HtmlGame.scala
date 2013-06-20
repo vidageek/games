@@ -25,6 +25,7 @@ class HtmlGame(descriptions: Descriptions) extends Game {
     forms2,
     forms3,
     forms4,
+    //editable,
     divs,
     svgs,
     datalists)
@@ -102,8 +103,10 @@ class HtmlGame(descriptions: Descriptions) extends Game {
   private def forms4 = new TaskGroup("Formulários IV - Controles", "html.forms4", descriptions,
     new HtmlTask("Crie um formulário com um botão com o texto \"Botão\"", "form_7"),
     new HtmlTask("Crie um formulário com um botão de submissão com o texto \"Submissão\"", "form_8"),
-      new HtmlTask("Crie um formulário com uma caixa de texto antecedida pelo texto \"Usuário:\", na linha seguinte, uma caixa de senha antecedida pelo texto \"Senha:\". Na seguinte linha dois botões: um com o texto \"Login\" e outro com o texto \"Cancelar\"", "form_9")
-  );
+    new HtmlTask("Crie um formulário com uma caixa de texto antecedida pelo texto \"Usuário:\", na linha seguinte, uma caixa de senha antecedida pelo texto \"Senha:\". Na seguinte linha dois botões: um com o texto \"Login\" e outro com o texto \"Cancelar\"", "form_9"));
+
+  private def editable = new TaskGroup("Editable", "html.editable", descriptions,
+    new HtmlTask("Crie um paragrafo editavel com o conteúdo \"O Brasil foi descoberto no ano 1500.\"", "editable_1"));
 
   private def structures = new TaskGroup("Estruturas do arquivo", "html.structures", descriptions,
     new HtmlTask("Escreva toda a estrutura de um arquivo html com o título \"Página html\" e conteúdo \"Oi mundo\"", "structure_1"),
