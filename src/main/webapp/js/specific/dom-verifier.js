@@ -21,9 +21,11 @@ function verify(referenceString, challengeString) {
 		return wellFormedNessErrors;
 	}
 	
-	var tagPattern = /<(!DOCTYPE|area|base|br|circle|col|command|embed|hr|img|input|keygen|link|meta|option|param|rect|source|track|wbr)([^>]*[^\/>])>/gm;
-	referenceString = referenceString.replace(tagPattern,"<$1$2/>");
-	challengeString = challengeString.replace(tagPattern,"<$1$2/>");
+	var tagPattern = /<(!DOCTYPE|area|base|br|circle|col|command|embed|hr|img|input|keygen|link|meta|option|param|rect|source|track|wbr)([^\/>]*[^\/>]?)>/gm;
+	referenceString = referenceString.replace(tagPattern,"<$1$2 />");
+	console.log(challengeString);
+	challengeString = challengeString.replace(tagPattern,"<$1$2 />");
+	console.log(challengeString);
 	
 	var parser = new DOMParser();
 	var reference = parser.parseFromString(referenceString, "text/xml");
