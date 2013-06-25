@@ -1,6 +1,6 @@
 Títulos podem ser definidos com tags de <b><h1\></b> a <b><h6\></b>, sendo 1 o maior e 6 o menor. 
 
-Frases curtas também podem ser inseridas através da tag <b><span\></b>.
+Frases curtas podem ser inseridas usando a tag <b><span\></b>.
 
 Observe o exemplo abaixo e seu resultado na página:
 
