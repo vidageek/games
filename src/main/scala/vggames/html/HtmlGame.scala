@@ -68,7 +68,7 @@ private def basicStructures2 = new TaskGroup("Exercícios básicos II", "html.ba
   private def links = new TaskGroup("Links", "html.links", descriptions,
     new HtmlTask("Crie um link para \"www.google.com\"", "link_1"),
     new HtmlTask("Crie um título usando (h1) chamado \"Home\" que seja também um link para a página \"http://home.com\"", "link_2"),
-    new HtmlTask("Crie um link \"Vai\" que leva a outro local da página chamado Indice. O nome do identificador deve ser indice", "link_3"));
+    new HtmlTask("Crie um link \"referencia\" que aponte para o marcador \"indice\"", "link_3"));
 
   private def formats1 = new TaskGroup("Formatação de texto I", "html.formats", descriptions,
     new HtmlTask("Crie um parágrafo com o texto \"texto em itálico\" com a palavra \"itálico\" em itálico", "format_1"),
