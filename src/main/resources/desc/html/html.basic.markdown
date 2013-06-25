@@ -13,6 +13,6 @@ a tag <b><p\></b>.
 Tags que não precisam de fechamento em geral são encerradas com o caractere <b>/</b>
 ao final da própria tag. Abaixo temos um exemplo de uso da tag <b><br/\></b>, que inclui uma quebra de linha no meio de um texto.
 
-	<h1>Isto é um título <br /> com uma quebra de linha</h1>
+	<h1>Isto é um título<br />com uma quebra de linha</h1>
 	
 <h1>Isto é um título <br /> com uma quebra de linha</h1>

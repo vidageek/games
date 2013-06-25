@@ -2,9 +2,7 @@ Um arquivo HTML é estruturado da seguinte forma:
 
 	<html>
 		<head><title>Título da página</title></head>
-		<body>
-			Conteúdo
-		</body>
+		<body>Conteúdo</body>
 	</html>
 
 Todo o código do arquivo html deve estar entre as tags <b><html\></b> e <b></html\></b>.
@@ -25,8 +23,7 @@ Exemplo:
 	<!DOCTYPE html>
 	<html>
 		<head><title></title></head>
-		<body>
-		</body>
+		<body></body>
 	</html>
 
 Caso você tenha que trabalhar com páginas mais antigas, é possível que você encontre declarações DOCTYPE para 

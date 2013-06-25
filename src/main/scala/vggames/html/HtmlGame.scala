@@ -77,7 +77,7 @@ class HtmlGame(descriptions: Descriptions) extends Game {
 
   private def formats2 = new TaskGroup("Formatação de texto II", "html.formats2", descriptions,
     new HtmlTask("Escreva o texto com o formato mostrado no exemplo da direita", "format_4"),
-    new HtmlTask("Escreva o código \"System.out.println(\"Hello world!\")\" usando a tag code", "format_5"),
+    new HtmlTask("Escreva o código \"x=42+y;\" usando a tag code", "format_5"),
     new HtmlTask("Escreva o texto mostrado no exemplo da direita usando a tag pre", "format_6"));
 
   private def tables = new TaskGroup("Tabelas", "html.tables", descriptions,
