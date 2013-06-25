@@ -1,15 +1,15 @@
-Para criar desenhos e imagens com HTML5, pode-se usar a tag SVG.
+Para criar desenhos e imagens com HTML5, pode-se usar a tag <b>svg</b>.
 Dentro dessa tag, são colocadas outras tags referentes a elementos gráficos
 como círculos, retângulos, triângulos, linhas, polígonos, etc. 
 
-O exemplo a seguir 
+O exemplo a seguir:
 
 	<svg>
 	  <circle cx='60' cy='40' r='15' fill='red' />
 	  <rect x='90' y='25' width='20' height='30' fill='green' />
 	</svg>
 
-Gera o seguinte resultado
+Gera o seguinte resultado:
 
 <svg height=70px>
   <circle cx='60' cy='40' r='15' fill='red' />

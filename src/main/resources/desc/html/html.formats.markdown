@@ -4,9 +4,7 @@ Dessa forma
 	
 resulta em:
 
-<table border="5"><tr><td>
-<b>Negrito</b> legal
-</td></tr></table>
+ <b>Negrito</b> legal 
 
 Para escrever o texto em itálico, são utilizadas as tags <b><i\></b> e <b></i\></b>
 Assim:
@@ -14,17 +12,13 @@ Assim:
 	texto <i>itálico</i>
 	
 resulta em:
-<table border="5"><tr><td>
-texto <i>itálico</i>
-</td></tr></table>
+ texto <i>itálico</i>
 
 É possível escrever texto em diferentes tamanhos usando as tags <b><big\></b> e <b><small\></b>.
 
 Assim, por exemplo:
 
-	texto <big\>grande</big\> e <small\>pequeno</small\>
+	texto <big>grande</big> e <small>pequeno</small>
 
 resulta em:
-<table border="5"><tr><td>
-texto <big>grande</big> e <small>pequeno</small>
-</td></tr></table>
+ texto <big>grande</big> e <small>pequeno</small>
