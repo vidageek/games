@@ -71,12 +71,12 @@ private def basicStructures2 = new TaskGroup("Exercícios básicos II", "html.ba
     new HtmlTask("Crie um link \"Vai\" que leva a outro local da página chamado Indice. O nome do identificador deve ser indice", "link_3"));
 
   private def formats1 = new TaskGroup("Formatação de texto I", "html.formats", descriptions,
-    new HtmlTask("Escreva o texto \"texto em itálico\" com a palavra \"itálico\" em itálico", "format_1"),
-    new HtmlTask("Escreva o texto \"texto grande\" com a palavra \"grande\" usango a tag big", "format_2"),
-    new HtmlTask("Escreva o texto \"texto pequeno\" com a palavra \"pequeno\" usando a tag small", "format_3"));
+    new HtmlTask("Crie um parágrafo com o texto \"texto em itálico\" com a palavra \"itálico\" em itálico", "format_1"),
+    new HtmlTask("Crie um parágrafo com o texto \"texto grande\" com a palavra \"grande\" usango a tag big", "format_2"),
+    new HtmlTask("Crie um parágrafo com o texto \"texto pequeno\" com a palavra \"pequeno\" usando a tag small", "format_3"));
 
   private def formats2 = new TaskGroup("Formatação de texto II", "html.formats2", descriptions,
-    new HtmlTask("Escreva o texto com o formato mostrado no exemplo da direita", "format_4"),
+    new HtmlTask("Crie um parágrafo com o texto no formato mostrado no exemplo da direita", "format_4"),
     new HtmlTask("Escreva o código \"x=42+y;\" usando a tag code", "format_5"),
     new HtmlTask("Escreva o texto mostrado no exemplo da direita usando a tag pre", "format_6"));
 
@@ -114,7 +114,7 @@ private def basicStructures2 = new TaskGroup("Exercícios básicos II", "html.ba
     new HtmlTask("Escreva toda a estrutura de um arquivo html com o título \"Página html\" e conteúdo \"Oi mundo\"", "structure_1"),
     new HtmlTask("Escreva a estrutura de um arquivo html com o título \"Minha página\" contendo o texto \"Conteúdo da minha página\" em negrito", "structure_2"),
     new HtmlTask("Escreva a estrutura de um arquivo html com o título \"Página com link\" contendo um link para a página do Google \"www.google.com\"", "structure_3"),
-    new HtmlTask("Declare um documento HTML5 usando a tag DOCTYPE, conforme o exemplo ao lado", "structure_4"));
+    new HtmlTask("Declare um documento HTML5 usando a tag DOCTYPE, conforme o exemplo na descrição", "structure_4"));
 
   private def svgs = new TaskGroup("SVG", "html.svg", descriptions,
     new HtmlTask("Desenhe um círculo com interior azul, na posição (50,50) e raio 50", "svg_1"),

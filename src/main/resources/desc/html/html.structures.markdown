@@ -17,7 +17,6 @@ as diversas tags de formatação de texto.
 A tag DOCTYPE, apesar de não ser obrigatória, é recomendada por razões de compatibilidade, para que o navegador
 possa renderizá-la de forma apropriada. Ela é colocada no começo do arquivo e diz qual é o tipo de documento 
 html. O padrão é <!DOCTYPE html>, indicando que o documento será do tipo HTML5.
-
 Exemplo:
 
 	<!DOCTYPE html>
@@ -26,7 +25,7 @@ Exemplo:
 		<body></body>
 	</html>
 
-Caso você tenha que trabalhar com páginas mais antigas, é possível que você encontre declarações DOCTYPE para 
+Em páginas mais antigas é possível encontrar declarações DOCTYPE para 
 tipos diferentes de HTML. Por exemplo, para HTML 4.01 Strict, DOCTYPE é declarado conforme exemplo abaixo:
 
 	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
