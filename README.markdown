@@ -3,9 +3,9 @@
 
 # Licenças
 
-Todo o código fonte de nossa autoria (arquivos `.scala`, `.sh`, `.sbt` e outros) estão licensiados sob [GPLv3][7].
+Todo o código fonte de nossa autoria (arquivos `.scala`, `.sh`, `.sbt` e outros) estão licenciados sob [GPLv3][7].
 
-O conteúdo das explicações dos exercícios (encontrado em `src/main/resources/desc`) está licensiado sob [CC-BY][8].
+O conteúdo das explicações dos exercícios (encontrado em `src/main/resources/desc`) está licenciado sob [CC-BY][8].
 
 
 # Como preparar o Ambiente

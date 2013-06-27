@@ -2,7 +2,7 @@
 var voidTags = /!DOCTYPE|area|base|br|circle|col|command|embed|hr|img|input|keygen|link|meta|option|param|rect|source|track|wbr/i;
 
 function verify(referenceString, challengeString) {
-
+		
 	referenceString = referenceString.replace(/>\s*</g,'><');
 	challengeString = challengeString.replace(/>\s*</g,'><');    
     
@@ -10,11 +10,12 @@ function verify(referenceString, challengeString) {
     var doctypesChal = /^<!DOCTYPE .*>/.exec(challengeString);
     		
     if (doctypesRef && doctypesRef.length > 0 && (!doctypesChal || doctypesChal.length == 0 || doctypesChal[0] != doctypesRef[0])) {
-        return ["Falta declaração de " + doctypesRef[0] + " no início"];
+        return ["Falta declaração de DOCTYPE no início"];
     }
     
-    referenceString = referenceString.replace(/^<!DOCTYPE .*>/, "");
-    challengeString = challengeString.replace(/^<!DOCTYPE .*>/, "");
+    referenceString = referenceString.replace(/^<!DOCTYPE[\s]*(html)?[\s]*>/, "");
+    challengeString = challengeString.replace(/^<!DOCTYPE[\s]*(html)?[\s]*>/, "");
+    
     
 	var wellFormedNessErrors = verifyWellFormedNess(challengeString);
 	if (wellFormedNessErrors.length > 0) {
@@ -22,7 +23,6 @@ function verify(referenceString, challengeString) {
 	}
 	
 	var tagRegexString = "(!DOCTYPE|area|base|br|circle|col|command|embed|hr|img|input|keygen|link|meta|option|param|rect|source|track|wbr)";
-	
 	
 	var tagPattern = new RegExp("<" + tagRegexString + "([^>]*[^\\/>])>", "gm");
 	referenceString = referenceString.replace(tagPattern,"<$1$2/>");
@@ -203,15 +203,17 @@ function verifySimilarity(reference, challenge) {
 		return [];
 	}
 
+	
 	var errors = [];
 	var skippedParserErrors = 0;
 	for (var i = 0; i < referenceChildren.length; i++) {
 		if (childrenOrNull(challengeChildren, i) && childrenOrNull(challengeChildren, i).nodeName == 'parsererror') {
-			skippedParserErrors += 1; 
+			skippedParserErrors += 1;
 			return ["Erro sintático"];
 		}
 		errors = errors.concat(verifySimilarity(referenceChildren[i], childrenOrNull(challengeChildren, i + skippedParserErrors)));
 	}
+	
 	for (var i = 0; i < challengeChildren.length - referenceChildren.length; i++){
 		if (childrenOrNull(challengeChildren, i + referenceChildren.length) && childrenOrNull(challengeChildren, i + referenceChildren.length).nodeName == 'parsererror') {
 			skippedParserErrors += 1;

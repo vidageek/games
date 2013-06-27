@@ -29,8 +29,8 @@ describe(
 
 			it('comparing image tags', function() {
 				expect(
-						callVerify("<img alt='asdf' src='link'/>",
-								"<img alt='asdf' src='link'/>")).toEqual([]);
+						callVerify("<img alt='asdf' src='link'>",
+								"<img alt='asdf' src='link'>")).toEqual([]);
 			});
 
 			it('error in tags', function() {

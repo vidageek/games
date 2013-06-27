@@ -7,7 +7,9 @@
   /* This prevents unwanted scrollbars from showing up on the body and wrapper in IE. */
   overflow: hidden;
 }
-
+.btn-primary.disabled{
+	background-color:red;
+}
 .CodeMirror-scroll {
   overflow-x: auto;
   overflow-y: hidden;
@@ -48,6 +50,8 @@
 .CodeMirror-scrollbar.cm-sb-ie7 {
   min-width: 18px;
 }
+
+
 
 .CodeMirror-gutter {
   position: absolute; left: 0; top: 0;
@@ -166,3 +170,4 @@ span.cm-link {text-decoration: underline;}
 
 div.CodeMirror span.CodeMirror-matchingbracket {color: #0f0;}
 div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
+
