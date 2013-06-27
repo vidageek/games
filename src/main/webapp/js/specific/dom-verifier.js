@@ -1,5 +1,5 @@
-
-var voidTags = /!DOCTYPE|area|base|br|circle|col|command|embed|hr|img|input|keygen|link|meta|option|param|rect|source|track|wbr/i;
+var tagRegexString = "(!DOCTYPE|area|base|br|circle|col|command|embed|hr|img|input|keygen|link|meta|option|param|rect|source|track|wbr)";
+var voidTags = new RegExp(tagRegexString,"i");
 
 function verify(referenceString, challengeString) {
 		
@@ -22,17 +22,12 @@ function verify(referenceString, challengeString) {
 		return wellFormedNessErrors;
 	}
 	
-	var tagRegexString = "(!DOCTYPE|area|base|br|circle|col|command|embed|hr|img|input|keygen|link|meta|option|param|rect|source|track|wbr)";
-	
-	var tagPattern = new RegExp("<" + tagRegexString + "([^>]*[^\\/>])>", "gm");
-	referenceString = referenceString.replace(tagPattern,"<$1$2/>");
-	challengeString = challengeString.replace(tagPattern,"<$1$2/>");
-	
-	tagPattern = new RegExp("<" + tagRegexString + ">", "gm");
-	referenceString = referenceString.replace(tagPattern,"<$1 />");
-	challengeString = challengeString.replace(tagPattern,"<$1 />");
-	
-	//DESCOMENTAR E RESOLVER TESTES: challengeString = putQuotesAttributes(challengeString);
+	//challengeString = putQuotesAttributes(challengeString);
+	console.log("Quotes: " + challengeString);
+
+	referenceString = putSlashesWhenNotPresent(referenceString);
+	challengeString = putSlashesWhenNotPresent(challengeString);
+	console.log("Barras: "+challengeString);
 	
 	var parser = new DOMParser();
 	var reference = parser.parseFromString(referenceString, "text/xml");
@@ -40,6 +35,15 @@ function verify(referenceString, challengeString) {
 	
 	return verifySimilarity(reference, challenge);
 }
+
+function putSlashesWhenNotPresent(htmlStr)
+{
+	var tagRegex = new RegExp("<" + tagRegexString + "([^>]*[^\\/>])>", "gm");
+	var res = htmlStr.replace(tagRegex,"<$1$2/>");
+	tagRegex = new RegExp("<" + tagRegexString + ">", "gm");
+	return res.replace(tagRegex,"<$1 />");
+}
+
 
 function putQuotesAttributes(htmlCode) {
 	var tagPattern = /(<(\/?[^ \>\/]+)([^>]*)>)|([^<]+)/gm;
@@ -71,8 +75,11 @@ function putQuotesAttributes(htmlCode) {
 	        
 	        attValue = attValue.replace(/^(\"|\')/,'');
 	        attValue = attValue.replace(/(\"|\')$/,'');
+	        console.log("Antes "+attValue);
+	        attValue = trim_slash(attValue);
+	        console.log("Depois "+attValue);
 	        result += ' ' + attName + '=\'' + attValue + '\'';
-	           
+	        
 	        att = attPattern.exec(rest);
 	    }
 	    
@@ -84,6 +91,11 @@ function putQuotesAttributes(htmlCode) {
 	return result;
 }
 
+
+function trim_slash(str)
+{
+	return str.replace(/\/$/,"");
+}
 
 function verifyWellFormedNess(challenge) {
 	var tagPattern = /<(\/?[^ \>\/]+)[^>]*>/gm;

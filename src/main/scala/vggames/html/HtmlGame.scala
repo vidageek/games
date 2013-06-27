@@ -113,7 +113,7 @@ private def basicStructures2 = new TaskGroup("Exercícios básicos II", "html.ba
   private def structures = new TaskGroup("Estruturas do arquivo", "html.structures", descriptions,
     new HtmlTask("Escreva toda a estrutura de um arquivo html com o título \"Página html\" e conteúdo \"Oi mundo\"", "structure_1"),
     new HtmlTask("Escreva a estrutura de um arquivo html com o título \"Minha página\" contendo o texto \"Conteúdo da minha página\" em negrito", "structure_2"),
-    new HtmlTask("Escreva a estrutura de um arquivo html com o título \"Página com link\" contendo um link para a página do Google \"www.google.com\"", "structure_3"),
+    new HtmlTask("Escreva a estrutura de um arquivo html com o título \"Página com link\" contendo um link para a página do Google \"www.google.com\" com o texto \"Google\"", "structure_3"),
     new HtmlTask("Declare um documento HTML5 usando a tag DOCTYPE, conforme o exemplo na descrição", "structure_4"));
 
   private def svgs = new TaskGroup("SVG", "html.svg", descriptions,
