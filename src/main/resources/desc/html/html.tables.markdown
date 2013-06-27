@@ -2,7 +2,7 @@ Tabelas em HTML são formadas através das tags <b><table\></table\></b>. No ent
 em tabelas é preciso definir os níveis inferiores, utilizando as tags <b><tr\></tr\></b> para linhas e <b><td\></td\></b> 
 para as células dentro dessa linha, conforme o exemplo abaixo:
 
-	<table border=1>
+	<table border="1">
 		<tr>
 			<td>Linha 1, coluna 1</td>
 			<td>Linha 1, coluna 2</td>
@@ -14,7 +14,7 @@ para as células dentro dessa linha, conforme o exemplo abaixo:
 	</table>
 
 	
-<table border=1>
+<table border="1">
 	<tr>
 		<td>Linha 1, coluna 1</td>
 		<td>Linha 1, coluna 2</td>
