@@ -3,8 +3,8 @@ var voidTags = new RegExp(tagRegexString,"i");
 
 function verify(referenceString, challengeString) {
 		
-	referenceString = referenceString.replace(/>\s*</g,'><');
-	challengeString = challengeString.replace(/>\s*</g,'><');    
+	referenceString = removeSpacesBetweenTags(referenceString);
+	challengeString = removeSpacesBetweenTags(challengeString);
     
     var doctypesRef = /^<!DOCTYPE .*>/.exec(referenceString);
     var doctypesChal = /^<!DOCTYPE .*>/.exec(challengeString);
@@ -23,11 +23,9 @@ function verify(referenceString, challengeString) {
 	}
 	
 	challengeString = putQuotesAttributes(challengeString);
-	console.log("Quotes: " + challengeString);
 
 	referenceString = putSlashesWhenNotPresent(referenceString);
 	challengeString = putSlashesWhenNotPresent(challengeString);
-	console.log("Barras: "+challengeString);
 	
 	var parser = new DOMParser();
 	var reference = parser.parseFromString(referenceString, "text/xml");
@@ -35,6 +33,13 @@ function verify(referenceString, challengeString) {
 	
 	return verifySimilarity(reference, challenge);
 }
+
+
+function removeSpacesBetweenTags(htmlStr)
+{
+	return htmlStr.replace(/>\s*([^\s<][^<]*[^\s<])\s*</g,'>$1<');
+}
+
 
 function putSlashesWhenNotPresent(htmlStr)
 {
