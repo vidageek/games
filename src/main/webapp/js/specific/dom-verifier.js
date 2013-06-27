@@ -22,7 +22,7 @@ function verify(referenceString, challengeString) {
 		return wellFormedNessErrors;
 	}
 	
-	//challengeString = putQuotesAttributes(challengeString);
+	challengeString = putQuotesAttributes(challengeString);
 	console.log("Quotes: " + challengeString);
 
 	referenceString = putSlashesWhenNotPresent(referenceString);
@@ -83,7 +83,7 @@ function putQuotesAttributes(htmlCode) {
 	        att = attPattern.exec(rest);
 	    }
 	    
-	    result +=  '/>'; 	    
+	    result +=  '>'; 	    
 		
 		tag = tagPattern.exec(htmlCode);
 	}
