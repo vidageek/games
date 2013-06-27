@@ -31,6 +31,10 @@ function verify(referenceString, challengeString) {
 	var reference = parser.parseFromString(referenceString, "text/xml");
 	var challenge = parser.parseFromString(challengeString, "text/xml");
 	
+	console.log(reference);
+	console.log(challenge);
+	
+	
 	return verifySimilarity(reference, challenge);
 }
 

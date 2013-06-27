@@ -28,8 +28,9 @@ class HtmlGame(descriptions: Descriptions) extends Game {
     forms4,
     //editable,
     divs,
-    svgs,
-    datalists)
+    svgs
+    //datalists
+    )
 
   private def basicStructures = new TaskGroup("Exercícios básicos I", "html.basic", descriptions,
     new HtmlTask("Crie um título (h1) com o texto 'título'", "basic_h1"),
