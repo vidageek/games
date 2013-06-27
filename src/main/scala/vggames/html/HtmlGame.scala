@@ -88,7 +88,7 @@ private def basicStructures2 = new TaskGroup("Exercícios básicos II", "html.ba
     new HtmlTask("Crie uma tabela de 2 linhas e 2 colunas, mesclando a primeira coluna e com o conteúdo em negrito conforme o exemplo", "table_3"));
 
   private def divs = new TaskGroup("Divs", "html.divs", descriptions,
-    new HtmlTask("Crie uma div", "div_1"));
+    new HtmlTask("Crie uma div com um bloque spam com o texto 'Minha querida div'", "div_1"));
 
   private def forms1 = new TaskGroup("Formulários I", "html.forms1", descriptions,
     new HtmlTask("Crie um formulário que envia os resultados para \"resultado.php\" usando o método \"get\"", "form_1"));
@@ -99,12 +99,12 @@ private def basicStructures2 = new TaskGroup("Exercícios básicos II", "html.ba
     new HtmlTask("Crie um formulário com o texto \"Texto: \" seguido por uma caixa de texto com o conteúdo \"Texto!\"", "form_4"));
 
   private def forms3 = new TaskGroup("Formulários III - Controles", "html.forms3", descriptions,
-    new HtmlTask("Crie um formulário com dois checkbox, o primeiro seguido por \"Entrada 1\" e em outro parágrafo um segundo checkbox seguido por \"Entrada 2\"", "form_5"),
-    new HtmlTask("Crie um formulário com dois radio-buttons, o primeiro seguido pelo texto \"Entrada 1\" e em outro parágrafo um segundo radio-button seguido por \"Entrada 2\". Ambos pertencendo ao grupo \"grupo\"", "form_6"));
+    new HtmlTask("Crie um formulário com dois checkbox, o primeiro seguido por \"Entrada 1\" e em outra linha um segundo checkbox seguido por \"Entrada 2\"", "form_5"),
+    new HtmlTask("Crie um formulário com dois radio-buttons, o primeiro seguido pelo texto \"Entrada 1\" e em outra linha um segundo radio-button seguido por \"Entrada 2\". Ambos pertencendo ao grupo \"grupo\"", "form_6"));
 
   private def forms4 = new TaskGroup("Formulários IV - Controles", "html.forms4", descriptions,
     new HtmlTask("Crie um formulário com um botão com o texto \"Botão\"", "form_7"),
-    new HtmlTask("Crie um formulário com um botão de submissão com o texto \"Submissão\"", "form_8"),
+    new HtmlTask("Crie um formulário com um botão de submissão com o texto \"Enviar\"", "form_8"),
     new HtmlTask("Crie um formulário com uma caixa de texto antecedida pelo texto \"Usuário:\", na linha seguinte, uma caixa de senha antecedida pelo texto \"Senha:\". Na seguinte linha dois botões: um com o texto \"Login\" e outro com o texto \"Cancelar\"", "form_9"));
 
   private def editable = new TaskGroup("Editable", "html.editable", descriptions,
@@ -122,7 +122,7 @@ private def basicStructures2 = new TaskGroup("Exercícios básicos II", "html.ba
     new HtmlTask("Desenhe um círculo com interior branco, na posição (40,40), raio 10 e contorno preto de 3 pixels", "svg_3"));
 
   private def datalists = new TaskGroup("Datalist", "html.datalist", descriptions,
-    new HtmlTask("Crie um campo input com um datalist tendo as opções carro, moto e barco", "datalist_1"));
+    new HtmlTask("Crie um campo input com um datalist da lista chamada transporte, e tendo as opções Carro, Moto e Barco", "datalist_1"));
 
   def getDescription = "Um jogo muito legal para aprender Html, focado em Html5"
 
