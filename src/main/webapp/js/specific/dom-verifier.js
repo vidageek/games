@@ -37,7 +37,7 @@ function verify(referenceString, challengeString) {
 
 function removeSpacesBetweenTags(htmlStr)
 {
-	return htmlStr.replace(/>\s*([^\s<][^<]*[^\s<])\s*</g,'>$1<');
+	return htmlStr.replace(/>\s*([^\s<][^<]*[^\s<])?\s*</g,'>$1<');
 }
 
 
