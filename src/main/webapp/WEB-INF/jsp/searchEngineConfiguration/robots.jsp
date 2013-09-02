@@ -3,3 +3,5 @@
 </c:forEach>
 <c:forEach items="${inactiveGames}" var="game">Disallow: /play/${game}
 </c:forEach>
+<c:forEach items="${inactiveGames}" var="game">Disallow: /reference/${game}
+</c:forEach>
