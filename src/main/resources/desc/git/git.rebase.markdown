@@ -14,5 +14,5 @@ Para fazer o **Rebase**, você usa o comando `git rebase BRANCH_DE_ORIGEM`.
 
 Exemplo:
 
-* `git master work` moverá todos os commits (acima da base) da branch **master** para a branch atual, mas abaixo dos seus commits acima da base.
+* `git rebase master` moverá todos os commits (acima da base) da branch **master** para a branch atual, mas abaixo dos seus commits acima da base.
 
