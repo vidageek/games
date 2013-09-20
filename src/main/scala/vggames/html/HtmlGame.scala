@@ -5,7 +5,7 @@ import vggames.shared.Game
 import vggames.shared.task.Tasks
 import vggames.shared.task.TaskGroup
 
-class HtmlGame(descriptions: Descriptions) extends Game {
+class HtmlGame(descriptions : Descriptions) extends Game {
 
   override val tasks = new Tasks(
     basicStructures,
@@ -28,15 +28,14 @@ class HtmlGame(descriptions: Descriptions) extends Game {
     forms4,
     //editable,
     divs,
-    svgs
-    //datalists
+    svgs //datalists
     )
 
   private def basicStructures = new TaskGroup("Exercícios básicos I", "html.basic", descriptions,
     new HtmlTask("Crie um título (h1) com o texto 'título'", "basic_h1"),
     new HtmlTask("Crie um título (h1) com o texto 'Outro Título' e quebra de linha entre as palavras", "basic_br"));
-  
-private def basicStructures2 = new TaskGroup("Exercícios básicos II", "html.basic2", descriptions,
+
+  private def basicStructures2 = new TaskGroup("Exercícios básicos II", "html.basic2", descriptions,
     new HtmlTask("Crie um parágrafo com \"Oi mundo\" como conteúdo", "basic_p1"));
 
   private def basicStructures3 = new TaskGroup("Exercícios básicos III", "html.basic3", descriptions,
@@ -83,8 +82,8 @@ private def basicStructures2 = new TaskGroup("Exercícios básicos II", "html.ba
 
   private def tables = new TaskGroup("Tabelas", "html.tables", descriptions,
     new HtmlTask("Crie uma tabela com borda, de 2 linhas e 2 colunas, com os números de 1 a 4", "table_1"));
-  
-  private def tables2 = new TaskGroup("Tabelas II", "html.tables2",descriptions,
+
+  private def tables2 = new TaskGroup("Tabelas II", "html.tables2", descriptions,
     new HtmlTask("Crie uma tabela de 2 linhas e 2 colunas, mesclando as duas primeiras células e com o conteúdo em negrito conforme o exemplo", "table_2"),
     new HtmlTask("Crie uma tabela de 2 linhas e 2 colunas, mesclando a primeira coluna e com o conteúdo em negrito conforme o exemplo", "table_3"));
 

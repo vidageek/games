@@ -83,8 +83,8 @@ case class Commit(name : String, aFlag : Boolean = false) extends Command {
     r.copy(repo, this, shouldBeTask)(commits = r.commits + (r.branch -> newCommits), files = newFiles)
   }
   def challenge = if (aFlag)
-    "Fa&ccedil;a um commit com a mensagem <code>%s</code> que tamb&eacute;m inclua os arquivos <strong>modified</strong>".format(name)
-  else "Fa&ccedil;a um commit com a mensagem <code>%s</code>".format(name)
+    s"Fa&ccedil;a um commit com a mensagem <code>${name}</code> que tamb&eacute;m inclua os arquivos <strong>modified</strong>"
+  else s"Fa&ccedil;a um commit com a mensagem <code>${name}</code>"
 
   override def toString = name
 }
@@ -98,8 +98,8 @@ case class Checkout(branch : String, bFlag : Boolean = false) extends Command {
       r.copy(repo, this, shouldBeTask)()
     } else repo
   }
-  def challenge = (if (bFlag) "Crie o branch <code>%s</code> e mude para ele"
-  else "Mude para o branch <code>%s</code>").format(branch)
+  def challenge = if (bFlag) s"Crie o branch <code>${branch}</code> e mude para ele"
+  else s"Mude para o branch <code>${branch}</code>"
 }
 
 case class Branch(name : String) extends Command {
@@ -107,14 +107,14 @@ case class Branch(name : String) extends Command {
     val commits = repo.commits.get(repo.branch).getOrElse(List[Commit]())
     repo.copy(repo, this, shouldBeTask)(commits = repo.commits + (name -> commits))
   }
-  def challenge = "Crie o branch <code>%s</code>".format(name)
+  def challenge = s"Crie o branch <code>${name}</code>"
 }
 
 case class DeleteBranch(name : String) extends Command {
   def apply(repo : Git, shouldBeTask : Boolean) = {
     repo.copy(repo, this, shouldBeTask)(commits = repo.commits - name)
   }
-  def challenge = "Apague o branch <code>%s</code>".format(name)
+  def challenge = s"Apague o branch <code>${name}</code>"
 }
 
 case class MoveBranch(from : String, to : String) extends Command {
@@ -122,21 +122,21 @@ case class MoveBranch(from : String, to : String) extends Command {
     val commitList = repo.commits(from)
     repo.copy(repo, this, shouldBeTask)(commits = repo.commits - from + (to -> commitList))
   }
-  def challenge = "Renomeie o branch <code>%s</code> para <code>%s</code>".format(from, to)
+  def challenge = s"Renomeie o branch <code>${from}</code> para <code>${to}</code>"
 }
 
 case class Init(repo : String) extends Command {
 
   def apply(repo : Git, shouldBeTask : Boolean) = repo.copy(repo, this, shouldBeTask)(repo = this.repo)
 
-  def challenge = "Crie o reposit&oacute;rio <code>%s</code>".format(repo)
+  def challenge = s"Crie o reposit&oacute;rio <code>${repo}</code>"
 }
 
 case class Pull(remote : String, branch : String) extends Command {
 
   def apply(repo : Git, shouldBeTask : Boolean) = (repo ~ Merge(remote + "/" + branch)).copy(repo, this, shouldBeTask)()
 
-  def challenge = "Faça pull dos commits de <code>%s/%s</code> para o seu branch atual.".format(remote, branch)
+  def challenge = s"Faça pull dos commits de <code>${remote}/${branch}</code> para o seu branch atual."
 }
 
 case class Push(remote : String, branch : String) extends Command {
@@ -144,11 +144,11 @@ case class Push(remote : String, branch : String) extends Command {
   def apply(repo : Git, shouldBeTask : Boolean) = {
     val remoteBranch = remote + "/" + branch
     val r = repo ~ Checkout(remoteBranch) ~ Merge(repo.branch) ~ Checkout(repo.branch)
-    if (r.commits(remoteBranch).last == Commit("Merge branch %s".format(repo.branch))) repo
+    if (r.commits(remoteBranch).last == Commit(s"Merge branch ${repo.branch}")) repo
     else r.copy(repo, this, shouldBeTask)()
   }
 
-  def challenge = "Envie os commits do seu branch atual para <code>%s/%s</code>." format (remote, branch)
+  def challenge = s"Envie os commits do seu branch atual para <code>${remote}/${branch}</code>."
 }
 
 case class Merge(branch : String) extends Command {
@@ -158,12 +158,12 @@ case class Merge(branch : String) extends Command {
     val otherCommits = repo.commits(branch)
     val base = branchCommits.zip(otherCommits).filter { case (a, b) => a.name == b.name }.map(_._1)
     val commits = branchCommits ++ otherCommits.slice(base.size, otherCommits.size)
-    val newCommits = if (branchCommits.size == base.size) commits else commits :+ Commit("Merge branch %s".format(branch))
+    val newCommits = if (branchCommits.size == base.size) commits else commits :+ Commit(s"Merge branch ${branch}")
 
     repo.copy(repo, this, shouldBeTask)(commits = repo.commits + (repo.branch -> newCommits))
   }
 
-  def challenge = "Faça o merge dos commits do branch <code>%s</code> no branch atual.".format(branch)
+  def challenge = s"Faça o merge dos commits do branch <code>${branch}</code> no branch atual."
 }
 
 case class Rebase(branch : String) extends Command {
@@ -178,7 +178,7 @@ case class Rebase(branch : String) extends Command {
     repo.copy(repo, this, shouldBeTask)(commits = repo.commits + (repo.branch -> commits))
   }
 
-  def challenge = "Faça o rebase dos commits do branch <code>%s</code> no branch atual.".format(branch)
+  def challenge = s"Faça o rebase dos commits do branch <code>${branch}</code> no branch atual."
 }
 
 abstract class AddFile(path : String, kind : String) extends Command {
@@ -204,8 +204,8 @@ case class Add(path : String, folder : Boolean = false) extends Command {
 
   def challenge : String = {
     if (path == ".") return "Adicione todos os arquivos da pasta atual &agrave; lista de commit candidate"
-    if (folder) return "Adicione todos os arquivos da pasta <code>%s</code> &agrave; lista de commit candidate".format(path)
-    "Adicione o arquivo <code>%s</code> &agrave; lista de commit candidate".format(path)
+    if (folder) return s"Adicione todos os arquivos da pasta <code>${path}</code> &agrave; lista de commit candidate"
+    s"Adicione o arquivo <code>${path}</code> &agrave; lista de commit candidate"
   }
 }
 

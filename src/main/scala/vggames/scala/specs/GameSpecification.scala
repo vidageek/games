@@ -72,7 +72,7 @@ class TestRun(specName : String) {
   def failure(assertionName : String) = results += new Failure(assertionName)
 
   def exception(message : String) : Unit = if (exception == null) exception =
-    new Failed("""Exception foi lan&ccedil;ada durante execu&ccedil;&atilde;o: %s""".format(message))
+    new Failed(s"""Exception foi lan&ccedil;ada durante execu&ccedil;&atilde;o: ${message}""")
 
   def judgement : JudgedTask = {
     if (exception != null) return exception
@@ -85,8 +85,8 @@ class TestRun(specName : String) {
     }
     if (failure.isDefined) {
       val message = results.foldLeft(
-        specName + "\n<ul><li>%s deve</li>".format(shouldName))(_ + _.toString) + "</ul>"
-      new Failed("Ops! Seu c&oacute;digo n&atilde;o fez tudo que era necess&aacute;rio. <br />" + message)
+        specName + s"\n<ul><li>${shouldName} deve</li>")(_ + _.toString) + "</ul>"
+      new Failed(s"Ops! Seu c&oacute;digo n&atilde;o fez tudo que era necess&aacute;rio. <br /> ${message}")
     } else {
       Ok()
     }
@@ -96,9 +96,9 @@ class TestRun(specName : String) {
 trait Result
 
 class Success(name : String) extends Result {
-  override def toString = """<li class="spec">%s</li>""".format(name)
+  override def toString = s"""<li class="spec">${name}</li>"""
 }
 
 class Failure(name : String) extends Result {
-  override def toString = """<li class="spec-fail spec">%s</li>""".format(name)
+  override def toString = s"""<li class="spec-fail spec">${name}</li>"""
 }

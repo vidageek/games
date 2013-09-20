@@ -41,5 +41,5 @@ class LogMail(to : String, from : String, subject : String, message : String) ex
   private val log = Logger.getLogger(classOf[LogMail])
 
   def send =
-    log.info("Got mail to send [to:%s | from:%s | subject:%s | message:%s".format(to, from, subject, message))
+    log.info(s"Got mail to send [to:${to} | from:${from} | subject:${subject} | message:${message}")
 }

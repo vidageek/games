@@ -1,8 +1,8 @@
 package vggames.shared
 
-import br.com.caelum.vraptor.{Get, Post, Resource, Result}
+import br.com.caelum.vraptor.{ Get, Post, Resource, Result }
 import scala.collection.JavaConverters._
-import vggames.shared.log.{Log, Submission}
+import vggames.shared.log.{ Log, Submission }
 import vggames.shared.player.PlayerSession
 
 @Resource
@@ -40,7 +40,7 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
     judgedTask.success {
 
       game.advance(index) { nextIndex =>
-        session.saveLast("/play/%s/task/%d".format(gameName, nextIndex))
+        session.saveLast(s"/play/${gameName}/task/${nextIndex}")
         result.redirectTo(this).task(gameName, nextIndex)
       }
 

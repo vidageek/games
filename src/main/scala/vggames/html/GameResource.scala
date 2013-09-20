@@ -20,6 +20,6 @@ class Html(res : HttpServletResponse) extends View {
   def from(resource : String) = {
     res.setContentType("text/html")
     res.getWriter().println(
-      Source.fromInputStream(getClass.getResourceAsStream("/html/%s.html".format(resource))).mkString)
+      Source.fromInputStream(getClass.getResourceAsStream(s"/html/${resource}.html")).mkString)
   }
 }

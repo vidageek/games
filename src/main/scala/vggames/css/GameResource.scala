@@ -9,19 +9,19 @@ import br.com.caelum.vraptor.Resource
 import br.com.caelum.vraptor.Get
 
 @Resource
-class GameResource(result: Result) {
+class GameResource(result : Result) {
 
   @Get(Array("/play/css/resource/{resource}"))
-  def gameCss(resource: String) =
+  def gameCss(resource : String) =
     result.use(classOf[Css]).from(resource)
-    
+
 }
 
 @Component
-class Css(res: HttpServletResponse) extends View {
-  def from(resource: String) {
+class Css(res : HttpServletResponse) extends View {
+  def from(resource : String) {
     res.setContentType("text/css")
     res.getWriter().println(
-      Source.fromInputStream(getClass.getResourceAsStream("/css/%s.css".format(resource))).mkString)
+      Source.fromInputStream(getClass.getResourceAsStream("/css/${resource}.css")).mkString)
   }
-} 
+}

@@ -48,24 +48,23 @@ case class Git(shouldBeTask : Boolean, repo : String, parent : Git, command : Co
   def diff(expected : Git) : List[String] = {
     val buffer = ListBuffer[String]()
     if (repo != expected.repo)
-      buffer += "Deveria ter criado o reposit&oacute;rio <code>%s</code>. Foi criado o <code>%s</code>".format(expected.repo, repo)
+      buffer += s"Deveria ter criado o reposit&oacute;rio <code>${expected.repo}</code>. Foi criado o <code>${repo}</code>"
 
     if (branch != expected.branch)
-      buffer += "Deveria mudar para o branch <code>%s</code>. Est&aacute; em <code>%s</code>".format(expected.branch, branch)
+      buffer += s"Deveria mudar para o branch <code>${expected.branch}</code>. Est&aacute; em <code>${branch}</code>"
 
     expected.commits.keySet.diff(commits.keySet).foreach { branch =>
-      buffer += "Deveria criar o branch <code>%s</code>.".format(branch)
+      buffer += s"Deveria criar o branch <code>${branch}</code>."
     }
 
     commits.keySet.diff(expected.commits.keySet).foreach { branch =>
-      buffer += "N&atilde;o deveria criar o branch <code>%s</code>.".format(branch)
+      buffer += s"N&atilde;o deveria criar o branch <code>${branch}</code>."
     }
 
     expected.commits.keySet.intersect(commits.keySet).foreach { branch =>
       expected.commits(branch).zip(commits(branch)).foldLeft(0) { (i, commit) =>
         if (commit._1 != commit._2)
-          buffer += "Commit <code>%s</code> do branch <code>%s</code> deveria ser <code>%s</code>, mas foi <code>%s</code>".
-            format(i, branch, commit._1, commit._2)
+          buffer += s"Commit <code>${i}</code> do branch <code>${branch}</code> deveria ser <code>${commit._1}</code>, mas foi <code>${commit._2}</code>"
         i + 1
       }
     }
@@ -74,9 +73,9 @@ case class Git(shouldBeTask : Boolean, repo : String, parent : Git, command : Co
     reverse(expected.files).diff(reversedFiles).foreach {
       case (file, kind) => {
         if (allFiles.contains(file)) {
-          buffer += "Arquivo <code>%s</code> deveria estar marcado como %s.".format(file, kind)
+          buffer += s"Arquivo <code>${file}</code> deveria estar marcado como ${kind}."
         } else {
-          buffer += "Arquivo <code>%s</code> deveria exister como %s.".format(file, kind)
+          buffer += s"Arquivo <code>${file}</code> deveria exister como ${kind}."
         }
       }
     }

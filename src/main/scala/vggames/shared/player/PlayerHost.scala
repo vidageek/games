@@ -37,10 +37,9 @@ class PlayerHost(players : Players, session : PlayerSession, result : Result, re
     val player : Player = players.findByEmail(email).getOrElse(players += Player(Long.MaxValue, email, PlayerHost.secureToken, None))
 
     Mail(email, "games@vidageek.net", "Link para Login",
-      """<a href="http://games.vidageek.net/token/%s">Clique aqui para logar-se no VidaGeek Games</a>""".
-        format(player.token)).send
+      s"""<a href="http://games.vidageek.net/token/${player.token}">Clique aqui para logar-se no VidaGeek Games</a>""").send
 
-    result.include("notice", "Enviamos um email para %s com o seu link de login. Basta clicar nele para se logar.".format(email))
+    result.include("notice", s"Enviamos um email para ${email} com o seu link de login. Basta clicar nele para se logar.")
     result.redirectTo(referer.url)
   }
 
