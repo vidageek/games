@@ -8,19 +8,12 @@ import br.com.caelum.vraptor.ioc.{ Component, ApplicationScoped }
 @Component
 @ApplicationScoped
 class Secrets {
-  val oauthSecrets = readSecrets("oauth_secrets")
   val awsSecrets = readSecrets("aws_secrets")
 
-  def apiKeyFor(providerName : String) = {
-    oauthSecrets.getProperty(providerName + ".api.key", "")
-  }
+  def awsAccessKey = key(awsSecrets.getProperty("access.key"))
+  def awsSecretKey = key(awsSecrets.getProperty("secret.key"))
 
-  def apiSecretFor(providerName : String) = {
-    oauthSecrets.getProperty(providerName + ".api.secret", "")
-  }
-
-  def awsAccessKey = awsSecrets.getProperty("access.key")
-  def awsSecretKey = awsSecrets.getProperty("secret.key")
+  private def key(f : => String) : Option[String] = Option(f)
 
   private def readSecrets(secretName : String) = {
     val secrets = new Properties()

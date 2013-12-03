@@ -16,7 +16,7 @@ object Mail {
   val secrets = new Secrets
 
   def apply(to : String, from : String, subject : String, message : String) =
-    Option(secrets.awsAccessKey).map(a => new AWSMail(to, from, subject, message)).
+    secrets.awsAccessKey.map(a => new AWSMail(to, from, subject, message)).
       getOrElse(new LogMail(to, from, subject, message))
 }
 
@@ -31,7 +31,7 @@ class AWSMail(to : String, from : String, subject : String, message : String) ex
     val list = new ArrayList[String]
     list.add(to)
     val req = new SendEmailRequest(from, new Destination(list), new Message(new Content(subject), new Body().withHtml(new Content(message))))
-    val credentials = new BasicAWSCredentials(secrets.awsAccessKey, secrets.awsSecretKey)
+    val credentials = new BasicAWSCredentials(secrets.awsAccessKey.get, secrets.awsSecretKey.get)
     val answer = new AmazonSimpleEmailServiceClient(credentials).sendEmail(req)
   }
 }
