@@ -29,7 +29,7 @@ object GamesVidageekBuild extends Build {
   lazy val game = Project(
     id = "games-game",
     base = file("games/game"),
-    settings = (coreSettings))
+    settings = coreSettings)
     
   lazy val commonSettings: Seq[Setting[_]] = Defaults.defaultSettings ++ Seq(
     organization := "net.vidageek",

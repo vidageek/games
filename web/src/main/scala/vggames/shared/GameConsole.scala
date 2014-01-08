@@ -4,6 +4,9 @@ import br.com.caelum.vraptor.{ Get, Post, Resource, Result }
 import scala.collection.JavaConverters._
 import vggames.shared.log.{ Log, Submission }
 import vggames.shared.player.PlayerSession
+import vggames.shared.task.JudgedTask
+import vggames.shared.task.NotLoggedJudgedTask
+import vggames.shared.player.Player
 
 @Resource
 class GameConsole(result : Result, game : Game, log : Log, session : PlayerSession) {
@@ -35,7 +38,7 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
 
     log.log(Submission(gameName, task, cleanChallenge, judgedTask, session.actualPlayer, session.ip))
 
-    result.include("judgedTask", judgedTask.personalize(session.actualPlayer))
+    result.include("judgedTask", personalize(judgedTask, session.actualPlayer))
 
     judgedTask.success {
 
@@ -60,6 +63,8 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
       result.redirectTo(this).task(gameName, index)
     }
   }
+
+  private def personalize(task : JudgedTask, player : Option[Player]) : JudgedTask = player.map(a => task).getOrElse(new NotLoggedJudgedTask(task))
 
   private def taskExists(index : Int) = index >= 0 && index < game.getSize
 }

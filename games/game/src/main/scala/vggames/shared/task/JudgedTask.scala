@@ -1,7 +1,5 @@
 package vggames.shared.task;
 
-import vggames.shared.player.Player
-
 trait JudgedTask {
 
   def ok : Boolean
@@ -15,8 +13,6 @@ trait JudgedTask {
   def success(f : => Unit) = if (ok) f
 
   def failure(f : => Unit) = if (!ok) f
-
-  def personalize(player : Option[Player]) : JudgedTask = player.map(a => this).getOrElse(new NotLoggedJudgedTask(this))
 
   override def toString = reason
 }
