@@ -4,6 +4,7 @@ import vggames.shared.task.Descriptions
 import vggames.shared.Game
 import vggames.shared.task.Tasks
 import vggames.shared.task.TaskGroup
+import vggames.shared.ResourceDescription
 
 class HtmlGame(descriptions : Descriptions) extends Game {
 
@@ -127,5 +128,7 @@ class HtmlGame(descriptions : Descriptions) extends Game {
   def getDescription = "Um jogo muito legal para aprender Html, focado em Html5"
 
   def getName = "Html"
+
+  override def resourceDescription = Some(ResourceDescription("text/html", "html", "html"))
 
 }

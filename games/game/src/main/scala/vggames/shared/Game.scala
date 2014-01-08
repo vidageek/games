@@ -1,7 +1,7 @@
 package vggames.shared
 
 import java.util.Collection
-import vggames.shared.task.{TaskWithDescription, Tasks}
+import vggames.shared.task.{ TaskWithDescription, Tasks }
 
 trait Game {
   val tasks : Tasks
@@ -28,4 +28,7 @@ trait Game {
   def nextTask(index : Int) : Int = index + 1
 
   def hasNextTask(index : Int) : Boolean = nextTask(index) < getSize
+
+  def resourceDescription : Option[ResourceDescription] = None
+
 }
