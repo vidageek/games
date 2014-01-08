@@ -6,6 +6,8 @@ resolvers ++= Seq (
 
 EclipseKeys.withSource := true
 
+EclipseKeys.relativizeLibs := false
+
 seq(jasmineSettings : _*)
 
 appJsDir <+= sourceDirectory { src => src / "main" / "webapp" / "js" }

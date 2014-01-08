@@ -13,72 +13,40 @@ import org._
 object GamesVidageekBuild extends Build {
 
   import Dependencies._
+  import Assets._
 
   lazy val root = Project(
     id = "VidaGeekGames",
     base = file("."),
-    settings = (coreSettings ++ tasks ++ coreWebSettings),
     aggregate = Seq(web))
     
   lazy val web = Project(
-    id = "games",
+    id = "games-web",
     base = file("web"),
-    settings = (coreSettings ++ tasks ++ coreWebSettings)
-  )
+    settings = (coreSettings ++ tasks ++ coreWebSettings)) 
   
-
   lazy val commonSettings: Seq[Setting[_]] = Defaults.defaultSettings ++ Seq(
     organization := "net.vidageek",
     version := "0.1-SNAPSHOT",
     scalaVersion := "2.10.0",
     scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-unchecked", "-g:vars", "-feature", 
-        "-language:_")
-  )
+        "-language:_"))
 
   lazy val coreWebSettings: Seq[Setting[_]] = webSettings ++ inConfig(Runtime)(webappSettings0) ++ Seq(
     libraryDependencies ++= Seq(jettyWebapp, jettyServlets, jettyJsp, jsp),
     classDirectory in Compile <<= webappDir {
       _ / "WEB-INF" / "classes"
-    })
+    },
+    packageWar <<= (assets, packageWar in Compile) map { (_, war: File) => war})
 
   lazy val coreSettings: Seq[Setting[_]] = commonSettings ++ Seq(
     libraryDependencies ++= Seq(xstream, log4j, velocity, jstl, guice, guiceBindings, servletApi,
         jspApi, vraptor, akkaActor, slick, scalaReflect, scalaCompiler, sqlite, aws, actuarius, specs2,
-        selenium, mockito, junit, akkaTestkit, sitemesh, junitInterface)
-  )
+        selenium, mockito, junit, akkaTestkit, sitemesh, junitInterface))
 
   lazy val webappDir = baseDirectory { _ / "src" / "main" / "webapp" }
 
-  lazy val webappDirFile = file(".") / "src" / "main" / "webapp"
-
-  lazy val tasks: Seq[Setting[_]] = Seq(gzipCss, gzipJs, gzipAssets)
-
-  lazy val assets = TaskKey[Unit]("gzip-assets", "Resolve GZip to CSS")
-
-  lazy val css = TaskKey[Unit]("gzip-css", "Resolve GZip to CSS")
-
-  lazy val js = TaskKey[Unit]("gzip-js", "Resolve GZip to JS")
-
-  lazy val gzipAssets = assets <<= (css, js) map { (_, _) => }
-
-  packageWar <<= (assets, packageWar) map { (_, war: File) => war}
-
-  lazy val gzipCss = css :=  {
-    gzipAsset(webappDirFile / "css", "css")
-  }
-
-  lazy val gzipJs = js :=  {
-    gzipAsset(webappDirFile / "js", "js")
-  }
-
-  def gzipAsset(assetDir: File, assetType: String) = {
-    val assets: Array[File] = listFiles(assetDir, FileFilter.globFilter("*." + assetType))
-    val gzipOut: GZIPOutputStream = new GZIPOutputStream(new FileOutputStream(assetDir / "games-packaged." + assetType + ".gz"))
-    val gzipPrinter = new PrintWriter(gzipOut)
-    assets foreach(asset => gzipPrinter.print(new Scanner(asset).useDelimiter("$$").next))
-    gzipPrinter.close()
-    gzipOut.close()
-  }  
+    
   
   object Dependencies {
 	  lazy val jettyWebapp    = "org.eclipse.jetty" % "jetty-webapp" % jettyVersion % "container"
@@ -108,11 +76,40 @@ object GamesVidageekBuild extends Build {
       lazy val sitemesh       = "opensymphony" % "sitemesh" % "2.4.2"
       lazy val junitInterface = "com.novocode" % "junit-interface" % "0.8" % "test"
       
-      lazy val vraptor       = "br.com.caelum" % "vraptor" % "3.4.1" excludeAll (ExclusionRule(organization = "org.springframework"))
+      lazy val vraptor        = "br.com.caelum" % "vraptor" % "3.4.1" excludeAll (ExclusionRule(organization = "org.springframework"))
       
-      
-      lazy val jettyVersion = "7.4.5.v20110725"
+      lazy val jettyVersion   = "7.4.5.v20110725"
   }
   
-  
+  object Assets {
+   
+	lazy val tasks: Seq[Setting[_]] = Seq(gzipCss, gzipJs, gzipAssets)
+
+	lazy val assets = TaskKey[Unit]("gzip-assets", "Resolve GZip to CSS and JS")
+
+	private lazy val webappDirFile = file(".") / "web" / "src" / "main" / "webapp"
+
+    private lazy val css = TaskKey[Unit]("gzip-css", "Resolve GZip to CSS")
+
+    private lazy val js = TaskKey[Unit]("gzip-js", "Resolve GZip to JS")
+
+    private lazy val gzipAssets = assets <<= (css, js) map { (_, _) => }
+
+    private lazy val gzipCss = css :=  {
+      gzipAsset(webappDirFile / "css", "css")
+    }
+
+    private lazy val gzipJs = js :=  {
+      gzipAsset(webappDirFile / "js", "js")
+    }
+
+    private def gzipAsset(assetDir: File, assetType: String) = {
+      val assets = listFiles(assetDir, FileFilter.globFilter("*." + assetType))
+      val gzipOut = new GZIPOutputStream(new FileOutputStream(assetDir / "games-packaged." + assetType + ".gz"))
+      val gzipPrinter = new PrintWriter(gzipOut)
+      assets foreach(asset => gzipPrinter.print(new Scanner(asset).useDelimiter("$$").next))
+      gzipPrinter.close()
+      gzipOut.close()
+    }
+  }
 }
