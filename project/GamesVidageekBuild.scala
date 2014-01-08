@@ -23,78 +23,78 @@ object GamesVidageekBuild extends Build {
   lazy val web = Project(
     id = "games-web",
     base = file("web"),
-    settings = (coreSettings ++ tasks ++ coreWebSettings)).
+    settings = (tasks ++ coreWebSettings ++ deps(xstream, log4j, jstl, guice, 
+        guiceBindings, servletApi, jspApi, vraptor, slick, sqlite, aws, 
+        actuarius, sitemesh, selenium)
+    )).
     dependsOn(game, cssGame, regexGame, gitGame, htmlGame, mathGame, metaGame, scalaGame) 
   
   lazy val game = Project(
     id = "games-game",
     base = file("games/game"),
-    settings = coreSettings)
+    settings = commonSettings ++ deps(actuarius))
  
   lazy val cssGame = Project(
     id = "games-css",
     base = file("games/css"),
-    settings = coreSettings).
+    settings = commonSettings).
     dependsOn(game)
       
   lazy val regexGame = Project(
     id = "games-regex",
     base = file("games/regex"),
-    settings = coreSettings).
+    settings = commonSettings).
     dependsOn(game)
     
   lazy val gitGame = Project(
     id = "games-git",
     base = file("games/git"),
-    settings = coreSettings).
+    settings = commonSettings).
     dependsOn(game)
     
   lazy val htmlGame = Project(
     id = "games-html",
     base = file("games/html"),
-    settings = coreSettings).
+    settings = commonSettings).
     dependsOn(game)
     
   lazy val mathGame = Project(
     id = "games-math",
     base = file("games/math"),
-    settings = coreSettings).
+    settings = commonSettings).
     dependsOn(game)
     
   lazy val metaGame = Project(
     id = "games-meta",
     base = file("games/meta"),
-    settings = coreSettings).
+    settings = commonSettings).
     dependsOn(game)
     
   lazy val scalaGame = Project(
     id = "games-scala",
     base = file("games/scala"),
-    settings = coreSettings).
+    settings = commonSettings ++ deps(akkaActor, scalaReflect, scalaCompiler, akkaTestkit, log4j)).
     dependsOn(game)
-    
+        
   lazy val commonSettings: Seq[Setting[_]] = Defaults.defaultSettings ++ Seq(
     organization := "net.vidageek",
     version := "0.1-SNAPSHOT",
     scalaVersion := "2.10.0",
     scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-unchecked", "-g:vars", "-feature", 
-        "-language:_"))
+        "-language:_"),
+    libraryDependencies ++= Seq(junit, specs2, mockito, junitInterface))
 
-  lazy val coreWebSettings: Seq[Setting[_]] = webSettings ++ inConfig(Runtime)(webappSettings0) ++ Seq(
+  lazy val coreWebSettings: Seq[Setting[_]] = commonSettings ++ webSettings ++ inConfig(Runtime)(webappSettings0) ++ Seq(
     libraryDependencies ++= Seq(jettyWebapp, jettyServlets, jettyJsp, jsp),
     classDirectory in Compile <<= webappDir {
       _ / "WEB-INF" / "classes"
     },
     packageWar <<= (assets, packageWar in Compile) map { (_, war: File) => war})
 
-  lazy val coreSettings: Seq[Setting[_]] = commonSettings ++ Seq(
-    libraryDependencies ++= Seq(xstream, log4j, velocity, jstl, guice, guiceBindings, servletApi,
-        jspApi, vraptor, akkaActor, slick, scalaReflect, scalaCompiler, sqlite, aws, actuarius, specs2,
-        selenium, mockito, junit, akkaTestkit, sitemesh, junitInterface))
-
   lazy val webappDir = baseDirectory { _ / "src" / "main" / "webapp" }
 
-    
+ 
+  private def deps(d : ModuleID*) : Seq[Setting[_]] = Seq(libraryDependencies ++= d.toSeq)
   
   object Dependencies {
 	  lazy val jettyWebapp    = "org.eclipse.jetty" % "jetty-webapp" % jettyVersion % "container"
