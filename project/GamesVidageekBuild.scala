@@ -18,13 +18,19 @@ object GamesVidageekBuild extends Build {
   lazy val root = Project(
     id = "VidaGeekGames",
     base = file("."),
-    aggregate = Seq(web))
+    aggregate = Seq(web, game))
     
   lazy val web = Project(
     id = "games-web",
     base = file("web"),
-    settings = (coreSettings ++ tasks ++ coreWebSettings)) 
+    settings = (coreSettings ++ tasks ++ coreWebSettings)).
+    dependsOn(game) 
   
+  lazy val game = Project(
+    id = "games-game",
+    base = file("games/game"),
+    settings = (coreSettings))
+    
   lazy val commonSettings: Seq[Setting[_]] = Defaults.defaultSettings ++ Seq(
     organization := "net.vidageek",
     version := "0.1-SNAPSHOT",
