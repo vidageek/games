@@ -18,19 +18,25 @@ object GamesVidageekBuild extends Build {
   lazy val root = Project(
     id = "VidaGeekGames",
     base = file("."),
-    aggregate = Seq(web, game, regexGame, gitGame, htmlGame, mathGame, metaGame, scalaGame))
+    aggregate = Seq(web, game, cssGame, regexGame, gitGame, htmlGame, mathGame, metaGame, scalaGame))
     
   lazy val web = Project(
     id = "games-web",
     base = file("web"),
     settings = (coreSettings ++ tasks ++ coreWebSettings)).
-    dependsOn(game, regexGame, gitGame, htmlGame, mathGame, metaGame, scalaGame) 
+    dependsOn(game, cssGame, regexGame, gitGame, htmlGame, mathGame, metaGame, scalaGame) 
   
   lazy val game = Project(
     id = "games-game",
     base = file("games/game"),
     settings = coreSettings)
-    
+ 
+  lazy val cssGame = Project(
+    id = "games-css",
+    base = file("games/css"),
+    settings = coreSettings).
+    dependsOn(game)
+      
   lazy val regexGame = Project(
     id = "games-regex",
     base = file("games/regex"),
