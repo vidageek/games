@@ -19,4 +19,5 @@ games-packaged.css
 .history
 .scala_dependencies
 *.swp
+*~
 games.db
