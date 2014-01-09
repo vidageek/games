@@ -1,9 +1,9 @@
 package vggames.regex
 
-import vggames.shared.Game
 import vggames.shared.task.{ Descriptions, TaskGroup, Tasks }
+import vggames.shared.GameEngine
 
-class RegexGame(descriptions : Descriptions) extends Game {
+class RegexGame(descriptions : Descriptions) extends GameEngine {
   override val tasks = new Tasks(
     addCharsExercises,
     addCharClassesExercises,

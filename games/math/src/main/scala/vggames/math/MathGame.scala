@@ -1,11 +1,11 @@
 package vggames.math
 
-import vggames.shared.Game
 import vggames.shared.task.Descriptions
 import vggames.shared.task.Tasks
 import vggames.shared.task.TaskGroup
+import vggames.shared.GameEngine
 
-class MathGame(descriptions : Descriptions) extends Game {
+class MathGame(descriptions : Descriptions) extends GameEngine {
   override val tasks = new Tasks(
     sum,
     subtraction,

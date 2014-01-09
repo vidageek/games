@@ -1,12 +1,12 @@
 package vggames.html
 
 import vggames.shared.task.Descriptions
-import vggames.shared.Game
 import vggames.shared.task.Tasks
 import vggames.shared.task.TaskGroup
 import vggames.shared.ResourceDescription
+import vggames.shared.GameEngine
 
-class HtmlGame(descriptions : Descriptions) extends Game {
+class HtmlGame(descriptions : Descriptions) extends GameEngine {
 
   override val tasks = new Tasks(
     basicStructures,

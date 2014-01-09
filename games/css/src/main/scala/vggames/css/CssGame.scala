@@ -1,12 +1,11 @@
 package vggames.css
 
 import vggames.shared.task.Descriptions
-import br.com.caelum.vraptor.ioc.Component
-import vggames.shared.Game
 import vggames.shared.task.Tasks
 import vggames.shared.task.TaskGroup
+import vggames.shared.GameEngine
 
-class CssGame(descriptions : Descriptions) extends Game {
+class CssGame(descriptions : Descriptions) extends GameEngine {
 
   val tasks : Tasks = new Tasks(addTestTask)
 

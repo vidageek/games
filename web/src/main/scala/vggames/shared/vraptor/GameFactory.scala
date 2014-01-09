@@ -3,7 +3,6 @@ package vggames.shared.vraptor
 import br.com.caelum.vraptor.ioc.Component
 import br.com.caelum.vraptor.ioc.ComponentFactory
 import vggames.regex.RegexGame
-import vggames.shared.Game
 import vggames.scala.ScalaGame
 import vggames.css.CssGame
 import br.com.caelum.vraptor.ioc.Component

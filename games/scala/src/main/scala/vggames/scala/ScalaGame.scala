@@ -7,15 +7,15 @@ import vggames.scala.specs.list._
 import vggames.scala.specs.string._
 import vggames.scala.specs.valvar._
 import vggames.scala.specs.whileloop._
-import vggames.shared.Game
 import vggames.shared.task.{ Descriptions, TaskGroup, Tasks }
 import vggames.scala.specs.functions.BasicFunction
 import vggames.scala.specs.functions.BasicFunction
 import vggames.scala.specs.literal.SumTwoNumbers
 import vggames.scala.specs.literal.RepresentString
 import vggames.scala.specs.literal.MultiplyTwoNumbers
+import vggames.shared.GameEngine
 
-class ScalaGame(descriptions : Descriptions) extends Game {
+class ScalaGame(descriptions : Descriptions) extends GameEngine {
 
   override val tasks = new Tasks(
     addLiteralOperations,

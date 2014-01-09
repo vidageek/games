@@ -1,9 +1,9 @@
 package vggames.git
 
-import vggames.shared.Game
 import vggames.shared.task.{ Descriptions, Tasks, TaskGroup }
+import vggames.shared.GameEngine
 
-class GitGame(descriptions : Descriptions) extends Game {
+class GitGame(descriptions : Descriptions) extends GameEngine {
   val tasks = new Tasks(init, add, commit, branch, checkout, merge, rebase, push, pull, workflow)
 
   def init = {

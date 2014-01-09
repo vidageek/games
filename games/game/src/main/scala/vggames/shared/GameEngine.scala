@@ -3,7 +3,8 @@ package vggames.shared
 import java.util.Collection
 import vggames.shared.task.{ TaskWithDescription, Tasks }
 
-trait Game {
+trait GameEngine {
+
   val tasks : Tasks
 
   def getDescription : String
