@@ -11,7 +11,7 @@ class Tasks(taskGroups : TaskGroup*) {
 
   def size = tasks.size
 
-  def all(descriptions : Descriptions) : java.util.List[_ <: TaskWithDescription[_]] = tasks.map(new TaskWithDescription(_, descriptions)).asJava
+  def all(descriptions : Descriptions) : List[_ <: TaskWithDescription[_]] = tasks.map(new TaskWithDescription(_, descriptions))
 
   private def unmodifiableIndexedTasks = {
     taskGroups.foldLeft((0, List[IndexedTask[_]]())) { (acc, group) =>

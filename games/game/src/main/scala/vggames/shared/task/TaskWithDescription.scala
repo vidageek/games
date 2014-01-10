@@ -8,6 +8,8 @@ class TaskWithDescription[T](delegate : IndexedTask[T], descriptions : Descripti
 
   def getGroupCode = delegate.groupCode
 
+  def group = delegate.group
+
   def judge(challenge : String) = delegate.judge(challenge)
 
   def getChallenge = delegate.getChallenge

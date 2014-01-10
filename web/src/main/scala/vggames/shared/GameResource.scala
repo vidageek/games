@@ -18,6 +18,7 @@ class ResourceView(game : Game, res : HttpServletResponse) extends View {
 
   def from(resource : String) = {
     game.resourceDescription.map { desc =>
+      res.setCharacterEncoding("UTF-8")
       res.setContentType(desc.contentType)
       res.getWriter().println(
         Source.fromInputStream(getClass.getResourceAsStream(

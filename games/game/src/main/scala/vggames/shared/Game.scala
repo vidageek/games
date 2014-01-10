@@ -4,12 +4,15 @@ import java.util.Collection
 import vggames.shared.task.TaskWithDescription
 import vggames.shared.task.Descriptions
 import vggames.shared.task.Descriptions
+import vggames.shared.task.TaskGroup
 
 class Game(engine : GameEngine, descriptions : Descriptions) {
 
   def task(index : Int) : TaskWithDescription[_] = engine.tasks.at(index, descriptions)
 
-  def getTasks : Collection[_ <: TaskWithDescription[_]] = engine.tasks.all(descriptions)
+  def tasks = engine.tasks.all(descriptions)
+
+  def groups = tasks.map(t => Group(t.group, t.getIndex, t.getDescription)).distinct
 
   def getSize : Int = engine.tasks.size
 
@@ -29,5 +32,9 @@ class Game(engine : GameEngine, descriptions : Descriptions) {
   def nextTask(index : Int) : Int = index + 1
 
   def hasNextTask(index : Int) : Boolean = nextTask(index) < getSize
+}
 
+case class Group(taskGroup : TaskGroup, index : Int, description : String) {
+  override def equals(o : Any) = taskGroup.equals(o.asInstanceOf[Group].taskGroup)
+  override def hashCode = taskGroup.hashCode
 }

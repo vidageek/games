@@ -20,6 +20,8 @@ class IndexedTask[T](delegate : GroupedTask[T], index : Int) {
 
   def groupCode = delegate.group.groupName
 
+  def group = delegate.group
+
   override def toString : String = delegate.toString
 
   def extraData = delegate.extraData
