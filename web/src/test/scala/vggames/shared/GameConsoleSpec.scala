@@ -13,15 +13,17 @@ import vggames.shared.log.GameLog
 import vggames.shared.log.Log
 import vggames.shared.player.PlayerSession
 import vggames.shared.task.JudgedTask
+import vggames.shared.vraptor.Params
 
 @RunWith(classOf[JUnitRunner])
 class GameConsoleSpec extends Specification with Mockito {
+  val params = mock[Params]
   "a game console" should {
     "redirect to same task when task is incorrect" in new GameConsoleScope {
       val judgedTask = new Failed("asdf")
       game.task(3).judge("challenge") returns judgedTask
 
-      new GameConsole(result, game, new Log, playerSession).submit("name", 3, "challenge")
+      new GameConsole(result, game, new Log, playerSession, params).submit("name", 3, "challenge")
 
       there was one(gameConsole).task("name", 3)
       there was one(result).include(===("judgedTask"), any[JudgedTask])
@@ -33,7 +35,7 @@ class GameConsoleSpec extends Specification with Mockito {
       game.task(3).judge("challenge") returns judgedTask
       game.hasNextTask(any[Int]) returns false
 
-      new GameConsole(result, game, new Log, playerSession).submit("name", 3, "challenge")
+      new GameConsole(result, game, new Log, playerSession, params).submit("name", 3, "challenge")
 
       there was one(gameConsole).index("name")
       there was one(result).include(===("judgedTask"), any[JudgedTask])
@@ -43,7 +45,7 @@ class GameConsoleSpec extends Specification with Mockito {
       val judgedTask = new Ok()
       game.task(3).judge("challenge") returns judgedTask
 
-      new GameConsole(result, game, new Log, playerSession).submit("name", 3, "challenge")
+      new GameConsole(result, game, new Log, playerSession, params).submit("name", 3, "challenge")
 
       there was one(game).advance(anyInt)(any[Int => Unit])
       there was one(result).include(===("judgedTask"), any[JudgedTask])

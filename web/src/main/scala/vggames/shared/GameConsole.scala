@@ -7,15 +7,16 @@ import vggames.shared.player.PlayerSession
 import vggames.shared.task.JudgedTask
 import vggames.shared.task.NotLoggedJudgedTask
 import vggames.shared.player.Player
+import vggames.shared.vraptor.VraptorExtensions._
+import vggames.shared.view.Index
+import vggames.shared.vraptor.Params
 
 @Resource
-class GameConsole(result : Result, game : Game, log : Log, session : PlayerSession) {
+class GameConsole(result : Result, game : Game, log : Log, session : PlayerSession, params : Params) {
 
   @Get(Array("/play/{gameName}"))
   def index(gameName : String) {
-    result.include("gameName", gameName)
-    result.include("game", game)
-    result.include("finishedGroups", session.finishedGroups.asJava)
+    result.render(new Index)(gameName, game, session.finishedGroups, params.gameEnded)
   }
 
   @Get(Array("/play/{gameName}/task/{index}"))
