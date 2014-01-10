@@ -2,14 +2,15 @@ package vggames.shared
 
 import br.com.caelum.vraptor.{ Get, Resource, Result }
 import scala.collection.JavaConverters._
+import vggames.shared.vraptor.VraptorExtensions._
+import vggames.shared.view.Robots
 
 @Resource
 class SearchEngineConfiguration(cfg : GamesConfiguration, result : Result) {
 
   @Get(Array("/robots.txt"))
   def robots {
-    result.include("games", cfg.activeGames.asJava)
-    result.include("inactiveGames", cfg.inactiveGames.asJava)
+    result.render(new Robots)(cfg.activeGames, cfg.inactiveGames)
   }
 
   @Get(Array("/sitemap.xml"))

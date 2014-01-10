@@ -4,7 +4,7 @@ import scalatags._
 
 class Senha extends TypedView[Unit] {
 
-  def render(t : Unit) = {
+  override def render(t : Unit) = {
 
     html(
       head(

@@ -8,7 +8,7 @@ import vggames.shared.vraptor.GameFactoryCache
 
 class Home extends TypedView[(GamesConfiguration, GameFactoryCache)] {
 
-  def render(t : (GamesConfiguration, GameFactoryCache)) = {
+  override def render(t : (GamesConfiguration, GameFactoryCache)) = {
     val (cfg, cached) = t
 
     html(

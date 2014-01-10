@@ -5,7 +5,7 @@ import net.vidageek.autoweb.taglib.support.ResourceVersionIdHandler
 
 class About extends TypedView[Unit] {
 
-  def render(t : Unit) = {
+  override def render(t : Unit) = {
 
     html(
       head(

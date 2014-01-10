@@ -13,7 +13,7 @@ object VraptorExtensions {
 
   implicit class AddRender(val result : Result) extends AnyVal {
     def render[O](view : TypedView[O])(tuple : O) = {
-      result.use(classOf[GameView]).render(view.render(tuple).toString)
+      result.use(classOf[GameView]).render(view.renderString(tuple), view)
     }
   }
 }
@@ -21,8 +21,8 @@ object VraptorExtensions {
 @Component
 class GameView(response : HttpServletResponse) extends View {
 
-  def render(html : String) = {
-    response.setContentType("text/html")
+  def render(html : String, view : TypedView[_]) = {
+    response.setContentType(view.contentType)
     response.setCharacterEncoding("UTF-8")
     response.getOutputStream().write(html.getBytes(Charset.forName("UTF-8")))
   }
