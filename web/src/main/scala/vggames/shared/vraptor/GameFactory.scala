@@ -9,6 +9,8 @@ import java.util.ArrayList
 import vggames.shared.GameEngine
 import scala.collection.JavaConverters._
 import vggames.git.GitGame
+import java.util.concurrent.ConcurrentHashMap
+import scala.util.Try
 
 @Component
 class GameFactory(cached : GameFactoryCache, data : RequestData) extends ComponentFactory[Game] {
@@ -20,11 +22,22 @@ class GameFactory(cached : GameFactoryCache, data : RequestData) extends Compone
 
 @Component
 @ApplicationScoped
-class GameFactoryCache(cache : DescriptionsCache, gameList : java.util.List[GameEngine]) {
+class GameFactoryCache(cache : DescriptionsCache) {
 
-  println(s"=============================$gameList")
+  val games = new ConcurrentHashMap[String, Option[Game]]().asScala
 
-  val games = Map[String, Game](gameList.asScala.map { game => (game.path, new Game(game)) } : _*)
+  def apply(gameName : String) : Option[Game] = games.get(gameName) match {
+    case Some(game) => game
+    case None => attemptToLoad(gameName, cache)
+  }
 
-  def apply(gameName : String) = games.get(gameName)
+  private def attemptToLoad(name : String, cache : DescriptionsCache) : Option[Game] = {
+    val engineName = s"vggames.$name.${name.capitalize}Game"
+    val engine = Try(Class.forName(engineName).newInstance.asInstanceOf[GameEngine]).
+      map(new Game(_))
+
+    games.putIfAbsent(name, engine.toOption)
+    games(name)
+  }
 }
+

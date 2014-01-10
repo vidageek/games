@@ -14,6 +14,10 @@ class Game(engine : GameEngine) {
 
   def allTasks = engine.tasks.tasks
 
+  def getDescription = engine.getDescription
+
+  def getName = engine.getName
+
   def resourceDescription : Option[ResourceDescription] = engine.resourceDescription
 
   def advance(index : Int)(f : Int => Unit) = if (hasNextTask(index)) f(nextTask(index))
