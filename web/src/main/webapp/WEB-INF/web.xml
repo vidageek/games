@@ -55,9 +55,7 @@
 
     <context-param>
         <param-name>br.com.caelum.vraptor.packages</param-name>
-        <param-value>
-        	br.com.caelum.vraptor.http.iogi
-		</param-value>
+        <param-value>br.com.caelum.vraptor.http.iogi</param-value>
     </context-param>
 
 </web-app>

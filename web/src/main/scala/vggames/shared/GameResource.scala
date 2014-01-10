@@ -14,7 +14,7 @@ class GameResource(result : Result) {
 }
 
 @Component
-class ResourceView(game : GameEngine, res : HttpServletResponse) extends View {
+class ResourceView(game : Game, res : HttpServletResponse) extends View {
 
   def from(resource : String) = {
     game.resourceDescription.map { desc =>

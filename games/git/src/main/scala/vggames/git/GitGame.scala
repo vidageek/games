@@ -2,8 +2,15 @@ package vggames.git
 
 import vggames.shared.task.{ Descriptions, Tasks, TaskGroup }
 import vggames.shared.GameEngine
+import br.com.caelum.vraptor.ioc.Component
+import vggames.git._
+import br.com.caelum.vraptor.ioc.ApplicationScoped
+import com.google.inject.Singleton
+import com.google.inject.Inject
 
-class GitGame(descriptions : Descriptions) extends GameEngine {
+class GitGame extends GameEngine {
+
+  val descriptions : Descriptions = new Descriptions("git")
   val tasks = new Tasks(init, add, commit, branch, checkout, merge, rebase, push, pull, workflow)
 
   def init = {
@@ -96,4 +103,6 @@ class GitGame(descriptions : Descriptions) extends GameEngine {
     "os principais comandos e fluxos de trabalho com esta ferramenta."
 
   def getName = "Git"
+
+  def path = "git"
 }

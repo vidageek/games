@@ -33,4 +33,5 @@ class MathGame(descriptions : Descriptions) extends GameEngine {
 
   def getName() : String = { "Math" }
 
+  def path = "math"
 }

@@ -5,7 +5,7 @@ import java.util.{ List => JUList }
 import scala.collection.mutable.ListBuffer
 
 case class Git(shouldBeTask : Boolean, repo : String, parent : Git, command : Command, commits : Map[String, List[Commit]],
-  branch : String, files : Map[String, List[GitFile]]) {
+               branch : String, files : Map[String, List[GitFile]]) {
 
   def ~(command : Command) = followedBy(command)
 

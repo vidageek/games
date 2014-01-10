@@ -5,6 +5,7 @@ import org.specs2.mock.Mockito
 import vggames.shared.task.Descriptions
 import org.junit.runner.RunWith
 import org.specs2.runner.JUnitRunner
+import vggames.shared.Game
 
 @RunWith(classOf[JUnitRunner])
 class GitGameSpec extends Specification with Mockito {
@@ -13,7 +14,7 @@ class GitGameSpec extends Specification with Mockito {
 
   "git game" should {
     "have answers for all games" in {
-      val game = new GitGame(descriptions)
+      val game = new Game(new GitGame())
 
       println(game.getSize)
 

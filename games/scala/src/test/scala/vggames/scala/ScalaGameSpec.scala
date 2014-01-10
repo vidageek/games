@@ -5,6 +5,7 @@ import org.junit.runner.RunWith
 import org.specs2.runner.JUnitRunner
 import vggames.shared.task.Descriptions
 import vggames.shared.task.status.Ok
+import vggames.shared.Game
 
 @RunWith(classOf[JUnitRunner])
 class ScalaGameSpec extends Specification {
@@ -14,7 +15,7 @@ class ScalaGameSpec extends Specification {
     ifelse ++ function ++ whileloop ++ list
 
   "Scala Game" should {
-    val game = new ScalaGame(new Descriptions("scala"))
+    val game = new Game(new ScalaGame(new Descriptions("scala")))
 
     "have the correct number of answers" in {
       answers.size must_== game.getSize

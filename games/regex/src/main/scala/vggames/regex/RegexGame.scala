@@ -117,4 +117,6 @@ class RegexGame(descriptions : Descriptions) extends GameEngine {
     "Com esses exercícios você conseguirá não apenas entender como RegEx funciona, mas será capaz de utilizá-la."
 
   def getName = "RegEx"
+
+  def path = "regex"
 }

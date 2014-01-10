@@ -5,6 +5,7 @@ import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
 import org.junit.runner.RunWith
 import vggames.shared.task.Descriptions
+import vggames.shared.Game
 
 @RunWith(classOf[JUnitRunner])
 class MathGameSpec extends Specification with Mockito {
@@ -14,7 +15,7 @@ class MathGameSpec extends Specification with Mockito {
   "math game" should {
     "have answers for all tasks" in {
 
-      val game = new MathGame(descriptions)
+      val game = new Game(new MathGame(descriptions))
       game.getSize must_== answers.length
 
       0 until game.getSize foreach { i =>

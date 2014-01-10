@@ -17,4 +17,6 @@ class CssGame(descriptions : Descriptions) extends GameEngine {
 
   def getName : String = "CSS"
 
+  def path = "css"
+
 }

@@ -107,4 +107,6 @@ class ScalaGame(descriptions : Descriptions) extends GameEngine {
   def getDescription = "Um jogo muito legal para aprender Scala"
 
   def getName = "Scala"
+
+  def path = "scala"
 }

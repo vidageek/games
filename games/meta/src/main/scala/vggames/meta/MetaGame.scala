@@ -50,4 +50,5 @@ class MetaGame(descriptions : Descriptions) extends GameEngine {
 
   def getName() : String = { "Meta" }
 
+  def path = "meta"
 }

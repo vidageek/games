@@ -129,6 +129,8 @@ class HtmlGame(descriptions : Descriptions) extends GameEngine {
 
   def getName = "Html"
 
+  def path = "html"
+
   override def resourceDescription = Some(ResourceDescription("text/html", "html", "html"))
 
 }
