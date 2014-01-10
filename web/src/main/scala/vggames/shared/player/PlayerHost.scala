@@ -13,6 +13,7 @@ import vggames.shared.view.TypedView
 import vggames.shared.view.Home
 import vggames.shared.vraptor.VraptorExtensions._
 import vggames.shared.view.Senha
+import vggames.shared.view.About
 
 @Resource
 class PlayerHost(players : Players, session : PlayerSession, result : Result,
@@ -29,7 +30,9 @@ class PlayerHost(players : Players, session : PlayerSession, result : Result,
   }
 
   @Get(Array("/about"))
-  def about = {}
+  def about = {
+    result.render(new About)()
+  }
 
   @Get(Array("/token/{token}"))
   def login(token : String) = {
