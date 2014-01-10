@@ -7,11 +7,11 @@ class Tasks(taskGroups : TaskGroup*) {
 
   val tasks : List[IndexedTask[_]] = unmodifiableIndexedTasks
 
-  def at(index : Int) = tasks(index)
+  def at(index : Int, descriptions : Descriptions) : TaskWithDescription[_] = new TaskWithDescription(tasks(index), descriptions)
 
   def size = tasks.size
 
-  def all : java.util.List[IndexedTask[_]] = tasks.asJava
+  def all(descriptions : Descriptions) : java.util.List[_ <: TaskWithDescription[_]] = tasks.map(new TaskWithDescription(_, descriptions)).asJava
 
   private def unmodifiableIndexedTasks = {
     taskGroups.foldLeft((0, List[IndexedTask[_]]())) { (acc, group) =>

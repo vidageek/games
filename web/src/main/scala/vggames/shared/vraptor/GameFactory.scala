@@ -34,7 +34,7 @@ class GameFactoryCache(cache : DescriptionsCache) {
   private def attemptToLoad(name : String, cache : DescriptionsCache) : Option[Game] = {
     val engineName = s"vggames.$name.${name.capitalize}Game"
     val engine = Try(Class.forName(engineName).newInstance.asInstanceOf[GameEngine]).
-      map(new Game(_))
+      map(new Game(_, cache.get(name)))
 
     games.putIfAbsent(name, engine.toOption)
     games(name)

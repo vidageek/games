@@ -3,16 +3,15 @@ package vggames.shared
 import java.util.Collection
 import vggames.shared.task.TaskWithDescription
 import vggames.shared.task.Descriptions
+import vggames.shared.task.Descriptions
 
-class Game(engine : GameEngine) {
+class Game(engine : GameEngine, descriptions : Descriptions) {
 
-  def task(index : Int) : TaskWithDescription[_] = engine.tasks.at(index)
+  def task(index : Int) : TaskWithDescription[_] = engine.tasks.at(index, descriptions)
 
-  def getTasks : Collection[_ <: TaskWithDescription[_]] = engine.tasks.all
+  def getTasks : Collection[_ <: TaskWithDescription[_]] = engine.tasks.all(descriptions)
 
   def getSize : Int = engine.tasks.size
-
-  def allTasks = engine.tasks.tasks
 
   def getDescription = engine.getDescription
 

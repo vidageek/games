@@ -1,11 +1,19 @@
 package vggames.shared.task;
 
-trait TaskWithDescription[T] extends Task[T] {
+class TaskWithDescription[T](delegate : IndexedTask[T], descriptions : Descriptions) extends Task[T] {
 
-  def getDescription : String
+  def getDescription = descriptions.forGroup(getGroupName)
 
-  def getGroupName : String
+  def getGroupName = delegate.groupName
 
-  def getGroupCode : String
+  def getGroupCode = delegate.groupCode
+
+  def judge(challenge : String) = delegate.judge(challenge)
+
+  def getChallenge = delegate.getChallenge
+
+  def getIndex = delegate.getIndex
+
+  def resource = delegate.resource
 
 }

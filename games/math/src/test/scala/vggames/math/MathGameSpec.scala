@@ -15,7 +15,7 @@ class MathGameSpec extends Specification with Mockito {
   "math game" should {
     "have answers for all tasks" in {
 
-      val game = new Game(new MathGame(descriptions))
+      val game = new Game(new MathGame(), descriptions)
       game.getSize must_== answers.length
 
       0 until game.getSize foreach { i =>

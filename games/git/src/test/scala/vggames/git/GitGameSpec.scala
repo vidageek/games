@@ -14,7 +14,7 @@ class GitGameSpec extends Specification with Mockito {
 
   "git game" should {
     "have answers for all games" in {
-      val game = new Game(new GitGame())
+      val game = new Game(new GitGame(), descriptions)
 
       println(game.getSize)
 
