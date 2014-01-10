@@ -82,7 +82,7 @@ object GamesVidageekBuild extends Build {
     scalaVersion := "2.10.0",
     scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-unchecked", "-g:vars", "-feature", 
         "-language:_"),
-    libraryDependencies ++= Seq(junit, specs2, mockito, junitInterface))
+    libraryDependencies ++= Seq(junit, specs2, mockito, junitInterface, scalaTags))
 
   lazy val coreWebSettings: Seq[Setting[_]] = commonSettings ++ webSettings ++ inConfig(Runtime)(webappSettings0) ++ Seq(
     libraryDependencies ++= Seq(jettyWebapp, jettyServlets, jettyJsp, jsp),
@@ -123,6 +123,7 @@ object GamesVidageekBuild extends Build {
       lazy val akkaTestkit    = "com.typesafe.akka" %% "akka-testkit" % "2.1.1" % "test"
       lazy val sitemesh       = "opensymphony" % "sitemesh" % "2.4.2"
       lazy val junitInterface = "com.novocode" % "junit-interface" % "0.8" % "test"
+      lazy val scalaTags      = "com.scalatags" % "scalatags_2.10" % "0.2.0"
       
       lazy val vraptor        = "br.com.caelum" % "vraptor" % "3.4.1" excludeAll (ExclusionRule(organization = "org.springframework"))
       

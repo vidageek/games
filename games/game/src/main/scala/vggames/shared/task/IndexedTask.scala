@@ -22,4 +22,6 @@ class IndexedTask[T](delegate : GroupedTask[T], index : Int) {
 
   override def toString : String = delegate.toString
 
+  def extraData = delegate.extraData
+
 }

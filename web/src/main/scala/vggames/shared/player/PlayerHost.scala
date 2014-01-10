@@ -9,14 +9,17 @@ import vggames.shared.vraptor.Referer
 import vggames.shared.GamesConfiguration
 import vggames.shared.vraptor.GameFactoryCache
 import scala.collection.JavaConverters._
+import vggames.shared.view.TypedView
+import vggames.shared.view.Home
+import vggames.shared.vraptor.VraptorExtensions._
 
 @Resource
-class PlayerHost(players : Players, session : PlayerSession, result : Result, referer : Referer, cfg : GamesConfiguration, games : GameFactoryCache) {
+class PlayerHost(players : Players, session : PlayerSession, result : Result,
+                 referer : Referer, cfg : GamesConfiguration, games : GameFactoryCache) {
 
   @Get(Array("/"))
   def home = {
-    result.include("cfg", cfg)
-    result.include("games", games.games.asJava)
+    result.render(new Home)(cfg, games)
   }
 
   @Get(Array("/senha"))

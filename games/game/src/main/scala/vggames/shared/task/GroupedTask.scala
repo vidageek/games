@@ -8,4 +8,6 @@ class GroupedTask[T](val group : TaskGroup, task : Task[T]) {
 
   def resource = task.resource
 
+  def extraData = task.extraData
+
 }

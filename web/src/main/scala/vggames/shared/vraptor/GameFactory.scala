@@ -8,7 +8,6 @@ import vggames.shared.Game
 import java.util.ArrayList
 import vggames.shared.GameEngine
 import scala.collection.JavaConverters._
-import vggames.git.GitGame
 import java.util.concurrent.ConcurrentHashMap
 import scala.util.Try
 

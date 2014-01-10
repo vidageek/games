@@ -2,11 +2,6 @@ package vggames.git
 
 import vggames.shared.task.{ Tasks, TaskGroup }
 import vggames.shared.GameEngine
-import br.com.caelum.vraptor.ioc.Component
-import vggames.git._
-import br.com.caelum.vraptor.ioc.ApplicationScoped
-import com.google.inject.Singleton
-import com.google.inject.Inject
 
 class GitGame extends GameEngine {
 
