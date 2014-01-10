@@ -12,6 +12,7 @@ import scala.collection.JavaConverters._
 import vggames.shared.view.TypedView
 import vggames.shared.view.Home
 import vggames.shared.vraptor.VraptorExtensions._
+import vggames.shared.view.Senha
 
 @Resource
 class PlayerHost(players : Players, session : PlayerSession, result : Result,
@@ -23,7 +24,9 @@ class PlayerHost(players : Players, session : PlayerSession, result : Result,
   }
 
   @Get(Array("/senha"))
-  def senha = {}
+  def senha = {
+    result.render(new Senha)()
+  }
 
   @Get(Array("/about"))
   def about = {}
