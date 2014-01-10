@@ -4,6 +4,7 @@ import br.com.caelum.vraptor.{ Get, Resource, Result }
 import scala.collection.JavaConverters._
 import vggames.shared.vraptor.VraptorExtensions._
 import vggames.shared.view.Robots
+import vggames.shared.view.Sitemap
 
 @Resource
 class SearchEngineConfiguration(cfg : GamesConfiguration, result : Result) {
@@ -15,7 +16,6 @@ class SearchEngineConfiguration(cfg : GamesConfiguration, result : Result) {
 
   @Get(Array("/sitemap.xml"))
   def sitemap {
-    result.include("games", cfg.activeGames.asJava)
-    result.include("buildDate", cfg.buildDate)
+    result.render(new Sitemap)(cfg.activeGames, cfg.buildDate)
   }
 }
