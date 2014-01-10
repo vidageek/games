@@ -15,7 +15,7 @@ import vggames.scala.specs.literal.RepresentString
 import vggames.scala.specs.literal.MultiplyTwoNumbers
 import vggames.shared.GameEngine
 
-class ScalaGame(descriptions : Descriptions) extends GameEngine {
+class ScalaGame extends GameEngine {
 
   override val tasks = new Tasks(
     addLiteralOperations,
@@ -30,13 +30,13 @@ class ScalaGame(descriptions : Descriptions) extends GameEngine {
     addListExercises)
 
   def addLiteralOperations =
-    new TaskGroup("Bem vindo à Scala", "basic.value", descriptions,
+    new TaskGroup("Bem vindo à Scala", "basic.value",
       new SumTwoNumbers(),
       new MultiplyTwoNumbers(),
       new RepresentString())
 
   def addValEVarExercises =
-    new TaskGroup("Variáveis e Valores", "basic.varval", descriptions,
+    new TaskGroup("Variáveis e Valores", "basic.varval",
       new DefineValString(),
       new DefineValInt(),
       new DefineVarString(),
@@ -44,14 +44,14 @@ class ScalaGame(descriptions : Descriptions) extends GameEngine {
       new ReassignToVar())
 
   def addBasicMathExercises =
-    new TaskGroup("Operações matemáticas básicas", "basic.math", descriptions,
+    new TaskGroup("Operações matemáticas básicas", "basic.math",
       new SomaSpec(),
       new SubSpec(),
       new MultiSpec(),
       new DivSpec())
 
   def addBasicBooleanExercises =
-    new TaskGroup("Operações Booleanas", "basic.boolean", descriptions,
+    new TaskGroup("Operações Booleanas", "basic.boolean",
       new True(),
       new False(),
       new Equals(),
@@ -62,7 +62,7 @@ class ScalaGame(descriptions : Descriptions) extends GameEngine {
       new MoreOrEqual())
 
   def addStringExercises =
-    new TaskGroup("Manipulando Strings", "basic.string.structure", descriptions,
+    new TaskGroup("Manipulando Strings", "basic.string.structure",
       new CreateString(),
       new CreateStringTripleQuotation(),
       new ConcatStrings(),
@@ -73,7 +73,7 @@ class ScalaGame(descriptions : Descriptions) extends GameEngine {
       new AnyRefToString())
 
   def addAdvancedStringExercises =
-    new TaskGroup("Operações de Strings", "basic.string.operations", descriptions,
+    new TaskGroup("Operações de Strings", "basic.string.operations",
       new SplitStrings(),
       new SubStrings(),
       new ReplaceString(),
@@ -81,25 +81,25 @@ class ScalaGame(descriptions : Descriptions) extends GameEngine {
       new TrimString())
 
   def addFunctionExercises =
-    new TaskGroup("Funções ", "basic.function", descriptions,
+    new TaskGroup("Funções ", "basic.function",
       new BasicFunction())
 
   def addConditionalExercises =
-    new TaskGroup("Estruturas condicionais", "basic.conditionals", descriptions,
+    new TaskGroup("Estruturas condicionais", "basic.conditionals",
       new If(),
       new IfElse(),
       new DoubleIf(),
       new DoubleIfElse())
 
   def addWhileExercises =
-    new TaskGroup("Estruturas de repetição while", "loop.while", descriptions,
+    new TaskGroup("Estruturas de repetição while", "loop.while",
       new SomaFaixaValores(),
       new SomaArray(),
       new MenorValorArray(),
       new MaiorValorArray())
 
   def addListExercises =
-    new TaskGroup("Manipulando Listas", "basic.list.operations", descriptions,
+    new TaskGroup("Manipulando Listas", "basic.list.operations",
       new IntList(),
       new StringList(),
       new FilterList())

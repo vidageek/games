@@ -10,11 +10,11 @@ class TaskGroupSpec extends Specification with Mockito {
 
   "task group" should {
     "parse name using markdown" in {
-      new TaskGroup("**strong**", "group.name", mock[Descriptions]).getName must_==
+      new TaskGroup("**strong**", "group.name").getName must_==
         "<strong>strong</strong>"
     }
     "cache name value to avoid replaceAll" in {
-      val group = new TaskGroup("**strong**", "group.name", mock[Descriptions])
+      val group = new TaskGroup("**strong**", "group.name")
       group.getName eq (group.getName) must beTrue
     }
   }

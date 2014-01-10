@@ -5,25 +5,25 @@ import vggames.shared.task.Tasks
 import vggames.shared.task.TaskGroup
 import vggames.shared.GameEngine
 
-class MathGame(descriptions : Descriptions) extends GameEngine {
+class MathGame extends GameEngine {
   override val tasks = new Tasks(
     sum,
     subtraction,
     multi)
 
-  private def sum = new TaskGroup("Soma", "math.sum", descriptions,
+  private def sum = new TaskGroup("Soma", "math.sum",
     new MathTask(2, 3, "+"),
     new MathTask(4, 5, "+"),
     new MathTask(1, 0, "+"),
     new MathTask(24, 12, "+"))
 
-  private def subtraction = new TaskGroup("Subtração", "math.subtraction", descriptions,
+  private def subtraction = new TaskGroup("Subtração", "math.subtraction",
     new MathTask(2, 3, "-"),
     new MathTask(8, 5, "-"),
     new MathTask(1, 0, "-"),
     new MathTask(24, 12, "-"))
 
-  private def multi = new TaskGroup("Multiplicação", "math.multi", descriptions,
+  private def multi = new TaskGroup("Multiplicação", "math.multi",
     new MathTask(2, 3, "*"),
     new MathTask(4, 5, "*"),
     new MathTask(1, 0, "*"),

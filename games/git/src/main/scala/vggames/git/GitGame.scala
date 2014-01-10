@@ -1,6 +1,6 @@
 package vggames.git
 
-import vggames.shared.task.{ Descriptions, Tasks, TaskGroup }
+import vggames.shared.task.{ Tasks, TaskGroup }
 import vggames.shared.GameEngine
 import br.com.caelum.vraptor.ioc.Component
 import vggames.git._
@@ -10,12 +10,11 @@ import com.google.inject.Inject
 
 class GitGame extends GameEngine {
 
-  val descriptions : Descriptions = new Descriptions("git")
   val tasks = new Tasks(init, add, commit, branch, checkout, merge, rebase, push, pull, workflow)
 
   def init = {
     val tasks = (EmptyGit() ~ Init("repositorio")).tasks ++ (EmptyGit() ~ Init("repo2")).tasks
-    new TaskGroup("Criar um repositório", "git.init", descriptions, tasks : _*)
+    new TaskGroup("Criar um repositório", "git.init", tasks : _*)
   }
 
   def add = {
@@ -28,7 +27,7 @@ class GitGame extends GameEngine {
       (EmptyGit() ~< UntrackedFile("arquivo1.txt") ~< ModifiedFile("arquivo2.txt") ~ Add(".")).tasks ++
       (EmptyGit() ~< UntrackedFile("arquivo1.txt") ~< ModifiedFile("arquivo2.txt") ~ Add("arquivo1.txt") ~ Add(".")).tasks
 
-    new TaskGroup("Adicionar arquivos", "git.add", descriptions, tasks : _*)
+    new TaskGroup("Adicionar arquivos", "git.add", tasks : _*)
   }
 
   def commit = {
@@ -41,13 +40,13 @@ class GitGame extends GameEngine {
         ModifiedFile("outraPasta/arquivo5.txt") ~< ModifiedFile("outraPasta/arquivo6.txt") ~ Add("arquivo2.txt") ~ Commit("commit apenas do arquivo2.txt") ~
         Add("pasta") ~ Commit("commit dos arquivos da pasta 'pasta'") ~ Add("arquivo.txt") ~ Commit("commit do arquivo.txt") ~ Commit("commit dos arquivos que faltam", true)).tasks
 
-    new TaskGroup("Fazer Commits", "git.commit", descriptions, tasks : _*)
+    new TaskGroup("Fazer Commits", "git.commit", tasks : _*)
   }
 
   def branch = {
     val tasks = (EmptyGit() ~ Branch("work") ~ Branch("feature") ~ DeleteBranch("work") ~ Branch("master")
       ~ MoveBranch("master", "outroBranch") ~ DeleteBranch("outroBranch") ~ Branch("master")).tasks
-    new TaskGroup("Criar Branches", "git.branch", descriptions, tasks : _*)
+    new TaskGroup("Criar Branches", "git.branch", tasks : _*)
   }
 
   def checkout = {
@@ -56,21 +55,21 @@ class GitGame extends GameEngine {
       (EmptyGit() ~ Commit("commit no master") ~ Branch("work") ~ Commit("outro commit no master") ~ Checkout("work")
         ~ Commit("commit no work") ~ Checkout("outro", true) ~ Commit("commit no branch outro") ~ Checkout("work") ~
         Commit("mais um commit no work")).tasks
-    new TaskGroup("Mudar de branch ativo", "git.checkout", descriptions, tasks : _*)
+    new TaskGroup("Mudar de branch ativo", "git.checkout", tasks : _*)
   }
 
   def merge = {
     val tasks = (EmptyGit() ~ Checkout("work", true) ~ Branch("outro") ~ Commit("primeiro commit") ~ Checkout("outro")
       ~ Merge("work") ~ Commit("commit no branch outro") ~ Checkout("work") ~ Commit("commit no work") ~ Merge("outro")
       ~ Commit("commit depois do commit de merge") ~ Checkout("outro")).tasks
-    new TaskGroup("Merge de branches", "git.merge", descriptions, tasks : _*)
+    new TaskGroup("Merge de branches", "git.merge", tasks : _*)
   }
 
   def rebase = {
     val tasks = (EmptyGit() ~ Checkout("work", true) ~ Branch("outro") ~ Commit("primeiro commit") ~ Checkout("outro")
       ~ Rebase("work") ~ Commit("commit no branch outro") ~ Checkout("work") ~ Commit("commit no work") ~ Rebase("outro")
       ~ Commit("mais um commit") ~ Commit("mais outro commit") ~ Checkout("outro") ~ Rebase("work") ~ Checkout("work")).tasks
-    new TaskGroup("Rebase de branches", "git.rebase", descriptions, tasks : _*)
+    new TaskGroup("Rebase de branches", "git.rebase", tasks : _*)
   }
 
   def push = {
@@ -78,14 +77,14 @@ class GitGame extends GameEngine {
       ~ Commit("dois commits") ~ Push("origin", "master")).tasks ++
       (WorkGit() ~< Branch("origin/master") ~ Commit("commit no work") ~ Checkout("master") ~ Merge("work")
         ~ Push("origin", "master") ~ Checkout("work")).tasks
-    new TaskGroup("Enviar commits para branches remotos (Push)", "git.push", descriptions, tasks : _*)
+    new TaskGroup("Enviar commits para branches remotos (Push)", "git.push", tasks : _*)
   }
 
   def pull = {
     val tasks = (MasterGit() ~< CommitAt("commit feito por outra pessoa", "origin/master")
       ~ Pull("origin", "master") ~ Commit("commit no master") ~< CommitAt("mais um commit em origin", "origin/master")
       ~ Pull("origin", "master") ~ Commit("commit acima da mensagem de merge")).tasks
-    new TaskGroup("Pegar commits de branches remotos (Pull)", "git.pull", descriptions, tasks : _*)
+    new TaskGroup("Pegar commits de branches remotos (Pull)", "git.pull", tasks : _*)
   }
 
   def workflow = {
@@ -96,7 +95,7 @@ class GitGame extends GameEngine {
       ~ Checkout("master") ~ Pull("origin", "master") ~ Checkout("work") ~ Rebase("master") ~ Checkout("master")
       ~ Merge("work") ~ Push("origin", "master")).tasks
 
-    new TaskGroup("Git Workflow", "git.workflow", descriptions, tasks : _*)
+    new TaskGroup("Git Workflow", "git.workflow", tasks : _*)
   }
 
   def getDescription = "Git é uma ferramenta de controle de versão que tem crescido muito nos últimos anos. Este jogo cobre " +
