@@ -26,7 +26,7 @@ class TaskView extends TypedView[(String, TaskWithDescription, Game, Option[Judg
   }
 
   private def renderGameView(game : Game, task : TaskWithDescription, judgedTask : Option[JudgedTask], lastAttempt : String) : String = {
-    val viewName = s"vggames.${game.path}.${game.getName}GameView"
+    val viewName = s"vggames.${game.path}.${game.path.capitalize}GameView"
 
     Try(Class.forName(viewName).newInstance.asInstanceOf[GameView]).
       map(_.render(game, task, judgedTask, lastAttempt)) match {

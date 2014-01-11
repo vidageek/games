@@ -42,18 +42,9 @@ class GitGameView extends GameView {
         files(extraData, "untracked", "Untracked"))).toString + "\n" +
       div("row".cls)(
         div("span6".cls)(
-          judgedTask.map { task =>
-            div(id := "challenge-result", s"reason alert ${if (task.ok) "alert-success" else "alert-error"}".cls)(
-              raw(task.reason))
-          }.getOrElse(raw("")),
-
-          form("challenge".cls, "method".attr := "POST", action := s"/play/${game.path}/task/${task.getIndex}")(
-            label("for".attr := "challenge")(strong(raw(task.getChallenge))),
-            input("focus span5".cls, name := "challenge", id := "challenge", autocomplete := "off", value := lastAttempt),
-            input(id := "challenge-submit", "btn btn-primary".cls, "type".attr := "submit", value := "Next! (ctrl + enter)")),
+          judgement(judgedTask),
+          singleLineChallengeForm(game, task, lastAttempt, "Next! (ctrl + enter)", "span5"),
           progressBar(task, game)),
-        div("span6".cls)(
-          h2(task.getGroupName),
-          raw(task.getDescription))).toString
+        taskDescription(task, "span6")).toString
   }
 }
