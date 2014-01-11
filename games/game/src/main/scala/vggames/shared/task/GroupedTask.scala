@@ -1,6 +1,6 @@
 package vggames.shared.task
 
-class GroupedTask[T](val group : TaskGroup, task : Task[T]) {
+class GroupedTask(val group : TaskGroup, task : Task) {
 
   def judge(challenge : String) = task.judge(challenge)
 

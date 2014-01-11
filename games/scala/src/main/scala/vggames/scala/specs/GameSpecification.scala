@@ -13,7 +13,7 @@ import org.specs2.matcher.MustThrownExpectations
 import org.specs2.execute.FailureException
 import scala.tools.reflect.ToolBoxError
 
-trait GameSpecification[T <: CodeRestrictions[_]] extends Task[Any] with MustMatchers with MustThrownExpectations {
+trait GameSpecification[T <: CodeRestrictions[_]] extends Task with MustMatchers with MustThrownExpectations {
   type Code = T
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun = new TestRun(this.getClass.getSimpleName)) : TestRun

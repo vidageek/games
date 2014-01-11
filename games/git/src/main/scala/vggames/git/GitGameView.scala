@@ -6,7 +6,7 @@ import vggames.shared.task.TaskWithDescription
 import scalatags._
 
 class GitGameView extends GameView {
-  def render(game : Game, task : TaskWithDescription[_]) = {
+  def render(game : Game, task : TaskWithDescription) = {
 
     div("git".cls)(
       div("row".cls)()).toString

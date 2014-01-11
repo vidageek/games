@@ -3,7 +3,7 @@ package vggames.html
 import vggames.shared.task.{ JudgedTask, Task }
 import vggames.shared.task.status.Ok
 
-class HtmlTask(challenge : String, resourceName : String) extends Task[Any] {
+class HtmlTask(challenge : String, resourceName : String) extends Task {
 
   def judge(challenge : String) : JudgedTask = Ok()
 

@@ -1,6 +1,6 @@
 package vggames.shared.task
 
-case class TaskGroup(name : String, val groupName : String, tasks : Task[_]*) {
+case class TaskGroup(name : String, val groupName : String, tasks : Task*) {
 
   lazy val getName = Markdown(name).replaceAll("</?p>", "").replaceAll("\n", "")
 

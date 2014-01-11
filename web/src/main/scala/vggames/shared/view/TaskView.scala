@@ -11,9 +11,9 @@ import vggames.shared.GameView
 import scala.util.Success
 import scala.util.Failure
 
-class TaskView extends TypedView[(String, TaskWithDescription[_], Game)] {
+class TaskView extends TypedView[(String, TaskWithDescription, Game)] {
 
-  override def render(t : (String, TaskWithDescription[_], Game)) = {
+  override def render(t : (String, TaskWithDescription, Game)) = {
     val (gameName, task, game) = t
 
     html(
@@ -24,7 +24,7 @@ class TaskView extends TypedView[(String, TaskWithDescription[_], Game)] {
         raw(renderGameView(game, task))))
   }
 
-  private def renderGameView(game : Game, task : TaskWithDescription[_]) : String = {
+  private def renderGameView(game : Game, task : TaskWithDescription) : String = {
     val viewName = s"vggames.${game.path}.${game.getName}GameView"
 
     Try(Class.forName(viewName).newInstance.asInstanceOf[GameView]).

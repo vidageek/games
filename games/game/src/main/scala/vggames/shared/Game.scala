@@ -8,7 +8,7 @@ import vggames.shared.task.TaskGroup
 
 class Game(engine : GameEngine, descriptions : Descriptions) {
 
-  def task(index : Int) : TaskWithDescription[_] = engine.tasks.at(index, descriptions)
+  def task(index : Int) : TaskWithDescription = engine.tasks.at(index, descriptions)
 
   def tasks = engine.tasks.all(descriptions)
 

@@ -5,7 +5,7 @@ import vggames.shared.task.status.Ok
 import vggames.shared.task.status.Failed
 import vggames.shared.task.JudgedTask
 
-case class GitTask(original : Git, expected : Git) extends Task[Git] {
+case class GitTask(original : Git, expected : Git) extends Task {
 
   def judge(challenge : String) : JudgedTask = {
     val command = Command(challenge)

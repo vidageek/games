@@ -4,7 +4,7 @@ import vggames.shared.task.Task
 import vggames.shared.task.JudgedTask
 import vggames.shared.task.status.Ok
 
-class CssTask(challenge : String) extends Task[Any] {
+class CssTask(challenge : String) extends Task {
 
   def judge(challenge : String) : JudgedTask = Ok()
 

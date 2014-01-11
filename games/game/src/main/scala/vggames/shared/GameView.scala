@@ -4,6 +4,6 @@ import vggames.shared.task.TaskWithDescription
 
 trait GameView {
 
-  def render(game : Game, task : TaskWithDescription[_]) : String
+  def render(game : Game, task : TaskWithDescription) : String
 
 }

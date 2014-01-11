@@ -2,7 +2,7 @@ package vggames.regex
 
 import vggames.shared.task.{ Task, JudgedTask }
 
-class NegateAndFind(cannotMatch : MatcherTargets, mustMatch : MatcherTargets) extends Task[Any] {
+class NegateAndFind(cannotMatch : MatcherTargets, mustMatch : MatcherTargets) extends Task {
 
   def judge(challenge : String) : JudgedTask = {
     val faileds = new Regex(challenge).findNone(cannotMatch);

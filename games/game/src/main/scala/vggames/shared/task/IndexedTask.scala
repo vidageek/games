@@ -2,7 +2,7 @@ package vggames.shared.task;
 
 import vggames.shared.task.status.Error
 
-class IndexedTask[T](delegate : GroupedTask[T], index : Int) {
+class IndexedTask(delegate : GroupedTask, index : Int) {
 
   def getIndex : Int = index
 
