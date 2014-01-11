@@ -4,82 +4,56 @@ import vggames.shared.GameView
 import vggames.shared.Game
 import vggames.shared.task.TaskWithDescription
 import scalatags._
+import vggames.shared.task.JudgedTask
 
 class GitGameView extends GameView {
-  def render(game : Game, task : TaskWithDescription) = {
+
+  private def files(git : Git, state : String, content : String) = {
+    div("span4".cls)(
+      git.files.get(state).filterNot(_.isEmpty).map { files =>
+        List(
+          raw(content),
+          ul(s"files-${state}".cls)(
+            files.map { file =>
+              li(file.toString)
+            }))
+      }.getOrElse[List[Node]](List(raw("\n\n"))))
+  }
+
+  def render(game : Game, task : TaskWithDescription, judgedTask : Option[JudgedTask], lastAttempt : String) = {
+    val extraData = task.extraData.get.asInstanceOf[Git]
 
     div("git".cls)(
-      div("row".cls)()).toString
-    /*
-	<c:forEach items="${task.extraData.commits}" var="c">
-	<div class="span3 branch branch-${c.branch}">
-		<span class="branch">${c.branch}</span>${task.extraData.branch == c.branch ? ' <span class="active">(ativo)</span>' : ''}
-		<ul>
-			<c:forEach items="${c.commits}" var="commit">
-				<li>${commit}</li>
-			</c:forEach>
-		</ul>
-	</div>
-	</c:forEach>
-</div>
+      div("row".cls)(
 
-<div class="row">
-	<div class="span4">
-		<c:if test="${not empty task.extraData.files['candidate']}">
-			Changes to be commited:
-			<ul class="files-stage">
-			<c:forEach items="${task.extraData.files['candidate']}" var="file">
-				<li>${file}</li>
-			</c:forEach>
-			</ul>
-		</c:if>
-	</div>
-	<div class="span4">
-		<c:if test="${not empty task.extraData.files['modified']}">
-			Modified:
-			<ul class="files-modified">
-			<c:forEach items="${task.extraData.files['modified']}" var="file">
-				<li>${file}</li>
-			</c:forEach>
-			</ul>
-		</c:if>
-	</div>
-	<div class="span4">
-		<c:if test="${not empty task.extraData.files['untracked']}">
-			Untracked:
-			<ul class="files-untracked">
-			<c:forEach items="${task.extraData.files['untracked']}" var="file">
-				<li>${file}</li>
-			</c:forEach>
-			</ul>
-		</c:if>
-	</div>
-</div>
+        extraData.findCommits.map { commits =>
+          div(s"span3 branch branch-${commits.branch}".cls)(
+            span("branch".cls)(commits.branch),
+            if (extraData.branch == commits.branch) span("active".cls)(" (ativo)") else "",
+            ul(
+              commits.commits.map { commit =>
+                li(commit.toString)
+              }))
 
-</div>
-<div class="row">
-	<div class="span6">
-		<c:if test="${not empty judgedTask}">
-			<div id="challenge-result" class="reason alert ${judgedTask.ok ? 'alert-success' : 'alert-error'}">
-				${judgedTask.reason}
-			</div>
-		</c:if>		
-		<form class="challenge" method="POST" action="/play/${gameName}/task/${task.index}">
-			<label for="challenge"><strong>${task.challenge}</strong></label>
-			<input class="focus span5" name="challenge" id="challenge" autocomplete="off" value="${challenge}"/>
-			<input id="challenge-submit" class="btn btn-primary" type="submit" value="Next! (ctrl + enter)" />
-		</form>
-		
-		<div class="progress">
-	    	<div class="bar" style="width: ${(task.index/game.size)*100}%;"></div>
-	    </div>
-	</div>
-	
-	<div class="span6">
-		<h2>${task.groupName}</h2>
-		${task.description}
-	</div>
-	
-</div> */
+        }, "\n\n"),
+      div("row".cls)(
+        files(extraData, "candidate", "Changes to be commited"),
+        files(extraData, "modified", "Modified"),
+        files(extraData, "untracked", "Untracked"))).toString + "\n" +
+      div("row".cls)(
+        div("span6".cls)(
+          judgedTask.map { task =>
+            div(id := "challenge-result", s"reason alert ${if (task.ok) "alert-success" else "alert-error"}".cls)(
+              raw(task.reason))
+          }.getOrElse(raw("")),
+
+          form("challenge".cls, "method".attr := "POST", action := s"/play/${game.path}/task/${task.getIndex}")(
+            label("for".attr := "challenge")(strong(raw(task.getChallenge))),
+            input("focus span5".cls, name := "challenge", id := "challenge", autocomplete := "off", value := lastAttempt),
+            input(id := "challenge-submit", "btn btn-primary".cls, "type".attr := "submit", value := "Next! (ctrl + enter)")),
+          progressBar(task, game)),
+        div("span6".cls)(
+          h2(task.getGroupName),
+          raw(task.getDescription))).toString
   }
 }

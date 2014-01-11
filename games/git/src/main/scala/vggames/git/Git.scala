@@ -14,17 +14,11 @@ case class Git(shouldBeTask : Boolean, repo : String, parent : Git, command : Co
   def followedBy(command : Command) = command(this, true)
   def followedByWithoutTask(command : Command) = command(this, false)
 
-  val getCommits : JUList[CommitList] = findCommits.asJava
-  val getFiles = files.map { case (k, v) => k -> v.asJava }.asJava
-
   def copy(parent : Git, command : Command, shouldBeTask : Boolean)(repo : String = this.repo, commits : Map[String, List[Commit]] = this.commits, branch : String = this.branch, files : Map[String, List[GitFile]] = this.files) =
     Git(shouldBeTask, repo, parent, command, commits, branch, files)
 
   def findCommits : List[CommitList] = (List(br("stash"), br("work")) ++ nonSpecial ++
     List(br("master"), br("origin/master")) ++ nonSpecialRemotes).flatten
-
-  def getBranch = branch
-  def getRepo = repo
 
   def br(branch : String) = commits.get(branch).map(CommitList(branch, _))
 
@@ -91,10 +85,7 @@ case class GitFile(path : String) {
   override def toString = path
 }
 
-case class CommitList(branch : String, commits : List[Commit]) {
-  def getBranch = branch
-  val getCommits = commits.asJava
-}
+case class CommitList(branch : String, commits : List[Commit])
 
 object EmptyGit {
   def apply() = new Git(false, "", null, null, Map(), "", Map("untracked" -> List(), "modified" -> List(), "candidate" -> List()))

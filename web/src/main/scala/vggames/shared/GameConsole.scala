@@ -23,11 +23,7 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
   @Get(Array("/play/{gameName}/task/{index}"))
   def task(gameName : String, index : Int) {
     if (taskExists(index)) {
-      result.include("gameName", gameName)
-      result.include("task", game.task(index))
-      result.include("game", game)
-
-      result.render(new TaskView)(gameName, game.task(index), game)
+      result.render(new TaskView)(gameName, game.task(index), game, params.judgedTask, params.lastAttempt)
     } else {
       result.redirectTo(this).index(gameName)
     }
@@ -63,7 +59,7 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
     }
 
     judgedTask.failure {
-      result.include("challenge", cleanChallenge)
+      result.include("lastAttempt", cleanChallenge)
       result.redirectTo(this).task(gameName, index)
     }
   }
