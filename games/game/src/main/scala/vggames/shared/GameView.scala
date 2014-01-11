@@ -25,8 +25,17 @@ trait GameView {
       input(s"focus $extraInputClass".cls, name := "challenge", id := "challenge", autocomplete := "off", value := lastAttempt),
       input(id := "challenge-submit", "btn btn-primary".cls, "type".attr := "submit", value := buttonText))
 
+  def multiLineChallengeForm(game : Game, task : TaskWithDescription, lastAttempt : String) = {
+    form("challenge".cls, "method".attr := "POST", action := s"/play/${game.path}/task/${task.getIndex}")(
+      label("for".attr := "challenge")(strong(raw(task.getChallenge))),
+      textarea("focus span6".cls, name := "challenge", id := "challenge", autocomplete := "off")(
+        s"\n${lastAttempt}"),
+      input(id := "challenge-submit", "btn btn-primary".cls, "type".attr := "submit", value := "Check! ( ctrl + Enter )"))
+  }
+
   def taskDescription(task : TaskWithDescription, divClass : String) =
     div(divClass.cls)(
       h2(task.getGroupName),
       raw(task.getDescription))
+
 }
