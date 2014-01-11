@@ -10,6 +10,7 @@ import vggames.shared.player.Player
 import vggames.shared.vraptor.VraptorExtensions._
 import vggames.shared.view.Index
 import vggames.shared.vraptor.Params
+import vggames.shared.view.TaskView
 
 @Resource
 class GameConsole(result : Result, game : Game, log : Log, session : PlayerSession, params : Params) {
@@ -25,6 +26,8 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
       result.include("gameName", gameName)
       result.include("task", game.task(index))
       result.include("game", game)
+
+      result.render(new TaskView)(gameName, game.task(index), game)
     } else {
       result.redirectTo(this).index(gameName)
     }

@@ -18,13 +18,13 @@ object VraptorExtensions {
 
   implicit class AddRender(val result : Result) extends AnyVal {
     def render[O](view : TypedView[O])(tuple : O) = {
-      result.use(classOf[GameView]).render(view.renderString(tuple), view)
+      result.use(classOf[GameTypedView]).render(view.renderString(tuple), view)
     }
   }
 }
 
 @Component
-class GameView(response : HttpServletResponse) extends View {
+class GameTypedView(response : HttpServletResponse) extends View {
 
   def render(html : String, view : TypedView[_]) = {
     response.setContentType(view.contentType)
