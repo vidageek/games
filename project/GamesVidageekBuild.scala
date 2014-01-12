@@ -22,7 +22,7 @@ object GamesVidageekBuild extends Build {
   lazy val web = Project(
     id = "games-web",
     base = file("web"),
-    settings = (tasks ++ coreWebSettings ++ deps(xstream, log4j, jstl, guice, 
+    settings = (coreWebSettings ++ deps(xstream, log4j, jstl, guice, 
         guiceBindings, servletApi, jspApi, vraptor, slick, sqlite, aws, 
         actuarius, sitemesh, selenium)
     )).
