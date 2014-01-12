@@ -4,13 +4,41 @@ import scala.io.Source
 import br.com.caelum.vraptor.{ Get, Resource, Result, View }
 import br.com.caelum.vraptor.ioc.Component
 import javax.servlet.http.HttpServletResponse
+import br.com.caelum.vraptor.ioc.Component
 
 @Resource
-class GameResource(result : Result) {
+class GameResource(result : Result, cached : ResourceCache) {
 
   @Get(Array("/play/{gameName}/resource/{resource}"))
   def findResource(gameName : String, resource : String) =
     result.use(classOf[ResourceView]).from(resource)
+
+  @Get(Array("/css/{gameName}.css"))
+  def findCss(gameName : String) = {
+    result.use(classOf[AssetView]).css(cached css (gameName))
+  }
+
+  @Get(Array("/js/{gameName}.js"))
+  def findJs(gameName : String) = {
+    result.use(classOf[AssetView]).js(cached js (gameName))
+  }
+}
+
+@Component
+class AssetView(res : HttpServletResponse) extends View {
+  def css(resource : Array[Byte]) = {
+    write(resource, "text/css")
+  }
+
+  def js(resource : Array[Byte]) = {
+    write(resource, "application/x-javascript")
+  }
+
+  private def write(resource : Array[Byte], contentType : String) = {
+    res.setContentType(contentType)
+    res.addHeader("Content-Encoding", "gzip")
+    res.getOutputStream().write(resource)
+  }
 }
 
 @Component

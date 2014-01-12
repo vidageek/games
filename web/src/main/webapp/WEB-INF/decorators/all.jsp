@@ -15,12 +15,13 @@
 <meta name="google-site-verification" content="igmWNUz0B_VblujqXG47m32FBgjyQ5Zc2Oq-3YzSZv8" />
 <title><decorator:title /></title>
 <decorator:head />
-<aw:css url="/css/games-packaged.css" />
+	<aw:css url="/css/games.css" />
 <!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	<g:specificCss />
-	
+	<c:if test="${not empty gameName}">
+		<aw:css url="/css/${gameName}.css" />
+	</c:if>
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
 		_gaq.push([ '_setAccount', 'UA-1508082-6' ]);
@@ -116,7 +117,7 @@
 	</section>
 	
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<aw:js url="/js/games-packaged.js" />
+	<aw:js url="/js/games.js" />
 
 	<g:specificJs />
 	
