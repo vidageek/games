@@ -9,11 +9,13 @@ import WebappPlugin._
 import IO._
 import PluginKeys._
 import org._
+import com.gu.SbtJasminePlugin._
 
 object GamesVidageekBuild extends Build {
 
   import Dependencies._
-
+  seq(jasmineSettings : _*)
+  
   lazy val root = Project(
     id = "VidaGeekGames",
     base = file("."),
@@ -22,7 +24,7 @@ object GamesVidageekBuild extends Build {
   lazy val web = Project(
     id = "games-web",
     base = file("web"),
-    settings = (coreWebSettings ++ deps(xstream, log4j, jstl, guice, 
+    settings = (jasmineSettings ++ coreWebSettings ++ deps(xstream, log4j, jstl, guice, 
         guiceBindings, servletApi, jspApi, vraptor, slick, sqlite, aws, 
         actuarius, sitemesh, selenium)
     )).
@@ -55,7 +57,12 @@ object GamesVidageekBuild extends Build {
     libraryDependencies ++= Seq(jettyWebapp, jettyServlets, jettyJsp, jsp),
     classDirectory in Compile <<= webappDir {
       _ / "WEB-INF" / "classes"
-    })
+    },
+    appJsDir <+= baseDirectory { _  / "src" / "main" / "resources" / "games" / "js" },
+	appJsLibDir <+= baseDirectory { _  / "src" / "main" / "webapp" / "js" / "lib" },
+	jasmineTestDir <+= baseDirectory { _  / "src" / "test" / "webapp" / "js" },
+	jasmineConfFile <+= baseDirectory { _  / "src" / "test" / "webapp" / "js" / "test.dependencies.js" }
+    /*(test in Test) <<= (test in Test) dependsOn (jasmine)*/)
 
   lazy val webappDir = baseDirectory { _ / "src" / "main" / "webapp" }
 
