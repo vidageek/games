@@ -38,11 +38,15 @@ os feature warnings de Scala (Não vamos restringir o uso de nenhuma feature).
 # Como criar um jogo
 
 1. Caso não esteja familiarizado com o código, dê uma olhada em como o [RegexGame][12] é implementado
-1. Crie uma classe que estenda a trait [GameEngine][10]. O nome completo dessa classe deve ser
-`vggames.${PATH}.${PATH_COM_PRIMEIRA_LETRA_MAIUSCULA}Game`, sendo que ${PATH} é o que determina
-a url onde o jogo fica (por exemplo, em `/play/regex`, o ${PATH} é `regex`).
-2. Crie uma classe que estenda a trait [GameView][11]. O nome dessa classe deve ser o nome da
-classe criada no passo 2 seguida por `View`.
+2. Declare o seu jogo no [arquivo de build][13] `lazy val ${path}Game = gameProject("${PATH}")` , 
+sendo que ${PATH} é o que determina a url onde o jogo fica (por exemplo, em `/play/regex`, 
+o ${PATH} é `regex`)
+3. Coloque o seu projeto como dependência do projeto `web` e como agregado do projeto `root`
+3. No `sbt`, rode `eclipse with-sources=true` para que o sbt prepare o seu projeto.
+4. Crie uma classe que estenda a trait [GameEngine][10]. O nome completo dessa classe deve ser
+`vggames.${PATH}.${PATH_COM_PRIMEIRA_LETRA_MAIUSCULA}Game`.
+5. Crie uma classe que estenda a trait [GameView][11]. O nome dessa classe deve ser o nome da
+classe criada no passo anterior seguida por `View`.
 
 
 [1]: http://scala-sbt.org/release/docs/Getting-Started/Setup.html
@@ -57,3 +61,4 @@ classe criada no passo 2 seguida por `View`.
 [10]: https://github.com/vidageek/games/blob/master/games/game/src/main/scala/vggames/shared/GameEngine.scala
 [11]: https://github.com/vidageek/games/blob/master/games/game/src/main/scala/vggames/shared/GameView.scala
 [12]: https://github.com/vidageek/games/blob/master/games/regex/src/main/scala/vggames/regex/RegexGame.scala
+[13]: https://github.com/vidageek/games/blob/master/project/GamesVidageekBuild.scala
