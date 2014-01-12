@@ -119,7 +119,9 @@
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<aw:js url="/js/games.js" />
 
-	<g:specificJs />
+	<c:if test="${not empty gameName}">
+		<aw:js url="/js/${gameName}.js" />
+	</c:if>
 	
 </body>
 </html>
