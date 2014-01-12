@@ -15,9 +15,6 @@ let BUILD=$BUILD+$?
 $SBT test
 let BUILD=$BUILD+$?
 
-$SBT gzip-assets
-let BUILD=$BUILD+$?
-
 $SBT package
 let BUILD=$BUILD+$?
 

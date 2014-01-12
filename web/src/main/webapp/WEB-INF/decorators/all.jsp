@@ -4,7 +4,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://vidageek.net/autoweb" prefix="aw"%>
-<%@ taglib uri="http://vidageek.net/games" prefix="g"%>
 
 <!DOCTYPE html>
 <html lang="pt-br">

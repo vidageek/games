@@ -13,7 +13,6 @@ import org._
 object GamesVidageekBuild extends Build {
 
   import Dependencies._
-  import Assets._
 
   lazy val root = Project(
     id = "VidaGeekGames",
@@ -56,8 +55,7 @@ object GamesVidageekBuild extends Build {
     libraryDependencies ++= Seq(jettyWebapp, jettyServlets, jettyJsp, jsp),
     classDirectory in Compile <<= webappDir {
       _ / "WEB-INF" / "classes"
-    },
-    packageWar <<= (assets, packageWar in Compile) map { (_, war: File) => war})
+    })
 
   lazy val webappDir = baseDirectory { _ / "src" / "main" / "webapp" }
 
@@ -104,35 +102,4 @@ object GamesVidageekBuild extends Build {
       lazy val jettyVersion   = "7.4.5.v20110725"
   }
   
-  object Assets {
-   
-	lazy val tasks: Seq[Setting[_]] = Seq(gzipCss, gzipJs, gzipAssets)
-
-	lazy val assets = TaskKey[Unit]("gzip-assets", "Resolve GZip to CSS and JS")
-
-	private lazy val webappDirFile = file(".") / "web" / "src" / "main" / "webapp"
-
-    private lazy val css = TaskKey[Unit]("gzip-css", "Resolve GZip to CSS")
-
-    private lazy val js = TaskKey[Unit]("gzip-js", "Resolve GZip to JS")
-
-    private lazy val gzipAssets = assets <<= (css, js) map { (_, _) => }
-
-    private lazy val gzipCss = css :=  {
-      gzipAsset(webappDirFile / "css", "css")
-    }
-
-    private lazy val gzipJs = js :=  {
-      gzipAsset(webappDirFile / "js", "js")
-    }
-
-    private def gzipAsset(assetDir: File, assetType: String) = {
-      val assets = listFiles(assetDir, FileFilter.globFilter("*." + assetType))
-      val gzipOut = new GZIPOutputStream(new FileOutputStream(assetDir / "games-packaged." + assetType + ".gz"))
-      val gzipPrinter = new PrintWriter(gzipOut)
-      assets foreach(asset => gzipPrinter.print(new Scanner(asset).useDelimiter("$$").next))
-      gzipPrinter.close()
-      gzipOut.close()
-    }
-  }
 }
