@@ -13,7 +13,7 @@ class ScalaGameView extends GameView {
     div("row".cls)(
       div("span6".cls)(
         judgement(judgedTask),
-        multiLineChallengeForm(game, task, lastAttempt),
+        multiLineChallengeForm(game, task, lastAttempt, false),
         progressBar(task, game)),
       taskDescription(task, "span6")).toString
   }
