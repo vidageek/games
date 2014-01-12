@@ -4,6 +4,8 @@
 		<pattern>/play/html/resource/*</pattern>
 		<pattern>/robots.txt</pattern>
 		<pattern>/sitemap.xml</pattern>
+		<pattern>/css/*</pattern>
+		<pattern>/js/*</pattern>
 	</excludes>
 
     <decorator name="all" page="all.jsp">

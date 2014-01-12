@@ -8,10 +8,13 @@ import java.util.concurrent.ConcurrentHashMap
 import scala.io.Source
 import java.util.zip.GZIPOutputStream
 import java.io.ByteArrayOutputStream
+import org.apache.log4j.Logger
 
 @Component
 @ApplicationScoped
 class ResourceCache {
+
+  private val log = Logger.getLogger(classOf[ResourceCache])
 
   private val cache = new ConcurrentHashMap[String, Array[Byte]]().asScala
 
@@ -33,7 +36,10 @@ class ResourceCache {
     val outStream = new ByteArrayOutputStream()
     val asset = Source.fromInputStream(findFiles(baseName, assetType)).getLines.map { file =>
       val fullname = s"/$baseName/$assetType/$file"
-      Source.fromInputStream(this.getClass.getResourceAsStream(fullname)).getLines.mkString("\n")
+      Option(this.getClass.getResourceAsStream(fullname)).map { stream =>
+        Source.fromInputStream(stream).getLines.mkString("\n")
+      }.getOrElse({ log.warn(s"Couldn't find resource $fullname. Ignoring it."); "" })
+
     }.map(_ + "\n\n").foldLeft(new GZIPOutputStream(outStream)) { (stream, content) => stream.write(content.getBytes()); stream }
 
     asset.close()
