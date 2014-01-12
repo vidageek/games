@@ -16,9 +16,13 @@ class Game(engine : GameEngine, descriptions : Descriptions) {
 
   def size : Int = engine.tasks.size
 
+  final def getSize = size
+
   def description = engine.description
 
-  def name = engine.name
+  final def name = engine.name
+
+  def getName = name
 
   def path = engine.path
 
