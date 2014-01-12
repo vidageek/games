@@ -27,19 +27,13 @@ object GamesVidageekBuild extends Build {
         guiceBindings, servletApi, jspApi, vraptor, slick, sqlite, aws, 
         actuarius, sitemesh, selenium)
     )).
-    dependsOn(game, cssGame, regexGame, gitGame, htmlGame, metaGame, scalaGame) 
+    dependsOn(game, regexGame, gitGame, htmlGame, metaGame, scalaGame) 
   
   lazy val game = Project(
     id = "games-game",
     base = file("games/game"),
     settings = commonSettings ++ deps(actuarius))
  
-  lazy val cssGame = Project(
-    id = "games-css",
-    base = file("games/css"),
-    settings = commonSettings).
-    dependsOn(game)
-      
   lazy val regexGame = Project(
     id = "games-regex",
     base = file("games/regex"),
