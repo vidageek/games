@@ -10,7 +10,7 @@ class FilterList extends GameSpecification[RestrictedFunction1[List[Int],List[In
 
   def extendsType = "RestrictedFunction1[List[Int],List[Int]]"
 
-  def getChallenge = """Use o metodo <code>filter</code> de um <code>List</code> chamado <code>"lista"</code> contendo os numeros <code>"1,2,3,4,5"</code> para retornar um <code>List</code> contendo valores menores que 4"""
+  def challenge = """Use o metodo <code>filter</code> de um <code>List</code> chamado <code>"lista"</code> contendo os numeros <code>"1,2,3,4,5"</code> para retornar um <code>List</code> contendo valores menores que 4"""
 
   override def run(code: Code, submittedCode: String)(implicit cases: TestRun) =
 

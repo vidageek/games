@@ -21,13 +21,13 @@ trait GameView {
 
   def singleLineChallengeForm(game : Game, task : TaskWithDescription, lastAttempt : String, buttonText : String, extraInputClass : String) =
     form("challenge".cls, "method".attr := "POST", action := s"/play/${game.path}/task/${task.getIndex}")(
-      label("for".attr := "challenge")(strong(raw(task.getChallenge))),
+      label("for".attr := "challenge")(strong(raw(task.challenge))),
       input(s"focus $extraInputClass".cls, name := "challenge", id := "challenge", autocomplete := "off", value := lastAttempt),
       input(id := "challenge-submit", "btn btn-primary".cls, "type".attr := "submit", value := buttonText))
 
   def multiLineChallengeForm(game : Game, task : TaskWithDescription, lastAttempt : String, buttonDisabled : Boolean, buttonExtraClass : String = "") = {
     form("challenge".cls, "method".attr := "POST", action := s"/play/${game.path}/task/${task.getIndex}")(
-      label("for".attr := "challenge")(strong(raw(task.getChallenge))),
+      label("for".attr := "challenge")(strong(raw(task.challenge))),
       textarea("focus span6".cls, name := "challenge", id := "challenge", autocomplete := "off")(
         s"\n${lastAttempt}"),
       if (buttonDisabled)

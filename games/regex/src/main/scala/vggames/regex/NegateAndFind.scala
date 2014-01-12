@@ -10,7 +10,7 @@ class NegateAndFind(cannotMatch : MatcherTargets, mustMatch : MatcherTargets) ex
     faileds.judgment();
   }
 
-  def getChallenge =
+  def challenge =
     "Qual RegEx n&atilde;o reconhece parcialmente" + cannotMatch.asHtml + " mas reconhece " + mustMatch.asHtml + "?";
 
   def resource = ""

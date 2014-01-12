@@ -19,7 +19,7 @@ class HtmlGameView extends GameView {
         progressBar(task, game)),
 
       div("span6".cls)(
-        iframe(id := "render-answer", "game-frame".cls, src := s"/play/html/resource/${task.getResource}")(""),
+        iframe(id := "render-answer", "game-frame".cls, src := s"/play/html/resource/${task.resource}")(""),
 
         h2(task.getGroupName),
         raw(task.getDescription))).toString

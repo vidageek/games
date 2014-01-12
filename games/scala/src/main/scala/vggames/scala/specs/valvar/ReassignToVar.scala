@@ -10,7 +10,7 @@ class ReassignToVar extends GameSpecification[RestrictedFunction0[String]] {
 
   def extendsType = "RestrictedFunction0[String]"
 
-  def getChallenge = """Defina a variável rio com o valor "tietê" e depois atribua a ela o valor "pinheiros" """
+  def challenge = """Defina a variável rio com o valor "tietê" e depois atribua a ela o valor "pinheiros" """
 
   override def afterCode = "rio"
 

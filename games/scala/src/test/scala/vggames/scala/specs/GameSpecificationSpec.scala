@@ -88,7 +88,7 @@ class GameSpecificationSpec extends Specification {
 class TestSpec(c : String) extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
   def runSignature = "(a:Int, b:Int):Int"
   def extendsType = "RestrictedFunction2[Int, Int, Int]"
-  def getChallenge = c
+  def challenge = c
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
     "a" should {
@@ -100,7 +100,7 @@ class TestSpec(c : String) extends GameSpecification[RestrictedFunction2[Int, In
 class MultipleAssertSpec extends GameSpecification[RestrictedFunction0[Unit]] {
   def runSignature = ":Unit"
   def extendsType = "RestrictedFunction0[Unit]"
-  def getChallenge = "multiple"
+  def challenge = "multiple"
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
     "a" should {

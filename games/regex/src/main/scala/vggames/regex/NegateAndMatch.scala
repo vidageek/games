@@ -10,7 +10,7 @@ class NegateAndMatch(cannotMatch : MatcherTargets, shouldMatch : MatcherTargets)
     faileds.judgment()
   }
 
-  def getChallenge =
+  def challenge =
     "Qual RegEx n&atilde;o reconhece " + cannotMatch.asHtml + " mas reconhece " + shouldMatch.asHtml + "?";
 
   def resource = ""

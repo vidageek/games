@@ -12,7 +12,7 @@ class DefineVarInt extends GameSpecification[RestrictedFunction0[Int]] {
 
   override def afterCode = "numero = numero\n numero"
 
-  def getChallenge = """Defina a variável chamada <code>numero</code> com o valor <code>314</code> """
+  def challenge = """Defina a variável chamada <code>numero</code> com o valor <code>314</code> """
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

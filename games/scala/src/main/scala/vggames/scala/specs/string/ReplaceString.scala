@@ -10,7 +10,7 @@ class ReplaceString extends GameSpecification[RestrictedFunction1[String, String
 
   def extendsType = "RestrictedFunction1[String, String]"
 
-  def getChallenge = """Substitua as ocorrências de <code>"aba"</code> em <code>a</code> por <code>"ebe"</code> """
+  def challenge = """Substitua as ocorrências de <code>"aba"</code> em <code>a</code> por <code>"ebe"</code> """
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

@@ -26,11 +26,11 @@ class MatchSpec extends Specification {
     }
 
     "show correct challenge" in {
-      taskWithMatchinTargestAAndB.getChallenge must_== "Qual RegEx reconhece <code>A</code> e <code>B</code>?"
+      taskWithMatchinTargestAAndB.challenge must_== "Qual RegEx reconhece <code>A</code> e <code>B</code>?"
     }
 
     "show correct challenge for 3 matching targets" in {
-      new Match(List("a", "b", "c")).getChallenge must_== "Qual RegEx reconhece <code>a</code>, <code>b</code> e <code>c</code>?"
+      new Match(List("a", "b", "c")).challenge must_== "Qual RegEx reconhece <code>a</code>, <code>b</code> e <code>c</code>?"
     }
 
     "match all string" in {

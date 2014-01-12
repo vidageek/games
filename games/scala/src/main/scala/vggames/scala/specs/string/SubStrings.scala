@@ -10,7 +10,7 @@ class SubStrings extends GameSpecification[RestrictedFunction1[String, String]] 
 
   def extendsType = "RestrictedFunction1[String, String]"
 
-  def getChallenge = """Devolva um pedaço da string <code>a</code> entre os caracteres <code>2</code> e <code>5</code>"""
+  def challenge = """Devolva um pedaço da string <code>a</code> entre os caracteres <code>2</code> e <code>5</code>"""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

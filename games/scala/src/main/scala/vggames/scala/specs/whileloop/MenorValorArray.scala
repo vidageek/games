@@ -14,7 +14,7 @@ class MenorValorArray extends GameSpecification[RestrictedFunction0[Int]] {
   
   override def afterCode = "menor"
 
-  def getChallenge = """
+  def challenge = """
 Considere que j&aacute; existe um array <code>arr: Array[Int]</code> e encontre seu
 menor valor, utilizando uma estrutura de repeti&ccedil;&atilde;o <code>while</code>.
 Guarde o resultado em uma vari&aacute;vel chamada <code>menor</code>.

@@ -16,7 +16,7 @@ case class GitTask(original : Git, expected : Git) extends Task {
     if (differences.isEmpty) Ok() else Failed(differences.mkString("<br />"))
   }
 
-  def getChallenge = expected.command.challenge
+  def challenge = expected.command.challenge
 
   def resource = ""
 

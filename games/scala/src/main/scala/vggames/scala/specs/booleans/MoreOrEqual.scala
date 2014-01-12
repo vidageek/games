@@ -10,7 +10,7 @@ class MoreOrEqual extends GameSpecification[RestrictedFunction2[Int, Int, Boolea
 
   def extendsType = "RestrictedFunction2[Int, Int, Boolean]"
 
-  def getChallenge = """Devolva <code>true</code> quando <code>a</code> for maior ou igual a <code>b</code>"""
+  def challenge = """Devolva <code>true</code> quando <code>a</code> for maior ou igual a <code>b</code>"""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

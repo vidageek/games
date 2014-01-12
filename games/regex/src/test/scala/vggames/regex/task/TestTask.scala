@@ -5,6 +5,6 @@ import vggames.shared.task.Task
 
 class TestTask extends Task {
   def judge(challenge : String) : JudgedTask = null
-  def getChallenge() : String = null
+  def challenge() : String = null
   def resource = ""
 }

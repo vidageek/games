@@ -10,7 +10,7 @@ import vggames.shared.player.Player
 case class Submission(gameName : String, task : Task, challenge : String, result : JudgedTask, player:Option[Player], ip : Option[String]) extends LogItem with Database {
   def log {
     onDatabase {
-      Submissions.insert(gameName, task.getChallenge, challenge, result.ok, player.map(_.id), ip)
+      Submissions.insert(gameName, task.challenge, challenge, result.ok, player.map(_.id), ip)
     }
   }
 }

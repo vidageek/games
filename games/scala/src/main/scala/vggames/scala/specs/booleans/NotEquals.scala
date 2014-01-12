@@ -10,7 +10,7 @@ class NotEquals extends GameSpecification[RestrictedFunction2[Int, Int, Boolean]
 
   def extendsType = "RestrictedFunction2[Int, Int, Boolean]"
 
-  def getChallenge = """Devolva <code>false</code> quando <code>a</code> e <code>b</code> forem iguais"""
+  def challenge = """Devolva <code>false</code> quando <code>a</code> e <code>b</code> forem iguais"""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

@@ -10,7 +10,7 @@ class TrimString extends GameSpecification[RestrictedFunction1[String, String]] 
 
   def extendsType = "RestrictedFunction1[String, String]"
 
-  def getChallenge = """Remova os espaços no fim e no começo da string <code>a</code>"""
+  def challenge = """Remova os espaços no fim e no começo da string <code>a</code>"""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

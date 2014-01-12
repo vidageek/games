@@ -10,7 +10,7 @@ class DoubleIf extends GameSpecification[RestrictedFunction1[Int, Any]] {
 
   def extendsType = "RestrictedFunction1[Int, Any]"
 
-  def getChallenge = """Devolva <code>"negativo"</code> se a constante <code>numero</code> 
+  def challenge = """Devolva <code>"negativo"</code> se a constante <code>numero</code> 
     for menor do que 0, senão devolva <code>"positivo"</code> se <code>numero</code> for maior
     do que 0."""
 

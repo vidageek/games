@@ -10,7 +10,7 @@ class CreateString extends GameSpecification[RestrictedFunction0[String]] {
 
   def extendsType = "RestrictedFunction0[String]"
 
-  def getChallenge = """Crie uma string com o valor <code>Minha primeira String</code> usando <code>"</code>"""
+  def challenge = """Crie uma string com o valor <code>Minha primeira String</code> usando <code>"</code>"""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

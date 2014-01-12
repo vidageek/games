@@ -10,7 +10,7 @@ class MultiplyTwoNumbers extends GameSpecification[RestrictedFunction0[Int]] {
 
   def extendsType = "RestrictedFunction0[Int]"
 
-  def getChallenge = """Multiplique os números 2 e 3"""
+  def challenge = """Multiplique os números 2 e 3"""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

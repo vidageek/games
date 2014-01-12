@@ -14,7 +14,7 @@ class IndexedTask(delegate : GroupedTask, index : Int) {
 
   def resource = delegate.resource
 
-  def getChallenge : String = delegate.getChallenge
+  def challenge : String = delegate.challenge
 
   def groupName = delegate.group.getName
 

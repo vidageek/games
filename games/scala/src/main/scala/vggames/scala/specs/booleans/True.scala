@@ -10,7 +10,7 @@ class True extends GameSpecification[RestrictedFunction0[Boolean]] {
 
   def extendsType = "RestrictedFunction0[Boolean]"
 
-  def getChallenge = """Devolva <code>true</code>"""
+  def challenge = """Devolva <code>true</code>"""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

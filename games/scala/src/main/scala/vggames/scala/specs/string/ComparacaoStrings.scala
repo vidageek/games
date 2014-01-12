@@ -10,7 +10,7 @@ class ComparacaoStrings extends GameSpecification[RestrictedFunction2[String, St
 
   def extendsType = "RestrictedFunction2[String, String, Boolean]"
 
-  def getChallenge = """Devolva <code>false</code> se a string <code>a</code> é <strong>menor</strong> que <code>b</code> e <code>true</code> caso contrário"""
+  def challenge = """Devolva <code>false</code> se a string <code>a</code> é <strong>menor</strong> que <code>b</code> e <code>true</code> caso contrário"""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

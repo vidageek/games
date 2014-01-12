@@ -10,7 +10,7 @@ class MoreThan extends GameSpecification[RestrictedFunction2[Int, Int, Boolean]]
 
   def extendsType = "RestrictedFunction2[Int, Int, Boolean]"
 
-  def getChallenge = """Devolva <code>true</code> quando <code>a</code> for maior que <code>b</code>"""
+  def challenge = """Devolva <code>true</code> quando <code>a</code> for maior que <code>b</code>"""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

@@ -8,7 +8,7 @@ case class MetaTask(description : String) extends Task {
 
   def judge(challenge : String) : JudgedTask = new Ok();
 
-  def getChallenge : String = description
+  def challenge : String = description
 
   def resource = ""
 

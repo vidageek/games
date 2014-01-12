@@ -12,7 +12,7 @@ class DefineVarString extends GameSpecification[RestrictedFunction0[String]] {
 
   override def afterCode = "valor = valor\n valor"
 
-  def getChallenge = """Defina a variavel chamada <code>valor</code> com o valor <code>"var"</code> """
+  def challenge = """Defina a variavel chamada <code>valor</code> com o valor <code>"var"</code> """
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

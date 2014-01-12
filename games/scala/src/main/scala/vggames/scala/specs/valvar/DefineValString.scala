@@ -12,7 +12,7 @@ class DefineValString extends GameSpecification[RestrictedFunction0[String]] {
 
   override def afterCode = "valor"
 
-  def getChallenge = """Defina a constante chamada <code>valor</code> com o valor <code>"val"</code> """
+  def challenge = """Defina a constante chamada <code>valor</code> com o valor <code>"val"</code> """
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

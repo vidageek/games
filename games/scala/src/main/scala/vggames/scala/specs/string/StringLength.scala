@@ -10,7 +10,7 @@ class StringLength extends GameSpecification[RestrictedFunction1[String, Int]] {
 
   def extendsType = "RestrictedFunction1[String, Int]"
 
-  def getChallenge = """Devolva o tamanho da String <code>a</code>"""
+  def challenge = """Devolva o tamanho da String <code>a</code>"""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

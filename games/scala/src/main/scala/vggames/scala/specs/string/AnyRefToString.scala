@@ -10,7 +10,7 @@ class AnyRefToString extends GameSpecification[RestrictedFunction1[Any, String]]
 
   def extendsType = "RestrictedFunction1[Any, String]"
 
-  def getChallenge = """Transforme <code>a</code> em string"""
+  def challenge = """Transforme <code>a</code> em string"""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

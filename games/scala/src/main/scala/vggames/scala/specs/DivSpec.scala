@@ -8,7 +8,7 @@ class DivSpec extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
 
   def extendsType = "RestrictedFunction2[Int, Int, Int]"
 
-  def getChallenge = "Divida <code>a</code> por <code>b</code>"
+  def challenge = "Divida <code>a</code> por <code>b</code>"
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

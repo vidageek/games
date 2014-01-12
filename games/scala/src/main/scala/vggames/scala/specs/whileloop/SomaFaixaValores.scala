@@ -14,7 +14,7 @@ class SomaFaixaValores extends GameSpecification[RestrictedFunction0[Int]] {
   
   override def afterCode = "soma"
 
-  def getChallenge = """
+  def challenge = """
 Some todos os valores entre 1 e 100 utilizando uma estrutura de repeti&ccedil;&atilde;o
 <code>while</code>. Guarde o resultado em uma vari&aacute;vel chamada <code>soma</code>.
 <br><br>

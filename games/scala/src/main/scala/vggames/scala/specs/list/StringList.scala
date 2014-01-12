@@ -10,7 +10,7 @@ class StringList extends GameSpecification[RestrictedFunction0[List[String]]] {
 
   def extendsType = "RestrictedFunction0[List[String]]"
 
-  def getChallenge = """Crie uma <code>"lista"</code> de strings contendo as frutas <code>"abacaxi, laranja, abacate"</code>"""
+  def challenge = """Crie uma <code>"lista"</code> de strings contendo as frutas <code>"abacaxi, laranja, abacate"</code>"""
 
   override def run(code: Code, submittedCode: String)(implicit cases: TestRun) =
 

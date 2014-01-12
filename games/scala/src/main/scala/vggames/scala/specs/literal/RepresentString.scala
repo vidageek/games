@@ -10,7 +10,7 @@ class RepresentString extends GameSpecification[RestrictedFunction0[String]] {
 
   def extendsType = "RestrictedFunction0[String]"
 
-  def getChallenge = """Crie o texto "jogo legal!""""
+  def challenge = """Crie o texto "jogo legal!""""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

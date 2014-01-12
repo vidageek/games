@@ -10,7 +10,7 @@ class BasicFunction extends GameSpecification[RestrictedFunction0[Int => Int]] {
 
   def extendsType = "RestrictedFunction0[Int=>Int]"
 
-  def getChallenge = """Crie uma fun&ccedil;&atilde;o que receba um n&uacute;mero e o incremente."""
+  def challenge = """Crie uma fun&ccedil;&atilde;o que receba um n&uacute;mero e o incremente."""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

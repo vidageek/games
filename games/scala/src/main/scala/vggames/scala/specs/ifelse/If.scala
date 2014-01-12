@@ -10,7 +10,7 @@ class If extends GameSpecification[RestrictedFunction1[Int, Any]] {
 
   def extendsType = "RestrictedFunction1[Int, Any]"
 
-  def getChallenge = """Devolva <code>"negativo"</code> se a constante <code>numero</code> 
+  def challenge = """Devolva <code>"negativo"</code> se a constante <code>numero</code> 
     for menor do que 0"""
 
   override def run(code: Code, submittedCode: String)(implicit cases: TestRun) =

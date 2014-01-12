@@ -10,7 +10,7 @@ class SplitStrings extends GameSpecification[RestrictedFunction1[String, Array[S
 
   def extendsType = "RestrictedFunction1[String, Array[String]]"
 
-  def getChallenge = """Quebre a string <code>a</code> nos espaços"""
+  def challenge = """Quebre a string <code>a</code> nos espaços"""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

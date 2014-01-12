@@ -12,7 +12,7 @@ class TaskWithDescription(delegate : IndexedTask, descriptions : Descriptions) e
 
   def judge(challenge : String) = delegate.judge(challenge)
 
-  def getChallenge = delegate.getChallenge
+  def challenge = delegate.challenge
 
   def getIndex = delegate.getIndex
 

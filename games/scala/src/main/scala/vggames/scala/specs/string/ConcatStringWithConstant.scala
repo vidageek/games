@@ -10,7 +10,7 @@ class ConcatStringWithConstant extends GameSpecification[RestrictedFunction1[Str
 
   def extendsType = "RestrictedFunction1[String, String]"
 
-  def getChallenge = """Concatene a string <code>a</code> com a constante <code>"taz"</code>"""
+  def challenge = """Concatene a string <code>a</code> com a constante <code>"taz"</code>"""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

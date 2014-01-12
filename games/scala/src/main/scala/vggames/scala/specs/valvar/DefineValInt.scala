@@ -12,7 +12,7 @@ class DefineValInt extends GameSpecification[RestrictedFunction0[Int]] {
 
   override def afterCode = "numero"
 
-  def getChallenge = """Defina a constante chamada <code>numero</code> com o valor <code>123</code> """
+  def challenge = """Defina a constante chamada <code>numero</code> com o valor <code>123</code> """
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

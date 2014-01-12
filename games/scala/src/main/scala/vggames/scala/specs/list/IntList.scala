@@ -10,7 +10,7 @@ class IntList extends GameSpecification[RestrictedFunction0[List[Int]]] {
 
   def extendsType = "RestrictedFunction0[List[Int]]"
 
-  def getChallenge = """Crie uma <code>"lista"</code> de inteiros contendo os numeros <code>"1,2,3"</code>"""
+  def challenge = """Crie uma <code>"lista"</code> de inteiros contendo os numeros <code>"1,2,3"</code>"""
 
   override def run(code: Code, submittedCode: String)(implicit cases: TestRun) =
 

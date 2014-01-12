@@ -20,7 +20,7 @@ class NegateAndMatchSpec extends Specification {
     }
 
     "show challenge with what should match and what cannot match" in {
-      aNegateCharClassTask.getChallenge must_== "Qual RegEx n&atilde;o reconhece <code>a</code> e <code>b</code> mas reconhece <code>c</code> e <code>d</code>?"
+      aNegateCharClassTask.challenge must_== "Qual RegEx n&atilde;o reconhece <code>a</code> e <code>b</code> mas reconhece <code>c</code> e <code>d</code>?"
     }
   }
 }

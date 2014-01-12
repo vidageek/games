@@ -8,7 +8,7 @@ class SubSpec extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
 
   def extendsType = "RestrictedFunction2[Int, Int, Int]"
 
-  def getChallenge = "Subtraia <code>a</code> de <code>b</code>"
+  def challenge = "Subtraia <code>a</code> de <code>b</code>"
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

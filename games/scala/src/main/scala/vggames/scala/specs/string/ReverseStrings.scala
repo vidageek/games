@@ -10,7 +10,7 @@ class ReverseStrings extends GameSpecification[RestrictedFunction1[String, Strin
 
   def extendsType = "RestrictedFunction1[String, String]"
 
-  def getChallenge = """Inverta a string <code>a</code>"""
+  def challenge = """Inverta a string <code>a</code>"""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

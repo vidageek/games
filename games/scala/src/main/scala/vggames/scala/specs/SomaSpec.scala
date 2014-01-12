@@ -8,7 +8,7 @@ class SomaSpec extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
 
   def extendsType = "RestrictedFunction2[Int, Int, Int]"
 
-  def getChallenge = "Some duas vari&aacute;veis <code>a</code> e <code>b</code>"
+  def challenge = "Some duas vari&aacute;veis <code>a</code> e <code>b</code>"
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

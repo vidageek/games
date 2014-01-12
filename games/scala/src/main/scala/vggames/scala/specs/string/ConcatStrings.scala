@@ -10,7 +10,7 @@ class ConcatStrings extends GameSpecification[RestrictedFunction2[String, String
 
   def extendsType = "RestrictedFunction2[String, String, String]"
 
-  def getChallenge = """Concatene duas Strings <code>a</code> e <code>b</code>"""
+  def challenge = """Concatene duas Strings <code>a</code> e <code>b</code>"""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 

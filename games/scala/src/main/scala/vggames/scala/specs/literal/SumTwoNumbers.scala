@@ -10,7 +10,7 @@ class SumTwoNumbers extends GameSpecification[RestrictedFunction0[Int]] {
 
   def extendsType = "RestrictedFunction0[Int]"
 
-  def getChallenge = """Some os números 1 e 2"""
+  def challenge = """Some os números 1 e 2"""
 
   def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
 
