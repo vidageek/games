@@ -18,7 +18,7 @@ class ScalaGameSpec extends Specification {
     val game = new Game(new ScalaGame(), new Descriptions("scala"))
 
     "have the correct number of answers" in {
-      answers.size must_== game.getSize
+      answers.size must_== game.size
     }
 
     "not have a task vulnerable to evil code submission" in {

@@ -93,10 +93,10 @@ class GitGame extends GameEngine {
     new TaskGroup("Git Workflow", "git.workflow", tasks : _*)
   }
 
-  def getDescription = "Git é uma ferramenta de controle de versão que tem crescido muito nos últimos anos. Este jogo cobre " +
+  def description = "Git é uma ferramenta de controle de versão que tem crescido muito nos últimos anos. Este jogo cobre " +
     "os principais comandos e fluxos de trabalho com esta ferramenta."
 
-  def getName = "Git"
+  def name = "Git"
 
   def path = "git"
 }

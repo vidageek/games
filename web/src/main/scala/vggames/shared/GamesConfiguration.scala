@@ -17,8 +17,4 @@ class GamesConfiguration {
 
   def inactiveGames = List("scala", "css", "html", "math")
 
-  def getActiveGames = activeGames.asJava
-
-  def getInactiveGames = inactiveGames.asJava
-
 }

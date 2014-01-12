@@ -125,9 +125,9 @@ class HtmlGame extends GameEngine {
   private def datalists = new TaskGroup("Datalist", "html.datalist",
     new HtmlTask("Crie um campo input com um datalist da lista chamada transporte, e tendo as opções Carro, Moto e Barco", "datalist_1"));
 
-  def getDescription = "Um jogo muito legal para aprender Html, focado em Html5"
+  def description = "Um jogo muito legal para aprender Html, focado em Html5"
 
-  def getName = "Html"
+  def name = "Html"
 
   def path = "html"
 

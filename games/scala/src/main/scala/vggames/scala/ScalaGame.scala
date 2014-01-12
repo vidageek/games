@@ -104,9 +104,9 @@ class ScalaGame extends GameEngine {
       new StringList(),
       new FilterList())
 
-  def getDescription = "Um jogo muito legal para aprender Scala"
+  def description = "Um jogo muito legal para aprender Scala"
 
-  def getName = "Scala"
+  def name = "Scala"
 
   def path = "scala"
 }

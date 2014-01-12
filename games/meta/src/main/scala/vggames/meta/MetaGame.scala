@@ -47,9 +47,9 @@ class MetaGame extends GameEngine {
   private def testp2 = new TaskGroup("Segunda parte da criação de testes para um novo game", "meta.testp2",
     new MetaTask("Seguindo o exemplo dos testes existentes para o MathTask.scala crie uma classe de teste para seu jogo."))
 
-  def getDescription() : String = { null }
+  def description() = ""
 
-  def getName() : String = { "Meta" }
+  def name() = "Meta"
 
   def path = "meta"
 }

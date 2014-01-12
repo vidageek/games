@@ -2,9 +2,7 @@ package vggames.shared.task;
 
 import vggames.shared.task.status.Error
 
-class IndexedTask(delegate : GroupedTask, index : Int) {
-
-  def getIndex : Int = index
+class IndexedTask(delegate : GroupedTask, val index : Int) {
 
   def judge(challenge : String) : JudgedTask = {
     try {
@@ -16,7 +14,7 @@ class IndexedTask(delegate : GroupedTask, index : Int) {
 
   def challenge : String = delegate.challenge
 
-  def groupName = delegate.group.getName
+  def groupName = delegate.group.htmlName
 
   def groupCode = delegate.group.groupName
 

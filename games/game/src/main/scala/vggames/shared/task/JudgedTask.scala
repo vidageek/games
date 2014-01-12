@@ -6,10 +6,6 @@ trait JudgedTask {
 
   def reason : String
 
-  def getOk = ok
-
-  def getReason = reason
-
   def success(f : => Unit) = if (ok) f
 
   def failure(f : => Unit) = if (!ok) f

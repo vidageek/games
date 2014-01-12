@@ -48,7 +48,7 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
       }
 
       game.atGroupEnd(index) {
-        session.finishGroup(gameName + "." + task.getGroupCode)
+        session.finishGroup(gameName + "." + task.groupCode)
       }
 
       game.atEnd(index) {
@@ -66,5 +66,5 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
 
   private def personalize(task : JudgedTask, player : Option[Player]) : JudgedTask = player.map(a => task).getOrElse(new NotLoggedJudgedTask(task))
 
-  private def taskExists(index : Int) = index >= 0 && index < game.getSize
+  private def taskExists(index : Int) = index >= 0 && index < game.size
 }

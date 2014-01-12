@@ -21,7 +21,7 @@ class HtmlGameView extends GameView {
       div("span6".cls)(
         iframe(id := "render-answer", "game-frame".cls, src := s"/play/html/resource/${task.resource}")(""),
 
-        h2(task.getGroupName),
-        raw(task.getDescription))).toString
+        h2(task.groupName),
+        raw(task.description))).toString
   }
 }

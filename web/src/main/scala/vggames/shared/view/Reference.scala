@@ -13,9 +13,9 @@ class Reference extends TypedView[(String, Game, Map[String, String])] {
 
     html(
       head(
-        Tags.title(s"Referência do ${game.getName} Game")),
+        Tags.title(s"Referência do ${game.name} Game")),
       body(
-        h1(s"Referência do ${game.getName} Game"),
+        h1(s"Referência do ${game.name} Game"),
         a(id := "conteudo", "theory-link".cls)(""),
         h2("theory".cls)("Conteúdo:"),
         ul("nav nav-pills nav-stacked groups".cls)(

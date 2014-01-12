@@ -13,7 +13,7 @@ class MetaGameView extends GameView {
     div("row".cls)(
       div("span5".cls)(
         judgement(judgedTask),
-        form("challenge".cls, "method".attr := "POST", action := s"/play/${game.path}/task/${task.getIndex}")(
+        form("challenge".cls, "method".attr := "POST", action := s"/play/${game.path}/task/${task.index}")(
           label("for".attr := "challenge")(strong(raw(task.challenge))),
           input(id := "challenge-submit", "btn btn-primary".cls, "type".attr := "submit", value := "Check!")),
         progressBar(task, game)),

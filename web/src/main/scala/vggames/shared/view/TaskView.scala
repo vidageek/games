@@ -19,7 +19,7 @@ class TaskView extends TypedView[(String, TaskWithDescription, Game, Option[Judg
 
     html(
       head(
-        Tags.title(s"Exercício ${task.getIndex} do ${game.getName} game"),
+        Tags.title(s"Exercício ${task.index} do ${game.name} game"),
         meta(name := "robots", content := "noindex")),
       body(
         raw(renderGameView(game, task, judgedTask, lastAttempt))))
@@ -31,7 +31,7 @@ class TaskView extends TypedView[(String, TaskWithDescription, Game, Option[Judg
     Try(Class.forName(viewName).newInstance.asInstanceOf[GameView]).
       map(_.render(game, task, judgedTask, lastAttempt)) match {
         case Success(string) => string
-        case Failure(t) => s"Não foi encontrada view para o jogo ${game.getName}. " +
+        case Failure(t) => s"Não foi encontrada view para o jogo ${game.name}. " +
         s"Exceção: ${t.getClass.getName} ${t.getMessage} <pre>${t.getStackTraceString}</pre>"
       }
   }

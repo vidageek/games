@@ -26,9 +26,9 @@ class RegexGameSpec extends Specification with Mockito {
     "have answers for all tasks" in {
 
       val game = new Game(new RegexGame(), descriptions)
-      game.getSize must_== answers.length
+      game.size must_== answers.length
 
-      0 until game.getSize foreach { i =>
+      0 until game.size foreach { i =>
         game.task(i).judge(answers(i)).ok aka (
           "%s task %d answer is %s".format(game.getClass().getSimpleName(), i, answers(i))) must beTrue
       }
@@ -41,7 +41,7 @@ class RegexGameSpec extends Specification with Mockito {
 
     "hasNextTask returns false if there is no such task" in {
       val game = new Game(new RegexGame(), descriptions)
-      game.hasNextTask(game.getSize + 1) must beFalse
+      game.hasNextTask(game.size + 1) must beFalse
     }
 
     "nextTask returns next task" in {

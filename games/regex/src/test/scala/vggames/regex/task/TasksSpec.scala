@@ -22,14 +22,14 @@ class TasksSpec extends Specification {
 
     "all tasks must obey indexing" in {
       0 until 6 map { i =>
-        tasks.at(i, null).getIndex must_== i
+        tasks.at(i, null).index must_== i
       }
     }
 
     "list all tasks should obey indexing" in {
       val all = tasks.all(null)
       0 until 6 map { i =>
-        tasks.at(i, null).getIndex must_== i
+        tasks.at(i, null).index must_== i
       }
     }
   }

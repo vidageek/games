@@ -11,23 +11,23 @@ class Index extends TypedView[(String, Game, Map[String, String], Option[String]
 
     html(
       head(
-        Tags.title(s"Comece a jogar o ${game.getName} Game")),
+        Tags.title(s"Comece a jogar o ${game.name} Game")),
       body(
         div("alert".cls)(
           strong("Aviso!"), " Estamos em Beta. Caso encontre algum problema, envie um email para games@vidageek.net"),
 
         gameEnded.map { e =>
           div("alert alert-success".cls)(
-            s"Parabéns! Você acabou de resolver o último exercício de ${game.getName}. O importante agora é continuar praticando.",
+            s"Parabéns! Você acabou de resolver o último exercício de ${game.name}. O importante agora é continuar praticando.",
             br(),
             "Compartilhe a sua conquista com seus amigos no",
             a(target := "_blank", href := s"http://www.facebook.com/sharer.php?u=http://games.vidageek.net/play/${gameName}")("Facebook"),
             " e ",
-            a(target := "_blank", href := s"http://twitter.com/share?text=Acabei%20de%20terminar%20o%20${game.getName}%20Game.%20Quer%20aprender%20${game.getName}%20tamb%C3%A9m%3F&url=http://games.vidageek.net/play/${gameName}")("Twitter"))
+            a(target := "_blank", href := s"http://twitter.com/share?text=Acabei%20de%20terminar%20o%20${game.name}%20Game.%20Quer%20aprender%20${game.name}%20tamb%C3%A9m%3F&url=http://games.vidageek.net/play/${gameName}")("Twitter"))
         }.getOrElse(""),
 
-        h1(s"${game.getName} Game"),
-        p(game.getDescription),
+        h1(s"${game.name} Game"),
+        p(game.description),
         "Você pode começar a jogar pelo ", a(href := s"/play/${gameName}/task/0")("primeiro exercício"), " ou escolher um grupo abaixo:",
 
         ul("nav nav-pills nav-stacked groups".cls)(

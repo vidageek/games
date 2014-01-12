@@ -20,7 +20,7 @@ class TaskWithDescriptionTaskSpec extends Specification with Mockito {
       descriptions.forGroup("a") returns "description"
 
       val task = new TaskWithDescription(new IndexedTask(new GroupedTask(new TaskGroup("b", "a"), new TestTask()), 0), descriptions)
-      task.getDescription must_== "description"
+      task.description must_== "description"
     }
   }
 }

@@ -7,9 +7,9 @@ trait GameEngine {
 
   val tasks : Tasks
 
-  def getDescription : String
+  def description : String
 
-  def getName : String
+  def name : String
 
   def path : String
 
