@@ -18,7 +18,7 @@ object GamesVidageekBuild extends Build {
   lazy val root = Project(
     id = "VidaGeekGames",
     base = file("."),
-    aggregate = Seq(web, game, cssGame, regexGame, gitGame, htmlGame, mathGame, metaGame, scalaGame))
+    aggregate = Seq(web, game, regexGame, gitGame, htmlGame, metaGame, scalaGame))
     
   lazy val web = Project(
     id = "games-web",
@@ -34,35 +34,15 @@ object GamesVidageekBuild extends Build {
     base = file("games/game"),
     settings = commonSettings ++ deps(actuarius))
  
-  lazy val regexGame = Project(
-    id = "games-regex",
-    base = file("games/regex"),
-    settings = commonSettings).
-    dependsOn(game)
+  lazy val regexGame = gameProject("regex")
     
-  lazy val gitGame = Project(
-    id = "games-git",
-    base = file("games/git"),
-    settings = commonSettings).
-    dependsOn(game)
+  lazy val gitGame = gameProject("git")
     
-  lazy val htmlGame = Project(
-    id = "games-html",
-    base = file("games/html"),
-    settings = commonSettings).
-    dependsOn(game)
+  lazy val htmlGame = gameProject("html")
     
-  lazy val metaGame = Project(
-    id = "games-meta",
-    base = file("games/meta"),
-    settings = commonSettings).
-    dependsOn(game)
+  lazy val metaGame = gameProject("meta")
     
-  lazy val scalaGame = Project(
-    id = "games-scala",
-    base = file("games/scala"),
-    settings = commonSettings ++ deps(akkaActor, scalaReflect, scalaCompiler, akkaTestkit, log4j)).
-    dependsOn(game)
+  lazy val scalaGame = gameProject("scala", akkaActor, scalaReflect, scalaCompiler, akkaTestkit, log4j)
         
   lazy val commonSettings: Seq[Setting[_]] = Defaults.defaultSettings ++ Seq(
     organization := "net.vidageek",
@@ -83,6 +63,12 @@ object GamesVidageekBuild extends Build {
 
  
   private def deps(d : ModuleID*) : Seq[Setting[_]] = Seq(libraryDependencies ++= d.toSeq)
+ 
+  private def gameProject(name : String, d : ModuleID*) = Project(
+    id = "games-" + name,
+    base = file("games/" + name),
+    settings = commonSettings ++ deps(d : _*)).
+    dependsOn(game)
   
   object Dependencies {
 	  lazy val jettyWebapp    = "org.eclipse.jetty" % "jetty-webapp" % jettyVersion % "container"
