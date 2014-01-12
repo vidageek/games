@@ -12,13 +12,13 @@ EclipseKeys.relativizeLibs := false
 
 seq(jasmineSettings : _*)
 
-appJsDir <+= sourceDirectory { src => src / "main" / "webapp" / "js" }
+appJsDir <+= baseDirectory { _ / "web" / "src" / "main" / "webapp" / "js" }
 
-appJsLibDir <+= sourceDirectory { src => src / "main" / "webapp" / "js" / "lib" }
+appJsLibDir <+= baseDirectory { _ / "web" / "src" / "main" / "webapp" / "js" / "lib" }
 
-jasmineTestDir <+= sourceDirectory { src => src / "test" / "webapp" / "js" }
+jasmineTestDir <+= baseDirectory { _ / "web" / "src" / "test" / "webapp" / "js" }
 
-jasmineConfFile <+= sourceDirectory { src => src / "test" / "webapp" / "js" / "test.dependencies.js" }
+jasmineConfFile <+= baseDirectory { _ / "web" / "src" / "test" / "webapp" / "js" / "test.dependencies.js" }
 
 (test in Test) <<= (test in Test) dependsOn (jasmine)
 

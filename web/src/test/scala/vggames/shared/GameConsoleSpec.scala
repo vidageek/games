@@ -27,7 +27,7 @@ class GameConsoleSpec extends Specification with Mockito {
 
       there was one(gameConsole).task("name", 3)
       there was one(result).include(===("judgedTask"), any[JudgedTask])
-      there was one(result).include("challenge", "challenge")
+      there was one(result).include("lastAttempt", "challenge")
     }
 
     "redirect to game begin if there are no more tasks" in new GameConsoleScope {
