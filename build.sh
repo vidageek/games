@@ -15,10 +15,7 @@ let BUILD=$BUILD+$?
 $SBT test
 let BUILD=$BUILD+$?
 
-$SBT gzip-css
-let BUILD=$BUILD+$?
-
-$SBT gzip-js
+$SBT gzip-assets
 let BUILD=$BUILD+$?
 
 $SBT package
@@ -33,5 +30,5 @@ echo "Fazendo backup do WAR"
 ssh -i /private/vidageek/games.pem ubuntu@177.71.178.115 "cp ~/jetty/webapps/games.war ~/games.war.bkp"
 
 echo "Copiando o War para servidor remoto"
-scp -i /private/vidageek/games.pem target/scala-2.10/games* ubuntu@177.71.178.115:~/games.war
+scp -i /private/vidageek/games.pem web/target/scala-2.10/games-web* ubuntu@177.71.178.115:~/games.war
 
