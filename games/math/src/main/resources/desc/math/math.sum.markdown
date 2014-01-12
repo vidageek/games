@@ -1,1 +1,0 @@
-Tarefas de soma.

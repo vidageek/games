@@ -27,7 +27,7 @@ object GamesVidageekBuild extends Build {
         guiceBindings, servletApi, jspApi, vraptor, slick, sqlite, aws, 
         actuarius, sitemesh, selenium)
     )).
-    dependsOn(game, cssGame, regexGame, gitGame, htmlGame, mathGame, metaGame, scalaGame) 
+    dependsOn(game, cssGame, regexGame, gitGame, htmlGame, metaGame, scalaGame) 
   
   lazy val game = Project(
     id = "games-game",
@@ -55,12 +55,6 @@ object GamesVidageekBuild extends Build {
   lazy val htmlGame = Project(
     id = "games-html",
     base = file("games/html"),
-    settings = commonSettings).
-    dependsOn(game)
-    
-  lazy val mathGame = Project(
-    id = "games-math",
-    base = file("games/math"),
     settings = commonSettings).
     dependsOn(game)
     
