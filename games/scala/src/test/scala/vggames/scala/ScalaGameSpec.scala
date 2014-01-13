@@ -22,7 +22,7 @@ class ScalaGameSpec extends Specification {
     }
 
     "not have a task vulnerable to evil code submission" in {
-      val answersSize = answers.zipWithIndex.map {
+      answers.zipWithIndex.map {
         case (code, i) =>
           val fail = game.task(i).judge("System.setSecurityManager(null);\n%s".format(code))
           fail.reason must contain("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")

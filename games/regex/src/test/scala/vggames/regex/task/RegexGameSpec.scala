@@ -28,7 +28,7 @@ class RegexGameSpec extends Specification with Mockito {
       val game = new Game(new RegexGame(), descriptions)
       game.size must_== answers.length
 
-      0 until game.size foreach { i =>
+      0 until game.size map { i =>
         game.task(i).judge(answers(i)).ok aka (
           "%s task %d answer is %s".format(game.getClass().getSimpleName(), i, answers(i))) must beTrue
       }

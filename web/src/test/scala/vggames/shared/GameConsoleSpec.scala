@@ -17,7 +17,6 @@ import vggames.shared.vraptor.Params
 
 @RunWith(classOf[JUnitRunner])
 class GameConsoleSpec extends Specification with Mockito {
-  val params = mock[Params]
   "a game console" should {
     "redirect to same task when task is incorrect" in new GameConsoleScope {
       val judgedTask = new Failed("asdf")
@@ -52,12 +51,13 @@ class GameConsoleSpec extends Specification with Mockito {
     }
   }
 
-  trait GameConsoleScope extends Scope {
+  trait GameConsoleScope extends Scope with Mockito {
     val result = mock[Result]
     val game = mock[Game](withSettings.defaultAnswer(RETURNS_DEEP_STUBS.get))
     val gameConsole = mock[GameConsole]
     val playerSession = mock[PlayerSession]
-
+    val params = mock[Params]
+    
     result.redirectTo(any[GameConsole]) returns gameConsole
     playerSession.actualPlayer returns None
   }

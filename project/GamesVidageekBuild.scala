@@ -95,7 +95,7 @@ object GamesVidageekBuild extends Build {
     lazy val actuarius = "eu.henkelmann" % "actuarius_2.10.0" % "0.2.5"
     lazy val sitemesh = "opensymphony" % "sitemesh" % "2.4.2"
     lazy val scalaTags = "com.scalatags" % "scalatags_2.10" % "0.2.0"
-    lazy val specs2 = "org.specs2" %% "specs2" % "1.14"
+    lazy val specs2 = "org.specs2" %% "specs2" % "2.3.7"
 
     lazy val vraptor = "br.com.caelum" % "vraptor" % "3.4.1" excludeAll (ExclusionRule(organization = "org.springframework"))
 
