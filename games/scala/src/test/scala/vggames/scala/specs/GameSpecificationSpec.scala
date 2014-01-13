@@ -43,8 +43,9 @@ class GameSpecificationSpec extends Specification {
 
     "fail for web request attempt" in {
       val fail = new TestSpec("conn").judge("""new java.net.URL("http://www.google.com.br/").openConnection;1""")
-      fail.reason must contain("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
-    }.pendingUntilFixed("this test sometimes blow up the classloader (probably due to a race condition when setting the security manager)")
+      fail.reason must contain("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.").orPending(
+        "this test sometimes blow up the classloader (probably due to a race condition when setting the security manager)")
+    }
 
     "fail for classloader creation" in {
       val fail = new TestSpec("classloader").judge("""new java.net.URLClassLoader(Array[java.net.URL]());1""")
@@ -85,12 +86,12 @@ class GameSpecificationSpec extends Specification {
   }
 }
 
-class TestSpec(c : String) extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
+class TestSpec(c: String) extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
   def runSignature = "(a:Int, b:Int):Int"
   def extendsType = "RestrictedFunction2[Int, Int, Int]"
   def challenge = c
 
-  def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
+  def run(code: Code, submittedCode: String)(implicit cases: TestRun) =
     "a" should {
       "b" in { code(1, 2) must_== 3 }
       "c" in { code(2, 3) must_== 5 }
@@ -102,7 +103,7 @@ class MultipleAssertSpec extends GameSpecification[RestrictedFunction0[Unit]] {
   def extendsType = "RestrictedFunction0[Unit]"
   def challenge = "multiple"
 
-  def run(code : Code, submittedCode : String)(implicit cases : TestRun) =
+  def run(code: Code, submittedCode: String)(implicit cases: TestRun) =
     "a" should {
       "b" in {
         1 must_== 2
