@@ -1,3 +1,4 @@
+.classpath_nb
 .classpath
 .project
 .settings
@@ -11,11 +12,8 @@ games-packaged.css.gz
 games-packaged.js
 games-packaged.css
 .cache
-/nbproject/private/
 .idea
 .idea_modules
-/nbproject/
-/build.xml
 .history
 .scala_dependencies
 *.swp
