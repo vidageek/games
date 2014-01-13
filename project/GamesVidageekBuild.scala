@@ -97,7 +97,7 @@ object GamesVidageekBuild extends Build {
     lazy val scalaTags = "com.scalatags" % "scalatags_2.10" % "0.2.0"
     lazy val specs2 = "org.specs2" %% "specs2" % "2.3.7"
 
-    lazy val vraptor = "br.com.caelum" % "vraptor" % "3.4.1" excludeAll (ExclusionRule(organization = "org.springframework"))
+    lazy val vraptor = "br.com.caelum" % "vraptor" % "3.5.3" excludeAll (ExclusionRule(organization = "org.springframework"))
 
     lazy val jettyVersion = "7.4.5.v20110725"
   }
