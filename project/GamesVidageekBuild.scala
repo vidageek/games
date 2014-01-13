@@ -12,8 +12,9 @@ import org._
 import com.gu.SbtJasminePlugin._
 
 object GamesVidageekBuild extends Build {
-
   import Dependencies._
+  import TestDependencies._
+  
   seq(jasmineSettings: _*)
 
   lazy val root = Project(
@@ -92,17 +93,20 @@ object GamesVidageekBuild extends Build {
     lazy val sqlite = "org.xerial" % "sqlite-jdbc" % "3.7.2"
     lazy val aws = "com.amazonaws" % "aws-java-sdk" % "1.3.20"
     lazy val actuarius = "eu.henkelmann" % "actuarius_2.10.0" % "0.2.5"
-    lazy val specs2 = "org.specs2" %% "specs2" % "1.14"
-    lazy val selenium = "org.seleniumhq.selenium" % "selenium-firefox-driver" % "2.32.0" % "test"
-    lazy val mockito = "org.mockito" % "mockito-core" % "1.9.0" % "test"
-    lazy val junit = "junit" % "junit" % "4.10" % "test"
-    lazy val akkaTestkit = "com.typesafe.akka" %% "akka-testkit" % "2.1.1" % "test"
     lazy val sitemesh = "opensymphony" % "sitemesh" % "2.4.2"
-    lazy val junitInterface = "com.novocode" % "junit-interface" % "0.8" % "test"
     lazy val scalaTags = "com.scalatags" % "scalatags_2.10" % "0.2.0"
+    lazy val specs2 = "org.specs2" %% "specs2" % "1.14"
 
     lazy val vraptor = "br.com.caelum" % "vraptor" % "3.4.1" excludeAll (ExclusionRule(organization = "org.springframework"))
 
     lazy val jettyVersion = "7.4.5.v20110725"
+  }
+
+  object TestDependencies {
+    lazy val selenium = "org.seleniumhq.selenium" % "selenium-firefox-driver" % "2.32.0" % "test"
+    lazy val mockito = "org.mockito" % "mockito-core" % "1.9.0" % "test"
+    lazy val junit = "junit" % "junit" % "4.10" % "test"
+    lazy val akkaTestkit = "com.typesafe.akka" %% "akka-testkit" % "2.1.1" % "test"
+    lazy val junitInterface = "com.novocode" % "junit-interface" % "0.8" % "test"
   }
 }
