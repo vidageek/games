@@ -1,10 +1,8 @@
 package vggames.shared
 
-import java.util.Collection
-import vggames.shared.task.TaskWithDescription
-import vggames.shared.task.Descriptions
 import vggames.shared.task.Descriptions
 import vggames.shared.task.TaskGroup
+import vggames.shared.task.TaskWithDescription
 
 class Game(engine : GameEngine, descriptions : Descriptions) {
 
