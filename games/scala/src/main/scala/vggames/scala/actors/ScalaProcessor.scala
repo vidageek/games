@@ -5,7 +5,7 @@ import scala.concurrent.duration._
 import scala.collection.mutable.Map
 import vggames.scala.tasks.judge.ExecutionFailure
 
-class ScalaProcessorActor extends Actor with ActorLogging {
+class ScalaProcessor extends Actor with ActorLogging {
   private[this] val runningThreads = Map[Int, CodeThread[_]]()
 
   def receive = {
