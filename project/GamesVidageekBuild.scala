@@ -27,7 +27,7 @@ object GamesVidageekBuild extends Build {
     id = "games-web",
     base = file("web"),
     settings = (jasmineSettings ++ coreWebSettings ++ deps(xstream, log4j, jstl, guice,
-      guiceBindings, servletApi, jspApi, vraptor, slick, sqlite, aws,
+      guiceBindings, servletApi, jspApi, cdiApi, vraptor, slick, sqlite, aws,
       actuarius, sitemesh, selenium))).
     dependsOn(game, regexGame, gitGame, htmlGame, metaGame, scalaGame)
 
@@ -97,6 +97,7 @@ object GamesVidageekBuild extends Build {
     val sitemesh = "opensymphony" % "sitemesh" % "2.4.2"
     val scalaTags = "com.scalatags" % "scalatags_2.10" % "0.2.0"
     val specs2 = "org.specs2" %% "specs2" % "2.3.7"
+    val cdiApi = "javax.enterprise" % "cdi-api" % "1.1-20130918"
     val vraptor = "br.com.caelum" % "vraptor" % "3.5.3" excludeAll (ExclusionRule(organization = "org.springframework"))
   }
 
