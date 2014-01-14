@@ -32,7 +32,6 @@ os feature warnings de Scala (Não vamos restringir o uso de nenhuma feature).
 ## Rodar SBT
     Basta entrar pelo console no diretório do projeto:
     $ sbt
-    $ > gzip-assets
     $ > container:start
 
 # Como criar um jogo
