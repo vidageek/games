@@ -8,9 +8,11 @@ import vggames.scala.actors._
 import vggames.scala.tasks.judge.ExecutionFailure
 
 sealed trait CodeRestrictions[+R] {
+  import ScalaProcessor._
+
   implicit val timeout = Timeout(5 seconds)
 
-  def restrict[V >: R](code : => V) : V = {
+  def restrict[V >: R](code: => V): V = {
     val future = GameMaster.master ? Run(() => {
       System.setSecurityManager(TaskRunSecurityManager)
       TaskRunSecurityManager.unsafe.set(true)
@@ -22,29 +24,29 @@ sealed trait CodeRestrictions[+R] {
     })
 
     Await.result(future, timeout.duration) match {
-      case e : ExecutionFailure => throw e.failure
-      case ok => ok.asInstanceOf[V]
+      case e: ExecutionFailure => throw e.failure
+      case ok                  => ok.asInstanceOf[V]
     }
   }
 }
 
 trait RestrictedFunction0[+R] extends Function0[R] with CodeRestrictions[R] {
   override def toString = "<restricted Function0>"
-  override def apply() : R = restrict(run)
+  override def apply(): R = restrict(run)
 
-  def run() : R
+  def run(): R
 }
 
 trait RestrictedFunction1[-T1, +R] extends Function1[T1, R] with CodeRestrictions[R] {
   override def toString = "<restricted Function1>"
-  override def apply(v1 : T1) : R = restrict(run(v1))
+  override def apply(v1: T1): R = restrict(run(v1))
 
-  def run(v1 : T1) : R
+  def run(v1: T1): R
 }
 
 trait RestrictedFunction2[-T1, -T2, +R] extends Function2[T1, T2, R] with CodeRestrictions[R] {
   override def toString = "<restricted Function2>"
-  override def apply(v1 : T1, v2 : T2) : R = restrict(run(v1, v2))
+  override def apply(v1: T1, v2: T2): R = restrict(run(v1, v2))
 
-  def run(v1 : T1, v2 : T2) : R
+  def run(v1: T1, v2: T2): R
 }

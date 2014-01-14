@@ -4,6 +4,8 @@ import akka.actor.{ Actor, ActorSystem, Props }
 import akka.routing.RoundRobinRouter
 
 class GameMaster extends Actor {
+  import ScalaProcessor._
+
   private val scalaProcessorRouter = GameMaster.system.actorOf(
     Props[ScalaProcessor].withRouter(RoundRobinRouter(nrOfInstances = 5)), "scala-processor-router")
 

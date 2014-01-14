@@ -6,6 +6,8 @@ import scala.collection.mutable.Map
 import vggames.scala.tasks.judge.ExecutionFailure
 
 class ScalaProcessor extends Actor with ActorLogging {
+  import ScalaProcessor._
+  
   private[this] val runningThreads = Map[Int, CodeThread[_]]()
 
   def receive = {
@@ -26,17 +28,22 @@ class ScalaProcessor extends Actor with ActorLogging {
     case msg => log.warning("received unknown message: {}", msg)
   }
 
-  case class CodeThread[V](replyTo : ActorRef, code : () => V) extends Thread {
+  case class CodeThread[V](replyTo: ActorRef, code: () => V) extends Thread {
     override def run() {
       try {
         replyTo ! code()
       } catch {
-        case e : ThreadDeath =>
+        case e: ThreadDeath =>
           replyTo ! ExecutionFailure(new IllegalStateException("Exceeded max compilation and run time."))
           throw e // read Thread.stop javadoc to understand why this is necessary
 
-        case e : Exception => replyTo ! ExecutionFailure(e)
+        case e: Exception => replyTo ! ExecutionFailure(e)
       }
     }
   }
+}
+
+object ScalaProcessor {
+  case class Run[V](code: () => V)
+  case class CodeRunTimeout(hash: Int)
 }
