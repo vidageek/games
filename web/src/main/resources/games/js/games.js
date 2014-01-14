@@ -30,7 +30,7 @@ $(document).ready(function() {
 	
 	$('body').keypress(function(event){
 		var keycode = (event.keyCode ? event.keyCode : event.which);
-		if(keycode == '13' && event.ctrlKey){
+		if((keycode == '13' || keycode == '10') && event.ctrlKey){
 			$('form.challenge').submit();	
 			event.preventDefault();
 		}
