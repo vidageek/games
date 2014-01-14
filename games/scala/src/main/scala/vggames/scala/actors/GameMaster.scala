@@ -8,7 +8,7 @@ class GameMaster extends Actor {
     Props[ScalaProcessor].withRouter(RoundRobinRouter(nrOfInstances = 5)), "scala-processor-router")
 
   def receive = {
-    case r: Run[_] => scalaProcessorRouter.!(r)(sender)
+    case r: Run[_] => scalaProcessorRouter forward r
   }
 }
 
