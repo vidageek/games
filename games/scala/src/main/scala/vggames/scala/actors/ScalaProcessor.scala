@@ -2,13 +2,12 @@ package vggames.scala.actors
 
 import akka.actor.{ Actor, ActorLogging, ActorRef }
 import scala.concurrent.duration._
-import scala.collection.mutable.Map
 import vggames.scala.tasks.judge.ExecutionFailure
 
 class ScalaProcessor extends Actor with ActorLogging {
   import ScalaProcessor._
-  
-  private[this] val runningThreads = Map[Int, CodeThread[_]]()
+
+  private[this] var runningThreads = Map[Int, CodeThread[_]]()
 
   def receive = {
     case Run(code) =>
