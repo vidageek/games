@@ -1,15 +1,15 @@
 package vggames.shared.vraptor
 
+import java.util.concurrent.ConcurrentHashMap
+
+import scala.collection.JavaConverters._
+import scala.util.Try
+
+import br.com.caelum.vraptor.ioc.ApplicationScoped
 import br.com.caelum.vraptor.ioc.Component
 import br.com.caelum.vraptor.ioc.ComponentFactory
-import br.com.caelum.vraptor.ioc.Component
-import br.com.caelum.vraptor.ioc.ApplicationScoped
 import vggames.shared.Game
-import java.util.ArrayList
 import vggames.shared.GameEngine
-import scala.collection.JavaConverters._
-import java.util.concurrent.ConcurrentHashMap
-import scala.util.Try
 
 @Component
 class GameFactory(cached : GameFactoryCache, data : RequestData) extends ComponentFactory[Game] {
