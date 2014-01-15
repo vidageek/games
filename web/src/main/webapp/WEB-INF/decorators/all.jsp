@@ -15,9 +15,6 @@
 <title><decorator:title /></title>
 <decorator:head />
 	<aw:css url="/css/games.css" />
-<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
 	<c:if test="${not empty gameName}">
 		<aw:css url="/css/${gameName}.css" />
 	</c:if>
