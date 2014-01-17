@@ -49,17 +49,17 @@ class Decoration(req : HttpServletRequest, params : Params, session : PlayerSess
             div("navbar-inner".cls)(
               div("container".cls)(
                 params.game.map { game =>
-                  a("brand".cls, href := "/play/${gameName}")(
+                  a("brand".cls, href := s"/play/${params.gameId}")(
                     s"${game.name} Game")
                 }.getOrElse(raw("")),
                 session.actualPlayer.map { player =>
                   div("nav-collapse".cls)(
                     ul("nav".cls)(
                       li(id := "level")(
-                        a(href := "#", style := """
-                            		background: -moz-linear-gradient(left center, #8CF ${player.progress}%, #EEE ${player.progress}%);
-    								background: -webkit-gradient(linear, left top, right top, color-stop(${player.progress}%,#8CF), color-stop(${player.progress}%,#EEE));
-    								background: linear-gradient(left center, #8CF ${player.progress}%, #EEE ${player.progress}%);
+                        a(href := "#", style := s"""
+                            		background: -moz-linear-gradient(left center, #8CF ${player.getProgress}%, #EEE ${player.getProgress}%);
+    								background: -webkit-gradient(linear, left top, right top, color-stop(${player.getProgress}%,#8CF), color-stop(${player.getProgress}%,#EEE));
+    								background: linear-gradient(left center, #8CF ${player.getProgress}%, #EEE ${player.getProgress}%);
                             		""")(
                           span(player.getLevel.toString))),
                       li("active".cls)(
