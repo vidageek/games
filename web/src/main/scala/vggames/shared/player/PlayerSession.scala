@@ -1,7 +1,7 @@
 package vggames.shared.player
 
 import java.util.concurrent.ConcurrentHashMap
-import scala.collection.JavaConversions.mapAsScalaConcurrentMap
+import scala.collection.JavaConverters._
 import br.com.caelum.vraptor.ioc.Component
 import javax.servlet.http.{ Cookie, HttpServletResponse }
 import javax.servlet.http.HttpServletRequest
@@ -30,18 +30,15 @@ class PlayerSession(request : HttpServletRequest, response : HttpServletResponse
     }
   }
 
-  def saveLast(lastTask : String) =
-    update(p => { p.lastTask = Option(lastTask); p })
+  def saveLast(lastTask : Option[String]) =
+    update { p => p.lastTask = lastTask; p }
 
-  def endGame = saveLast(null)
+  def endGame = saveLast(None)
 
   def addActiveTime(activeTime : Long) =
-    update(p => { p.activeTime += activeTime; p })
+    update { p => p.activeTime += activeTime; p }
 
   def actualPlayer : Option[Player] = {
-    if (request.getAttribute("player") != null) {
-      return Some(request.getAttribute("player").asInstanceOf[Player])
-    }
     val cookie = Option(request.getCookies).getOrElse(Array()).find(_.getName == "player")
     if (!cookie.isDefined) return None
 
@@ -62,7 +59,7 @@ class PlayerSession(request : HttpServletRequest, response : HttpServletResponse
 }
 
 object PlayerSession {
-  val activePlayers = mapAsScalaConcurrentMap(new ConcurrentHashMap[String, Player]())
+  val activePlayers = new ConcurrentHashMap[String, Player]().asScala
 }
 
 class LogoutCookie(token : String, domain : String) extends Cookie("player", token) {

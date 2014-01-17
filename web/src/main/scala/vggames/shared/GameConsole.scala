@@ -31,7 +31,7 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
 
   @Post(Array("/play/{gameName}/task/{index}"))
   def submit(gameName : String, index : Int, challenge : String) {
-    val cleanChallenge = if (challenge == null) "" else challenge
+    val cleanChallenge = Option(challenge).getOrElse("")
 
     val task = game.task(index)
     val judgedTask = task.judge(cleanChallenge)
@@ -43,7 +43,7 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
     judgedTask.success {
 
       game.advance(index) { nextIndex =>
-        session.saveLast(s"/play/${gameName}/task/${nextIndex}")
+        session.saveLast(Option(s"/play/${gameName}/task/${nextIndex}"))
         result.redirectTo(this).task(gameName, nextIndex)
       }
 

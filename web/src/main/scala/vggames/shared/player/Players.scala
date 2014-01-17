@@ -6,10 +6,8 @@ import scala.slick.session.Database.threadLocalSession
 import vggames.shared.Database
 
 case class Player(id : Long, email : String, token : String, var lastTask : Option[String], var activeTime : Long = 0) {
-  def getEmail : String = email
-  def getLastTask : String = lastTask.getOrElse(null)
-  def getLevel : Long = activeTime / (60 * 15)
-  def getProgress : Double = (activeTime % (60 * 15)).toDouble / (60 * 15) * 100
+  def level : Long = activeTime / (60 * 15)
+  def progress : Double = (activeTime % (60 * 15)).toDouble / (60 * 15) * 100
 }
 
 @Component

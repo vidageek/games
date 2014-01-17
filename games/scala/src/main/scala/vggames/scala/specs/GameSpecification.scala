@@ -61,7 +61,7 @@ trait GameSpecification[T <: CodeRestrictions[_]] extends Task with MustMatchers
 class TestRun(specName : String) {
   var shouldName : String = _
 
-  var exception : Failed = _
+  var exception : Option[Failed] = None
 
   val results = ListBuffer[Result]()
 
@@ -71,11 +71,11 @@ class TestRun(specName : String) {
 
   def failure(assertionName : String) = results += new Failure(assertionName)
 
-  def exception(message : String) : Unit = if (exception == null) exception =
-    new Failed(s"""Exception foi lan&ccedil;ada durante execu&ccedil;&atilde;o: ${message}""")
+  def exception(message : String) : Unit = exception.getOrElse(
+    new Failed(s"""Exception foi lan&ccedil;ada durante execu&ccedil;&atilde;o: ${message}"""))
 
   def judgement : JudgedTask = {
-    if (exception != null) return exception
+    if (exception.isDefined) return exception.get
 
     val failure = results.find {
       _ match {

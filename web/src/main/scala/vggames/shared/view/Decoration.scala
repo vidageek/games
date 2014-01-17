@@ -57,11 +57,11 @@ class Decoration(req : HttpServletRequest, params : Params, session : PlayerSess
                     ul("nav".cls)(
                       li(id := "level")(
                         a(href := "#", style := s"""
-                            		background: -moz-linear-gradient(left center, #8CF ${player.getProgress}%, #EEE ${player.getProgress}%);
-    								background: -webkit-gradient(linear, left top, right top, color-stop(${player.getProgress}%,#8CF), color-stop(${player.getProgress}%,#EEE));
-    								background: linear-gradient(left center, #8CF ${player.getProgress}%, #EEE ${player.getProgress}%);
+                            		background: -moz-linear-gradient(left center, #8CF ${player.progress}%, #EEE ${player.progress}%);
+    								background: -webkit-gradient(linear, left top, right top, color-stop(${player.progress}%,#8CF), color-stop(${player.progress}%,#EEE));
+    								background: linear-gradient(left center, #8CF ${player.progress}%, #EEE ${player.progress}%);
                             		""")(
-                          span(player.getLevel.toString))),
+                          span(player.level.toString))),
                       li("active".cls)(
                         a(id := "logged", "pull-right nav-link".cls, href := "/progress")(player.email)),
                       li(
