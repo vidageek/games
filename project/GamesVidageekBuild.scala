@@ -26,9 +26,9 @@ object GamesVidageekBuild extends Build {
   lazy val web = Project(
     id = "games-web",
     base = file("web"),
-    settings = (jasmineSettings ++ coreWebSettings ++ deps(xstream, log4j, jstl, guice,
-      guiceBindings, servletApi, jspApi, cdiApi, vraptor, slick, sqlite, aws,
-      actuarius, sitemesh, selenium))).
+    settings = (jasmineSettings ++ coreWebSettings ++ deps(xstream, log4j, guice,
+      guiceBindings, servletApi, cdiApi, vraptor, slick, sqlite, aws,
+      actuarius, selenium))).
     dependsOn(game, regexGame, gitGame, htmlGame, metaGame, scalaGame)
 
   lazy val game = Project(
@@ -53,7 +53,7 @@ object GamesVidageekBuild extends Build {
     libraryDependencies ++= Seq(junit, specs2, mockito, junitInterface, scalaTags))
 
   lazy val coreWebSettings: Seq[Setting[_]] = commonSettings ++ webSettings ++ inConfig(Runtime)(webappSettings0) ++ Seq(
-    libraryDependencies ++= Seq(jettyWebapp, jettyServlets, jettyJsp, jsp),
+    libraryDependencies ++= Seq(jettyWebapp, jettyServlets, jettyJsp, jstl),
     classDirectory in Compile <<= webappDir {
       _ / "WEB-INF" / "classes"
     },
@@ -78,10 +78,7 @@ object GamesVidageekBuild extends Build {
     val jettyWebapp = "org.eclipse.jetty" % "jetty-webapp" % jettyVersion % "container"
     val jettyServlets = "org.eclipse.jetty" % "jetty-servlets" % jettyVersion % "container"
     val jettyJsp = "org.eclipse.jetty" % "jetty-jsp-2.1" % jettyVersion % "container"
-    val jsp = "org.mortbay.jetty" % "jsp-2.1-glassfish" % "2.1.v20100127" % "container"
     val servletApi = "javax.servlet" % "servlet-api" % "2.5" % "provided"
-    val jspApi = "javax.servlet.jsp" % "jsp-api" % "2.1" % "provided"
-    val jstl = "javax.servlet" % "jstl" % "1.2"
     val xstream = "com.thoughtworks.xstream" % "xstream" % "1.4.2"
     val log4j = "log4j" % "log4j" % "1.2.17"
     val velocity = "org.apache.velocity" % "velocity" % "1.7"
@@ -94,10 +91,10 @@ object GamesVidageekBuild extends Build {
     val sqlite = "org.xerial" % "sqlite-jdbc" % "3.7.2"
     val aws = "com.amazonaws" % "aws-java-sdk" % "1.6.12"
     val actuarius = "eu.henkelmann" % "actuarius_2.10.0" % "0.2.6"
-    val sitemesh = "opensymphony" % "sitemesh" % "2.4.2"
     val scalaTags = "com.scalatags" % "scalatags_2.10" % "0.2.0"
     val specs2 = "org.specs2" %% "specs2" % "2.3.7"
     val cdiApi = "javax.enterprise" % "cdi-api" % "1.1-20130918"
+    val jstl = "javax.servlet" % "jstl" % "1.2"
     val vraptor = "br.com.caelum" % "vraptor" % "3.5.3" excludeAll (ExclusionRule(organization = "org.springframework"))
   }
 

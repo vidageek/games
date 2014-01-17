@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest
 import br.com.caelum.vraptor.interceptor.Interceptor
 import br.com.caelum.vraptor.core.InterceptorStack
 import br.com.caelum.vraptor.resource.ResourceMethod
+import vggames.shared.view.Decoration
 
 object VraptorExtensions {
 
@@ -24,27 +25,14 @@ object VraptorExtensions {
 }
 
 @Component
-class GameTypedView(response : HttpServletResponse) extends View {
+class GameTypedView(response : HttpServletResponse, decorate : Decoration) extends View {
 
   def render(html : String, view : TypedView[_]) = {
     response.setContentType(view.contentType)
     response.setCharacterEncoding("UTF-8")
-    response.getOutputStream().write(html.getBytes(Charset.forName("UTF-8")))
+    response.getOutputStream().write(
+      (if (view.contentType == "text/html")
+        decorate(html) else html).
+        getBytes(Charset.forName("UTF-8")))
   }
-}
-
-@Intercepts
-class AddGameInterceptor(req : HttpServletRequest, data : RequestData, cached : GameFactoryCache) extends Interceptor {
-
-  override def intercept(stack : InterceptorStack, method : ResourceMethod, resourceInstance : Any) {
-    if (!"".equals(data.game)) {
-      req.setAttribute("gameName", data.game)
-      req.setAttribute("game", cached(data.game).getOrElse(""))
-
-    }
-    stack.next(method, resourceInstance)
-  }
-
-  override def accepts(method : ResourceMethod) = true
-
 }

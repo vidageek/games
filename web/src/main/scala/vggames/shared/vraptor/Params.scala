@@ -5,13 +5,19 @@ import javax.servlet.http.HttpServletRequest
 import vggames.shared.task.JudgedTask
 
 @Component
-class Params(request : HttpServletRequest) {
+class Params(request : HttpServletRequest, data : RequestData, cached : GameFactoryCache) {
 
   def gameEnded = attr[String]("gameEnded")
 
   def judgedTask = attr[JudgedTask]("judgedTask")
 
   def lastAttempt = attr[String]("lastAttempt").getOrElse("")
+
+  def notice = attr[String]("notice")
+
+  def gameId = data.game
+
+  def game = cached(gameId)
 
   private def attr[T](name : String) = Option(request.getAttribute(name).asInstanceOf[T])
 
