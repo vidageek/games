@@ -32,8 +32,8 @@ class Index extends TypedView[(String, Game, Map[String, String], Option[String]
 
         ul("nav nav-pills nav-stacked groups".cls)(
           game.groups.map { group =>
-            li(finishedGroups.get(s"${gameName}.${group.taskGroup.name}").getOrElse("").cls)(
-              a(href := s"/play/${gameName}/task/${group.index}")(group.taskGroup.name))
+            li(finishedGroups.get(s"${gameName}.${group.taskGroup.groupName}").getOrElse("").cls)(
+              a(href := s"/play/${gameName}/task/${group.index}")(group.taskGroup.htmlName))
           }),
         h3("Outros recursos"),
         ul("nav nav-pills nav-stacked groups".cls)(

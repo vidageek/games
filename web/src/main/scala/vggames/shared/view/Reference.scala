@@ -20,8 +20,8 @@ class Reference extends TypedView[(String, Game, Map[String, String])] {
         h2("theory".cls)("Conteúdo:"),
         ul("nav nav-pills nav-stacked groups".cls)(
           game.groups.map { group =>
-            li(finishedGroups.get(s"${gameName}.${group.taskGroup.name}").getOrElse("").cls)(
-              a(href := s"#${group.taskGroup.groupName}")(group.taskGroup.name))
+            li(finishedGroups.get(s"${gameName}.${group.taskGroup.groupName}").getOrElse("").cls)(
+              a(href := s"#${group.taskGroup.groupName}")(group.taskGroup.htmlName))
           }),
         game.groups.map { group =>
           (a(id := group.taskGroup.groupName, "theory-link".cls)(""),
