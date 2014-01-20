@@ -71,8 +71,9 @@ class TestRun(specName : String) {
 
   def failure(assertionName : String) = results += new Failure(assertionName)
 
-  def exception(message : String) : Unit = exception.getOrElse(
-    new Failed(s"""Exception foi lan&ccedil;ada durante execu&ccedil;&atilde;o: ${message}"""))
+  def exception(message : String) : Unit =
+    if (!exception.isDefined)
+      exception = Option(new Failed(s"""Exception foi lan&ccedil;ada durante execu&ccedil;&atilde;o: ${message}"""))
 
   def judgement : JudgedTask = {
     if (exception.isDefined) return exception.get
