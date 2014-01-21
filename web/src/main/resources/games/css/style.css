@@ -76,7 +76,11 @@ pre code {
 
 /* Groups */
 ul.groups li {
-	padding-left: 20px;
+	padding-left: 30px;
+}
+
+ul.groups a {
+	display: inline-block;
 }
 
 li.finished {

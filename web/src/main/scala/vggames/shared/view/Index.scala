@@ -11,11 +11,10 @@ class Index extends TypedView[(String, Game, Map[String, String], Option[String]
 
     html(
       head(
-        Tags.title(s"Comece a jogar o ${game.name} Game")),
+        Tags.title(s"Referência do ${game.name} Game")),
       body(
         div("alert".cls)(
           strong("Aviso!"), " Estamos em Beta. Caso encontre algum problema, envie um email para games@vidageek.net"),
-
         gameEnded.map { e =>
           div("alert alert-success".cls)(
             s"Parabéns! Você acabou de resolver o último exercício de ${game.name}. O importante agora é continuar praticando.",
@@ -27,17 +26,26 @@ class Index extends TypedView[(String, Game, Map[String, String], Option[String]
         }.getOrElse(""),
 
         h1(s"${game.name} Game"),
+
         p(game.description),
         "Você pode começar a jogar pelo ", a(href := s"/play/${gameName}/task/0")("primeiro exercício"), " ou escolher um grupo abaixo:",
 
+        a(id := "conteudo", "theory-link".cls)(""),
+        h2("theory".cls)("Conteúdo:"),
         ul("nav nav-pills nav-stacked groups".cls)(
           game.groups.map { group =>
             li(finishedGroups.get(s"${gameName}.${group.taskGroup.groupName}").getOrElse("").cls)(
               a(href := s"/play/${gameName}/task/${group.index}")(group.taskGroup.htmlName))
           }),
-        h3("Outros recursos"),
-        ul("nav nav-pills nav-stacked groups".cls)(
-          li(a(href := s"/reference/${gameName}")("Referência")))))
+        game.groups.map { group =>
+          (a(id := group.taskGroup.groupName, "theory-link".cls)(""),
+            div(
+              h1(
+                a(href := s"#${group.taskGroup.groupName}")(group.taskGroup.name)),
+              raw(group.description),
+              a("btn".cls, href := "#conteudo")("Topo"),
+              a("btn btn-info".cls, href := s"/play/${gameName}/task/${group.index}")("Jogar!")))
+        }.foldLeft(List[HtmlTag]())((acc, t) => acc :+ t._1 :+ t._2)))
 
   }
 

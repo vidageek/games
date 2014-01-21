@@ -26,17 +26,6 @@ class Sitemap extends TypedView[(List[String], String)] {
 
           }
         }
-        {
-          games.map { game =>
-            <url>
-              <loc>http://games.vidageek.net/reference/{ game }</loc>
-              <lastmod>{ buildDate }</lastmod>
-              <changefreq>weekly</changefreq>
-              <priority>1</priority>
-            </url>
-
-          }
-        }
       </urlset>).toString
 
   }

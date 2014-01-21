@@ -10,8 +10,7 @@ class Robots extends TypedView[(List[String], List[String])] {
     ("User-Agent: *" ::
       games.map(game => s"Disallow: /play/$game/task").mkString("\n") ::
       games.map(game => s"Disallow: /play/$game/resource").mkString("\n") ::
-      inactiveGames.map(game => s"Disallow: /play/$game").mkString("\n") ::
-      inactiveGames.map(game => s"Disallow: /reference/$game").mkString("\n") :: Nil).mkString("\n\n")
+      inactiveGames.map(game => s"Disallow: /play/$game").mkString("\n") :: Nil).mkString("\n\n")
   }
 
   override def contentType = "text/plain"
