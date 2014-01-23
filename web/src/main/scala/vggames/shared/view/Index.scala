@@ -11,7 +11,7 @@ class Index extends TypedView[(String, Game, Map[String, String], Option[String]
 
     html(
       head(
-        Tags.title(s"Referência do ${game.name} Game")),
+        Tags.title(s"Jogue ${game.name} Game")),
       body(
         div("alert".cls)(
           strong("Aviso!"), " Estamos em Beta. Caso encontre algum problema, envie um email para games@vidageek.net"),
