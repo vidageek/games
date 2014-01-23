@@ -40,7 +40,7 @@ class Index extends TypedView[(String, Game, Map[String, String], Option[String]
         game.groups.map { group =>
           (a(id := group.taskGroup.groupName, "theory-link".cls)(""),
             div(
-              h1(
+              h2(
                 a(href := s"#${group.taskGroup.groupName}")(group.taskGroup.name)),
               raw(group.description),
               a("btn".cls, href := "#conteudo")("Topo"),
