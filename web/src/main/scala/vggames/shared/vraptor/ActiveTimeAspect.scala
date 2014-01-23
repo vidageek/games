@@ -12,7 +12,6 @@ class ActiveTimeAspect(params : Params, session : PlayerSession) extends Request
 
   override def apply(stack : InterceptorStack, method : ResourceMethod, resourceInstance : Any) {
     try {
-      println(params.activeTime)
       params.activeTime.map { activeTime =>
         var time = activeTime.toLong
         if (time > 30) time = 30
