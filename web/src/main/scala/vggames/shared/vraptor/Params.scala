@@ -11,6 +11,8 @@ class Params(request : HttpServletRequest, data : RequestData, cached : GameFact
 
   def judgedTask = attr[JudgedTask]("judgedTask")
 
+  def activeTime = param[String]("activeTime")
+
   def lastAttempt = attr[String]("lastAttempt").getOrElse("")
 
   def notice = attr[String]("notice")
@@ -20,5 +22,7 @@ class Params(request : HttpServletRequest, data : RequestData, cached : GameFact
   def game = cached(gameId)
 
   private def attr[T](name : String) = Option(request.getAttribute(name).asInstanceOf[T])
+
+  private def param[T](name : String) = Option(request.getParameter(name).asInstanceOf[T])
 
 }

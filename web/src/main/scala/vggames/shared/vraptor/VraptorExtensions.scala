@@ -24,6 +24,18 @@ object VraptorExtensions {
   }
 }
 
+trait RequestAspect extends Interceptor {
+
+  def apply(stack : InterceptorStack, method : ResourceMethod, resourceInstance : Any) : Unit
+
+  def isApplicable(method : ResourceMethod) : Boolean
+
+  final def intercept(stack : InterceptorStack, method : ResourceMethod, resourceInstance : Any) = apply(stack, method, resourceInstance)
+
+  final def accepts(method : ResourceMethod) = isApplicable(method)
+
+}
+
 @Component
 class GameTypedView(response : HttpServletResponse, decorate : Decoration) extends View {
 

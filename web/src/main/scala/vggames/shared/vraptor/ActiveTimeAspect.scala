@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServletRequest
 import vggames.shared.player.PlayerSession
 
 @Intercepts
-class ActiveTimeInterceptor(req : HttpServletRequest, session : PlayerSession) extends Interceptor {
+class ActiveTimeAspect(params : Params, session : PlayerSession) extends RequestAspect {
 
-  override def intercept(stack : InterceptorStack, method : ResourceMethod, resourceInstance : Any) {
+  override def apply(stack : InterceptorStack, method : ResourceMethod, resourceInstance : Any) {
     try {
-      Option(req.getParameter("activeTime")).map { activeTime =>
+      println(params.activeTime)
+      params.activeTime.map { activeTime =>
         var time = activeTime.toLong
         if (time > 30) time = 30
         if (time < 0) time = 0
@@ -24,6 +25,6 @@ class ActiveTimeInterceptor(req : HttpServletRequest, session : PlayerSession) e
     }
   }
 
-  override def accepts(method : ResourceMethod) = true
+  override def isApplicable(method : ResourceMethod) = true
 
 }
