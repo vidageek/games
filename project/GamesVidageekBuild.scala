@@ -1,15 +1,11 @@
 
+import com.earldouglas.xsbtwebplugin.{ WebappPlugin, WebPlugin }
 import java.io.{ FileOutputStream, FileInputStream, PrintWriter }
 import java.util.Scanner
 import java.util.zip.{ GZIPOutputStream, GZIPInputStream }
 import sbt._
 import Keys._
-import com.github.siasia._
-import WebPlugin._
-import WebappPlugin._
 import IO._
-import PluginKeys._
-import org._
 import com.gu.SbtJasminePlugin._
 
 object GamesVidageekBuild extends Build {
@@ -52,7 +48,7 @@ object GamesVidageekBuild extends Build {
     scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-unchecked", "-g:vars", "-feature", "-language:_"),
     libraryDependencies ++= Seq(junit, specs2, mockito, junitInterface, scalaTags))
 
-  lazy val coreWebSettings: Seq[Setting[_]] = commonSettings ++ webSettings ++ inConfig(Runtime)(webappSettings0) ++ Seq(
+  lazy val coreWebSettings: Seq[Setting[_]] = commonSettings ++ WebPlugin.webSettings ++ inConfig(Runtime)(WebappPlugin.webappSettings0) ++ Seq(
     libraryDependencies ++= Seq(jettyWebapp, jettyServlets, jettyJsp, jstl),
     classDirectory in Compile <<= webappDir {
       _ / "WEB-INF" / "classes"
@@ -73,11 +69,11 @@ object GamesVidageekBuild extends Build {
     dependsOn(game)
 
   object Dependencies {
-    val jettyVersion = "7.4.5.v20110725"
+    val jettyVersion = "9.1.1.v20140108"
 
     val jettyWebapp = "org.eclipse.jetty" % "jetty-webapp" % jettyVersion % "container"
     val jettyServlets = "org.eclipse.jetty" % "jetty-servlets" % jettyVersion % "container"
-    val jettyJsp = "org.eclipse.jetty" % "jetty-jsp-2.1" % jettyVersion % "container"
+    val jettyJsp = "org.eclipse.jetty" % "jetty-jsp" % jettyVersion % "container"
     val servletApi = "javax.servlet" % "servlet-api" % "2.5" % "provided"
     val xstream = "com.thoughtworks.xstream" % "xstream" % "1.4.2"
     val log4j = "log4j" % "log4j" % "1.2.17"
