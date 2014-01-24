@@ -2,7 +2,7 @@
 
 SBT_JAR=/opt/sbt/sbt-launch-0.13.0.jar
 
-SBT="java -XX:PermSize=372m -Dsbt.log.noformat=true -jar $SBT_JAR"
+SBT="/opt/jdk/jdk1.7.latest/bin/java -XX:PermSize=372m -Dsbt.log.noformat=true -jar $SBT_JAR"
 
 BUILD=0
 
