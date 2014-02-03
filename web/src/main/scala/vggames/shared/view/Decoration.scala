@@ -18,7 +18,6 @@ class Decoration(req : HttpServletRequest, params : Params, session : PlayerSess
   def apply(html : String) = {
     val head = find(html, "head")
     val body = find(html, "body")
-    println(body)
 
     val reqUrl = req.getRequestURI
 
