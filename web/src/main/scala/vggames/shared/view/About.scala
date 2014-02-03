@@ -19,7 +19,7 @@ class About extends TypedView[Unit] {
               img(src := "http://www.adaptideas.com.br/images/logo.png", alt := "AdaptIdeas"),
               a("btn btn-info".cls, href := "http://www.adaptideas.com.br/")("AdaptIdeas")),
             div(
-              img(src := s"/images/ccsl.jpeg?v=${ResourceId.ts}", alt := "CCSL"),
+              img(src := s"/images/ccsl.jpeg?v=${ResourceId.id}", alt := "CCSL"),
               a("btn btn-info".cls, href := "http://ccsl.ime.usp.br/")("CCSL")),
             div(
               img(src := "https://secure.gravatar.com/avatar/9ce5f6b25189ecb05c5c982cc5c0ad7c.png", alt := "VidaGeek.net"),

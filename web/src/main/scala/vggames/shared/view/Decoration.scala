@@ -9,7 +9,7 @@ import scalatags._
 import java.util.Date
 
 object ResourceId {
-  val ts = new Date().getTime
+  val id = new Date().getTime
 }
 
 @Component
@@ -36,9 +36,9 @@ class Decoration(req : HttpServletRequest, params : Params, session : PlayerSess
           meta(name := "google-site-verification", "content".attr := "FjDxiddkSQXOHTFWCpYqrXpjj7wCoCcX1krRxTCHuq0"),
           meta(name := "google-site-verification", "content".attr := "igmWNUz0B_VblujqXG47m32FBgjyQ5Zc2Oq-3YzSZv8"),
           raw(headContent),
-          link(href := s"/css/games.css?v=${ResourceId.ts}", rel := "stylesheet", "type".attr := "text/css", "media".attr := "screen"),
+          link(href := s"/css/games.css?v=${ResourceId.id}", rel := "stylesheet", "type".attr := "text/css", "media".attr := "screen"),
           params.game.map { game =>
-            link(href := s"/css/${params.gameId}.css?v=${ResourceId.ts}", rel := "stylesheet", "type".attr := "text/css", "media".attr := "screen")
+            link(href := s"/css/${params.gameId}.css?v=${ResourceId.id}", rel := "stylesheet", "type".attr := "text/css", "media".attr := "screen")
           }.getOrElse(raw("")),
           script("type".attr := "text/javascript")(analyticsCode)),
         body(
@@ -101,9 +101,9 @@ class Decoration(req : HttpServletRequest, params : Params, session : PlayerSess
                 div("alert alert-info".cls)(
                   a(href := "/senha")("Porquê não preciso colocar minha senha?"))))),
           script("type".attr := "text/javascript", src := "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js")(""),
-          script("type".attr := "text/javascript", src := s"/js/games.js?v=${ResourceId.ts}")(""),
+          script("type".attr := "text/javascript", src := s"/js/games.js?v=${ResourceId.id}")(""),
           params.game.map { game =>
-            script("type".attr := "text/javascript", src := s"/js/${params.gameId}.js?v=${ResourceId.ts}")("")
+            script("type".attr := "text/javascript", src := s"/js/${params.gameId}.js?v=${ResourceId.id}")("")
           }.getOrElse(raw(""))))
   }
 
