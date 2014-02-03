@@ -15,12 +15,10 @@ object ResourceId {
 @Component
 class Decoration(req : HttpServletRequest, params : Params, session : PlayerSession) {
 
-  val headRegex = "(?s).*?<head>(.*?)</head>.*".r
-  val bodyRegex = "(?s).*?<body>(.*?)</body>.*".r
-
   def apply(html : String) = {
-    val this.headRegex(head) = html
-    val this.bodyRegex(body) = html
+    val head = find(html, "head")
+    val body = find(html, "body")
+    println(body)
 
     val reqUrl = req.getRequestURI
 
@@ -125,5 +123,8 @@ class Decoration(req : HttpServletRequest, params : Params, session : PlayerSess
 			var s = document.getElementsByTagName('script')[0];
 			s.parentNode.insertBefore(ga, s);
 		})();"""
+
+  def find(html : String, element : String) =
+    html.substring(html.indexOf(s"<$element>") + s"<$element>".length(), html.indexOf(s"</$element>"))
 
 }
