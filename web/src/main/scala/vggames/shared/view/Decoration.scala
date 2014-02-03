@@ -35,9 +35,9 @@ class Decoration(req : HttpServletRequest, params : Params, session : PlayerSess
     "<!DOCTYPE html>" +
       html(lang := "pt-br")(
         head(
-          meta("http-equiv".attr := "Content-Type", content := "text/html; charset=UTF-8"),
-          meta(name := "google-site-verification", content := "FjDxiddkSQXOHTFWCpYqrXpjj7wCoCcX1krRxTCHuq0"),
-          meta(name := "google-site-verification", content := "igmWNUz0B_VblujqXG47m32FBgjyQ5Zc2Oq-3YzSZv8"),
+          meta("http-equiv".attr := "Content-Type", "content".attr := "text/html; charset=UTF-8"),
+          meta(name := "google-site-verification", "content".attr := "FjDxiddkSQXOHTFWCpYqrXpjj7wCoCcX1krRxTCHuq0"),
+          meta(name := "google-site-verification", "content".attr := "igmWNUz0B_VblujqXG47m32FBgjyQ5Zc2Oq-3YzSZv8"),
           raw(headContent),
           link(href := s"/css/games.css?v=${ResourceId.ts}", rel := "stylesheet", "type".attr := "text/css", "media".attr := "screen"),
           params.game.map { game =>
