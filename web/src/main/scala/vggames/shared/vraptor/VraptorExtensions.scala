@@ -15,6 +15,7 @@ import br.com.caelum.vraptor.core.InterceptorStack
 import br.com.caelum.vraptor.resource.ResourceMethod
 import vggames.shared.view.Decoration
 import java.util.zip.GZIPOutputStream
+import java.io.ByteArrayOutputStream
 
 object VraptorExtensions {
 
@@ -38,17 +39,24 @@ trait RequestAspect extends Interceptor {
 }
 
 @Component
-class GameTypedView(response : HttpServletResponse, decorate : Decoration) extends View {
+class GameTypedView(response : HttpServletResponse, decorate : Decoration, headers : Headers) extends View {
 
   def render(html : String, view : TypedView[_]) = {
     response.setContentType(view.contentType)
     response.setCharacterEncoding("UTF-8")
-    response.addHeader("Content-Encoding", "gzip")
-    val stream = new GZIPOutputStream(response.getOutputStream())
-    stream.write(
-      (if (view.contentType == "text/html")
-        decorate(html) else html).
-        getBytes(Charset.forName("UTF-8")))
-    stream.close
+
+    val content = (if (view.contentType == "text/html")
+      decorate(html) else html).
+      getBytes(Charset.forName("UTF-8"))
+
+    headers.acceptEncoding("gzip") match {
+      case Some(_) =>
+        response.addHeader("Content-Encoding", "gzip");
+        val stream = new GZIPOutputStream(response.getOutputStream())
+        stream.write(content)
+        stream.close
+      case None =>
+        response.getOutputStream().write(content)
+    }
   }
 }

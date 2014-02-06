@@ -3,6 +3,7 @@ package vggames.shared.vraptor
 import br.com.caelum.vraptor.ioc.Component
 import javax.servlet.http.HttpServletRequest
 import vggames.shared.task.JudgedTask
+import br.com.caelum.vraptor.ioc.Component
 
 @Component
 class Params(request : HttpServletRequest, data : RequestData, cached : GameFactoryCache) {
@@ -24,5 +25,14 @@ class Params(request : HttpServletRequest, data : RequestData, cached : GameFact
   private def attr[T](name : String) = Option(request.getAttribute(name).asInstanceOf[T])
 
   private def param[T](name : String) = Option(request.getParameter(name).asInstanceOf[T])
+
+}
+
+@Component
+class Headers(request : HttpServletRequest) {
+
+  def acceptEncoding(encoding : String) =
+    Option(request.getHeader("Accept-Encoding")).
+      filter(_.contains(encoding))
 
 }
