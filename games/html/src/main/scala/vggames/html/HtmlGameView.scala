@@ -5,6 +5,7 @@ import vggames.shared.Game
 import vggames.shared.task.TaskWithDescription
 import vggames.shared.task.JudgedTask
 import scalatags._
+import vggames.shared.GameResourceId
 
 class HtmlGameView extends GameView {
   def render(game : Game, task : TaskWithDescription, judgedTask : Option[JudgedTask], lastAttempt : String) = {
@@ -19,7 +20,7 @@ class HtmlGameView extends GameView {
         progressBar(task, game)),
 
       div("span6".cls)(
-        iframe(id := "render-answer", "game-frame".cls, src := s"/play/html/resource/${task.resource}")(""),
+        iframe(id := "render-answer", "game-frame".cls, src := s"/play/html/resource/${task.resource}?v=${GameResourceId.id}")(""),
 
         h2(task.groupName),
         raw(task.description))).toString

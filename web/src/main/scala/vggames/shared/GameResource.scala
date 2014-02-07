@@ -49,6 +49,7 @@ class ResourceView(game : Game, res : HttpServletResponse) extends View {
 
   def from(resource : String) = {
     game.resourceDescription.map { desc =>
+      res.addHeader("Expires", Expires date)
       res.setCharacterEncoding("UTF-8")
       res.setContentType(desc.contentType)
       res.getWriter().println(
