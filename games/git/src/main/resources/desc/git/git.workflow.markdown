@@ -6,7 +6,7 @@ Um [fluxo de trabalho muito comum com Git][1] funciona da seguinte forma:
 * Checkout para o seu branch de trabalho
 * Programar e fazer vários pequenos commits
 * Pegar as modificações que outros programadores tenham feito
-* Rebase no seu branch de trabalho (para marter o histórico linear)
+* Rebase no seu branch de trabalho (para manter o histórico linear)
 * Enviar as modificações para o servidor remoto
 
 São bem mais passos do que se você utilizar [Svn][2], por exemplo,
