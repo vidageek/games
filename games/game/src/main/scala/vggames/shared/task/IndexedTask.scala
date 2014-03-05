@@ -3,7 +3,7 @@ package vggames.shared.task;
 import vggames.shared.task.status.Error
 import scala.util.Try
 
-class IndexedTask(delegate : GroupedTask, val index : Int) {
+class IndexedTask(val group : TaskGroup, delegate : Task, val index : Int) {
 
   def judge(challenge : String) : JudgedTask = {
     Try(delegate.judge(challenge)).
@@ -15,11 +15,9 @@ class IndexedTask(delegate : GroupedTask, val index : Int) {
 
   def challenge : String = delegate.challenge
 
-  def groupName = delegate.group.htmlName
+  def groupName = group.htmlName
 
-  def groupCode = delegate.group.groupName
-
-  def group = delegate.group
+  def groupCode = group.groupName
 
   override def toString : String = delegate.toString
 

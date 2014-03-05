@@ -5,7 +5,6 @@ import org.specs2.mock.Mockito
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
 import vggames.shared.task.Descriptions
-import vggames.shared.task.GroupedTask
 import vggames.shared.task.TaskGroup
 import vggames.shared.task.TaskWithDescription
 import vggames.shared.task.IndexedTask
@@ -19,7 +18,7 @@ class TaskWithDescriptionTaskSpec extends Specification with Mockito {
     "return group description" in {
       descriptions.forGroup("a") returns "description"
 
-      val task = new TaskWithDescription(new IndexedTask(new GroupedTask(new TaskGroup("b", "a"), new TestTask()), 0), descriptions)
+      val task = new TaskWithDescription(new IndexedTask(new TaskGroup("b", "a"), new TestTask(), 0), descriptions)
       task.description must_== "description"
     }
   }
