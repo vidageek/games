@@ -5,16 +5,16 @@ import vggames.shared.Game
 import scala.collection.concurrent.Map
 import scalatags._
 import vggames.shared.vraptor.GameFactoryCache
-import vggames.shared.task.TaskWithDescription
 import scala.util.Try
 import vggames.shared.GameView
 import scala.util.Success
 import scala.util.Failure
 import vggames.shared.task.JudgedTask
+import vggames.shared.task.IndexedTask
 
-class TaskView extends TypedView[(String, TaskWithDescription, Game, Option[JudgedTask], String)] {
+class TaskView extends TypedView[(String, IndexedTask, Game, Option[JudgedTask], String)] {
 
-  override def render(t : (String, TaskWithDescription, Game, Option[JudgedTask], String)) = {
+  override def render(t : (String, IndexedTask, Game, Option[JudgedTask], String)) = {
     val (gameName, task, game, judgedTask, lastAttempt) = t
 
     html(
@@ -25,7 +25,7 @@ class TaskView extends TypedView[(String, TaskWithDescription, Game, Option[Judg
         raw(renderGameView(game, task, judgedTask, lastAttempt))))
   }
 
-  private def renderGameView(game : Game, task : TaskWithDescription, judgedTask : Option[JudgedTask], lastAttempt : String) : String = {
+  private def renderGameView(game : Game, task : IndexedTask, judgedTask : Option[JudgedTask], lastAttempt : String) : String = {
     val viewName = s"vggames.${game.path}.${game.path.capitalize}GameView"
 
     Try(Class.forName(viewName).newInstance.asInstanceOf[GameView]).

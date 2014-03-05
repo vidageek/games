@@ -2,11 +2,11 @@ package vggames.shared
 
 import vggames.shared.task.Descriptions
 import vggames.shared.task.TaskGroup
-import vggames.shared.task.TaskWithDescription
+import vggames.shared.task.IndexedTask
 
 class Game(engine : GameEngine, descriptions : Descriptions) {
 
-  def task(index : Int) : TaskWithDescription = engine.tasks.at(index, descriptions)
+  def task(index : Int) : IndexedTask = engine.tasks.at(index, descriptions)
 
   def tasks = engine.tasks.all(descriptions)
 

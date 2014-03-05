@@ -16,8 +16,6 @@ class GitGameSpec extends Specification with Mockito {
     "have answers for all games" in {
       val game = new Game(new GitGame(), descriptions)
 
-      println(game.size)
-
       0 until game.size foreach { i =>
         game.task(i).judge(answers(i)).ok aka (
           "%s task %d answer is %s".format(game.getClass().getSimpleName(), i, answers(i))) must beTrue

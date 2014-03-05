@@ -2,13 +2,13 @@ package vggames.html
 
 import vggames.shared.GameView
 import vggames.shared.Game
-import vggames.shared.task.TaskWithDescription
 import vggames.shared.task.JudgedTask
 import scalatags._
 import vggames.shared.GameResourceId
+import vggames.shared.task.IndexedTask
 
 class HtmlGameView extends GameView {
-  def render(game : Game, task : TaskWithDescription, judgedTask : Option[JudgedTask], lastAttempt : String) = {
+  def render(game : Game, task : IndexedTask, judgedTask : Option[JudgedTask], lastAttempt : String) = {
 
     div("row".cls)(
       div("span6".cls)(

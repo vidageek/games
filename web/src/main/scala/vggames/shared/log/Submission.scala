@@ -6,8 +6,9 @@ import scala.slick.session.Database.threadLocalSession
 import vggames.shared.task.{ JudgedTask, Task }
 import vggames.shared.Database
 import vggames.shared.player.Player
+import vggames.shared.task.IndexedTask
 
-case class Submission(gameName : String, task : Task, challenge : String, result : JudgedTask, player:Option[Player], ip : Option[String]) extends LogItem with Database {
+case class Submission(gameName : String, task : IndexedTask, challenge : String, result : JudgedTask, player:Option[Player], ip : Option[String]) extends LogItem with Database {
   def log {
     onDatabase {
       Submissions.insert(gameName, task.challenge, challenge, result.ok, player.map(_.id), ip)
