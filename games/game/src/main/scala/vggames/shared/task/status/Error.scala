@@ -4,7 +4,7 @@ import vggames.shared.task.JudgedTask
 
 class Error(e : Throwable) extends JudgedTask {
 
-  def ok : Boolean = false
+  def ok = false
 
-  def reason : String = e.getMessage
+  def reason = e.getMessage
 }

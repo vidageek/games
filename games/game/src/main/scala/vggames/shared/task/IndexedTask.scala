@@ -1,13 +1,14 @@
 package vggames.shared.task;
 
 import vggames.shared.task.status.Error
+import scala.util.Try
 
 class IndexedTask(delegate : GroupedTask, val index : Int) {
 
   def judge(challenge : String) : JudgedTask = {
-    try {
-      delegate.judge(challenge)
-    } catch { case e : Exception => new Error(e) }
+    Try(delegate.judge(challenge)).
+      recover { case e : Exception => new Error(e) }.
+      get
   }
 
   def resource = delegate.resource
