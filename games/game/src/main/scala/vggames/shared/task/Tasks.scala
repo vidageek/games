@@ -2,7 +2,15 @@ package vggames.shared.task
 
 class Tasks(taskGroups : TaskGroup*) {
 
-  private def tasks(descriptions : Descriptions) : Seq[IndexedTask] = unmodifiableIndexedTasks(descriptions)
+  @volatile private var unmodifiableTasks : Option[Seq[IndexedTask]] = None
+
+  private def tasks(descriptions : Descriptions) : Seq[IndexedTask] =
+    unmodifiableTasks match {
+      case Some(seq) => seq
+      case None =>
+        unmodifiableTasks = Option(unmodifiableIndexedTasks(descriptions))
+        unmodifiableTasks.get
+    }
 
   def at(index : Int, descriptions : Descriptions) = tasks(descriptions)(index)
 
