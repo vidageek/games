@@ -17,9 +17,9 @@ class Exercise(val group : TaskGroup, descriptions : Descriptions, delegate : Ta
 
   def groupName = group.htmlName
 
-  def groupCode = group.groupName
+  def groupId = group.id
 
-  def description = descriptions.forGroup(groupCode)
+  def description = descriptions.forGroup(groupId)
 
   override def toString : String = delegate.toString
 

@@ -34,14 +34,14 @@ class Index extends TypedView[(String, Game, Map[String, String], Option[String]
         h2("theory".cls)("Conteúdo:"),
         ul("nav nav-pills nav-stacked groups".cls)(
           game.groups.map { group =>
-            li(finishedGroups.get(s"${gameName}.${group.taskGroup.groupName}").getOrElse("").cls)(
+            li(finishedGroups.get(s"${gameName}.${group.taskGroup.id}").getOrElse("").cls)(
               a(href := s"/play/${gameName}/task/${group.index}")(group.taskGroup.htmlName))
           }),
         game.groups.map { group =>
-          (a(id := group.taskGroup.groupName, "theory-link".cls)(""),
+          (a(id := group.taskGroup.id, "theory-link".cls)(""),
             div(
               h2(
-                a(href := s"#${group.taskGroup.groupName}")(group.taskGroup.name)),
+                a(href := s"#${group.taskGroup.id}")(group.taskGroup.name)),
               raw(group.description),
               a("btn".cls, href := "#conteudo")("Topo"),
               a("btn btn-info".cls, href := s"/play/${gameName}/task/${group.index}")("Jogar!")))
