@@ -4,7 +4,7 @@ import vggames.shared.GameView
 import vggames.shared.Game
 import scalatags._
 import vggames.shared.task.JudgedTask
-import vggames.shared.task.IndexedTask
+import vggames.shared.task.Exercise
 
 class GitGameView extends GameView {
 
@@ -20,7 +20,7 @@ class GitGameView extends GameView {
       }.getOrElse[List[Node]](List(raw("\n\n"))))
   }
 
-  def render(game : Game, task : IndexedTask, judgedTask : Option[JudgedTask], lastAttempt : String) = {
+  def render(game : Game, task : Exercise, judgedTask : Option[JudgedTask], lastAttempt : String) = {
     val extraData = task.extraData.get.asInstanceOf[Git]
 
     div("git".cls)(

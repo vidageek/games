@@ -2,13 +2,13 @@ package vggames.shared
 
 import vggames.shared.task.Descriptions
 import vggames.shared.task.TaskGroup
-import vggames.shared.task.IndexedTask
+import vggames.shared.task.Exercise
 
 class Game(engine : GameEngine, descriptions : Descriptions) {
 
   val tasks = engine.tasks.withDescriptions(descriptions)
 
-  def task(index : Int) : IndexedTask = tasks(index)
+  def task(index : Int) : Exercise = tasks(index)
 
   def groups = tasks.map(t => Group(t.group, t.index, t.description)).distinct
 

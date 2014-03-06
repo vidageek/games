@@ -10,11 +10,11 @@ import vggames.shared.GameView
 import scala.util.Success
 import scala.util.Failure
 import vggames.shared.task.JudgedTask
-import vggames.shared.task.IndexedTask
+import vggames.shared.task.Exercise
 
-class TaskView extends TypedView[(String, IndexedTask, Game, Option[JudgedTask], String)] {
+class TaskView extends TypedView[(String, Exercise, Game, Option[JudgedTask], String)] {
 
-  override def render(t : (String, IndexedTask, Game, Option[JudgedTask], String)) = {
+  override def render(t : (String, Exercise, Game, Option[JudgedTask], String)) = {
     val (gameName, task, game, judgedTask, lastAttempt) = t
 
     html(
@@ -25,7 +25,7 @@ class TaskView extends TypedView[(String, IndexedTask, Game, Option[JudgedTask],
         raw(renderGameView(game, task, judgedTask, lastAttempt))))
   }
 
-  private def renderGameView(game : Game, task : IndexedTask, judgedTask : Option[JudgedTask], lastAttempt : String) : String = {
+  private def renderGameView(game : Game, task : Exercise, judgedTask : Option[JudgedTask], lastAttempt : String) : String = {
     val viewName = s"vggames.${game.path}.${game.path.capitalize}GameView"
 
     Try(Class.forName(viewName).newInstance.asInstanceOf[GameView]).

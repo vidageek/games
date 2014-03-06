@@ -3,7 +3,7 @@ package vggames.shared.task;
 import vggames.shared.task.status.Error
 import scala.util.Try
 
-class IndexedTask(val group : TaskGroup, descriptions : Descriptions, delegate : Task, val index : Int) {
+class Exercise(val group : TaskGroup, descriptions : Descriptions, delegate : Task, val index : Int) {
 
   def judge(challenge : String) : JudgedTask = {
     Try(delegate.judge(challenge)).

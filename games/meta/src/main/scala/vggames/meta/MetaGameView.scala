@@ -4,11 +4,11 @@ import vggames.shared.GameView
 import vggames.shared.Game
 import vggames.shared.task.JudgedTask
 import scalatags._
-import vggames.shared.task.IndexedTask
+import vggames.shared.task.Exercise
 
 class MetaGameView extends GameView {
 
-  def render(game : Game, task : IndexedTask, judgedTask : Option[JudgedTask], lastAttempt : String) = {
+  def render(game : Game, task : Exercise, judgedTask : Option[JudgedTask], lastAttempt : String) = {
 
     div("row".cls)(
       div("span5".cls)(

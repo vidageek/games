@@ -5,10 +5,11 @@ import vggames.shared.Game
 import vggames.shared.task.JudgedTask
 import scalatags._
 import vggames.shared.GameResourceId
-import vggames.shared.task.IndexedTask
+import vggames.shared.task.Exercise
 
 class HtmlGameView extends GameView {
-  def render(game: Game, task: IndexedTask, judgedTask: Option[JudgedTask], lastAttempt: String) = {
+
+  def render(game : Game, task : Exercise, judgedTask : Option[JudgedTask], lastAttempt : String) = {
 
     val prefill = task.extraData.asInstanceOf[Option[String]].getOrElse("")
 
