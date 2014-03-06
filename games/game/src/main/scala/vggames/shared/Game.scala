@@ -6,13 +6,13 @@ import vggames.shared.task.IndexedTask
 
 class Game(engine : GameEngine, descriptions : Descriptions) {
 
-  def task(index : Int) : IndexedTask = engine.tasks.at(index, descriptions)
+  val tasks = engine.tasks.withDescriptions(descriptions)
 
-  def tasks = engine.tasks.all(descriptions)
+  def task(index : Int) : IndexedTask = tasks(index)
 
   def groups = tasks.map(t => Group(t.group, t.index, t.description)).distinct
 
-  def size : Int = engine.tasks.size
+  def size : Int = tasks.size
 
   def description = engine.description
 
