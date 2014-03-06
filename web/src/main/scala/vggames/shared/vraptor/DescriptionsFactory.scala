@@ -3,7 +3,7 @@ package vggames.shared.vraptor
 import java.util.concurrent.ConcurrentHashMap
 import br.com.caelum.vraptor.ioc.{ ComponentFactory, Component, ApplicationScoped }
 import vggames.shared.task.Descriptions
-import scala.collection.JavaConversions
+import scala.collection.JavaConverters._
 
 @Component
 class DescriptionsFactory(data : RequestData, cache : DescriptionsCache) extends ComponentFactory[Descriptions] {
@@ -15,7 +15,7 @@ class DescriptionsFactory(data : RequestData, cache : DescriptionsCache) extends
 @ApplicationScoped
 class DescriptionsCache {
 
-  private val map = JavaConversions.mapAsScalaConcurrentMap(new ConcurrentHashMap[String, Descriptions])
+  private val map = new ConcurrentHashMap[String, Descriptions].asScala
 
   def put(key : String, desc : Descriptions) = {
     map.putIfAbsent(key, desc)

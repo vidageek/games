@@ -5,8 +5,6 @@ import br.com.caelum.vraptor.ioc.Component
 import java.text.SimpleDateFormat
 import java.util.Date
 
-import scala.collection.JavaConverters._
-
 @ApplicationScoped
 @Component
 class GamesConfiguration {

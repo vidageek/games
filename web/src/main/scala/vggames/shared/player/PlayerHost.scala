@@ -8,7 +8,6 @@ import vggames.shared.email.Mail
 import vggames.shared.vraptor.Referer
 import vggames.shared.GamesConfiguration
 import vggames.shared.vraptor.GameFactoryCache
-import scala.collection.JavaConverters._
 import vggames.shared.view.TypedView
 import vggames.shared.view.Home
 import vggames.shared.vraptor.VraptorExtensions._

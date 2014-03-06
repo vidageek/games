@@ -1,7 +1,6 @@
 package vggames.shared
 
 import br.com.caelum.vraptor.{ Get, Post, Resource, Result }
-import scala.collection.JavaConverters._
 import vggames.shared.log.{ Log, Submission }
 import vggames.shared.player.PlayerSession
 import vggames.shared.task.JudgedTask

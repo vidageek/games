@@ -1,6 +1,5 @@
 package vggames.git
 
-import scala.collection.JavaConverters._
 import java.util.{ List => JUList }
 import scala.collection.mutable.ListBuffer
 
