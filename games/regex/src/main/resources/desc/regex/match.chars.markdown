@@ -9,7 +9,7 @@ Exemplo:
 
 A exceção à essa regra são alguns caracteres, que possuem 
 um **significado especial** dentro das RegEx 
-(`$, ^, *, (, ), +, {, }, [, ], \, |, ?, -`). Para utilizá-los 
+(`$, ^, *, (, ), +, {, }, [, ], \, |, ?, -, .`). Para utilizá-los 
 como caracteres normais, você precisa colocar uma **`\`** antes deles.
 
 Além desses, existem ainda alguns caracteres que não são visíveis, e dentro de RegEx eles são representados usando
