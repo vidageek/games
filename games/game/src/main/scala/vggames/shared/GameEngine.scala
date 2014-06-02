@@ -8,9 +8,9 @@ trait GameEngine {
 
   def description : String
 
-  def name : String
-
   def path : String
+
+  def name : String = path.capitalize
 
   def resourceDescription : Option[ResourceDescription] = None
 

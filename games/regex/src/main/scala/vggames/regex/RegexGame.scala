@@ -116,7 +116,7 @@ class RegexGame extends GameEngine {
   def description = "Expressão Regular é uma excelente forma de encontrar padrões em textos, mas a sua sintaxe é um pouco obscura. " +
     "Com esses exercícios você conseguirá não apenas entender como RegEx funciona, mas será capaz de utilizá-la."
 
-  def name = "RegEx"
+  override def name = "RegEx"
 
   def path = "regex"
 }

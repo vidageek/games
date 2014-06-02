@@ -49,7 +49,5 @@ class MetaGame extends GameEngine {
 
   def description() = ""
 
-  def name() = "Meta"
-
   def path = "meta"
 }

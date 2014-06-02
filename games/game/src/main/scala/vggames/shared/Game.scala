@@ -16,7 +16,7 @@ class Game(engine : GameEngine, descriptions : Descriptions) {
 
   def description = engine.description
 
-  final def name = engine.name
+  def name = engine.name
 
   def path = engine.path
 

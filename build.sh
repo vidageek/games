@@ -6,21 +6,15 @@ SBT="/opt/jdk/jdk1.7.latest/bin/java -XX:PermSize=372m -Dsbt.log.noformat=true -
 
 BUILD=0
 
+set -e
+
 rm -fr target
 
 $SBT compile
-let BUILD=$BUILD+$?
 
 $SBT test
-let BUILD=$BUILD+$?
 
 $SBT package
-let BUILD=$BUILD+$?
-
-
-if [ $BUILD -ne 0 ]; then
-       exit $BUILD;
-fi;
 
 echo "Fazendo backup do WAR"
 ssh -i /private/vidageek/games.pem ubuntu@177.71.178.115 "cp ~/jetty/webapps/games.war ~/games.war.bkp"
