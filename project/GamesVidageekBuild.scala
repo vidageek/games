@@ -25,7 +25,7 @@ object GamesVidageekBuild extends Build {
     settings = (jasmineSettings ++ coreWebSettings ++ deps(xstream, log4j, guice,
       guiceBindings, servletApi, cdiApi, vraptor, slick, sqlite, aws,
       actuarius, selenium, commonsIo))).
-    dependsOn(game, regexGame, gitGame, htmlGame, metaGame, scalaGame)
+    dependsOn(game, regexGame, gitGame, htmlGame, metaGame, scalaGame, webdevGame)
 
   lazy val game = Project(
     id = "games-game",
@@ -41,6 +41,8 @@ object GamesVidageekBuild extends Build {
   lazy val metaGame = gameProject("meta")
 
   lazy val scalaGame = gameProject("scala", akkaActor, scalaReflect, scalaCompiler, akkaTestkit, log4j)
+  
+  lazy val webdevGame = gameProject("webdev")
 
   lazy val commonSettings: Seq[Setting[_]] = Defaults.defaultSettings ++ Seq(
     organization := "net.vidageek",
