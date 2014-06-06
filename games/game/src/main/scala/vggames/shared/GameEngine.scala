@@ -8,7 +8,7 @@ trait GameEngine {
 
   def description : String
 
-  lazy val path : String = this.getClass().getSimpleName().replaceAll("Game$", "").toLowerCase()
+  final lazy val path : String = this.getClass().getSimpleName().replaceAll("Game$", "").toLowerCase()
 
   def name : String = path.capitalize
 
