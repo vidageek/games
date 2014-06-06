@@ -107,5 +107,4 @@ class ScalaGame extends GameEngine {
 
   def description = "Um jogo muito legal para aprender Scala"
 
-  def path = "scala"
 }

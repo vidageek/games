@@ -118,5 +118,4 @@ class RegexGame extends GameEngine {
 
   override def name = "RegEx"
 
-  def path = "regex"
 }

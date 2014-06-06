@@ -144,8 +144,6 @@ Hoje isso vai muito mais longe. Ferramentas como buscadores e outros analizam as
 
 Esse jogo cobre as principais tags e atributos de Html 5""")
 
-  def path = "html"
-
   override def resourceDescription = Some(ResourceDescription("text/html", "html", "html"))
 
 }

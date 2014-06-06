@@ -13,7 +13,6 @@ class WebdevGame extends GameEngine {
 
   def description = "webdev game"
 
-  def path = "webdev"
 }
 
 class TestTask extends Task {
