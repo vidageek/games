@@ -14,5 +14,5 @@ trait Task {
 
   def extraData : Option[Any] = None
 
-  def extraLog(playerId : Option[Long], challenge : String, gameName : String) : Option[LogItem] = None
+  def extraLog(playerId : Option[Long], challenge : String, gameName : String, judgedTask : JudgedTask) : Option[LogItem] = None
 }

@@ -36,7 +36,7 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
     val judgedTask = task.judge(cleanChallenge)
 
     log.log(Submission(gameName, task, cleanChallenge, judgedTask, session.actualPlayer, session.ip))
-    task.extraLog(session.actualPlayer.map(_.id), cleanChallenge, gameName).foreach(log.log)
+    task.extraLog(session.actualPlayer.map(_.id), cleanChallenge, gameName, judgedTask).foreach(log.log)
 
     result.include("judgedTask", personalize(judgedTask, session.actualPlayer))
 

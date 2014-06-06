@@ -20,11 +20,11 @@ trait GameView {
     }.getOrElse(raw(""))
 
   def singleLineChallengeForm(game : Game, task : Exercise, lastAttempt : String, buttonText : String, extraInputClass : String,
-                              validationPattern : String = ".*") =
+                              validationPattern : String = ".*", title : String = "") =
     form("challenge".cls, "method".attr := "POST", action := s"/play/${game.path}/task/${task.index}")(
       label("for".attr := "challenge")(strong(raw(task.challenge))),
       input(s"focus $extraInputClass".cls, name := "challenge", id := "challenge", autocomplete := "off",
-        value := lastAttempt, "pattern".attr := validationPattern),
+        value := lastAttempt, "pattern".attr := validationPattern, "title".attr := title),
       input(id := "challenge-submit", "btn btn-primary".cls, "type".attr := "submit", value := buttonText))
 
   def multiLineChallengeForm(game : Game, task : Exercise, lastAttempt : String, buttonDisabled : Boolean, buttonExtraClass : String = "") = {

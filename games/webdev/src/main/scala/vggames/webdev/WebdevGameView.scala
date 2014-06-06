@@ -12,7 +12,8 @@ class WebdevGameView extends GameView {
     div("row".cls)(
       div("span6".cls)(
         judgement(judgedTask),
-        singleLineChallengeForm(game, task, lastAttempt, "Next! (ctrl + enter)", "span5"),
+        singleLineChallengeForm(game, task, lastAttempt, "Next! (ctrl + enter)", "span5",
+          "^https://github.com/[^/]+/.+$", "Url deve ter o padrão https://github.com/USUARIO/REPOSITORIO"),
         progressBar(task, game)),
       taskDescription(task, "span6")).toString
   }

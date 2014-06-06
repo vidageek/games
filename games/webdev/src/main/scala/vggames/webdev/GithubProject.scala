@@ -14,6 +14,8 @@ import java.text.SimpleDateFormat
 import org.eclipse.jgit.internal.storage.file.FileRepository
 import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.util.FileUtils
+import vggames.shared.task.status.Failed
+import vggames.shared.task.JudgedTask
 
 class GithubProject(name : String, id : String)
     extends TaskGroup(name, id, new GithubTask()) {
@@ -22,14 +24,18 @@ class GithubProject(name : String, id : String)
 
 class GithubTask() extends Task {
 
-  def judge(challenge : String) = Ok()
+  def judge(challenge : String) =
+    if (challenge.matches("^https://github.com/[^/]+/.+$")) Ok()
+    else Failed("Url deve ter o padrão https://github.com/USUARIO/REPOSITORIO")
 
   def challenge = "Crie um projeto no github que resolva o problema apresentado ao lado e coloque a url abaixo"
 
   def resource = ""
 
-  override def extraLog(playerId : Option[Long], challenge : String, gameName : String) =
-    Some(GitRepo(playerId, challenge, gameName))
+  override def extraLog(playerId : Option[Long], challenge : String, gameName : String, judgedTask : JudgedTask) =
+    if (judgedTask.ok)
+      Some(GitRepo(playerId, s"$challenge.git", gameName))
+    else None
 
 }
 
