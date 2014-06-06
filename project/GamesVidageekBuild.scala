@@ -30,7 +30,7 @@ object GamesVidageekBuild extends Build {
   lazy val game = Project(
     id = "games-game",
     base = file("games/game"),
-    settings = commonSettings ++ deps(actuarius))
+    settings = commonSettings ++ deps(actuarius, slick, sqlite))
 
   lazy val regexGame = gameProject("regex")
 
@@ -42,7 +42,7 @@ object GamesVidageekBuild extends Build {
 
   lazy val scalaGame = gameProject("scala", akkaActor, scalaReflect, scalaCompiler, akkaTestkit, log4j)
   
-  lazy val webdevGame = gameProject("webdev")
+  lazy val webdevGame = gameProject("webdev", jgit)
 
   lazy val commonSettings: Seq[Setting[_]] = Defaults.defaultSettings ++ Seq(
     organization := "net.vidageek",
@@ -95,6 +95,7 @@ object GamesVidageekBuild extends Build {
     val jstl = "javax.servlet" % "jstl" % "1.2"
     val vraptor = "br.com.caelum" % "vraptor" % "3.5.3" excludeAll (ExclusionRule(organization = "org.springframework"))
     val commonsIo = "commons-io" % "commons-io" % "2.2"
+    val jgit = "org.eclipse.jgit" % "org.eclipse.jgit" % "3.3.1.201403241930-r"
   }
 
   object TestDependencies {

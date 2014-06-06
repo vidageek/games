@@ -25,4 +25,5 @@ class Exercise(val group : TaskGroup, descriptions : Descriptions, delegate : Ta
 
   def extraData = delegate.extraData
 
+  def extraLog(playerId : Option[Long], challenge : String, gameName : String) = delegate.extraLog(playerId, challenge, gameName)
 }

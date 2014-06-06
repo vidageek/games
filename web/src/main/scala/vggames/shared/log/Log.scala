@@ -21,6 +21,3 @@ class GameLog extends Actor {
   }
 }
 
-trait LogItem {
-  def log
-}
