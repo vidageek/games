@@ -14,4 +14,6 @@ trait GameEngine {
 
   def resourceDescription : Option[ResourceDescription] = None
 
+  def hasTutor = false
+
 }

@@ -1,0 +1,1 @@
+CREATE TABLE gameTutor ("tutorId" INTEGER, "playerId" INTEGER, "game" VARCHAR(254) NOT NULL, "createdAt" TIMESTAMP DEFAULT current_timestamp);

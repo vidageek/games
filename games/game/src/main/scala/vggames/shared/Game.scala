@@ -12,7 +12,7 @@ class Game(engine : GameEngine, descriptions : Descriptions) {
 
   def groups = tasks.map(t => Group(t.group, t.index, t.description)).distinct
 
-  def size : Int = tasks.size
+  def size = tasks.size
 
   def description = engine.description
 
@@ -20,7 +20,9 @@ class Game(engine : GameEngine, descriptions : Descriptions) {
 
   def path = engine.path
 
-  def resourceDescription : Option[ResourceDescription] = engine.resourceDescription
+  def hasTutor = engine.hasTutor
+
+  def resourceDescription = engine.resourceDescription
 
   def advance(index : Int)(f : Int => Unit) = if (hasNextTask(index)) f(nextTask(index))
 
@@ -29,9 +31,9 @@ class Game(engine : GameEngine, descriptions : Descriptions) {
 
   def atEnd(index : Int)(f : => Unit) = if (!hasNextTask(index)) f
 
-  def nextTask(index : Int) : Int = index + 1
+  def nextTask(index : Int) = index + 1
 
-  def hasNextTask(index : Int) : Boolean = nextTask(index) < size
+  def hasNextTask(index : Int) = nextTask(index) < size
 }
 
 case class Group(taskGroup : TaskGroup, index : Int, description : String) {

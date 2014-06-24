@@ -30,6 +30,11 @@ class Index extends TypedView[(String, Game, Map[String, String], Option[String]
         p(raw(game.description)),
         "Você pode começar a jogar pelo ", a(href := s"/play/${gameName}/task/0")("primeiro exercício"), " ou escolher um grupo abaixo:",
 
+        if (game.hasTutor)
+          p("cls".attr := "tutor")("Este jogo não possui um corretor automático, mas você pode ",
+          a(href := s"/tutor/$gameName")("contratar um tutor para corrigir os seus exercícios"))
+        else "",
+
         a(id := "conteudo", "theory-link".cls)(""),
         h2("theory".cls)("Conteúdo:"),
         ul("nav nav-pills nav-stacked groups".cls)(

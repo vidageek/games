@@ -13,14 +13,6 @@ class WebdevGame extends GameEngine {
 
   def description = "webdev game"
 
-}
-
-class TestTask extends Task {
-
-  def judge(challenge : String) = Ok()
-
-  def challenge = "challenge"
-
-  def resource = ""
+  override def hasTutor = true
 
 }
