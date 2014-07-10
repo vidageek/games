@@ -8,6 +8,12 @@ import vggames.regex.RegexGame
 import vggames.shared.task.Descriptions
 import vggames.regex.RegexGame
 import vggames.shared.Game
+import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.By
+import org.openqa.selenium.remote.RemoteWebDriver
+import org.openqa.selenium.Capabilities
+import org.openqa.selenium.remote.DesiredCapabilities
+import java.net.URL
 
 @RunWith(classOf[JUnitRunner])
 class RegexGameSpec extends Specification with Mockito {
@@ -31,6 +37,29 @@ class RegexGameSpec extends Specification with Mockito {
       0 until game.size map { i =>
         game.task(i).judge(answers(i)).ok aka (
           "%s task %d answer is %s".format(game.getClass().getSimpleName(), i, answers(i))) must beTrue
+      }
+    }
+
+    "have answers for all tasks from browser" in {
+
+      val driver = new RemoteWebDriver(
+        new URL("http://ec2-54-89-89-165.compute-1.amazonaws.com:4444/wd/hub"),
+        DesiredCapabilities.firefox())
+
+      0 until answers.size map { i =>
+
+        println(s"task $i")
+
+        driver.get(s"http://games.vidageek.net/play/regex/task/$i")
+
+        driver.findElement(By.id("challenge")).sendKeys(answers(i))
+        driver.findElement(By.id("challenge-submit")).click()
+
+        if (i == answers.size - 1)
+          driver.getCurrentUrl() must_== "http://games.vidageek.net/play/regex"
+        else
+          driver.getCurrentUrl() must_== s"http://games.vidageek.net/play/regex/task/${i + 1}"
+
       }
     }
 
