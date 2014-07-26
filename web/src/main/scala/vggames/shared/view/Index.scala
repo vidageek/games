@@ -32,7 +32,7 @@ class Index extends TypedView[(String, Game, Map[String, String], Option[String]
 
         if (game.hasTutor)
           p("cls".attr := "tutor")("Este jogo não possui um corretor automático, mas você pode ",
-          "contratar um tutor para corrigir os seus exercícios. Envie um email para jonas@vidageek.net",
+          "contratar um tutor para corrigir os seus exercícios. Envie um email para jonas@vidageek.net ",
           "para saber mais")
         else "",
 
