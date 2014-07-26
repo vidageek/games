@@ -47,6 +47,7 @@ object GamesVidageekBuild extends Build {
   lazy val commonSettings: Seq[Setting[_]] = Defaults.defaultSettings ++ Seq(
     organization := "net.vidageek",
     version := "0.1-SNAPSHOT",
+    scalaVersion := "2.10.4",
     scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-unchecked", "-g:vars", "-feature", "-language:_"),
     libraryDependencies ++= Seq(junit, specs2, mockito, junitInterface, scalaTags))
 
