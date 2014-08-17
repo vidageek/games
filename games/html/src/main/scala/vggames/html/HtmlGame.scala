@@ -38,8 +38,9 @@ class HtmlGame extends GameEngine {
     SimpleTag("em"),
     SimpleTag("del"))
 
-  // a
-  private def links = TaskGroup("Links", "text.link")
+  private def links = TaskGroup("Links", "text.link",
+    SimpleTag("a"),
+    SimpleTag("a", "href" -> "http://www.google.com"))
 
   // img
   private def images = TaskGroup("Imagens", "text.image")

@@ -15,8 +15,16 @@ object HtmlTask {
 }
 
 object SimpleTag {
-  def apply(tagName: String) =
-    new HtmlTask(s"""Crie uma tag &lt;$tagName&gt; que envolva o texto "conteudo" """, s"tag-$tagName")
+  def apply(tagName: String, attributes: (String, String)*) =
+    new HtmlTask(s"""Crie uma tag &lt;$tagName&gt; que envolva o texto "conteudo" """ +
+      (if (attributes.isEmpty) "" else s"e com os atributos ${attributesFor(attributes)}"),
+      nameFor(tagName, attributes))
+
+  private def nameFor(tagName: String, attributes: Seq[(String, String)]) =
+    if (attributes.isEmpty) s"tag-$tagName"
+    else s"tag-$tagName-${attributes.map(_._1).mkString("-")}"
+
+  private def attributesFor(attributes: Seq[(String, String)]) = attributes.map(t => s"""${t._1}="${t._2}"""").mkString(", ")
 
 }
 
