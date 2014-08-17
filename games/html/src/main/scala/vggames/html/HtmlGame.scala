@@ -31,8 +31,12 @@ class HtmlGame extends GameEngine {
     includeCss,
     includeJs)
 
-  // i, b, u, em, strong, del
-  private def textMetadata = TaskGroup("Metadados em texto", "text.metadata")
+  private def textMetadata = TaskGroup("Metadados em texto", "text.metadata",
+    SimpleTag("i"),
+    SimpleTag("b"),
+    SimpleTag("u"),
+    SimpleTag("em"),
+    SimpleTag("del"))
 
   // a
   private def links = TaskGroup("Links", "text.link")
