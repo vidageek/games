@@ -4,9 +4,9 @@ import br.com.caelum.vraptor.ioc.Component
 import javax.servlet.http.HttpServletRequest
 
 @Component
-class RequestData(request : HttpServletRequest) {
+class RequestData(request: HttpServletRequest) {
 
-  private val gameRegex = "/(?:play|reference|theory)/([^/]+)/?.*".r
+  private val gameRegex = "/(?:play|reference|theory|static)/([^/]+)/?.*".r
 
   val game = gameRegex.findFirstMatchIn(request.getRequestURI).map(_.group(1)).getOrElse("")
 

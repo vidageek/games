@@ -24,7 +24,7 @@ object GamesVidageekBuild extends Build {
     base = file("web"),
     settings = (jasmineSettings ++ coreWebSettings ++ deps(xstream, log4j, guice,
       guiceBindings, servletApi, cdiApi, vraptor, slick, sqlite, aws,
-      actuarius, selenium))).
+      actuarius, selenium, commonsIo))).
     dependsOn(game, regexGame, gitGame, htmlGame, metaGame, scalaGame)
 
   lazy val game = Project(
@@ -92,6 +92,7 @@ object GamesVidageekBuild extends Build {
     val cdiApi = "javax.enterprise" % "cdi-api" % "1.1-20130918"
     val jstl = "javax.servlet" % "jstl" % "1.2"
     val vraptor = "br.com.caelum" % "vraptor" % "3.5.3" excludeAll (ExclusionRule(organization = "org.springframework"))
+    val commonsIo = "commons-io" % "commons-io" % "2.2"
   }
 
   object TestDependencies {

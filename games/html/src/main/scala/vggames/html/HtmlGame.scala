@@ -42,23 +42,33 @@ class HtmlGame extends GameEngine {
     SimpleTag("a"),
     SimpleTag("a", "href" -> "http://www.google.com"))
 
-  // img
-  private def images = TaskGroup("Imagens", "text.image")
+  private def images = TaskGroup("Imagens", "text.image",
+    EmptyTag("img", "alt" -> "texto alternativo", "src" -> "/static/html/html5.png"))
 
-  // p, br
-  private def paragraphAndLineBreak = TaskGroup("Parágrafos e quebra de linha", "paragraph.linebreak")
+  private def paragraphAndLineBreak = TaskGroup("Parágrafos e quebra de linha", "paragraph.linebreak",
+    SimpleTag("p"),
+    EmptyTag("br"))
 
-  // ol, li
-  private def orderedList = TaskGroup("Listas ordenadas", "list.ordered")
+  private def orderedList = TaskGroup("Listas ordenadas", "list.ordered",
+    EmptyTag("ol"),
+    SimpleTag("li"))
 
-  // ul
-  private def unorderedList = TaskGroup("Listas não ordenadas", "list.unordered")
+  private def unorderedList = TaskGroup("Listas não ordenadas", "list.unordered",
+    EmptyTag("ul"))
 
-  // h1-h6
-  private def headings = TaskGroup("Cabeçalhos", "headings")
+  private def headings = TaskGroup("Cabeçalhos", "headings",
+    SimpleTag("h1"),
+    SimpleTag("h2"),
+    SimpleTag("h3"),
+    SimpleTag("h4"),
+    SimpleTag("h5"),
+    SimpleTag("h6"))
 
-  // form
-  private def form = TaskGroup("Form", "form")
+  private def form = TaskGroup("Form", "form",
+    EmptyTag("form"),
+    EmptyTag("form", "action" -> "/busca"),
+    EmptyTag("form", "method" -> "post"),
+    EmptyTag("form", "method" -> "get", "action" -> "/busca"))
 
   // type=[text|email|password|submit|textarea]
   private def inputs = TaskGroup("Inputs", "inputs")

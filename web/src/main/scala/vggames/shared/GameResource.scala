@@ -7,36 +7,41 @@ import javax.servlet.http.HttpServletResponse
 import br.com.caelum.vraptor.ioc.Component
 import java.text.SimpleDateFormat
 import java.util.Date
+import org.apache.commons.io.IOUtils
 
 @Resource
-class GameResource(result : Result, cached : ResourceCache) {
+class GameResource(result: Result, cached: ResourceCache) {
+
+  @Get(Array("/static/{gameName}/{resource}"))
+  def findStaticResource(gameName: String, resource: String) =
+    result.use(classOf[StaticResourceView]).from(resource)
 
   @Get(Array("/play/{gameName}/resource/{resource}"))
-  def findResource(gameName : String, resource : String) =
-    result.use(classOf[ResourceView]).from(resource)
+  def findGameResource(gameName: String, resource: String) =
+    result.use(classOf[GameResourceView]).from(resource)
 
   @Get(Array("/css/{gameName}.css"))
-  def findCss(gameName : String) = {
+  def findCss(gameName: String) = {
     result.use(classOf[AssetView]).css(cached css gameName)
   }
 
   @Get(Array("/js/{gameName}.js"))
-  def findJs(gameName : String) = {
+  def findJs(gameName: String) = {
     result.use(classOf[AssetView]).js(cached js gameName)
   }
 }
 
 @Component
-class AssetView(res : HttpServletResponse) extends View {
-  def css(resource : Array[Byte]) = {
+class AssetView(res: HttpServletResponse) extends View {
+  def css(resource: Array[Byte]) = {
     write(resource, "text/css")
   }
 
-  def js(resource : Array[Byte]) = {
+  def js(resource: Array[Byte]) = {
     write(resource, "application/x-javascript")
   }
 
-  private def write(resource : Array[Byte], contentType : String) = {
+  private def write(resource: Array[Byte], contentType: String) = {
     res.setContentType(contentType)
     res.addHeader("Content-Encoding", "gzip")
     res.addHeader("Expires", Expires date)
@@ -45,9 +50,9 @@ class AssetView(res : HttpServletResponse) extends View {
 }
 
 @Component
-class ResourceView(game : Game, res : HttpServletResponse) extends View {
+class GameResourceView(game: Game, res: HttpServletResponse) extends View {
 
-  def from(resource : String) = {
+  def from(resource: String) = {
     game.resourceDescription.map { desc =>
       res.addHeader("Expires", Expires date)
       res.setCharacterEncoding("UTF-8")
@@ -57,6 +62,25 @@ class ResourceView(game : Game, res : HttpServletResponse) extends View {
           s"/${desc.gameName}/$resource.${desc.extension}")).mkString)
     }
   }
+}
+
+@Component
+class StaticResourceView(game: Game, res: HttpServletResponse) extends View {
+
+  def from(resource: String) = {
+    res.addHeader("Expires", Expires date)
+    res.setContentType(ContentTypeOf(resource))
+    IOUtils.copy(getClass.getResourceAsStream(
+      s"/static/${game.path}/$resource"), res.getOutputStream())
+  }
+}
+
+object ContentTypeOf {
+  def apply(resource: String) =
+    resource.drop(resource.lastIndexOf(".")) match {
+      case "png" => "image/png"
+      case _ => "application/octet-stream"
+    }
 }
 
 object Expires {

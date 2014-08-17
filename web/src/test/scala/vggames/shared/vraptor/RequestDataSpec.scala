@@ -25,6 +25,10 @@ class RequestDataSpec extends Specification with Mockito {
       "regex" must_== new RequestData(request).game
     }
 
+    "identify from which game the static resource was requested" in new RequestDataScope("/static/regex/asdf.png") {
+      "regex" must_== new RequestData(request).game
+    }
+
     "identify which game is being played if it ends with /" in new RequestDataScope("/play/regex/") {
       "regex" must_== new RequestData(request).game
     }
@@ -46,7 +50,7 @@ class RequestDataSpec extends Specification with Mockito {
     }
   }
 
-  class RequestDataScope(uri : String) extends Scope {
+  class RequestDataScope(uri: String) extends Scope {
     val request = mock[HttpServletRequest](withSettings.defaultAnswer(RETURNS_DEEP_STUBS.get))
     request.getRequestURI returns uri
   }
