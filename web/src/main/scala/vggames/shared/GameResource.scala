@@ -76,11 +76,12 @@ class StaticResourceView(game: Game, res: HttpServletResponse) extends View {
 }
 
 object ContentTypeOf {
-  def apply(resource: String) =
-    resource.drop(resource.lastIndexOf(".")) match {
+  def apply(resource: String) = {
+    resource.drop(resource.lastIndexOf(".") + 1) match {
       case "png" => "image/png"
       case _ => "application/octet-stream"
     }
+  }
 }
 
 object Expires {

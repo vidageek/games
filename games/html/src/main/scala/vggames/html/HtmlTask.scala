@@ -3,15 +3,25 @@ package vggames.html
 import vggames.shared.task.{ JudgedTask, Task }
 import vggames.shared.task.status.Ok
 
-class HtmlTask(val challenge: String, resourceName: String) extends Task {
+class HtmlTask(val challenge: String, resourceName: String, prefill: Option[String] = None) extends Task {
 
   def judge(challenge: String): JudgedTask = Ok()
 
   override def resource = resourceName
+
+  override def extraData = prefill
+
 }
 
 object HtmlTask {
   def apply(challenge: String, resource: String) = new HtmlTask(challenge, resource)
+}
+
+object TextToHtml {
+  def apply(resource: String) = {
+
+  }
+
 }
 
 object Tags {
@@ -28,7 +38,7 @@ object SimpleTag {
   def apply(tagName: String) = new HtmlTask(s"""Crie uma tag <code>&lt;$tagName&gt;</code> que envolva o texto <code>conteudo</code> """, s"tag-$tagName")
 
   def apply(tagName: String, attributes: (String, String)*) =
-    new HtmlTask(s"""Crie uma tag &lt;$tagName&gt; que envolva o texto <code>conteudo</code>" e com os atributos ${attributesFor(attributes)}""",
+    new HtmlTask(s"""Crie uma tag <code>&lt;$tagName&gt;</code> que envolva o texto <code>conteudo</code> e com os atributos ${attributesFor(attributes)}""",
       nameFor(tagName, attributes))
 }
 
@@ -38,8 +48,10 @@ object EmptyTag {
 
   def apply(tagName: String) = new HtmlTask(s"""Crie uma tag <code>&lt;$tagName&gt;</code> vazia""", s"tag-$tagName")
 
-  def apply(tagName: String, attributes: (String, String)*) =
+  def apply(tagName: String, attributes: (String, String)*): HtmlTask = apply(tagName, nameFor(tagName, attributes), attributes: _*)
+
+  def apply(tagName: String, name: String, attributes: (String, String)*) =
     new HtmlTask(s"""Crie uma tag <code>&lt;$tagName&gt;</code> vazia que tenha os atributos ${attributesFor(attributes)}""",
-      nameFor(tagName, attributes))
+      name)
 }
 

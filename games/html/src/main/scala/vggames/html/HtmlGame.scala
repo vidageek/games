@@ -21,10 +21,10 @@ class HtmlGame extends GameEngine {
     inputs,
     moreInputs,
     table,
-    pageStructure,
     contentStructure,
     nonSemantic,
 
+    pageStructure,
     // extras
     definitionList,
     structureMetadata,
@@ -70,8 +70,21 @@ class HtmlGame extends GameEngine {
     EmptyTag("form", "method" -> "post"),
     EmptyTag("form", "method" -> "get", "action" -> "/busca"))
 
-  // type=[text|email|password|submit|textarea]
-  private def inputs = TaskGroup("Inputs", "inputs")
+  private def inputs = TaskGroup("Inputs", "inputs",
+    EmptyTag("input"),
+    EmptyTag("input", "name" -> "nome"),
+    EmptyTag("input", "tag-input-name-type-text", "name" -> "nome", "type" -> "text"),
+    EmptyTag("input", "name" -> "nome", "value" -> "conteudo"),
+    EmptyTag("input", "name" -> "nome", "placeholder" -> "digite aqui"),
+    EmptyTag("input", "tag-input-name-type-email", "name" -> "nome", "type" -> "email"),
+    EmptyTag("input", "tag-input-name-type-password", "name" -> "nome", "type" -> "password"),
+    EmptyTag("input", "tag-input-name-type-submit", "name" -> "nome", "type" -> "submit"),
+    EmptyTag("input", "tag-input-name-type-submit-value", "name" -> "nome", "type" -> "submit", "value" -> "clique aqui"),
+    SimpleTag("textarea"),
+    SimpleTag("textarea", "name" -> "nome"),
+    SimpleTag("textarea", "name" -> "nome", "cols" -> "10"),
+    SimpleTag("textarea", "name" -> "nome", "rows" -> "10"),
+    SimpleTag("textarea", "name" -> "nome", "cols" -> "15", "rows" -> "15"))
 
   // type=[select|checkbox|radio|date|datetime|file|hidden]
   private def moreInputs = TaskGroup("Mais inputs", "inputs.more")
