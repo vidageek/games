@@ -86,20 +86,20 @@ class HtmlGame extends GameEngine {
     SimpleTag("textarea", "name" -> "nome", "rows" -> "10"),
     SimpleTag("textarea", "name" -> "nome", "cols" -> "15", "rows" -> "15"))
 
-  // type=[select|checkbox|radio|date|datetime|file|hidden]
+  // type=[checkbox|radio|date|datetime|file|hidden] & select
   private def moreInputs = TaskGroup("Mais inputs", "inputs.more")
 
   // table, thead, tfoot, tr, th, td
   private def table = TaskGroup("Tabelas", "table")
-
-  // html, head, body, title
-  private def pageStructure = TaskGroup("Estrutura de uma página", "page.structure")
 
   // article, section, aside, nav
   private def contentStructure = TaskGroup("Estrutura do conteúdo", "content.structure")
 
   // div, spam
   private def nonSemantic = TaskGroup("Tags sem significado", "non.semantic")
+
+  // html, head, body, title
+  private def pageStructure = TaskGroup("Estrutura de uma página", "page.structure")
 
   // dl, dt, dd
   private def definitionList = TaskGroup("Listas de definição", "list.definition")

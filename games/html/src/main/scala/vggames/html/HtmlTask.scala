@@ -2,6 +2,8 @@ package vggames.html
 
 import vggames.shared.task.{ JudgedTask, Task }
 import vggames.shared.task.status.Ok
+import java.util.Scanner
+import scala.util.Try
 
 class HtmlTask(val challenge: String, resourceName: String, prefill: Option[String] = None) extends Task {
 
@@ -18,8 +20,13 @@ object HtmlTask {
 }
 
 object TextToHtml {
-  def apply(resource: String) = {
 
+  private val removeTags = "<[^>]+>".r
+
+  def apply(resource: String) = {
+    val prefill = Try(new Scanner(getClass().getResourceAsStream(s"/html/$resource.html")).useDelimiter("$$").next())
+    new HtmlTask("Adicione tags ao texto abaixo para ele fique igual ao exemplo", resource,
+      prefill.toOption.map(removeTags.replaceAllIn(_, "")))
   }
 
 }

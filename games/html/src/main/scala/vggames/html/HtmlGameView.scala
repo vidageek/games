@@ -8,7 +8,9 @@ import vggames.shared.GameResourceId
 import vggames.shared.task.IndexedTask
 
 class HtmlGameView extends GameView {
-  def render(game : Game, task : IndexedTask, judgedTask : Option[JudgedTask], lastAttempt : String) = {
+  def render(game: Game, task: IndexedTask, judgedTask: Option[JudgedTask], lastAttempt: String) = {
+
+    val prefill = task.extraData.asInstanceOf[Option[String]].getOrElse("")
 
     div("row".cls)(
       div("span6".cls)(
@@ -16,7 +18,7 @@ class HtmlGameView extends GameView {
         iframe(id := "render-challenge", "game-frame".cls)(raw("")),
 
         div(id := "challenge-result")(raw("")),
-        multiLineChallengeForm(game, task, lastAttempt, true, "disabled"),
+        multiLineChallengeForm(game, task, prefill, true, "disabled"),
         progressBar(task, game)),
 
       div("span6".cls)(
