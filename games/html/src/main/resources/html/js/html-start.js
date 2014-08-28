@@ -13,6 +13,8 @@ $(document).ready(function(){
 	});	
 	
 
+	prettyPrint();
+
         $.ajax({
            url: $('#render-answer')[0].getAttribute('src'),
         }).done(function(msg) {
@@ -44,4 +46,5 @@ $(document).ready(function(){
 		}
 	}
 	window.setInterval(checkCode, 100);
+	
 });
