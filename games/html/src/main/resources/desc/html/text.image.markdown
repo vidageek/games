@@ -11,12 +11,12 @@ pois isso permite que deficientes visuais também utilizem a sua página com o a
 [leitores de tela][1] e permite que ferramentas de busca entendam o que aquela imagem 
 representa.
 
-A tag imagem fica da seguinte forma em html:
-	<img src="endereço da imagem" alt="texto alternativo da imagem" />
+A tag imagem fica da seguinte forma em html (Note que você não deve fechá-la):
+	<img src="endereço da imagem" alt="texto alternativo da imagem">
 
 Ex.:
 - Logo do Html5
-		<img src="/static/html/html5.png" alt="Logo do Html5"		
+		<img src="/static/html/html5.png" alt="Logo do Html5">
 
 
 
