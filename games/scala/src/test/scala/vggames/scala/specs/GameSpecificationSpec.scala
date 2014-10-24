@@ -42,9 +42,11 @@ class GameSpecificationSpec extends Specification {
     }
 
     "fail for web request attempt" in {
+
+      new java.net.URL("http://www.google.com.br/").openConnection
+
       val fail = new TestSpec("conn").judge("""new java.net.URL("http://www.google.com.br/").openConnection;1""")
-      fail.reason must contain("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.").orPending(
-        "this test sometimes blow up the classloader (probably due to a race condition when setting the security manager)")
+      fail.reason must contain("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
     }
 
     "fail for classloader creation" in {

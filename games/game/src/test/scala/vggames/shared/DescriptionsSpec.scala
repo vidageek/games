@@ -29,7 +29,7 @@ class DescriptionsSpec extends Specification {
     }
 
     "add prettyprint class to code elements inside pre" in {
-      new Descriptions("asdrubal").forGroup("code") must contain("""<pre><code class="prettyprint">""")
+      new Descriptions("asdrubal").forGroup("code") must contain("""<pre class="prettyprint"><code class="language-asdrubal">""")
     }
   }
 }
