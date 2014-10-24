@@ -57,6 +57,7 @@ code {
 pre code {
 	white-space: pre-wrap;
 	padding: 0px;
+    border: none;
 }
 
 /*Header*/
