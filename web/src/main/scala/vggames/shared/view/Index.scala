@@ -27,7 +27,7 @@ class Index extends TypedView[(String, Game, Map[String, String], Option[String]
 
         h1(s"${game.name} Game"),
 
-        p(game.description),
+        p(raw(game.description)),
         "Você pode começar a jogar pelo ", a(href := s"/play/${gameName}/task/0")("primeiro exercício"), " ou escolher um grupo abaixo:",
 
         a(id := "conteudo", "theory-link".cls)(""),
