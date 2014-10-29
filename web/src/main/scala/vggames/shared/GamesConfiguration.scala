@@ -13,8 +13,8 @@ class GamesConfiguration {
 
   val buildDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date)
 
-  def activeGames = List("regex", "git", "meta")
+  def activeGames = List("regex", "git")
 
-  def inactiveGames = List("scala", "css", "html", "math")
+  def inactiveGames = List("scala", "css", "html", "sql", "webdev")
 
 }
