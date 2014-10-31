@@ -42,7 +42,7 @@ $(document).ready(function() {
 				var contributors = "";
 				$.each(data.data, function(i, e) {
 					contributors += '<div>' + 
-						'<img src="https://secure.gravatar.com/avatar/' + e.gravatar_id +'" />' +
+						'<img src="' + e.avatar_url +'" />' +
 						'<a class="btn btn-info" href="https://github.com/'+ e.login + '">' + e.login + '</a>' +
 						'</div>'
 				});
