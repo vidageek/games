@@ -15,18 +15,18 @@ class HtmlGame extends GameEngine {
     links,
     images,
     paragraphAndLineBreak,
+    headings,
     orderedList,
     unorderedList,
-    headings,
     form,
     inputs,
+
     moreInputs,
     table,
     contentStructure,
     nonSemantic,
-
     pageStructure,
-    // extras
+
     definitionList,
     structureMetadata,
     includeCss,
@@ -35,11 +35,16 @@ class HtmlGame extends GameEngine {
   private def textMetadata = TaskGroup("Metadados em texto", "text.metadata",
     SimpleTag("em"),
     SimpleTag("strong"),
-    SimpleTag("del"))
+    SimpleTag("del"),
+    TextToHtml("em"),
+    TextToHtml("strong"),
+    TextToHtml("del"))
 
   private def links = TaskGroup("Links", "text.link",
     SimpleTag("a"),
-    SimpleTag("a", "href" -> "http://www.google.com"))
+    SimpleTag("a", "href" -> "http://www.google.com"),
+    TextToHtml("wikipedia"),
+    TextToHtml("games"))
 
   private def images = TaskGroup("Imagens", "text.image",
     EmptyTag("img", "alt" -> "texto alternativo", "src" -> "/static/html/html5.png"))
@@ -48,13 +53,6 @@ class HtmlGame extends GameEngine {
     SimpleTag("p"),
     EmptyTag("br"))
 
-  private def orderedList = TaskGroup("Listas ordenadas", "list.ordered",
-    EmptyTag("ol"),
-    SimpleTag("li"))
-
-  private def unorderedList = TaskGroup("Listas não ordenadas", "list.unordered",
-    EmptyTag("ul"))
-
   private def headings = TaskGroup("Cabeçalhos", "headings",
     SimpleTag("h1"),
     SimpleTag("h2"),
@@ -62,6 +60,16 @@ class HtmlGame extends GameEngine {
     SimpleTag("h4"),
     SimpleTag("h5"),
     SimpleTag("h6"))
+
+  private def orderedList = TaskGroup("Listas ordenadas", "list.ordered",
+    EmptyTag("ol"),
+    SimpleTag("li"),
+    TextToHtml("lista.chegada"))
+
+  private def unorderedList = TaskGroup("Listas não ordenadas", "list.unordered",
+    EmptyTag("ul"),
+    TextToHtml("lista.compras"),
+    TextToHtml("html5"))
 
   private def form = TaskGroup("Form", "form",
     EmptyTag("form"),

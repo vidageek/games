@@ -4,6 +4,7 @@ import vggames.shared.task.{ JudgedTask, Task }
 import vggames.shared.task.status.Ok
 import java.util.Scanner
 import scala.util.Try
+import scala.util.parsing.combinator.RegexParsers
 
 class HtmlTask(val challenge: String, resourceName: String, prefill: Option[String] = None) extends Task {
 
@@ -21,12 +22,19 @@ object HtmlTask {
 
 object TextToHtml {
 
-  private val removeTags = "<[^>]+>".r
+  private val removePatterns = List(
+    ("""<a href="([^"]+)"[^>]*>""".r, "$1 "),
+    ("""<img src="([^"]+)" alt="([^"]+)"[^>]*>""".r, "$1 $2 "),
+    ("<[^>]+>".r, ""))
 
   def apply(resource: String) = {
     val prefill = Try(new Scanner(getClass().getResourceAsStream(s"/html/$resource.html")).useDelimiter("$$").next())
     new HtmlTask("Adicione tags ao texto abaixo para ele fique igual ao exemplo", resource,
-      prefill.toOption.map(removeTags.replaceAllIn(_, "")))
+      removeTags(prefill))
+  }
+
+  def removeTags(prefill: Try[String]) = removePatterns.foldLeft(prefill.toOption) {
+    case (prefill, (pattern, replaceValue)) => prefill.map(pattern.replaceAllIn(_, replaceValue))
   }
 
 }
