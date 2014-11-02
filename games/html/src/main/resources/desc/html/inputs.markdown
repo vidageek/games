@@ -13,13 +13,6 @@ formulário para o servidor. Ele também aceita o atributo `value`, que define o
 Todos os inputs também podem ter o atributo `name`, que é como o servidor saberá de qual input 
 que os dados vieram.
 
-Caso você queira colocar uma área para o usuário digitar o texto, você pode usar a tag 
-`<textarea>`:
-
-- `<textarea></textarea>`: Cria uma área para o usuário digitar o texto. Ele aceita os atributos
-`rows` (que determina o número de linhas visíveis) e o `cols` (que determina o número de colunas
-visíveis).
-
 Ex.:
 
     <form action="http://www.google.com/search" method="get">

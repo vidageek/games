@@ -20,6 +20,7 @@ class HtmlGame extends GameEngine {
     unorderedList,
     form,
     inputs,
+    textarea,
 
     moreInputs,
     table,
@@ -59,7 +60,8 @@ class HtmlGame extends GameEngine {
     SimpleTag("h3"),
     SimpleTag("h4"),
     SimpleTag("h5"),
-    SimpleTag("h6"))
+    SimpleTag("h6"),
+    TextToHtml("cabecalhos"))
 
   private def orderedList = TaskGroup("Listas ordenadas", "list.ordered",
     EmptyTag("ol"),
@@ -86,12 +88,19 @@ class HtmlGame extends GameEngine {
     EmptyTag("input", "tag-input-name-type-email", "name" -> "nome", "type" -> "email"),
     EmptyTag("input", "tag-input-name-type-password", "name" -> "nome", "type" -> "password"),
     EmptyTag("input", "tag-input-name-type-submit", "name" -> "nome", "type" -> "submit"),
-    EmptyTag("input", "tag-input-name-type-submit-value", "name" -> "nome", "type" -> "submit", "value" -> "clique aqui"),
+    EmptyTag("input", "tag-input-name-type-submit-value", "name" -> "nome", "type" -> "submit", "value" -> "clique aqui"))
+
+  private def textarea = TaskGroup("Label e Textarea", "textarea",
+    SimpleTag("label"),
+    SimpleTag("label", "for" -> "inputId"),
     SimpleTag("textarea"),
     SimpleTag("textarea", "name" -> "nome"),
     SimpleTag("textarea", "name" -> "nome", "cols" -> "10"),
     SimpleTag("textarea", "name" -> "nome", "rows" -> "10"),
-    SimpleTag("textarea", "name" -> "nome", "cols" -> "15", "rows" -> "15"))
+    SimpleTag("textarea", "name" -> "nome", "cols" -> "15", "rows" -> "15"),
+    TextToHtml("form.login"),
+    TextToHtml("form.cadastro"),
+    TextToHtml("form.feedback"))
 
   // type=[checkbox|radio|date|datetime|file|hidden] & select
   private def moreInputs = TaskGroup("Mais inputs", "inputs.more")
