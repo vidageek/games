@@ -13,6 +13,4 @@ class SqlGame extends GameEngine {
 
   def description = ""
 
-  def path = "sql"
-
 }

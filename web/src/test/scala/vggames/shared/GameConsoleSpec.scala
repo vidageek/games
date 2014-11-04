@@ -60,5 +60,6 @@ class GameConsoleSpec extends Specification with Mockito {
     
     result.redirectTo(any[GameConsole]) returns gameConsole
     playerSession.actualPlayer returns None
+    game.task(any[Int]).extraLog(any[Option[Long]], any[String], any[String], any[JudgedTask]) returns None
   }
 }
