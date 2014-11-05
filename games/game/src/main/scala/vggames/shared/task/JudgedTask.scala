@@ -1,21 +1,21 @@
 package vggames.shared.task;
 
-import scalatags._
+import scalatags.Text.all._
 
 trait JudgedTask {
 
-  def ok : Boolean
+  def ok: Boolean
 
-  def reason : String
+  def reason: String
 
-  def success(f : => Unit) = if (ok) f
+  def success(f: => Unit) = if (ok) f
 
-  def failure(f : => Unit) = if (!ok) f
+  def failure(f: => Unit) = if (!ok) f
 
   override def toString = reason
 }
 
-class NotLoggedJudgedTask(original : JudgedTask) extends JudgedTask {
+class NotLoggedJudgedTask(original: JudgedTask) extends JudgedTask {
 
   def ok = original.ok
 

@@ -12,6 +12,8 @@ object GamesVidageekBuild extends Build {
   import Dependencies._
   import TestDependencies._
 
+  val gamesScalaVersion = "2.11.4"
+  
   seq(jasmineSettings: _*)
 
   lazy val root = Project(
@@ -24,13 +26,13 @@ object GamesVidageekBuild extends Build {
     base = file("web"),
     settings = (jasmineSettings ++ coreWebSettings ++ deps(xstream, log4j, guice,
       guiceBindings, servletApi, cdiApi, vraptor, slick, sqlite, aws,
-      actuarius, selenium, commonsIo))).
+      selenium, commonsIo))).
     dependsOn(game, regexGame, gitGame, htmlGame, scalaGame, webdevGame, sqlGame)
 
   lazy val game = Project(
     id = "games-game",
     base = file("games/game"),
-    settings = commonSettings ++ deps(actuarius, slick, sqlite))
+    settings = commonSettings ++ deps(slick, sqlite))
 
   lazy val regexGame = gameProject("regex")
 
@@ -47,8 +49,9 @@ object GamesVidageekBuild extends Build {
   lazy val commonSettings: Seq[Setting[_]] = Defaults.defaultSettings ++ Seq(
     organization := "net.vidageek",
     version := "0.1-SNAPSHOT",
-    scalaVersion := "2.10.4",
+    scalaVersion := gamesScalaVersion,
     scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-unchecked", "-g:vars", "-feature", "-language:_"),
+    resolvers += "Scalaz" at "http://dl.bintray.com/scalaz/releases/",
     libraryDependencies ++= Seq(junit, specs2, mockito, junitInterface, scalaTags))
 
   lazy val coreWebSettings: Seq[Setting[_]] = commonSettings ++ WebPlugin.webSettings ++ inConfig(Runtime)(WebappPlugin.webappSettings0) ++ Seq(
@@ -83,15 +86,14 @@ object GamesVidageekBuild extends Build {
     val velocity = "org.apache.velocity" % "velocity" % "1.7"
     val guice = "com.google.inject" % "guice" % "3.0"
     val guiceBindings = "com.google.inject.extensions" % "guice-multibindings" % "3.0"
-    val akkaActor = "com.typesafe.akka" %% "akka-actor" % "2.2.3"
-    val slick = "com.typesafe.slick" %% "slick" % "1.0.0"
-    val scalaReflect = "org.scala-lang" % "scala-reflect" % "2.10.3"
-    val scalaCompiler = "org.scala-lang" % "scala-compiler" % "2.10.3"
+    val akkaActor = "com.typesafe.akka" %% "akka-actor" % "2.3.6"
+    val slick = "com.typesafe.slick" %% "slick" % "2.1.0"
+    val scalaReflect = "org.scala-lang" % "scala-reflect" % gamesScalaVersion
+    val scalaCompiler = "org.scala-lang" % "scala-compiler" % gamesScalaVersion
     val sqlite = "org.xerial" % "sqlite-jdbc" % "3.7.2"
     val aws = "com.amazonaws" % "aws-java-sdk" % "1.6.12"
-    val actuarius = "eu.henkelmann" % "actuarius_2.10.0" % "0.2.6"
-    val scalaTags = "com.scalatags" % "scalatags_2.10" % "0.2.0"
-    val specs2 = "org.specs2" %% "specs2" % "2.3.7"
+    val scalaTags = "com.scalatags" %% "scalatags" % "0.4.2"
+    val specs2 = "org.specs2" %% "specs2" % "2.4.9-scalaz-7.0.6"
     val cdiApi = "javax.enterprise" % "cdi-api" % "1.1-20130918"
     val jstl = "javax.servlet" % "jstl" % "1.2"
     val vraptor = "br.com.caelum" % "vraptor" % "3.5.3" excludeAll (ExclusionRule(organization = "org.springframework"))
@@ -103,7 +105,7 @@ object GamesVidageekBuild extends Build {
     val selenium = "org.seleniumhq.selenium" % "selenium-firefox-driver" % "2.32.0" % "test"
     val mockito = "org.mockito" % "mockito-core" % "1.9.0" % "test"
     val junit = "junit" % "junit" % "4.11" % "test"
-    val akkaTestkit = "com.typesafe.akka" %% "akka-testkit" % "2.2.3" % "test"
+    val akkaTestkit = "com.typesafe.akka" %% "akka-testkit" % "2.3.6" % "test"
     val junitInterface = "com.novocode" % "junit-interface" % "0.8" % "test"
   }
 }
