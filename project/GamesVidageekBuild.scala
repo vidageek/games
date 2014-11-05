@@ -17,7 +17,7 @@ object GamesVidageekBuild extends Build {
   lazy val root = Project(
     id = "VidaGeekGames",
     base = file("."),
-    aggregate = Seq(web, game, regexGame, gitGame, htmlGame, metaGame, scalaGame, sqlGame))
+    aggregate = Seq(web, game, regexGame, gitGame, htmlGame, scalaGame, sqlGame, webdevGame))
 
   lazy val web = Project(
     id = "games-web",
@@ -25,7 +25,7 @@ object GamesVidageekBuild extends Build {
     settings = (jasmineSettings ++ coreWebSettings ++ deps(xstream, log4j, guice,
       guiceBindings, servletApi, cdiApi, vraptor, slick, sqlite, aws,
       actuarius, selenium, commonsIo))).
-    dependsOn(game, regexGame, gitGame, htmlGame, metaGame, scalaGame, webdevGame, sqlGame)
+    dependsOn(game, regexGame, gitGame, htmlGame, scalaGame, webdevGame, sqlGame)
 
   lazy val game = Project(
     id = "games-game",
@@ -38,8 +38,6 @@ object GamesVidageekBuild extends Build {
 
   lazy val htmlGame = gameProject("html")
 
-  lazy val metaGame = gameProject("meta")
-  
   lazy val sqlGame = gameProject("sql")
 
   lazy val scalaGame = gameProject("scala", akkaActor, scalaReflect, scalaCompiler, akkaTestkit, log4j)
