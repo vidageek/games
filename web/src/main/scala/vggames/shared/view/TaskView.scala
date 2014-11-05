@@ -3,7 +3,7 @@ package vggames.shared.view
 import vggames.shared.GamesConfiguration
 import vggames.shared.Game
 import scala.collection.concurrent.Map
-import scalatags._
+import scalatags.Text.all._
 import vggames.shared.vraptor.GameFactoryCache
 import scala.util.Try
 import vggames.shared.GameView
@@ -14,18 +14,20 @@ import vggames.shared.task.Exercise
 
 class TaskView extends TypedView[(String, Exercise, Game, Option[JudgedTask], String)] {
 
-  override def render(t : (String, Exercise, Game, Option[JudgedTask], String)) = {
+  val title = "title".tag[String]
+
+  override def render(t: (String, Exercise, Game, Option[JudgedTask], String)) = {
     val (gameName, task, game, judgedTask, lastAttempt) = t
 
     html(
       head(
-        Tags.title(s"Exercício ${task.index} do ${game.name} game"),
+        title(s"Exercício ${task.index} do ${game.name} game"),
         meta(name := "robots", "content".attr := "noindex")),
       body(
         raw(renderGameView(game, task, judgedTask, lastAttempt))))
   }
 
-  private def renderGameView(game : Game, task : Exercise, judgedTask : Option[JudgedTask], lastAttempt : String) : String = {
+  private def renderGameView(game: Game, task: Exercise, judgedTask: Option[JudgedTask], lastAttempt: String): String = {
     val viewName = s"vggames.${game.path}.${game.path.capitalize}GameView"
 
     Try(Class.forName(viewName).newInstance.asInstanceOf[GameView]).

@@ -3,23 +3,25 @@ package vggames.shared.view
 import vggames.shared.GamesConfiguration
 import vggames.shared.Game
 import scala.collection.concurrent.Map
-import scalatags._
+import scalatags.Text.all._
 import vggames.shared.vraptor.GameFactoryCache
 
 class Home extends TypedView[(GamesConfiguration, GameFactoryCache)] {
 
-  override def render(t : (GamesConfiguration, GameFactoryCache)) = {
+  val title = "title".tag[String]
+
+  override def render(t: (GamesConfiguration, GameFactoryCache)) = {
     val (cfg, cached) = t
 
     html(
       head(
-        Tags.title(
+        title(
           "VidaGeek Games")),
       body(
         header(
           h1(
             "VidaGeek Games")),
-        div("row why span8 offset2".cls)(
+        div(cls := "row why span8 offset2")(
           p("O VidaGeek Games é uma iniciativa ", strong("OpenSource"), " para criar material de aprendizado atravéz da prática.",
             "Para isso criamos ", strong("jogos"), " nos quais você ", strong("aprende"), " conforme avança."),
           p("Ainda existe muito trabalho a ser feito, mas você já pode sentir o gostinho com alguns dos jogos abaixo:"),

@@ -1,20 +1,22 @@
 package vggames.shared.view
 
-import scalatags._
+import scalatags.Text.all._
 
 class Senha extends TypedView[Unit] {
 
-  override def render(t : Unit) = {
+  val title = "title".tag[String]
+
+  override def render(t: Unit) = {
 
     html(
       head(
-        Tags.title("VidaGeek Games - Porquê você não precisa colocar a sua senha?"),
+        title("VidaGeek Games - Porquê você não precisa colocar a sua senha?"),
         meta(name := "robots", content := "noindex")),
       body(
         header(
           h1("Porquê você não precisa colocar a sua senha?")),
-        div("row".cls)(
-          div("span8 offset2 well".cls)(
+        div(cls := "row")(
+          div(cls := "span8 offset2 well")(
             p(
               "Uma das razões para você não precisar de uma senha é simplesmente a facilidade de uso. É uma coisa a " +
                 "menos para te atrapalhar no momento em que você quiser jogar."),

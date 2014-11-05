@@ -1,22 +1,25 @@
 package vggames.shared.view
 
 import vggames.shared.Game
-import scalatags._
+import scalatags.Text.all._
 import scala.collection.mutable.Map
+import scalatags.Text.TypedTag
 
 class Index extends TypedView[(String, Game, Map[String, String], Option[String])] {
 
-  override def render(t : (String, Game, Map[String, String], Option[String])) = {
+  val title = "title".tag[String]
+
+  override def render(t: (String, Game, Map[String, String], Option[String])) = {
     val (gameName, game, finishedGroups, gameEnded) = t
 
     html(
       head(
-        Tags.title(s"Jogue ${game.name} Game")),
+        title(s"Jogue ${game.name} Game")),
       body(
-        div("alert".cls)(
+        div(cls := "alert")(
           strong("Aviso!"), " Estamos em Beta. Caso encontre algum problema, envie um email para games@vidageek.net"),
         gameEnded.map { e =>
-          div("alert alert-success".cls)(
+          div(cls := "alert alert-success")(
             s"Parabéns! Você acabou de resolver o último exercício de ${game.name}. O importante agora é continuar praticando.",
             br(),
             "Compartilhe a sua conquista com seus amigos no",
@@ -36,22 +39,22 @@ class Index extends TypedView[(String, Game, Map[String, String], Option[String]
           "para saber mais")
         else "",
 
-        a(id := "conteudo", "theory-link".cls)(""),
-        h2("theory".cls)("Conteúdo:"),
-        ul("nav nav-pills nav-stacked groups".cls)(
+        a(id := "conteudo", cls := "theory-link")(""),
+        h2(cls := "theory")("Conteúdo:"),
+        ul(cls := "nav nav-pills nav-stacked groups")(
           game.groups.map { group =>
-            li(finishedGroups.get(s"${gameName}.${group.taskGroup.id}").getOrElse("").cls)(
+            li(cls := finishedGroups.get(s"${gameName}.${group.taskGroup.id}").getOrElse(""))(
               a(href := s"/play/${gameName}/task/${group.index}")(group.taskGroup.htmlName))
           }),
         game.groups.map { group =>
-          (a(id := group.taskGroup.id, "theory-link".cls)(""),
+          (a(id := group.taskGroup.id, cls := "theory-link")(""),
             div(
               h2(
                 a(href := s"#${group.taskGroup.id}")(group.taskGroup.name)),
               raw(group.description),
-              a("btn".cls, href := "#conteudo")("Topo"),
-              a("btn btn-info".cls, href := s"/play/${gameName}/task/${group.index}")("Jogar!")))
-        }.foldLeft(List[HtmlTag]())((acc, t) => acc :+ t._1 :+ t._2)))
+              a(cls := "btn", href := "#conteudo")("Topo"),
+              a(cls := "btn btn-info", href := s"/play/${gameName}/task/${group.index}")("Jogar!")))
+        }.foldLeft(List[TypedTag[String]]())((acc, t) => acc :+ t._1 :+ t._2)))
 
   }
 
