@@ -1,11 +1,5 @@
 #! /bin/bash
 
-PEM="/private/vidageek/games.pem"
-
-if [ "$1" == "manual" ]; then
-	PEM=~/.ssh/games.pem
-fi
-
 DEPLOY="echo Parando Jetty"
 DEPLOY="$DEPLOY && /bin/bash ~/jetty/bin/jetty.sh stop"
 DEPLOY="$DEPLOY && echo Fazendo backup do Banco"
@@ -16,6 +10,6 @@ DEPLOY="$DEPLOY && echo Subindo Jetty"
 DEPLOY="$DEPLOY && /bin/bash ~/jetty/bin/jetty.sh start"
 DEPLOY="$DEPLOY && echo Deploy Concluído"
 
-ssh -i $PEM ubuntu@177.71.178.115 "$DEPLOY"
+ssh -i keys/travis_deploy ubuntu@games.vidageek.net "$DEPLOY"
 
 
