@@ -1,2 +1,7 @@
-language: java
-script: /bin/bash build.sh
+language: scala
+
+scala:
+   - 2.11.4
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_45866d96e375_key -iv $encrypted_45866d96e375_iv -in keys/travis_deploy.enc -out keys/travis_deploy -d
