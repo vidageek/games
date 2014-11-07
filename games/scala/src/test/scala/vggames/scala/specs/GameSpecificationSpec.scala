@@ -86,6 +86,13 @@ class GameSpecificationSpec extends Specification {
       fail.reason must contain("spec-fail")
     }
   }
+
+  "function spec" should {
+    "run without problems when creating functions" in {
+      val ok = new FunctionSpec().judge("(x) => { x + 1 }")
+      ok.reason === "Ok!"
+    }.pendingUntilFixed("https://github.com/vidageek/games/issues/297")
+  }
 }
 
 class TestSpec(c: String) extends GameSpecification[RestrictedFunction2[Int, Int, Int]] {
@@ -110,6 +117,19 @@ class MultipleAssertSpec extends GameSpecification[RestrictedFunction0[Unit]] {
       "b" in {
         1 must_== 2
         2 must_== 2
+      }
+    }
+}
+
+class FunctionSpec extends GameSpecification[RestrictedFunction0[Int => Int]] {
+  def runSignature = ":Int=>Int"
+  def extendsType = "RestrictedFunction0[Int=>Int]"
+  def challenge = "function"
+
+  def run(code: Code, submittedCode: String)(implicit cases: TestRun) =
+    "a" should {
+      "b" in {
+        code()(2) === code()(2)
       }
     }
 }
