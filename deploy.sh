@@ -2,6 +2,8 @@
 
 [ "${TRAVIS_PULL_REQUEST}" = "true" ] && exit 0
 
+chmod 600 keys/travis_deploy
+
 echo "Fazendo backup do WAR"
 ssh -o StrictHostKeyChecking=no -i keys/travis_deploy ubuntu@games.vidageek.net "cp ~/jetty/webapps/games.war ~/games.war.bkp"
 
