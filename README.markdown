@@ -1,6 +1,8 @@
 # VidaGeek Games
 ## Uma forma mais simples de aprender
 
+[![Build Status](https://travis-ci.org/vidageek/games.svg?branch=master)](https://travis-ci.org/vidageek/games)
+
 # Licenças
 
 O código fonte de nossa autoria (arquivos `.scala`, `.sh`, `.sbt` e outros) estão 
