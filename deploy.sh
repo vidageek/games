@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -e
+
 [ "${TRAVIS_PULL_REQUEST}" = "true" ] && exit 0
 
 chmod 600 keys/travis_deploy
