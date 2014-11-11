@@ -59,6 +59,11 @@ class GameSpecificationSpec extends Specification {
       fail.reason must contain("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
     }
 
+    "fail for privileded code attempt inside static block" in {
+    	val fail = new TestSpec("static block").judge("""object A {new java.net.URL("http://www.google.com.br/").openConnection;};val b = A; 1""")
+    			fail.reason must contain("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
+    }
+    
     "fail for exception catching attempt" in {
       val fail = new TestSpec("catch").judge("""try {} catch {case _ => };1""")
       fail.reason must contain("Tentativa de executar c&oacute;digo privilegiado dentro de uma task.")
@@ -91,7 +96,7 @@ class GameSpecificationSpec extends Specification {
     "run without problems when creating functions" in {
       val ok = new FunctionSpec().judge("(x) => { x + 1 }")
       ok.reason === "Ok!"
-    }.pendingUntilFixed("https://github.com/vidageek/games/issues/297")
+    }
   }
 }
 
@@ -132,4 +137,9 @@ class FunctionSpec extends GameSpecification[RestrictedFunction0[Int => Int]] {
         code()(2) === code()(2)
       }
     }
+}
+
+
+object Asdf {
+  println("asd")
 }

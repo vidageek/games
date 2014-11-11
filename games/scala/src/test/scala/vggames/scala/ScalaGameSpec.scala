@@ -34,7 +34,7 @@ class ScalaGameSpec extends Specification {
         case (code, i) =>
           game.task(i).judge(code) must_== Ok()
       }
-    }.pendingUntilFixed("https://github.com/vidageek/games/issues/297")
+    }
   }
 
   object Answers {

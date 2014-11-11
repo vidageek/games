@@ -13,6 +13,9 @@ import akka.actor.Props
 import org.apache.log4j.Logger
 import vggames.shared.Hash
 import scala.tools.reflect.ToolBoxError
+import javassist.ClassPool
+import javassist.ClassClassPath
+import scala.collection.JavaConverters._
 
 class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
   val className = "ExpressionRunner"
@@ -25,12 +28,25 @@ class ScalaProcessor[T <: CodeRestrictions[_]](spec : GameSpecification[T]) {
   }
 
   def run(className : String, klass : Class[_], submittedCode : String) : JudgedTask = {
+    preloadDependencies(klass)
     val code = klass.newInstance.asInstanceOf[T]
     try {
       spec.run(code, submittedCode).judgement
     } catch {
       case t : Exception => new ExecutionFailure(t)
     }
+  }
+  
+  def preloadDependencies(originalClass:Class[_]) {
+    val name = originalClass.getName
+    val cp = new ClassPool()
+    cp.insertClassPath(new ClassClassPath(originalClass))
+    val klass = cp.get(name)
+    klass.getRefClasses.asScala.asInstanceOf[Iterable[String]].
+      filter(_.startsWith(name)).
+      filterNot(_ == name).
+      map(Class.forName(_, false, originalClass.getClassLoader)).
+      foreach(preloadDependencies)
   }
 
   private def compile(code : String) = {

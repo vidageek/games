@@ -42,7 +42,7 @@ object GamesVidageekBuild extends Build {
 
   lazy val sqlGame = gameProject("sql")
 
-  lazy val scalaGame = gameProject("scala", akkaActor, scalaReflect, scalaCompiler, akkaTestkit, log4j)
+  lazy val scalaGame = gameProject("scala", akkaActor, scalaReflect, scalaCompiler, akkaTestkit, log4j, javassist)
   
   lazy val webdevGame = gameProject("webdev", jgit)
 
@@ -99,6 +99,7 @@ object GamesVidageekBuild extends Build {
     val vraptor = "br.com.caelum" % "vraptor" % "3.5.3" excludeAll (ExclusionRule(organization = "org.springframework"))
     val commonsIo = "commons-io" % "commons-io" % "2.2"
     val jgit = "org.eclipse.jgit" % "org.eclipse.jgit" % "3.3.1.201403241930-r"
+    val javassist = "javassist" % "javassist" % "3.12.1.GA"
   }
 
   object TestDependencies {
