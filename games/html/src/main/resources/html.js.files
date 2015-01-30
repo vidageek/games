@@ -1,5 +1,7 @@
 codemirror.js
 xml.js
-dom-verifier.js
+diff.js
+pt_BR.js
+slowparse.js
 html-start.js
 prettify.js

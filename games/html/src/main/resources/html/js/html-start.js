@@ -1,49 +1,99 @@
 var code = "";
-var reference = "";
 var editor;
+
+function envelope(code) {
+  return "<!DOCTYPE html>\n<html><head><title>title</title></head><body>" + code + "</body></html>";
+}
+
+function setIframeContent(iframe, content) {
+  var ifr = iframeDocument(iframe);
+  ifr.open();
+  ifr.write(envelope(content));
+  ifr.close();
+}
+
+function iframeDocument(iframe) {
+  return window[iframe].contentDocument || window[iframe].contentWindow.document;
+}
+
+function resolveError(error, map) {
+  var template = map[error.type];
+  var errorHTML = template.replace(/\[\[([^\]]+)\]\]/g, function(_, term) {
+    var terms = term.indexOf(".") > -1 ? term.split(".") : [term];
+    var value = error;
+    while(terms.length > 0) {
+      value = value[terms.splice(0,1)[0]];
+    }
+    return value;
+  });
+  return errorHTML
+};
+
+function syntaxErrorsOf(code){
+  var syntaxError = Slowparse.HTML(document, envelope(code));
+  if (syntaxError.error){
+    return [resolveError(syntaxError.error, errorMap)];
+  }
+  return [];
+}
+
+function domErrors(){
+
+  var reference = iframeDocument("render-answer");
+  var challenge = iframeDocument("render-challenge");
+
+  return domDiff.compare(reference, challenge, {stripSpaces: true}).getDifferences().map(function(e) {return e.message;});
+}
 
 $(document).ready(function(){
 
-	prettyPrint();
+  prettyPrint();
 
-	var challenge = document.getElementById("challenge")
-    if (challenge != null) {
-      editor = CodeMirror.fromTextArea(challenge, {
-        lineNumbers: true,
-        autofocus: true,
-        matchBrackets: true,
-        mode: "text/html",
-        theme: "high-contrast"
-      });	
-
-      $.ajax({
-         url: $('#render-answer')[0].getAttribute('src'),
-      }).done(function(msg) {
-         reference = msg;
-      });
+  var challenge = document.getElementById("challenge")
+  if (challenge != null) {
+    editor = CodeMirror.fromTextArea(challenge, {
+      lineNumbers: true,
+      autofocus: true,
+      matchBrackets: true,
+      mode: "text/html",
+      theme: "high-contrast"
+    });	
 
 
-      function checkCode() {
-          var value = editor.getValue();
-          
-          if (!(value == code)) {
-              code = value;
-              
-              $('#render-challenge').contents().find("html").html(code); 
-              console.log(value);
-              console.log(reference);
-              
-              var errors = verify(reference, code);
-              if (errors.length > 0){
-                  var errorHtml = "<ul>" + $.map(errors, function(e){return "<li>" + e + "</li>"}).join("") + "</ul>"
-                  $('#challenge-result').removeClass("alert-success").addClass("reason alert alert-error").html(errorHtml);
-                  $('#challenge-submit').addClass("disabled").attr("disabled", "disabled");
-              } else {
-                  $('#challenge-result').removeClass("alert-error").addClass("alert-success").html("Ok!");
-                  $('#challenge-submit').removeClass("disabled").removeAttr("disabled");
-              }
-          }
+    $.get($('#render-answer').attr("data-src"), function (data) {
+      setIframeContent("render-answer", data);
+    });
+
+    $("#render-challenge").on("load", function(){
+
+      var errors = syntaxErrorsOf(code); 
+
+      if (errors.length == 0) {
+        errors = domErrors();
       }
-      window.setInterval(checkCode, 100);
+
+      if (errors.length > 0){
+        var errorHtml = "<ul>" + errors.map(function(e){return "<li>" + e + "</li>";}).join("") + "</ul>"
+        $('#challenge-result').removeClass("alert-success").addClass("reason alert alert-error").html(errorHtml);
+        $('#challenge-submit').addClass("disabled").attr("disabled", "disabled");
+      } else {
+        $('#challenge-result').removeClass("alert-error").addClass("alert-success").html("Ok!");
+        $('#challenge-submit').removeClass("disabled").removeAttr("disabled");
+      }
+
+    });
+
+    function checkCode() {
+      var value = editor.getValue();
+
+      if (value != code) {
+        code = value;
+
+        setIframeContent('render-challenge', code); 
+
+
+      }
     }
+    window.setInterval(checkCode, 100);
+  }
 });
