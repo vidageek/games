@@ -353,6 +353,13 @@ r.m[0] = {
       comparatorTypeMap[type[k]] = k;
    });
 
+   function nameOrText(node) {
+     if (node.nodeType == type.TEXT_NODE) {
+        return '"' + node.nodeValue + '"';
+     }
+     return node.nodeName.toLowerCase();
+   }
+
    function Collector(options) {
       this._diff = [];
       this._options = options || {};
@@ -450,14 +457,13 @@ r.m[0] = {
                }
                else {
                   msg = "Esperava encontrar " + typeMap[expected.nodeType] +
-                     " '" + expected.nodeName.toLowerCase() + "' mas foi encontrado '" + actual.nodeName.toLowerCase() + "'";
+                     " '" + nameOrText(expected) + "' mas foi encontrado '" + nameOrText(actual) + "'";
                   canContinue = false;
                }
             }
             else {
-               msg = "Esperava encontrar " + expected.nodeName.toLowerCase() + 
-                  " (" + typeMap[expected.nodeType] + ") mas foi encontrado " + actual.nodeName + 
-                  " (" + typeMap[actual.nodeType] + ")";
+               msg = "Esperava encontrar " + typeMap[expected.nodeType] + " " + nameOrText(expected) + 
+                  " mas foi encontrado " + typeMap[actual.nodeType] + " " + nameOrText(actual);
                canContinue = false;
             }
          }
