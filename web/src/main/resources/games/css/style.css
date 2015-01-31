@@ -135,3 +135,7 @@ li.finished {
   background-color: #E57504;
   background: -webkit-gradient(linear, left bottom, left top, from(#dc7202), to(#ee7906));
 }
+
+#select-a-provider {
+    background-color: #ff4444;
+}
