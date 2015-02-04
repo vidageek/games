@@ -23,6 +23,7 @@ class HtmlGame extends GameEngine {
     textarea,
 
     table,
+    tableSpan,
     contentStructure,
     nonSemantic,
     pageStructure,
@@ -105,19 +106,22 @@ class HtmlGame extends GameEngine {
   private def table = TaskGroup("Tabelas", "table",
     EmptyTag("table"),
     EmptyTag("thead") withContext Table,
+    EmptyTag("tbody") withContext Table,
     EmptyTag("tfoot") withContext Table,
     EmptyTag("tr") withContext Table,
     SimpleTag("th") withContext Tr,
+    SimpleTag("td") withContext Tr
+    )
+
+  private def tableSpan = TaskGroup("Tabelas (colspan e rowspan)", "tableSpan", 
     SimpleTag("th", "colspan" -> "2") withContext Tr,
     SimpleTag("th", "rowspan" -> "3") withContext Tr,
     SimpleTag("th", "colspan" -> "3", "rowspan" -> "4") withContext Tr,
-    SimpleTag("td") withContext Tr,
     SimpleTag("td", "colspan" -> "2") withContext Tr, 
     SimpleTag("td", "rowspan" -> "3") withContext Tr,
     SimpleTag("td", "colspan" -> "3", "rowspan" -> "4") withContext Tr
     )
 
-  // article, section, aside, nav
   private def contentStructure = TaskGroup("Estrutura do conteúdo", "content.structure",
     SimpleTag("article"),
     SimpleTag("section"),
@@ -125,13 +129,11 @@ class HtmlGame extends GameEngine {
     SimpleTag("nav")
     )
 
-  // div, span
   private def nonSemantic = TaskGroup("Tags sem significado", "non.semantic",
     SimpleTag("div"),
     SimpleTag("span")
     )
 
-  // html, head, body, title
   private def pageStructure = TaskGroup("Estrutura de uma página", "page.structure",
     EmptyTag("html") withContext Doctype,
     EmptyTag("head") withContext Html,
