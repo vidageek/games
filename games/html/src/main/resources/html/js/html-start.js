@@ -75,6 +75,10 @@ $(document).ready(function(){
         errors = domErrors();
       }
 
+      if (errors.length == 0 && code == "") {
+        errors.push('"" não é uma resposta válida.')
+      }
+
       if (errors.length > 0){
         var errorHtml = "<ul>" + errors.map(function(e){return "<li>" + e + "</li>";}).join("") + "</ul>"
         $('#challenge-result').removeClass("alert-success").addClass("reason alert alert-error").html(errorHtml);
@@ -87,7 +91,7 @@ $(document).ready(function(){
     });
 
     function checkCode() {
-      var value = editor.getValue();
+      var value = editor.getValue().trim();
 
       if (value != code) {
         code = value;
