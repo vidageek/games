@@ -102,20 +102,19 @@ class HtmlGame extends GameEngine {
     //TextToHtml("form.cadastro"),
     //TextToHtml("form.feedback"))
 
-  // table, thead, tfoot, tr, th, td
   private def table = TaskGroup("Tabelas", "table",
     EmptyTag("table"),
-    EmptyTag("thead"),
-    EmptyTag("tfoot"),
-    EmptyTag("tr"),
-    SimpleTag("th"),
-    SimpleTag("th", "colspan" -> "2"),
-    SimpleTag("th", "rowspan" -> "3"),
-    SimpleTag("th", "colspan" -> "3", "rowspan" -> "4"),
-    SimpleTag("td"),
-    SimpleTag("td", "colspan" -> "2"),
-    SimpleTag("td", "rowspan" -> "3"),
-    SimpleTag("td", "colspan" -> "3", "rowspan" -> "4")
+    EmptyTag("thead") withContext Table,
+    EmptyTag("tfoot") withContext Table,
+    EmptyTag("tr") withContext Table,
+    SimpleTag("th") withContext Tr,
+    SimpleTag("th", "colspan" -> "2") withContext Tr,
+    SimpleTag("th", "rowspan" -> "3") withContext Tr,
+    SimpleTag("th", "colspan" -> "3", "rowspan" -> "4") withContext Tr,
+    SimpleTag("td") withContext Tr,
+    SimpleTag("td", "colspan" -> "2") withContext Tr, 
+    SimpleTag("td", "rowspan" -> "3") withContext Tr,
+    SimpleTag("td", "colspan" -> "3", "rowspan" -> "4") withContext Tr
     )
 
   // article, section, aside, nav
@@ -134,10 +133,10 @@ class HtmlGame extends GameEngine {
 
   // html, head, body, title
   private def pageStructure = TaskGroup("Estrutura de uma página", "page.structure",
-    EmptyTag("html"),
-    EmptyTag("head"),
-    SimpleTag("title"),
-    SimpleTag("body")
+    EmptyTag("html") withContext Doctype,
+    EmptyTag("head") withContext Html,
+    SimpleTag("title") withContext Head,
+    SimpleTag("body") withContext Html
     )
 
   // type=[checkbox|radio|date|datetime|file|hidden] & select

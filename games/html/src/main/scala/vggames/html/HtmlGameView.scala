@@ -23,7 +23,7 @@ class HtmlGameView extends GameView {
         progressBar(task, game)),
 
       div(cls := "span6")(
-        iframe(id := "render-answer", cls := "game-frame", "data-before".attr := data.before, "data-after".attr := data.after, "data-src".attr := s"/play/html/resource/${task.resource}?v=${GameResourceId.id}")(""),
+        iframe(id := "render-answer", cls := "game-frame", "data-before".attr := data.context.before, "data-after".attr := data.context.after, "data-src".attr := s"/play/html/resource/${task.resource}?v=${GameResourceId.id}")(""),
 
         h2(task.groupName),
         raw(task.description))).toString

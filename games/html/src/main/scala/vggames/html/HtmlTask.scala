@@ -6,13 +6,15 @@ import java.util.Scanner
 import scala.util.Try
 import scala.util.parsing.combinator.RegexParsers
 
-class HtmlTask(val challenge: String, resourceName: String, data: HtmlExtraData = Body()) extends Task {
+class HtmlTask(val challenge: String, resourceName: String, data: HtmlExtraData = HtmlExtraData(None)) extends Task {
 
   def judge(challenge: String): JudgedTask = Ok()
 
   override def resource = resourceName
 
   override def extraData = Option(data)
+
+  def withContext(context: Context) = new HtmlTask(challenge, resourceName, HtmlExtraData(data.prefill, context))
 
 }
 
@@ -30,7 +32,7 @@ object TextToHtml {
   def apply(resource: String) = {
     val prefill = Try(new Scanner(getClass().getResourceAsStream(s"/html/$resource.html")).useDelimiter("$$").next())
     new HtmlTask("Adicione tags ao texto abaixo para ele fique igual ao exemplo", resource,
-      Body(removeTags(prefill)))
+      HtmlExtraData(removeTags(prefill)))
   }
 
   def removeTags(prefill: Try[String]) = removePatterns.foldLeft(prefill.toOption) {
@@ -70,9 +72,14 @@ object EmptyTag {
       name)
 }
 
-case class HtmlExtraData(prefill: Option[String], before: String, after: String)
+class Context(val before: String, val after: String)
+object Doctype extends Context("<!DOCTYPE html>\n", "")
+object Html extends Context(s"${Doctype.before}\n<html>", "</html>")
+object Head extends Context(s"${Html.before}<head>", s"</head><body></body>${Html.after}")
+object Body extends Context(s"${Html.before}<head><title>title</title></head><body>", s"</body>${Html.after}")
+object Table extends Context(s"${Body.before}<table>", s"</table>${Body.after}")
+object Tr extends Context(s"${Table.before}<tr>", s"</tr>${Table.after}")
 
-object Body {
-  def apply(prefill: Option[String] = None) = new HtmlExtraData(prefill, "<!DOCTYPE html>\n<html><head><title>title</title></head><body>", "</body></html>")
-}
+case class HtmlExtraData(prefill: Option[String], context: Context = Body)
+
 
