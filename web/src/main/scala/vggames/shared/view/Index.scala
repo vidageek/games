@@ -22,7 +22,7 @@ class Index extends TypedView[(String, Game, Map[String, String], Option[String]
           div(cls := "alert alert-success")(
             s"Parabéns! Você acabou de resolver o último exercício de ${game.name}. O importante agora é continuar praticando.",
             br(),
-            "Compartilhe a sua conquista com seus amigos no",
+            "Compartilhe a sua conquista com seus amigos no ",
             a(target := "_blank", href := s"http://www.facebook.com/sharer.php?u=http://games.vidageek.net/play/${gameName}")("Facebook"),
             " e ",
             a(target := "_blank", href := s"http://twitter.com/share?text=Acabei%20de%20terminar%20o%20${game.name}%20Game.%20Quer%20aprender%20${game.name}%20tamb%C3%A9m%3F&url=http://games.vidageek.net/play/${gameName}")("Twitter"))
