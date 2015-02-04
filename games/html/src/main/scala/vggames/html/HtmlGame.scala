@@ -110,7 +110,7 @@ class HtmlGame extends GameEngine {
     EmptyTag("tfoot") withContext Table,
     EmptyTag("tr") withContext Table,
     SimpleTag("th") withContext Tr,
-    SimpleTag("td") withContext Tr
+    SimpleTag("td") withContext Tr 
     )
 
   private def tableSpan = TaskGroup("Tabelas (colspan e rowspan)", "tableSpan", 
@@ -135,6 +135,7 @@ class HtmlGame extends GameEngine {
     )
 
   private def pageStructure = TaskGroup("Estrutura de uma página", "page.structure",
+    EmptyTag("doctype") withContext Empty,
     EmptyTag("html") withContext Doctype,
     EmptyTag("head") withContext Html,
     SimpleTag("title") withContext Head,

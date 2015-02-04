@@ -73,6 +73,7 @@ object EmptyTag {
 }
 
 class Context(val before: String, val after: String)
+object Empty extends Context("", "")
 object Doctype extends Context("<!DOCTYPE html>\n", "")
 object Html extends Context(s"${Doctype.before}\n<html>", "</html>")
 object Head extends Context(s"${Html.before}<head>", s"</head><body></body>${Html.after}")
