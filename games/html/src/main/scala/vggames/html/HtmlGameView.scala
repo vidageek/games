@@ -11,7 +11,7 @@ class HtmlGameView extends GameView {
 
   def render(game: Game, task: Exercise, judgedTask: Option[JudgedTask], lastAttempt: String) = {
 
-    val prefill = task.extraData.asInstanceOf[Option[String]].getOrElse("")
+    val data = task.extraData.asInstanceOf[Option[HtmlExtraData]].get
 
     div(cls := "row")(
       div(cls := "span6")(
@@ -19,11 +19,11 @@ class HtmlGameView extends GameView {
         iframe(id := "render-challenge", cls := "game-frame")(raw("")),
 
         div(id := "challenge-result")(raw("")),
-        multiLineChallengeForm(game, task, prefill, true, "disabled"),
+        multiLineChallengeForm(game, task, data.prefill.getOrElse(""), true, "disabled"),
         progressBar(task, game)),
 
       div(cls := "span6")(
-        iframe(id := "render-answer", cls := "game-frame", "data-src".attr := s"/play/html/resource/${task.resource}?v=${GameResourceId.id}")(""),
+        iframe(id := "render-answer", cls := "game-frame", "data-before".attr := data.before, "data-after".attr := data.after, "data-src".attr := s"/play/html/resource/${task.resource}?v=${GameResourceId.id}")(""),
 
         h2(task.groupName),
         raw(task.description))).toString

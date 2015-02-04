@@ -6,13 +6,13 @@ import java.util.Scanner
 import scala.util.Try
 import scala.util.parsing.combinator.RegexParsers
 
-class HtmlTask(val challenge: String, resourceName: String, prefill: Option[String] = None) extends Task {
+class HtmlTask(val challenge: String, resourceName: String, data: HtmlExtraData = Body()) extends Task {
 
   def judge(challenge: String): JudgedTask = Ok()
 
   override def resource = resourceName
 
-  override def extraData = prefill
+  override def extraData = Option(data)
 
 }
 
@@ -30,7 +30,7 @@ object TextToHtml {
   def apply(resource: String) = {
     val prefill = Try(new Scanner(getClass().getResourceAsStream(s"/html/$resource.html")).useDelimiter("$$").next())
     new HtmlTask("Adicione tags ao texto abaixo para ele fique igual ao exemplo", resource,
-      removeTags(prefill))
+      Body(removeTags(prefill)))
   }
 
   def removeTags(prefill: Try[String]) = removePatterns.foldLeft(prefill.toOption) {
@@ -68,5 +68,11 @@ object EmptyTag {
   def apply(tagName: String, name: String, attributes: (String, String)*) =
     new HtmlTask(s"""Crie uma tag <code>&lt;$tagName&gt;</code> vazia que tenha os atributos ${attributesFor(attributes)}""",
       name)
+}
+
+case class HtmlExtraData(prefill: Option[String], before: String, after: String)
+
+object Body {
+  def apply(prefill: Option[String] = None) = new HtmlExtraData(prefill, "<!DOCTYPE html>\n<html><head><title>title</title></head><body>", "</body></html>")
 }
 

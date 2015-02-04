@@ -2,7 +2,7 @@ var code = "";
 var editor;
 
 function envelope(code) {
-  return "<!DOCTYPE html>\n<html><head><title>title</title></head><body>" + code + "</body></html>";
+  return  beforeCode + code + afterCode;
 }
 
 function setIframeContent(iframe, content) {
@@ -58,6 +58,9 @@ $(document).ready(function(){
       mode: "text/html",
       theme: "high-contrast"
     });	
+
+    window.beforeCode = $('#render-answer').attr('data-before');
+    window.afterCode = $('#render-answer').attr('data-after');
 
 
     $.get($('#render-answer').attr("data-src"), function (data) {
