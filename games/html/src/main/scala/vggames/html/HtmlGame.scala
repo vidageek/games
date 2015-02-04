@@ -22,12 +22,12 @@ class HtmlGame extends GameEngine {
     inputs,
     textarea,
 
-    moreInputs,
     table,
     contentStructure,
     nonSemantic,
     pageStructure,
 
+    moreInputs,
     definitionList,
     structureMetadata,
     includeCss,
@@ -97,25 +97,51 @@ class HtmlGame extends GameEngine {
     SimpleTag("textarea", "name" -> "nome"),
     SimpleTag("textarea", "name" -> "nome", "cols" -> "10"),
     SimpleTag("textarea", "name" -> "nome", "rows" -> "10"),
-    SimpleTag("textarea", "name" -> "nome", "cols" -> "15", "rows" -> "15"),
-    TextToHtml("form.login"),
-    TextToHtml("form.cadastro"),
-    TextToHtml("form.feedback"))
+    SimpleTag("textarea", "name" -> "nome", "cols" -> "15", "rows" -> "15"))
+    //TextToHtml("form.login"),
+    //TextToHtml("form.cadastro"),
+    //TextToHtml("form.feedback"))
+
+  // table, thead, tfoot, tr, th, td
+  private def table = TaskGroup("Tabelas", "table",
+    EmptyTag("table"),
+    EmptyTag("thead"),
+    EmptyTag("tfoot"),
+    EmptyTag("tr"),
+    SimpleTag("th"),
+    SimpleTag("th", "colspan" -> "2"),
+    SimpleTag("th", "rowspan" -> "3"),
+    SimpleTag("th", "colspan" -> "3", "rowspan" -> "4"),
+    SimpleTag("td"),
+    SimpleTag("td", "colspan" -> "2"),
+    SimpleTag("td", "rowspan" -> "3"),
+    SimpleTag("td", "colspan" -> "3", "rowspan" -> "4")
+    )
+
+  // article, section, aside, nav
+  private def contentStructure = TaskGroup("Estrutura do conteúdo", "content.structure",
+    SimpleTag("article"),
+    SimpleTag("section"),
+    SimpleTag("aside"),
+    SimpleTag("nav")
+    )
+
+  // div, span
+  private def nonSemantic = TaskGroup("Tags sem significado", "non.semantic",
+    SimpleTag("div"),
+    SimpleTag("span")
+    )
+
+  // html, head, body, title
+  private def pageStructure = TaskGroup("Estrutura de uma página", "page.structure",
+    EmptyTag("html"),
+    EmptyTag("head"),
+    SimpleTag("title"),
+    SimpleTag("body")
+    )
 
   // type=[checkbox|radio|date|datetime|file|hidden] & select
   private def moreInputs = TaskGroup("Mais inputs", "inputs.more")
-
-  // table, thead, tfoot, tr, th, td
-  private def table = TaskGroup("Tabelas", "table")
-
-  // article, section, aside, nav
-  private def contentStructure = TaskGroup("Estrutura do conteúdo", "content.structure")
-
-  // div, spam
-  private def nonSemantic = TaskGroup("Tags sem significado", "non.semantic")
-
-  // html, head, body, title
-  private def pageStructure = TaskGroup("Estrutura de uma página", "page.structure")
 
   // dl, dt, dd
   private def definitionList = TaskGroup("Listas de definição", "list.definition")
