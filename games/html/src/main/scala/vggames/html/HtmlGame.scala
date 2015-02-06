@@ -127,7 +127,8 @@ class HtmlGame extends GameEngine {
     SimpleTag("aside"),
     SimpleTag("nav"),
     SimpleTag("header"),
-    SimpleTag("footer")
+    SimpleTag("footer"),
+    TextToHtml("page.macro")
     )
 
   private def nonSemantic = TaskGroup("Tags sem significado", "non.semantic",
@@ -139,11 +140,12 @@ class HtmlGame extends GameEngine {
     EmptyTag("html") withContext Doctype,
     EmptyTag("head") withContext Html,
     SimpleTag("title") withContext Head,
-    SimpleTag("body") withContext Html)
+    SimpleTag("body") withContext Html,
+    Page("page.first")
+    )
 
   private def completePages = TaskGroup("Páginas completas", "page.complete",
-    Page("")
-    
+    Page("page.google")
     )
 
   // type=[checkbox|radio|date|datetime|file|hidden] & select
