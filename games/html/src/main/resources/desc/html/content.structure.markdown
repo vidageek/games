@@ -6,4 +6,6 @@ para o leitor independente do resto da página.
 de comentários.
 * `<aside>` serve para marcar informações tangenciais ao assunto geral da sua página.
 * `<nav>` serve para marcar uma área de links de navegação.
+* `<header>` serve para marcar o cabeçalho da página.
+* `<footer>` serve para marcar o rodapé da página.
 

@@ -21,12 +21,12 @@ class HtmlGame extends GameEngine {
     form,
     inputs,
     textarea,
-
     table,
     tableSpan,
     contentStructure,
     nonSemantic,
     pageStructure,
+    completePages,
 
     moreInputs,
     definitionList,
@@ -98,10 +98,9 @@ class HtmlGame extends GameEngine {
     SimpleTag("textarea", "name" -> "nome"),
     SimpleTag("textarea", "name" -> "nome", "cols" -> "10"),
     SimpleTag("textarea", "name" -> "nome", "rows" -> "10"),
-    SimpleTag("textarea", "name" -> "nome", "cols" -> "15", "rows" -> "15"))
-    //TextToHtml("form.login"),
-    //TextToHtml("form.cadastro"),
-    //TextToHtml("form.feedback"))
+    SimpleTag("textarea", "name" -> "nome", "cols" -> "15", "rows" -> "15"),
+    TextToHtml("form.login"),
+    TextToHtml("form.feedback"))
 
   private def table = TaskGroup("Tabelas", "table",
     EmptyTag("table"),
@@ -110,8 +109,7 @@ class HtmlGame extends GameEngine {
     EmptyTag("tfoot") withContext Table,
     EmptyTag("tr") withContext Table,
     SimpleTag("th") withContext Tr,
-    SimpleTag("td") withContext Tr 
-    )
+    SimpleTag("td") withContext Tr)
 
   private def tableSpan = TaskGroup("Tabelas (colspan e rowspan)", "tableSpan", 
     SimpleTag("th", "colspan" -> "2") withContext Tr,
@@ -119,27 +117,33 @@ class HtmlGame extends GameEngine {
     SimpleTag("th", "colspan" -> "3", "rowspan" -> "4") withContext Tr,
     SimpleTag("td", "colspan" -> "2") withContext Tr, 
     SimpleTag("td", "rowspan" -> "3") withContext Tr,
-    SimpleTag("td", "colspan" -> "3", "rowspan" -> "4") withContext Tr
+    SimpleTag("td", "colspan" -> "3", "rowspan" -> "4") withContext Tr,
+    TextToHtml("table.population")
     )
 
   private def contentStructure = TaskGroup("Estrutura do conteúdo", "content.structure",
     SimpleTag("article"),
     SimpleTag("section"),
     SimpleTag("aside"),
-    SimpleTag("nav")
+    SimpleTag("nav"),
+    SimpleTag("header"),
+    SimpleTag("footer")
     )
 
   private def nonSemantic = TaskGroup("Tags sem significado", "non.semantic",
     SimpleTag("div"),
-    SimpleTag("span")
-    )
+    SimpleTag("span"))
 
   private def pageStructure = TaskGroup("Estrutura de uma página", "page.structure",
     EmptyTag("doctype") withContext Empty,
     EmptyTag("html") withContext Doctype,
     EmptyTag("head") withContext Html,
     SimpleTag("title") withContext Head,
-    SimpleTag("body") withContext Html
+    SimpleTag("body") withContext Html)
+
+  private def completePages = TaskGroup("Páginas completas", "page.complete",
+    Page("")
+    
     )
 
   // type=[checkbox|radio|date|datetime|file|hidden] & select

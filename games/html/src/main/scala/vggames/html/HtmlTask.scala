@@ -6,7 +6,7 @@ import java.util.Scanner
 import scala.util.Try
 import scala.util.parsing.combinator.RegexParsers
 
-class HtmlTask(val challenge: String, resourceName: String, data: HtmlExtraData = HtmlExtraData(None)) extends Task {
+class HtmlTask(val challenge: String, resourceName: String, val data: HtmlExtraData = HtmlExtraData(None)) extends Task {
 
   def judge(challenge: String): JudgedTask = Ok()
 
@@ -39,6 +39,11 @@ object TextToHtml {
     case (prefill, (pattern, replaceValue)) => prefill.map(pattern.replaceAllIn(_, replaceValue))
   }
 
+}
+
+object Page {
+  def apply(resource: String) = new HtmlTask("Escreva o html de uma página completa que fique igual ao exemplo", resource,
+    TextToHtml(resource).data) withContext Empty
 }
 
 object Tags {
