@@ -18,7 +18,7 @@ class Sitemap extends TypedView[(List[String], String)] {
         {
           games.map { game =>
             <url>
-              <loc>http://games.vidageek.net/play/{ game }</loc>
+              <loc>http://games.vidageek.net/aprenda/{ game }</loc>
               <lastmod>{ buildDate }</lastmod>
               <changefreq>weekly</changefreq>
               <priority>0.5</priority>

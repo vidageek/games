@@ -21,6 +21,10 @@ class RequestDataSpec extends Specification with Mockito {
       "regex" must_== new RequestData(request).game
     }
 
+    "identify which game is being played in new urls" in new RequestDataScope("/aprenda/regex") {
+      "regex" must_== new RequestData(request).game
+    }
+
     "identify which game reference was requested" in new RequestDataScope("/reference/regex") {
       "regex" must_== new RequestData(request).game
     }

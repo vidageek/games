@@ -2,7 +2,7 @@
 
 TIMEOUT=20
 HOST="localhost:8080"
-URL_PATH=/play/regex/task/0
+URL_PATH=/aprenda/regex/task/0
 export JETTY_HOME="/home/ubuntu/jetty"
 
 echo -n "$(date +%Y%m%d-%H:%M:%S) Verificando se games responde: "

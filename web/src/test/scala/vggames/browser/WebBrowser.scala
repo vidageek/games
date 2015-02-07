@@ -12,7 +12,7 @@ trait WebBrowser {
   var driver = new FirefoxDriver
   var baseUrl = "http://localhost:8080";
 
-  def task(game: String, numberTask: Int) { driver.get(baseUrl + "/play/" + game + "/task/" + numberTask); }
+  def task(game: String, numberTask: Int) { driver.get(baseUrl + "/aprenda/" + game + "/task/" + numberTask); }
 
   def solve(response: String): Unit = {
     var js = driver.asInstanceOf[JavascriptExecutor];

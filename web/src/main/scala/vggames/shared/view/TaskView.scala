@@ -21,7 +21,7 @@ class TaskView extends TypedView[(String, Exercise, Game, Option[JudgedTask], St
 
     html(
       head(
-        title(s"Exercício ${task.index} do ${game.name} game"),
+        title(s"Exercício ${task.index} de ${game.name}"),
         meta(name := "robots", "content".attr := "noindex")),
       body(
         raw(renderGameView(game, task, judgedTask, lastAttempt))))

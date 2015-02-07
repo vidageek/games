@@ -14,12 +14,12 @@ import vggames.shared.view.TaskView
 @Resource
 class GameConsole(result : Result, game : Game, log : Log, session : PlayerSession, params : Params) {
 
-  @Get(Array("/play/{gameName}"))
+  @Get(Array("/aprenda/{gameName}"))
   def index(gameName : String) {
     result.render(new Index)(gameName, game, session.finishedGroups, params.gameEnded)
   }
 
-  @Get(Array("/play/{gameName}/task/{index}"))
+  @Get(Array("/aprenda/{gameName}/task/{index}"))
   def task(gameName : String, index : Int) {
     if (taskExists(index)) {
       result.render(new TaskView)(gameName, game.task(index), game, params.judgedTask, params.lastAttempt)
@@ -28,7 +28,7 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
     }
   }
 
-  @Post(Array("/play/{gameName}/task/{index}"))
+  @Post(Array("/aprenda/{gameName}/task/{index}"))
   def submit(gameName : String, index : Int, challenge : String) {
     val cleanChallenge = Option(challenge).getOrElse("")
 
@@ -43,7 +43,7 @@ class GameConsole(result : Result, game : Game, log : Log, session : PlayerSessi
     judgedTask.success {
 
       game.advance(index) { nextIndex =>
-        session.saveLast(Option(s"/play/${gameName}/task/${nextIndex}"))
+        session.saveLast(Option(s"/aprenda/${gameName}/task/${nextIndex}"))
         result.redirectTo(this).task(gameName, nextIndex)
       }
 

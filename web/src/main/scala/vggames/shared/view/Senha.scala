@@ -19,7 +19,7 @@ class Senha extends TypedView[Unit] {
           div(cls := "span8 offset2 well")(
             p(
               "Uma das razões para você não precisar de uma senha é simplesmente a facilidade de uso. É uma coisa a " +
-                "menos para te atrapalhar no momento em que você quiser jogar."),
+                "menos para te atrapalhar no momento em que você quiser aprender."),
             p(
               "Mas não é apenas isso. Não é uma boa troca deixar segurança de lado para aumentar a facilidade."),
             p(

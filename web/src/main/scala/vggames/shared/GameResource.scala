@@ -16,7 +16,7 @@ class GameResource(result: Result, cached: ResourceCache) {
   def findStaticResource(gameName: String, resource: String) =
     result.use(classOf[StaticResourceView]).from(resource)
 
-  @Get(Array("/play/{gameName}/resource/{resource}"))
+  @Get(Array("/aprenda/{gameName}/resource/{resource}"))
   def findGameResource(gameName: String, resource: String) =
     result.use(classOf[GameResourceView]).from(resource)
 

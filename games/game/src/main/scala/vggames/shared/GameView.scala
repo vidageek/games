@@ -21,14 +21,14 @@ trait GameView {
 
   def singleLineChallengeForm(game: Game, task: Exercise, lastAttempt: String, buttonText: String, extraInputClass: String,
     validationPattern: String = ".*", title: String = "") =
-    form(cls := "challenge", "method".attr := "POST", action := s"/play/${game.path}/task/${task.index}")(
+    form(cls := "challenge", "method".attr := "POST", action := s"/aprenda/${game.path}/task/${task.index}")(
       label("for".attr := "challenge")(strong(raw(task.challenge))),
       input(cls := s"focus $extraInputClass", name := "challenge", id := "challenge", autocomplete := "off",
         value := lastAttempt, "pattern".attr := validationPattern, "title".attr := title),
       input(id := "challenge-submit", cls := "btn btn-primary", "type".attr := "submit", value := buttonText))
 
   def multiLineChallengeForm(game: Game, task: Exercise, lastAttempt: String, buttonDisabled: Boolean, buttonExtraClass: String = "") = {
-    form(cls := "challenge", "method".attr := "POST", action := s"/play/${game.path}/task/${task.index}")(
+    form(cls := "challenge", "method".attr := "POST", action := s"/aprenda/${game.path}/task/${task.index}")(
       label("for".attr := "challenge")(strong(raw(task.challenge))),
       textarea(cls := "focus span6", name := "challenge", id := "challenge", autocomplete := "off")(
         s"\n${lastAttempt}"),

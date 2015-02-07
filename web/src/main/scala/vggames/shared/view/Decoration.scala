@@ -18,7 +18,7 @@ class Decoration(req: HttpServletRequest, params: Params, session: PlayerSession
 
     val reqUrl = req.getRequestURI
 
-    if (reqUrl.contains("/play") && reqUrl.contains("/resource"))
+    if (reqUrl.contains("/aprenda") && reqUrl.contains("/resource"))
       ""
     else
       wrap(head, body)
@@ -43,8 +43,8 @@ class Decoration(req: HttpServletRequest, params: Params, session: PlayerSession
             div(cls := "navbar-inner")(
               div(cls := "container")(
                 params.game.map { game =>
-                  a(cls := "brand", href := s"/play/${params.gameId}")(
-                    s"${game.name} Game")
+                  a(cls := "brand", href := s"/aprenda/${params.gameId}")(
+                      s"Aprenda ${game.name}")
                 }.getOrElse(raw("")),
                 session.actualPlayer.map { player =>
                   div(cls := "nav-collapse")(

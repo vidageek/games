@@ -40,7 +40,7 @@ os feature warnings de Scala (Não vamos restringir o uso de nenhuma feature).
 
 1. Caso não esteja familiarizado com o código, dê uma olhada em como o [RegexGame][12] é implementado
 2. Declare o seu jogo no [arquivo de build][13] `lazy val ${path}Game = gameProject("${PATH}")` , 
-sendo que ${PATH} é o que determina a url onde o jogo fica (por exemplo, em `/play/regex`, 
+sendo que ${PATH} é o que determina a url onde o jogo fica (por exemplo, em `/aprenda/regex`, 
 o ${PATH} é `regex`)
 3. Coloque o seu projeto como dependência do projeto `web` e como agregado do projeto `root`
 3. No `sbt`, rode `eclipse with-sources=true` para que o sbt prepare o seu projeto.

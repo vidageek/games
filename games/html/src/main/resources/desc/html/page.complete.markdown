@@ -4,4 +4,4 @@ páginas reais.
 
 Caso tenha alguma dúvida, consulte os [exercícios anteriores][1].
 
-[1]: /play/html
+[1]: /aprenda/html

@@ -23,7 +23,7 @@ class Home extends TypedView[(GamesConfiguration, GameFactoryCache)] {
           ul(cls := "game-list")(
             cfg.activeGames.map { game =>
               li(
-                a(href := s"/play/$game")(img(src := s"/static/$game/logo.png", alt := s"${cached(game).map(_.name).getOrElse(game)} Game"), (s"${cached(game).map(_.name).getOrElse(game)}")))
+                a(href := s"/aprenda/$game")(img(src := s"/static/$game/logo.png", alt := s"Aprenda ${cached(game).map(_.name).getOrElse(game)}"), (s"${cached(game).map(_.name).getOrElse(game)}")))
             })
             )))
 
