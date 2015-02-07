@@ -18,24 +18,14 @@ class Home extends TypedView[(GamesConfiguration, GameFactoryCache)] {
         title(
           "VidaGeek Games")),
       body(
-        header(
-          h1(
-            "VidaGeek Games")),
-        div(cls := "row why span8 offset2")(
-          p("O VidaGeek Games é uma iniciativa ", strong("OpenSource"), " para criar material de aprendizado atravéz da prática.",
-            "Para isso criamos ", strong("jogos"), " nos quais você ", strong("aprende"), " conforme avança."),
-          p("Ainda existe muito trabalho a ser feito, mas você já pode sentir o gostinho com alguns dos jogos abaixo:"),
-          ul(
+        div(cls := "why")(
+          p("O que você quer aprender hoje?"),
+          ul(cls := "game-list")(
             cfg.activeGames.map { game =>
               li(
-                a(href := s"/play/$game")(s"${cached(game).map(_.name).getOrElse(game)} :"),
-                p(s"${cached(game).map(_.description).getOrElse("")}"))
-            }),
-          p("E também estamos trabalhando em jogos sobre:"),
-          ul(
-            cfg.inactiveGames.map { game =>
-              li(s"${cached(game).map(_.name).getOrElse(game)}")
-            }))))
+                a(href := s"/play/$game")(img(src := s"/static/$game/logo.png", alt := s"${cached(game).map(_.name).getOrElse(game)} Game"), (s"${cached(game).map(_.name).getOrElse(game)}")))
+            })
+            )))
 
   }
 

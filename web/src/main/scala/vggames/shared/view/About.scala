@@ -13,6 +13,8 @@ class About extends TypedView[Unit] {
         title("Quem constrói esse site?")),
       body(
         div(cls := "about")(
+          p(cls := "why")("O VidaGeek Games é uma iniciativa ", strong("OpenSource"), " para criar material de aprendizado atravéz da prática.",
+            "Para isso criamos ", strong("jogos"), " nos quais você ", strong("aprende"), " conforme avança."),
           h1("Pessoas que contribuem com o projeto"),
           div(id := "contributors")(""),
           h1("Organizações que contribuem com o projeto"),
