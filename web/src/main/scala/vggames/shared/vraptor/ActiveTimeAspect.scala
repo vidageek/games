@@ -7,7 +7,7 @@ import br.com.caelum.vraptor.resource.ResourceMethod
 import javax.servlet.http.HttpServletRequest
 import vggames.shared.player.PlayerSession
 
-@Intercepts
+@Intercepts(after = Array(classOf[DomainAspect]))
 class ActiveTimeAspect(params : Params, session : PlayerSession) extends RequestAspect {
 
   override def apply(stack : InterceptorStack, method : ResourceMethod, resourceInstance : Any) {
