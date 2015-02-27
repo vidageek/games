@@ -6,7 +6,7 @@ Caso você queira colocar uma área para o usuário digitar o texto, você pode 
 visíveis).
 
 Além disso, quase sempre queremos mostrar para o usuário o que é para ele digitar
-naquele input. Para isso, podemos usar a tag `<label>`. Um atributo inportante que
+naquele input. Para isso, podemos usar a tag `<label>`. Um atributo importante que
 ela tem é o `for`, que você deve colocar o valor do atributo `id` do input que você 
 está descrevendo.
 
