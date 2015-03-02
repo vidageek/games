@@ -3,7 +3,7 @@ Html também suporta a exibição de dados em forma de tabelas. Para isso utiliz
 * `<table>` marca o começo de uma tabela
 * `<thead>` (opcional) marca o cabeçalho da tabela
 * `<tbody>` (opcional) marca o corpo da tabela
-* `<tfooter>` (opcional) marca o rodapé da tabela
+* `<tfoot>` (opcional) marca o rodapé da tabela
 * `<tr>` marca as linhas da tabela
 * `<th>` (opcional) marca os títulos da coluna
 * `<td>` marca as células da tabela
